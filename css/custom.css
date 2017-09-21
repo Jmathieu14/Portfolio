@@ -7,3 +7,19 @@
 .cus-black {
     background: #292929;
 }
+/* TODO add @media rule for smaller devices to reposition button */
+.next-btn-wrapper {
+    position: absolute;
+    right: 1%;
+    margin-top: 7px;
+}
+
+.card-temp {
+    height: 0px;
+    opacity: 0;
+}
+
+.card-temp.show {
+    height: auto;
+    opacity: 1;
+}
