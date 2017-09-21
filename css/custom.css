@@ -13,13 +13,48 @@
     right: 1%;
     margin-top: 7px;
 }
+.prev-btn-wrapper {
+    position: absolute;
+    left: 1%;
+    margin-top: 7px;
+}
+
+.prev-btn-wrapper button, .next-btn-wrapper button {
+    background-color:transparent;
+    border:0px;
+    display:inline-block;
+    cursor:pointer;
+    color:#dcdcdc;
+    padding:0px 10px;
+    padding-top: 6px;
+    text-decoration:none;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+.prev-btn-wrapper button:hover, .next-btn-wrapper button:hover {
+    background-color: rgba(0,0,0,0.15);
+    color:white;
+    transition: all 0.3s ease;
+}
+.prev-btn-wrapper button:active, .next-btn-wrapper button:active {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    color:white;
+    transition: all 0.15s ease-in;
+}
+
 
 .card-temp {
     height: 0px;
     opacity: 0;
 }
-
+.card-temp div, .card-temp img, .card-temp i {
+    height: 0px;
+}
 .card-temp.show {
     height: auto;
     opacity: 1;
+}
+.card-temp.show div, .card-temp.show img, .card-temp.show i {
+    height: auto;
 }

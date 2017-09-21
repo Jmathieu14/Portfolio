@@ -48,12 +48,12 @@
                 <div class="row" id="img-sec">
                     <div class="next-btn-wrapper">
                         <button onclick="goToNextImages()">
-                            Next
+                            <i class="material-icons">keyboard_arrow_right</i>
                         </button>
                     </div>
                     <div class="prev-btn-wrapper">
                         <button onclick="goToPrevImages()">
-                            Prev
+                            <i class="material-icons">keyboard_arrow_left</i>
                         </button>
                     </div>
                     <script src="../js/make_card_component.js" type="text/javascript">
@@ -83,17 +83,29 @@
                             return true;
                         }
                         function goToNextImages() {
-                            var nextImgs = [curImgs[0]+2,curImgs[1]+2];
-                            if (hideCurImages()) {
-                                curImgs = nextImgs;
-                                showCurImages();
+                            if (!(curImgs[0]+2 >= myImgCards.length)) {
+                                if (curImgs.length == 1 || curImgs[1]+2 >= myImgCards.length) {
+                                    var nextImgs = [curImgs[0]+2];
+                                } else {
+                                    var nextImgs = [curImgs[0]+2,curImgs[1]+2];
+                                }
+                                if (hideCurImages()) {
+                                    curImgs = nextImgs;
+                                    showCurImages();
+                                }
                             }
                         }
                         function goToPrevImages() {
-                            var prevImgs = [curImgs[0]-2,curImgs[1]-2];
-                            if (hideCurImages()) {
-                                curImgs = prevImgs;
-                                showCurImages();
+                            if (curImgs.length != 1 && !(curImgs[1]-2 < 0)) {
+                                if (curImgs[0]-2 < 0) {
+                                    var prevImgs = [curImgs[1]-2];
+                                } else {
+                                    var prevImgs = [curImgs[0]-2,curImgs[1]-2];
+                                }
+                                if (hideCurImages()) {
+                                    curImgs = prevImgs;
+                                    showCurImages();
+                                }
                             }
                         }
                     </script>
