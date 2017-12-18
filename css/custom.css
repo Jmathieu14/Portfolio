@@ -4,8 +4,14 @@
 .cus-light-grey-text {
     color: #bdbdbd;
 }
+.cus-light-grey {
+    background: #bdbdbd;
+}
 .cus-black {
     background: #292929;
+}
+.cus-black-text {
+    color: #292929;
 }
 /* TODO add @media rule for smaller devices to reposition button */
 .next-btn-wrapper {
@@ -57,4 +63,12 @@
 }
 .card-temp.show div, .card-temp.show img, .card-temp.show i {
     height: auto;
+}
+
+.mycard-title {
+    text-align: center;
+    height: 100% !important;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background: #f3f3f3;
 }

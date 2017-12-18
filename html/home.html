@@ -45,66 +45,67 @@
                     <h4 class="header left-align col white-text"> SparkSales Website </h4>
                 </div>
                 <!-- Image Section -->
-                <div class="row" id="img-sec">
+                <div class="row" id="card-sec">
                     <div class="next-btn-wrapper">
-                        <button onclick="goToNextImages()">
+                        <button onclick="goToNextCards()">
                             <i class="material-icons">keyboard_arrow_right</i>
                         </button>
                     </div>
                     <div class="prev-btn-wrapper">
-                        <button onclick="goToPrevImages()">
+                        <button onclick="goToPrevCards()">
                             <i class="material-icons">keyboard_arrow_left</i>
                         </button>
                     </div>
                     <script src="../js/make_card_component.js" type="text/javascript">
                     </script>
                     <script type="text/javascript">
-                        var myImgCards = [];
-                        var curImgs = [];
+                        var myCards = [];
+                        var curCards = [];
                         makeImageCard("Welcome page - first page client sees on first login.png", "This is the first page a client sees upon first logging onto the SparkSales system");
                         makeImageCard("Step 1 signup process.png", "This is the first step in the client setup process");
                         makeImageCard("Step 2 signup process.png", "This is the second step");
                         makeImageCard("Step 3 sign up process.png", "This is the third step");
                         makeImageCard("Step 4 - sign up process.png", "This is the fourth step");
                         makeImageCard("Step 3 Reminder for Client.png", "This is the popup that is shown if the client skipped step 3");
-                        myImgCards = this.document.getElementsByClassName("card-temp");
-                        curImgs = [0,1];
-                        function showCurImages() {
-                            for (var x = 0; x < curImgs.length; x++) {
-                                myImgCards[curImgs[x]].className+=" show";
+                        makeTextCard("Coming Soon", "Video content will be added to showcase the functionality of my work.");
+                        myCards = this.document.getElementsByClassName("card-temp");
+                        curCards = [0,1];
+                        function showCurCards() {
+                            for (var x = 0; x < curCards.length; x++) {
+                                myCards[curCards[x]].className+=" show";
                             }
                         }
-                        showCurImages();
-                        function hideCurImages() {
-                            for (var x = 0; x < curImgs.length; x++) {
-                                var cName = myImgCards[curImgs[x]].className;
-                                myImgCards[curImgs[x]].className = cName.replace(" show", "");
+                        showCurCards();
+                        function hideCurCards() {
+                            for (var x = 0; x < curCards.length; x++) {
+                                var cName = myCards[curCards[x]].className;
+                                myCards[curCards[x]].className = cName.replace(" show", "");
                             }
                             return true;
                         }
-                        function goToNextImages() {
-                            if (!(curImgs[0]+2 >= myImgCards.length)) {
-                                if (curImgs.length == 1 || curImgs[1]+2 >= myImgCards.length) {
-                                    var nextImgs = [curImgs[0]+2];
+                        function goToNextCards() {
+                            if (!(curCards[0]+2 >= myCards.length)) {
+                                if (curCards.length == 1 || curCards[1]+2 >= myCards.length) {
+                                    var nextImgs = [curCards[0]+2];
                                 } else {
-                                    var nextImgs = [curImgs[0]+2,curImgs[1]+2];
+                                    var nextImgs = [curCards[0]+2,curCards[1]+2];
                                 }
-                                if (hideCurImages()) {
-                                    curImgs = nextImgs;
-                                    showCurImages();
+                                if (hideCurCards()) {
+                                    curCards = nextImgs;
+                                    showCurCards();
                                 }
                             }
                         }
-                        function goToPrevImages() {
-                            if (curImgs.length != 1 && !(curImgs[1]-2 < 0)) {
-                                if (curImgs[0]-2 < 0) {
-                                    var prevImgs = [curImgs[1]-2];
+                        function goToPrevCards() {
+                            if (curCards.length != 1 && !(curCards[1]-2 < 0)) {
+                                if (curCards[0]-2 < 0) {
+                                    var prevImgs = [curCards[1]-2];
                                 } else {
-                                    var prevImgs = [curImgs[0]-2,curImgs[1]-2];
+                                    var prevImgs = [curCards[0]-2,curCards[1]-2];
                                 }
-                                if (hideCurImages()) {
-                                    curImgs = prevImgs;
-                                    showCurImages();
+                                if (hideCurCards()) {
+                                    curCards = prevImgs;
+                                    showCurCards();
                                 }
                             }
                         }
