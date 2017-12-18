@@ -86,25 +86,32 @@
                         function goToNextCards() {
                             if (!(curCards[0]+2 >= myCards.length)) {
                                 if (curCards.length == 1 || curCards[1]+2 >= myCards.length) {
-                                    var nextImgs = [curCards[0]+2];
+                                    var nextCards = [curCards[0]+2];
                                 } else {
-                                    var nextImgs = [curCards[0]+2,curCards[1]+2];
+                                    var nextCards = [curCards[0]+2,curCards[1]+2];
                                 }
                                 if (hideCurCards()) {
-                                    curCards = nextImgs;
+                                    curCards = nextCards;
                                     showCurCards();
                                 }
                             }
                         }
                         function goToPrevCards() {
+                            if (curCards.length == 1) {
+                                var prevCards = [curCards[0]-2,curCards[0]-1];
+                                if (hideCurCards()) {
+                                    curCards = prevCards;
+                                    showCurCards();
+                                }
+                            }
                             if (curCards.length != 1 && !(curCards[1]-2 < 0)) {
                                 if (curCards[0]-2 < 0) {
-                                    var prevImgs = [curCards[1]-2];
+                                    var prevCards = [curCards[1]-2];
                                 } else {
-                                    var prevImgs = [curCards[0]-2,curCards[1]-2];
+                                    var prevCards = [curCards[0]-2,curCards[1]-2];
                                 }
                                 if (hideCurCards()) {
-                                    curCards = prevImgs;
+                                    curCards = prevCards;
                                     showCurCards();
                                 }
                             }
