@@ -38,86 +38,54 @@
 
         </div>
     </div>
-    <div class="container-background purple">
+    <script src="../js/card_handler.js" type="text/javascript">
+    </script>
+    <script src="../js/make_card_component.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        function initCardSections() {
+            // INIT section 1
+            activecardrow = this.document.querySelectorAll(".card-tabber-section .card-sec")[0];
+            var sec1ID = addSection();
+            // console.log(sec1ID);
+            makeImageCard("Sparksales/Welcome page - first page client sees on first login.png", "This is the first page a client sees upon first logging onto the SparkSales system");
+            makeImageCard("Sparksales/Step 1 signup process.png", "This is the first step in the client setup process");
+            makeImageCard("Sparksales/Step 2 signup process.png", "This is the second step");
+            makeImageCard("Sparksales/Step 3 sign up process.png", "This is the third step");
+            makeImageCard("Sparksales/Step 4 - sign up process.png", "This is the fourth step");
+            makeImageCard("Sparksales/Step 3 Reminder for Client.png", "This is the popup that is shown if the client skipped step 3");
+            makeTextCard("Coming Soon", "Video content will be added to showcase the functionality of my work.");
+            //Add cards to the appropriate section
+            sections[0].cards = activecardrow.getElementsByClassName("card-temp");
+            // INIT section 2
+            activecardrow = this.document.querySelectorAll(".card-tabber-section .card-sec")[1];
+            var sec2ID = addSection();
+            makeImageCard("AGO/OML.png", "Open Meeting Law public denominations lookup site");
+            sections[1].cards = activecardrow.getElementsByClassName("card-temp");
+            setTimeout(function() {showCurCardsPerSection()}, 100);
+        }
+        // initCardSections();
+        window.onload = setTimeout(function() {initCardSections()}, 50);
+    </script>
+
+    <div class="container-background purple card-tabber-section">
         <div class="container">
             <div class="section">
                 <div class="row">
                     <h4 class="header left-align col white-text"> SparkSales Website </h4>
                 </div>
                 <!-- Image Section -->
-                <div class="row" id="card-sec">
+                <div class="row card-sec">
                     <div class="next-btn-wrapper">
-                        <button onclick="goToNextCards()">
+                        <button onclick="goToNextCards(0)">
                             <i class="material-icons">keyboard_arrow_right</i>
                         </button>
                     </div>
                     <div class="prev-btn-wrapper">
-                        <button onclick="goToPrevCards()">
+                        <button onclick="goToPrevCards(0)">
                             <i class="material-icons">keyboard_arrow_left</i>
                         </button>
                     </div>
-                    <script src="../js/make_card_component.js" type="text/javascript">
-                    </script>
-                    <script type="text/javascript">
-                        var myCards = [];
-                        var curCards = [];
-                        makeImageCard("Sparksales/Welcome page - first page client sees on first login.png", "This is the first page a client sees upon first logging onto the SparkSales system");
-                        makeImageCard("Sparksales/Step 1 signup process.png", "This is the first step in the client setup process");
-                        makeImageCard("Sparksales/Step 2 signup process.png", "This is the second step");
-                        makeImageCard("Sparksales/Step 3 sign up process.png", "This is the third step");
-                        makeImageCard("Sparksales/Step 4 - sign up process.png", "This is the fourth step");
-                        makeImageCard("Sparksales/Step 3 Reminder for Client.png", "This is the popup that is shown if the client skipped step 3");
-                        makeTextCard("Coming Soon", "Video content will be added to showcase the functionality of my work.");
-                        myCards = this.document.getElementsByClassName("card-temp");
-                        curCards = [0,1];
-                        function showCurCards() {
-                            for (var x = 0; x < curCards.length; x++) {
-                                myCards[curCards[x]].className+=" show";
-                            }
-                        }
-                        showCurCards();
-                        function hideCurCards() {
-                            for (var x = 0; x < curCards.length; x++) {
-                                var cName = myCards[curCards[x]].className;
-                                myCards[curCards[x]].className = cName.replace(" show", "");
-                            }
-                            return true;
-                        }
-                        function goToNextCards() {
-                            if (!(curCards[0]+2 >= myCards.length)) {
-                                if (curCards.length == 1 || curCards[1]+2 >= myCards.length) {
-                                    var nextCards = [curCards[0]+2];
-                                } else {
-                                    var nextCards = [curCards[0]+2,curCards[1]+2];
-                                }
-                                if (hideCurCards()) {
-                                    curCards = nextCards;
-                                    showCurCards();
-                                }
-                            }
-                        }
-                        function goToPrevCards() {
-                            if (curCards.length == 1) {
-                                var prevCards = [curCards[0]-2,curCards[0]-1];
-                                if (hideCurCards()) {
-                                    curCards = prevCards;
-                                    showCurCards();
-                                }
-                            }
-                            if (curCards.length != 1 && !(curCards[1]-2 < 0)) {
-                                if (curCards[0]-2 < 0) {
-                                    var prevCards = [curCards[1]-2];
-                                } else {
-                                    var prevCards = [curCards[0]-2,curCards[1]-2];
-                                }
-                                if (hideCurCards()) {
-                                    curCards = prevCards;
-                                    showCurCards();
-                                }
-                            }
-                        }
-                    </script>
-
                     <!-- <div class="col s12 m4">
                         <div class="icon-block">
                             <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
@@ -144,6 +112,33 @@
                             <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
                         </div>
                     </div> -->
+                </div>
+
+            </div>
+            <br><br>
+        </div>
+    </div>
+    <div class="black cus-spacer">
+    </div>
+
+    <div class="container-background card-tabber-section">
+        <div class="container">
+            <div class="section">
+                <div class="row">
+                    <h4 class="header left-align col"> Massachussetts AGO </h4>
+                </div>
+                <!-- Image Section -->
+                <div class="row card-sec">
+                    <div class="next-btn-wrapper">
+                        <button onclick="goToNextCards(1)">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </button>
+                    </div>
+                    <div class="prev-btn-wrapper">
+                        <button onclick="goToPrevCards(1)">
+                            <i class="material-icons">keyboard_arrow_left</i>
+                        </button>
+                    </div>
                 </div>
 
             </div>
@@ -190,5 +185,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src="../js/init.js"></script>
+    <div id="emptyHTMLElement">
+    </div>
 </body>
 </html>
