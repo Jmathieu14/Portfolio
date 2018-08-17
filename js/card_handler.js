@@ -12,6 +12,9 @@ function showCurCards(sectionID) {
     for (var x = 0; x < curCards.length; x++) {
         if (typeof myCards[curCards[x]] !== "undefined") {
             myCards[curCards[x]].className+=" show";
+        } else {
+            console.log(myCards);
+            console.log(sectionID);
         }
     }
 }
