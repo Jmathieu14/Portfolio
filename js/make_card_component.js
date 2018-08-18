@@ -1,4 +1,5 @@
-var mycardrow = this.document.getElementById("card-sec");
+// var activecardrow = document.getElementById('emptyHTMLElement');
+var activecardrow = null;
 
 function makeImageCard(imgName, descr) {
     var imgCardTemplate =
@@ -14,7 +15,7 @@ function makeImageCard(imgName, descr) {
         + '</div>'
       + '</div>'
     + '</div>';
-    mycardrow.insertAdjacentHTML("beforeEnd", imgCardTemplate);
+    activecardrow.insertAdjacentHTML("beforeEnd", imgCardTemplate);
     // console.log(imgCardTemplate);
 }
 
@@ -30,5 +31,5 @@ function makeTextCard(title, descr) {
         + '</div>'
       + '</div>'
     + '</div>';
-    mycardrow.insertAdjacentHTML("beforeEnd", imgCardTemplate);
+    activecardrow.insertAdjacentHTML("beforeEnd", imgCardTemplate);
 }
