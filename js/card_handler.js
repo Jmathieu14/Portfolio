@@ -13,8 +13,8 @@ function showCurCards(sectionID) {
         if (typeof myCards[curCards[x]] !== "undefined") {
             myCards[curCards[x]].className+=" show";
         } else {
-            console.log(myCards);
-            console.log(sectionID);
+            // console.log(myCards);
+            // console.log(sectionID);
         }
     }
 }
@@ -26,6 +26,7 @@ function showCurCardsPerSection() {
     }
 }
 
+// Returns true if function is run
 function hideCurCards(sectionID) {
     var curCards = sections[sectionID].currentCards;
     var myCards = sections[sectionID].cards;
@@ -38,8 +39,8 @@ function hideCurCards(sectionID) {
 function goToNextCards(sectionID) {
     var curCards = sections[sectionID].currentCards;
     var myCards = sections[sectionID].cards;
-    console.log(sections[sectionID].cards.length);
-    console.log(sections[sectionID].currentCards);
+    // console.log(sections[sectionID].cards.length);
+    // console.log(sections[sectionID].currentCards);
     if (!(curCards[0]+2 >= myCards.length)) {
         if (curCards.length == 1 || curCards[1]+2 >= myCards.length) {
             var nextCards = [curCards[0]+2];
@@ -47,7 +48,7 @@ function goToNextCards(sectionID) {
             var nextCards = [curCards[0]+2,curCards[1]+2];
         }
         if (hideCurCards(sectionID)) {
-            curCards = nextCards;
+            sections[sectionID].currentCards = nextCards;
             showCurCards(sectionID);
         }
     }
@@ -58,7 +59,7 @@ function goToPrevCards(sectionID) {
     if (curCards.length == 1) {
         var prevCards = [curCards[0]-2,curCards[0]-1];
         if (hideCurCards(sectionID)) {
-            curCards = prevCards;
+            sections[sectionID].currentCards = prevCards;
             showCurCards(sectionID);
         }
     }
@@ -69,7 +70,7 @@ function goToPrevCards(sectionID) {
             var prevCards = [curCards[0]-2,curCards[1]-2];
         }
         if (hideCurCards(sectionID)) {
-            curCards = prevCards;
+            sections[sectionID].currentCards = prevCards;
             showCurCards(sectionID);
         }
     }
