@@ -24,11 +24,10 @@
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
     </nav>
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <br><br>
-            <h1 class="header center purple-text page-title">Welcome</h1>
-            <div class="row center">
+    <div class="section no-pad-bot no-pad-top" id="index-banner">
+        <div class="container page-title-subtitle-container">
+            <h1 class="header purple-text page-title">Welcome</h1>
+            <div class="row page-subtitle-row">
                 <h5 class="header col s12 light page-subtitle">This website showcases some of the work I have done in <i>Web Design</i> and <i>Web Development</i>, as well as the <i>music</i> I make and any <i>other projects</i> I wish to share</h5>
             </div>
             <!-- <div class="row center">
@@ -42,8 +41,19 @@
     </script>
     <script src="../js/make_card_component.js" type="text/javascript">
     </script>
+    <!-- Load js to center elements that can't be done with just css -->
+    <script src="../js/centrify.js" type="text/javascript">
+    </script>
     <script type="text/javascript">
-        function initCardSections() {
+        // Initialize centrify's functions on specified elements
+        function initCentrify() {
+            var subtitleOffsetE = document.querySelectorAll(".page-title")[0];
+            var subtitleOffset = subtitleOffsetE.offsetHeight;
+            console.log("Subtitle offset = " + subtitleOffset);
+            centerFirstVerically("div.page-subtitle-row", subtitleOffset);
+            centerFirstVerically(".page-title", 0);
+        }
+        function initCusCode() {
             // INIT section 1
             activecardrow = this.document.querySelectorAll(".card-tabber-section .card-sec")[0];
             var sec1ID = addSection();
@@ -64,10 +74,10 @@
             makeImageCard("AGO/MLU after.png", "MLU public decisions lookup site after adding custom css");
             makeImageCard("AGO/OML.png", "Open Meeting Law public denominations lookup site with custom css");
             sections[1].cards = activecardrow.getElementsByClassName("card-temp");
-            setTimeout(function() {showCurCardsPerSection()}, 100);
+            setTimeout(function() {showCurCardsPerSection();initCentrify();}, 100);
         }
-        // initCardSections();
-        window.onload = setTimeout(function() {initCardSections()}, 50);
+        // initCusCode();
+        window.onload = setTimeout(function() {initCusCode()}, 50);
     </script>
 
     <div class="container-background purple card-tabber-section">
@@ -88,34 +98,7 @@
                             <i class="material-icons">keyboard_arrow_left</i>
                         </button>
                     </div>
-                    <!-- <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-                            <h5 class="center">Speeds up development</h5>
-
-                            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-                            <h5 class="center">User Experience Focused</h5>
-
-                            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-                        </div>
-                    </div>
-
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-                            <h5 class="center">Easy to work with</h5>
-
-                            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-                        </div>
-                    </div> -->
                 </div>
-
             </div>
             <br><br>
         </div>
@@ -127,7 +110,7 @@
         <div class="container">
             <div class="section">
                 <div class="row">
-                    <h4 class="header left-align col"> Massachussetts AGO </h4>
+                    <h4 class="header left-align col grey-text text-darken-3"> Massachussetts AGO </h4>
                 </div>
                 <!-- Image Section -->
                 <div class="row card-sec">
