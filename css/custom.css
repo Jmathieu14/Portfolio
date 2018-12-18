@@ -49,7 +49,6 @@
     transition: all 0.15s ease-in;
 }
 
-
 .card-temp {
     height: 0px;
     opacity: 0;
@@ -71,4 +70,32 @@
     padding-top: 6px;
     padding-bottom: 6px;
     background: #f3f3f3;
+}
+
+/* Set up custom font */
+@font-face {
+    font-family: "Montserrat";
+    src: local(Montserrat Bold), url("../fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: local(Montserrat SemiBold), url("../fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+}
+
+/* Main title of page */
+.page-title {
+    font-family: Montserrat;
+    font-weight: 600;
+}
+
+.page-subtitle {
+    line-height: 140%;
+}
+
+h4, h5:not(.page-subtitle) {
+    font-family: Montserrat;
+    font-weight: 600;
 }
