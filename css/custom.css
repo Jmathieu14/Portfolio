@@ -124,9 +124,17 @@
 }
 
 .brand-logo {
-    font-family: Montserrat, Roboto, sans-serif;
-    font-weight: 600;
-    font-size: 1.4em !important;
+    font-family: Roboto Light, sans-serif;
+    font-size: 1.1em !important;
+}
+
+.brand-logo-img {
+    width: 2.4rem;
+    height: 2.4rem;
+    position: relative;
+    top: 0.75em;
+    filter: invert(1);
+    margin-right: 0.65em;
 }
 
 h4 {
@@ -140,6 +148,10 @@ h5:not(.page-subtitle) {
 h4, h5:not(.page-subtitle) {
     font-family: Montserrat, Roboto, sans-serif;
     font-weight: 600;
+}
+
+.mycard-title {
+    font-family: Montserrat, sans-serif;
 }
 
 /* @media (max-width: 759px) {
