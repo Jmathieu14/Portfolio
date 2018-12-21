@@ -154,6 +154,20 @@ h4, h5:not(.page-subtitle) {
     font-family: Montserrat, sans-serif;
 }
 
-/* @media (max-width: 759px) {
-
-} */
+@media (max-width: 759px) {
+    .page-title, .page-subtitle-row {
+        width: 100%;
+        max-width: 100%;
+        float: left;
+    }
+    .page-subtitle-row {
+        margin-top: 2em;
+        margin-left: 0em !important;
+    }
+    .page-subtitle {
+        font-size: 1.2em;
+    }
+    .page-title-subtitle-container {
+        height: 22em;
+    }
+}
