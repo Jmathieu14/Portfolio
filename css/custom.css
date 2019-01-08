@@ -171,3 +171,25 @@ h4, h5:not(.page-subtitle) {
         height: 22em;
     }
 }
+
+/* Temp Disable Mobile View */
+.in-dev {
+    display: none;
+    height: 0px;
+}
+.in-dev .my-text {
+    color: red;
+    font-family: Roboto, sans-serif;
+    font-size: 1.2em;
+}
+@media (max-width: 610px) {
+    .in-dev {
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: #ffeec6;
+        z-index: 100;
+        position: relative;
+        padding: 1em;
+    }
+}
