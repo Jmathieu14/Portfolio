@@ -17,3 +17,5 @@ function centerVertically(sel, offset, index) {
 function centerFirstVerically(sel, offset) {
     centerVertically(sel, offset, 0);
 }
+
+// TODO: enable scaling the amount of centering

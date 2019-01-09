@@ -120,7 +120,7 @@
     margin: 0px;
 }
 .page-title-subtitle-container {
-    height: 16em;
+    height: 26em;
 }
 
 .brand-logo {
@@ -153,6 +153,31 @@ h4, h5:not(.page-subtitle) {
 .mycard-title {
     font-family: Montserrat, sans-serif;
 }
+
+/* Page Illustration */
+
+#logo-pattern-3 {
+    width: 85%;
+    top: 4em;
+    position: relative;
+    left: 7.5%;
+}
+
+@media only screen and (min-width: 993px) {
+    #logo-pattern-3 {
+        width: 70%;
+        left: 15%;
+    }
+}
+
+@media (max-width: 759px) {
+    #logo-pattern-3 {
+        width: 90%;
+        left: 5%;
+    }
+}
+
+/* End Page Illustration */
 
 @media (max-width: 759px) {
     .page-title, .page-subtitle-row {
