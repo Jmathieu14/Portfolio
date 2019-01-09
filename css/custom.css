@@ -220,3 +220,12 @@ h4, h5:not(.page-subtitle) {
         padding: 1em;
     }
 }
+
+/* Expandable Section */
+
+.expandable-section.closed .card-tabber-section {
+    height: 0px;
+}
+.expandable-section .card-tabber-section {
+    height: auto;
+}

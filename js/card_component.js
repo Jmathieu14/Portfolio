@@ -33,3 +33,17 @@ function makeTextCard(title, descr) {
     + '</div>';
     activecardrow.insertAdjacentHTML("beforeEnd", imgCardTemplate);
 }
+
+function myToggle(id) {
+    var mySection = document.getElementById(id);
+    var myClassName = mySection.className;
+    var cnLen = myClassName.length;
+    var indexOfClosed = myClassName.indexOf("closed");
+    // If closed is in the class name
+    if (indexOfClosed !== -1) {
+        myClassName = myClassName.substring(0, indexOfClosed - 1) + myClassName.substring(indexOfClosed + 6, cnLen);
+        mySection.className = myClassName;
+    } else {
+        mySection.className += " closed";
+    }
+}

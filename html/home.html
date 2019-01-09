@@ -55,7 +55,7 @@
     </div>
     <script src="../js/card_handler.js" type="text/javascript">
     </script>
-    <script src="../js/make_card_component.js" type="text/javascript">
+    <script src="../js/card_component.js" type="text/javascript">
     </script>
     <!-- Load js to center elements that can't be done with just css -->
     <script src="../js/centrify.js" type="text/javascript">
@@ -95,7 +95,11 @@
         // initCusCode();
         window.onload = setTimeout(function() {initCusCode()}, 50);
     </script>
-    <div class="expandable-section" id="web-work">
+    <div class="expandable-section closed" id="web-work">
+        <div class="es-banner">
+            <div class="es-title"> web design work </div>
+            <div class="es-expand" onclick="myToggle('web-work')"> toggle </div>
+        </div>
         <div class="container-background purple card-tabber-section">
             <div class="container">
                 <div class="section">
