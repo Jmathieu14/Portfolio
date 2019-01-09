@@ -119,8 +119,10 @@
     font-size: 1.4em;
     margin: 0px;
 }
+
+/* TODO: automate to be full height of page (minus nav height) */
 .page-title-subtitle-container {
-    height: 26em;
+    height: 28em;
 }
 
 .brand-logo {
@@ -158,7 +160,7 @@ h4, h5:not(.page-subtitle) {
 
 #logo-pattern-3 {
     width: 85%;
-    top: 4em;
+    top: 10em;
     position: relative;
     left: 7.5%;
 }
