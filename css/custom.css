@@ -223,9 +223,35 @@ h4, h5:not(.page-subtitle) {
 
 /* Expandable Section */
 
-.expandable-section.closed .card-tabber-section {
+.expandable-section.closed .card-tabber-section, .expandable-section.closed .cus-spacer,
+.expandable-section.closed .card-tabber-section div:not(.es), .expandable-section.closed .card-tabber-section i,
+.expandable-section.closed .card-tabber-section a, .expandable-section.closed .card-tabber-section img {
     height: 0px;
+    opacity: 0;
+    transition: all 0.3s linear;
 }
-.expandable-section .card-tabber-section {
-    height: auto;
+.expandable-section .card-tabber-section *:not(.card-temp) {
+    opacity: 1;
+    transition: all 0.3s linear;
+}
+
+.es-banner {
+    height: 4em;
+}
+
+.es-title {
+    width: 45%;
+    padding-right: 1em;
+    position: relative;
+    float: left;
+    /* font-family: Montserrat, Roboto, sans-serif;
+    font-weight: 600; */
+}
+
+.es-expand {
+    width: 3em;
+    margin: 1.14rem 0 .912rem 0;
+    position: relative;
+    float: left;
+    user-select: none;
 }

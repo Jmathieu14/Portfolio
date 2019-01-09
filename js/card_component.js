@@ -1,3 +1,5 @@
+// *** NOTE *** Requires my_scroll.js to be imported into html file before it to compile correctly
+
 // var activecardrow = document.getElementById('emptyHTMLElement');
 var activecardrow = null;
 
@@ -43,6 +45,7 @@ function myToggle(id) {
     if (indexOfClosed !== -1) {
         myClassName = myClassName.substring(0, indexOfClosed - 1) + myClassName.substring(indexOfClosed + 6, cnLen);
         mySection.className = myClassName;
+        console.log(calcScrollDistOfFirst("#" + id));
     } else {
         mySection.className += " closed";
     }
