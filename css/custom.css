@@ -240,7 +240,7 @@ h4, h5:not(.page-subtitle) {
 }
 
 .es-title {
-    width: 45%;
+    width: 40%;
     padding-right: 1em;
     position: relative;
     float: left;
@@ -249,9 +249,21 @@ h4, h5:not(.page-subtitle) {
 }
 
 .es-expand {
-    width: 3em;
+    width: 59%;
     margin: 1.14rem 0 .912rem 0;
+    margin-left: -.75rem;
+    margin-right: -.75rem;
+    padding: 0 .75rem;
     position: relative;
-    float: left;
+    float: right;
     user-select: none;
+}
+
+.es-expand img:hover {
+    cursor: pointer;
+}
+
+.es-expand img {
+    height: 1.9em;
+    width: 1.9em;
 }
