@@ -36,6 +36,9 @@ function makeTextCard(title, descr) {
     activecardrow.insertAdjacentHTML("beforeEnd", imgCardTemplate);
 }
 
+// Define global value to track the current position of page scroll
+var curScrollIndex = window.pageYOffset;
+// Function to toggle expandable sections given the correct ID
 function myToggle(id) {
     var mySection = document.getElementById(id);
     var myClassName = mySection.className;
@@ -45,8 +48,12 @@ function myToggle(id) {
     if (indexOfClosed !== -1) {
         myClassName = myClassName.substring(0, indexOfClosed - 1) + myClassName.substring(indexOfClosed + 6, cnLen);
         mySection.className = myClassName;
-        console.log(calcScrollDistOfFirst("#" + id));
+        var distToScroll = calcScrollDistOfFirst("#" + id);
+        curScrollIndex = window.pageYOffset;
+        smoothVerticalScroll(curScrollIndex, distToScroll, 10, 4000);
+        // window.scrollTo(0, distToScroll);
     } else {
+        curScrollIndex = window.pageYOffset;
         mySection.className += " closed";
     }
 }
