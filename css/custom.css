@@ -240,7 +240,7 @@ h4, h5:not(.page-subtitle) {
 }
 
 .es-title {
-    width: 40%;
+    width: 18.5rem;
     padding-right: 1em;
     position: relative;
     float: left;
@@ -249,21 +249,29 @@ h4, h5:not(.page-subtitle) {
 }
 
 .es-expand {
-    width: 59%;
-    margin: 1.14rem 0 .912rem 0;
+    width: 1.9em;
+    height: 1.9em;
+    margin-top: 1.2rem;
     margin-left: -.75rem;
     margin-right: -.75rem;
-    padding: 0 .75rem;
     position: relative;
-    float: right;
+    float: left;
     user-select: none;
 }
 
-.es-expand img:hover {
+.es-expand:hover, .es-title:hover {
     cursor: pointer;
 }
 
 .es-expand img {
-    height: 1.9em;
-    width: 1.9em;
+    height: 1em;
+    width: 1em;
+    margin-top: 0.5rem;
+    margin-left: 0.4em;
+    transition: transform 0.2s linear;
+}
+
+.es-expand img.turn {
+    transform: rotate(90deg);
+    transition: transform 0.2s linear;
 }

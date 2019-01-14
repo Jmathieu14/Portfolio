@@ -41,6 +41,7 @@ var curScrollIndex = window.pageYOffset;
 // Function to toggle expandable sections given the correct ID
 function myToggle(id) {
     var mySection = document.getElementById(id);
+    turnToggleButton("#" + id + " .es-expand img");
     var myClassName = mySection.className;
     var cnLen = myClassName.length;
     var indexOfClosed = myClassName.indexOf("closed");
@@ -49,11 +50,28 @@ function myToggle(id) {
         myClassName = myClassName.substring(0, indexOfClosed - 1) + myClassName.substring(indexOfClosed + 6, cnLen);
         mySection.className = myClassName;
         var distToScroll = calcScrollDistOfFirst("#" + id);
-        curScrollIndex = window.pageYOffset;
-        smoothVerticalScroll(curScrollIndex, distToScroll, 10, 4000);
+        smoothVerticalScroll(curScrollIndex, distToScroll, 10, 4000, 0);
         // window.scrollTo(0, distToScroll);
     } else {
-        curScrollIndex = window.pageYOffset;
         mySection.className += " closed";
+        setTimeout(function() {
+            curScrollIndex = window.pageYOffset;
+            // console.log("> Current Scroll Index: " + curScrollIndex);
+        }, 50);
+    }
+}
+
+function turnToggleButton(selector) {
+    var myButton = document.querySelector(selector);
+    var myClassName = myButton.className;
+    var cnLen = myClassName.length;
+    var indexOfTurn = myClassName.indexOf("turn");
+    // If turn is in the class name
+    if (indexOfTurn !== -1) {
+        myClassName = myClassName.substring(0, indexOfTurn - 1) + myClassName.substring(indexOfTurn + 5, cnLen);
+        myButton.className = myClassName;
+    }
+    else {
+        myButton.className += " turn";
     }
 }

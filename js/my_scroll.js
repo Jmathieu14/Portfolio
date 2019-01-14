@@ -28,8 +28,9 @@ var distIntervalList = [];
 var timeIntervalList = [];
 // Define global index for transitions
 var curGlobalIndex = 0;
-// Scroll from start to end vertically and smoothly
-function smoothVerticalScroll(start, end, interval, maxTime) {
+// Scroll from start to end vertically and smoothly, in intervals of 'interval' time and over a maximum time of
+// 'maxTime', and after any specified delay of 'myDly' ms.
+function smoothVerticalScroll(start, end, interval, maxTime, myDly) {
     // Reset global index
     curGlobalIndex = 0;
     if (end < start) {
@@ -45,10 +46,10 @@ function smoothVerticalScroll(start, end, interval, maxTime) {
     for (var k = 0; k < intervalCount; ++k) {
         if (k == intervalCount - 1) {
             distIntervalList[k] = end;
-            timeIntervalList[k] = maxTime;
+            timeIntervalList[k] = maxTime + myDly;
         } else {
             distIntervalList[k] = start + (k * distInterval);
-            timeIntervalList[k] = interval * k;
+            timeIntervalList[k] = myDly + (interval * k);
         }
     }
     for (var i = 1; i < intervalCount; ++i) {
