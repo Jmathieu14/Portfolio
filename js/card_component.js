@@ -36,6 +36,22 @@ function makeTextCard(title, descr) {
     activecardrow.insertAdjacentHTML("beforeEnd", imgCardTemplate);
 }
 
+        // <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/696220917&color=%239c27b0&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+
+function makeSCEmbedCard(title, url) {
+    var scCardTemplate =
+    '<div class=\"col s12 m6 card-temp\">'
+      + '<div class=\"card\">'
+        + '<div class=\"mycard-title cus-black-text\">'
+          + '<h3>' + title + '</h3>'
+        + '</div>'
+        + '<iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="'
+        + url + '"></iframe>'
+      + '</div>'
+    + '</div>';
+    activecardrow.insertAdjacentHTML("beforeEnd", scCardTemplate);
+}
+
 // Define global value to track the current position of page scroll
 var curScrollIndex = window.pageYOffset;
 // Function to toggle expandable sections given the correct ID
