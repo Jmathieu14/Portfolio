@@ -1,3 +1,6 @@
+// Jacques Mathieu
+
+// Calculate the distance to scroll for element 'idx' in list of elements that match the selector
 function calcScrollDist(selector, idx) {
     var elements = document.querySelectorAll(selector);
     // If is valid call
@@ -18,6 +21,8 @@ function calcScrollDist(selector, idx) {
     }
 }
 
+// Calculate the scroll distance of the first element specified by the given selector
+// Helper function to calcScrollDist()
 function calcScrollDistOfFirst(selector) {
     return calcScrollDist(selector, 0);
 }

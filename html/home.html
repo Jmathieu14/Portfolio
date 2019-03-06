@@ -93,10 +93,14 @@
             makeImageCard("AGO/OML.png", "Open Meeting Law public denominations lookup site with custom css");
             sections[1].cards = activecardrow.getElementsByClassName("card-temp");
 
+            // INIT section 3
+            // Change the activecardrow to match our second sector
+            activecardrow = this.document.querySelectorAll(".card-tabber-section .card-sec")[2];
             var sec3ID = addSection();
             var edm_url = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/696220917&color=%239c27b0&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true";
-            makeSCEmbedCard("My EDM Works", edm_url);
-            // TODO: make this work properly!
+            var experimental_url = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/696219855&color=%239c27b0&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true";
+            makeSCEmbedCard("EDM Works", edm_url);
+            makeSCEmbedCard("Experimental Works", experimental_url)
             sections[2].cards = activecardrow.getElementsByClassName("card-temp");
 
             setTimeout(function() {showCurCardsPerSection();initCentrify();}, 100);

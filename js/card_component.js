@@ -3,6 +3,7 @@
 // var activecardrow = document.getElementById('emptyHTMLElement');
 var activecardrow = null;
 
+// Function to make image card given the image name and it's description
 function makeImageCard(imgName, descr) {
     var imgCardTemplate =
     '<div class=\"col s12 m6 card-temp\">'
@@ -21,6 +22,7 @@ function makeImageCard(imgName, descr) {
     // console.log(imgCardTemplate);
 }
 
+// Function to make text card given the title and it's description
 function makeTextCard(title, descr) {
     var imgCardTemplate =
     '<div class=\"col s12 m6 card-temp\">'
@@ -38,6 +40,7 @@ function makeTextCard(title, descr) {
 
         // <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/696220917&color=%239c27b0&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
 
+// Function to make a soundcloud playlist card given a title and it's url
 function makeSCEmbedCard(title, url) {
     var scCardTemplate =
     '<div class=\"col s12 m6 card-temp\">'

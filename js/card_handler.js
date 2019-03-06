@@ -1,3 +1,5 @@
+// Jacques Mathieu
+
 var sections = [];
 
 // Also returns the id # for the newly added section
