@@ -81,6 +81,8 @@
 
 .page-footer {
     position: relative;
+    float: left;
+    width: 100%;
     /*top: 9em;*/
 }
 
@@ -222,6 +224,12 @@ h4, h5:not(.page-subtitle) {
 }
 
 /* Expandable Section */
+
+.expandable-section {
+    position: relative;
+    float: left;
+    width: 100%;
+}
 
 .expandable-section.closed .card-tabber-section, .expandable-section.closed .cus-spacer,
 .expandable-section.closed .card-tabber-section div:not(.es), .expandable-section.closed .card-tabber-section i,
