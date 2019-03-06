@@ -230,7 +230,9 @@ h4, h5:not(.page-subtitle) {
     float: left;
     width: 100%;
 }
-
+.expandable-section.closed {
+    height: 64px;
+}
 .expandable-section.closed .card-tabber-section, .expandable-section.closed .cus-spacer,
 .expandable-section.closed .card-tabber-section div:not(.es), .expandable-section.closed .card-tabber-section i,
 .expandable-section.closed .card-tabber-section a, .expandable-section.closed .card-tabber-section img {
@@ -243,13 +245,19 @@ h4, h5:not(.page-subtitle) {
     transition: all 0.3s linear;
 }
 
+.expandable-section:not(.closed) .es-banner {
+    margin-bottom: 4px;
+}
+
 .es-banner {
     height: 4em;
+    border-left: #8e24aa solid 3px;
 }
 
 .es-title {
     width: 18.5rem;
     padding-right: 1em;
+    padding-left: 1em;
     position: relative;
     float: left;
     /* font-family: Montserrat, Roboto, sans-serif;
