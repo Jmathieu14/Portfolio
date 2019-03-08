@@ -1,3 +1,4 @@
+/* Additional custom elements */
 .cus-spacer {
     height: 1px;
     position: relative;
@@ -16,6 +17,8 @@
     color: #292929;
 }
 /* TODO add @media rule for smaller devices to reposition button */
+
+/* Card-tabber elements */
 .next-btn-wrapper {
     position: absolute;
     right: 1%;
@@ -51,6 +54,8 @@
     transition: all 0.15s ease-in;
 }
 
+/* Customize card element */
+
 .card-temp {
     height: 0px;
     opacity: 0;
@@ -79,6 +84,7 @@
     /*top: 9em;*/
 }
 
+/* Footer of page */
 .page-footer {
     position: relative;
     float: left;
@@ -98,6 +104,22 @@
     src: local(Montserrat SemiBold), url("../fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
     font-weight: 600;
 }
+
+/* Consider modifying section element */
+/*
+.section {
+    position: relative !important;
+    float: left !important; 
+}
+*/
+
+/* TOP OF PAGE */
+/*
+#index-banner {
+    position: relative;
+    float: left;
+}
+*/
 
 /* Main title of page */
 .page-title {
@@ -165,6 +187,7 @@ h4, h5:not(.page-subtitle) {
     top: 10em;
     position: relative;
     left: 7.5%;
+    display: none;
 }
 
 @media only screen and (min-width: 993px) {
@@ -235,7 +258,8 @@ h4, h5:not(.page-subtitle) {
 }
 .expandable-section.closed .card-tabber-section, .expandable-section.closed .cus-spacer,
 .expandable-section.closed .card-tabber-section div:not(.es), .expandable-section.closed .card-tabber-section i,
-.expandable-section.closed .card-tabber-section a, .expandable-section.closed .card-tabber-section img {
+.expandable-section.closed .card-tabber-section a, .expandable-section.closed .card-tabber-section img,
+.expandable-section.closed iframe {
     height: 0px;
     opacity: 0;
     transition: all 0.3s linear;
