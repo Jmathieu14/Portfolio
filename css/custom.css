@@ -128,6 +128,12 @@
     font-size: 1.1em !important;
 }
 
+/* Customize nav fonts */
+nav li {
+    font-family: Roboto Light, sans-serif;
+    font-size: 1.1em;
+}
+
 .brand-logo-img {
     width: 2.4rem;
     height: 2.4rem;
