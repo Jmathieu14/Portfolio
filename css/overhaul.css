@@ -1,0 +1,33 @@
+/* Author: Jacques Mathieu
+   Date Created: 08-02-19
+
+   X XX  XX
+   XX  XX  XX
+   XX  XX  XX
+   XX  XX  XX
+   XX  XX  XX
+   XX  XX  XX
+   XX  XX  XX
+   XX  XX  XX
+  XX
+XXX
+
+-------------|
+ASCII logo   | 
+made with    |
+asciiflow.com )
+-------------|
+
+*/
+/* Init page to enable % based widths and heights */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* A section of a page with sharp angles dividing it from another angular section */
+.angular-section {
+    
+}
