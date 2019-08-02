@@ -19,15 +19,44 @@ asciiflow.com )
 -------------|
 
 */
+/* Init any default variables/colors needed */
+* {
+    --sharp-yellow: #FFDD0E;
+    --soundcloud-orange: #f50;
+}
 /* Init page to enable % based widths and heights */
-html, body {
+html, body, .section-list {
   width: 100%;
   height: 100%;
   margin: 0px;
   padding: 0px;
 }
-
+/* Enable flex behaviour for angular-sections */
+/* NOTE: this may be unecessary, as we don't want auto
+resizing (i.e. enforce a consistent height no matter the number of sections) */
+.section-list {
+    display: flex;
+    flex-direction: column;
+}
 /* A section of a page with sharp angles dividing it from another angular section */
 .angular-section {
-    
+    height: 45%;
+    width: 90%;
+    padding: 2.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    transition: all 0.2s linear;
+}
+.angular-section .banner-title-img {
+/*    width: 100%;*/
+    height: 100%;
+}
+.angular-section .banner-title-img img {
+    height: 100% !important;
+    position: relative;
+    float: left;
+}
+#jmusic:hover {
+    background-color: var(--soundcloud-orange);
+    transition: all 0.2s linear;
 }
