@@ -26,37 +26,74 @@ asciiflow.com )
 }
 /* Init page to enable % based widths and heights */
 html, body, .section-list {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    z-index 0;
 }
-/* Enable flex behaviour for angular-sections */
-/* NOTE: this may be unecessary, as we don't want auto
-resizing (i.e. enforce a consistent height no matter the number of sections) */
+/* Wrapper for all functions */
 .section-list {
-    display: flex;
-    flex-direction: column;
+    position: relative;
 }
 /* A section of a page with sharp angles dividing it from another angular section */
 .angular-section {
-    height: 45%;
+    width: 100%;
+    height: 50%;
+    padding-top: 5%;
+    position: relative;
+    float: left;
+    z-index: 2;
+/*
+    transition: background-color 0.2s linear;
+    transition: z-index 0.1s cubic-bezier(1,0,1,0);
+*/
+}
+/* Main content for angular sections */
+.angular-content {
+    position: relative;
+    height: 100%;
     width: 90%;
-    padding: 2.5%;
     padding-left: 5%;
     padding-right: 5%;
-    transition: all 0.2s linear;
+    z-index: 3;
 }
-.angular-section .banner-title-img {
-/*    width: 100%;*/
+.angular-content .banner-title-img {
+    position: relative;
+    width: 100%;
     height: 100%;
 }
-.angular-section .banner-title-img img {
+.angular-content .banner-title-img img {
     height: 100% !important;
     position: relative;
     float: left;
 }
+.angular-divider {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 0.5em;
+    z-index: 4;
+/*    transition: all 0.2s linear;*/
+}
+/* Move hovered section to background to avoid overlapping angular dividers */
+.angular-section:hover {
+    z-index: 1;
+}
 #jmusic:hover {
     background-color: var(--soundcloud-orange);
+    transition: all 0.2s linear;
+}
+#jmusic:hover .angular-divider {
+    border-top-color: var(--soundcloud-orange) !important;
+    transition: all 0.2s linear;    
+}
+.angular-section:hover {
+    background-color: var(--sharp-yellow);
+    transition: background-color 0.2s linear;
+}
+.angular-section:hover .angular-divider {
+    border-top-color: var(--sharp-yellow) !important;
     transition: all 0.2s linear;
 }
