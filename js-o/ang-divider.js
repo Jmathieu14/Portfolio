@@ -1,4 +1,15 @@
 var ANGLR_DIV_SEL = ".angular-divider";
+var SECT_LIST_CLASS = "section-list";
+
+// Show the section list
+function showSectionList() {
+    var sectList = document.getElementsByClassName(SECT_LIST_CLASS)[0];
+    // If there is a section list on the page
+    if (sectList !== null) {
+        sectList.className = SECT_LIST_CLASS + " show";
+    }
+}
+
 // Properly format angular dividers on given page
 function angularDivSetup() {
     var dividers = document.querySelectorAll(ANGLR_DIV_SEL);
@@ -6,18 +17,21 @@ function angularDivSetup() {
     for (var i = 0; i < dividers.length; ++i) {
         var d = dividers[i];
         var d_width = d.clientWidth;
-        var brdr_r_css = d_width + "px solid black";
-        var prev_ang_sect = d.previousElementSibling;
-        var d_border_height = prev_ang_sect.clientHeight / 10;
-        var brdr_top_css = d_border_height + "px solid white";
+        var wrapper = d.parentElement;
+        var angContent = wrapper.previousElementSibling;
+        var d_border_height = angContent.clientHeight / 10;
+        
         d.style.width = "0px";
-        d.style.borderRight = brdr_r_css;
-        d.style.borderTop = brdr_top_css;
-        var n_height = d.clientHeight + (d_border_height * 2);
-        if (i !== 0) {
-            var p = d.parentElement;
-//            p.style.top = n_height + "px";
-            p.style.paddingTop = n_height + "px";
-        }
+        d.style.borderRight = d_width + "px solid black";
+        d.style.borderTop = d_border_height + "px solid transparent";
+        
+        // Set angular divider wrapper height to that of what it's wrapping (borders don't count for element size in HTML)
+        var wrapperH = d.clientHeight + d_border_height;
+        wrapper.style.height = wrapperH + "px";
+        
+        // Set height of angular content to accomodate size of angular dividers
+        var angH = angContent.clientHeight;
+        angContent.style.height = angH - wrapperH + "px";
     }
+    showSectionList();
 }
