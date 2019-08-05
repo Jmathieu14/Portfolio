@@ -32,7 +32,7 @@ html, body, .section-list {
     margin: 0px;
     padding: 0px;
 }
-/* Wrapper for all functions */
+/* Wrapper for all sections */
 .section-list {
     position: relative;
     opacity: 0;
