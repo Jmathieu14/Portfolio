@@ -16,22 +16,14 @@ function angularDivSetup() {
     // Iterate through each angular divider on page
     for (var i = 0; i < dividers.length; ++i) {
         var d = dividers[i];
-        var d_width = d.clientWidth;
         var wrapper = d.parentElement;
         var angContent = wrapper.previousElementSibling;
-        var d_border_height = angContent.clientHeight / 10;
+        var dBorderH = wrapper.clientHeight - d.clientHeight;
         
+        // Set element d's width to 0, b/c border width takes up space
         d.style.width = "0px";
-        d.style.borderRight = d_width + "px solid black";
-        d.style.borderTop = d_border_height + "px solid transparent";
-        
-        // Set angular divider wrapper height to that of what it's wrapping (borders don't count for element size in HTML)
-        var wrapperH = d.clientHeight + d_border_height;
-        wrapper.style.height = wrapperH + "px";
-        
-        // Set height of angular content to accomodate size of angular dividers
-        var angH = angContent.clientHeight;
-        angContent.style.height = angH - wrapperH + "px";
+        d.style.borderRight = wrapper.clientWidth + "px solid black";
+        d.style.borderTop = dBorderH + "px solid transparent";
     }
     showSectionList();
 }
