@@ -17,20 +17,22 @@ class SectionLink extends React.Component {
 class AngularDivider extends React.Component {
     constructor(props) {
         super(props);
-        this.orientation = props.orientation;
+        this.divOrientation = props.divOrientation;
+        this.baseName = "angular-divider";
     }
-    className() {
-        let baseName = "angular-divider";
-        if (this.orientation === null || this.orientation.equals("")) {
-            return baseName;
+    genClassName() {
+        console.log("Getting class name for divider");
+        if (this.divOrientation === undefined || this.divOrientation === "") {
+            return this.baseName;
         } else {
-            return baseName + props.orientation;
+            return this.baseName + "-" + this.divOrientation;
         }
     }
     render() {
+        const cName = this.genClassName();
         return (
             <div class='ang-div-wrapper'>
-                <div class={this.className}></div>
+                <div class={cName}></div>
             </div>
         );
     }
@@ -45,14 +47,16 @@ class AngularSection extends React.Component {
     }
     render() {
         return (
-            <div id={this.name} class="angular-section">
-                <div class="angular-content">
-                    <div class="banner-title-img">
-                        <img src={this.bannerImg} />
+            <React.Fragment>
+                <div id={this.name} class="angular-section">
+                    <div class="angular-content">
+                        <div class="banner-title-img">
+                            <img src={this.bannerImg} />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <AngularDivider orientation={this.divOrientation} />
+                <AngularDivider orientation={this.divOrientation} />
+            </React.Fragment>
         );
     }
 }

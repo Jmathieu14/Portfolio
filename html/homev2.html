@@ -11,8 +11,8 @@
         <!-- Load JSX to use it with react -->
         <!--    TODO: Consider replacing with TypeScript or w/e    -->
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-        <!-- Load custom react components here -->
-        <script src="../js-o/overhaul.js">
+        <!-- Load custom react components here (*with babel labels*) -->
+        <script src="../js-o/overhaul.js" type="text/babel">
         </script>
         <!-- Load custom js here -->
         <script src="../js-o/ang-divider.js">
@@ -26,28 +26,5 @@
     <body>
         <!--    Where React will autmatically place my components    -->
         <div id="page-content"></div>
-        <!--    HTML is here for the templating stage    -->
-        <div class="section-list">
-            <div id="jmusic" class="angular-section">
-                <div class="angular-content">
-                    <div class="banner-title-img">
-                        <img src="../img/page/jm logo 3 -- music - clean.svg" />
-                    </div>
-                </div>
-            </div>
-            <div class="ang-div-wrapper">
-                <div class="angular-divider"></div>
-            </div>
-            <div class="angular-section">
-                <div class="angular-content">
-                    <div class="banner-title-img">
-                        <img src="../img/page/jm logo 3 -- project.svg" />
-                    </div>
-                </div>
-            </div>
-            <div class="ang-div-wrapper">
-                <div class="angular-divider"></div>
-            </div>
-        </div>
     </body>
 </html>
