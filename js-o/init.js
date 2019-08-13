@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
 const babel = require('babel-core');
 
 // Load main page layout json for overhaul.js
-const mainPageSects = require("./layouts/main-page-layout.json");
+//const mainPageSects = require("./layouts/main-page-layout.json");
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);

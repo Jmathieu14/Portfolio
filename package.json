@@ -4,14 +4,16 @@
   "description": "Setup and run necessary code to display Jacques Mathieu's Portfolio Website",
   "main": "index.js",
   "dependencies": {
-    "babel-core": "^6.26.3",
     "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
     "babel-plugin-inline-json-import": "^0.3.2",
     "materialize-css": "^0.100.2",
+    "nodemon": "^1.19.1",
     "react": "^16.8.6"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "nodemon js-o/init.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
