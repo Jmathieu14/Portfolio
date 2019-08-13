@@ -1,0 +1,27 @@
+{
+  "name": "portfolio-jm",
+  "version": "1.0.0",
+  "description": "Setup and run necessary code to display Jacques Mathieu's Portfolio Website",
+  "main": "index.js",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel": "^6.23.0",
+    "babel-plugin-inline-json-import": "^0.3.2",
+    "materialize-css": "^0.100.2",
+    "react": "^16.8.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jmathieu14/Portfolio.git"
+  },
+  "author": "Jacques Mathieu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jmathieu14/Portfolio/issues"
+  },
+  "homepage": "https://github.com/Jmathieu14/Portfolio#readme"
+}

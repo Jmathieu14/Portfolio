@@ -84,23 +84,8 @@ class SectionList extends React.Component {
     }
 }
 
-var scloudOrange = "#F50";
-var sharpYellow = "#FFDD0E";
-
-var pageSects = [
-    {
-        "name": "jmusic",
-        "color": scloudOrange,
-        "bannerImg": "../img/page/jm logo 3 -- music - clean.svg"
-    },
-    {
-        "name": "jprojects",
-        "color": sharpYellow,
-        "bannerImg": "../img/page/jm logo 3 -- project.svg"
-    }
-];
 // Render to main view
 ReactDOM.render(
-  <SectionList sections={pageSects} />,
+  <SectionList sections={mainPageSects} />,
   document.getElementById('page-content')
 );
