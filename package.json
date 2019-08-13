@@ -4,16 +4,22 @@
   "description": "Setup and run necessary code to display Jacques Mathieu's Portfolio Website",
   "main": "index.js",
   "dependencies": {
-    "babel": "^6.23.0",
-    "babel-core": "^6.26.3",
+    "babel-cli": "^6.26.0",
     "babel-plugin-inline-json-import": "^0.3.2",
     "materialize-css": "^0.100.2",
     "nodemon": "^1.19.1",
     "react": "^16.8.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.5.5",
+    "babel-register": "^6.26.0"
+  },
   "scripts": {
-    "start": "nodemon js-o/init.js",
+    "build": "babel --plugins @babel/plugin-transform-react-jsx pre-jsx/overhaul.js -d pre-build-js-o && babel pre-build-js-o -d js-o",
+    "start": "npm run build && nodemon js-o/init.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
