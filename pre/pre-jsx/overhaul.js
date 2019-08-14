@@ -85,7 +85,7 @@ class SectionList extends React.Component {
 }
 
 // Load in mainPageSects variable
-const mainPageSects = require("./layouts/main-page-layout.json");
+import mainPageSects from "./layouts/main-page-layout.json";
 
 // Render to main view
 ReactDOM.render(

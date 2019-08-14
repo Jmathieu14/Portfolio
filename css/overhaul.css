@@ -38,7 +38,8 @@ html, body, .section-list, #page-content {
 
 .angular-section {
   width: 100%;
-  padding-top: 5%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
   height: calc(50% - 5% - calc(5% + 0.5em));
   transition: all 0.2s linear;
 }
@@ -52,7 +53,7 @@ html, body, .section-list, #page-content {
   transition: all 0.2s linear;
 }
 
-.angular-divider {
+.angular-divider, .angular-divider-rev {
   width: 100%;
   height: 0.5em;
 }

@@ -4,23 +4,24 @@
   "description": "Setup and run necessary code to display Jacques Mathieu's Portfolio Website",
   "main": "index.js",
   "dependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
     "babel-plugin-inline-json-import": "^0.3.2",
+    "bytenode": "^1.1.1",
     "materialize-css": "^0.100.2",
     "nodemon": "^1.19.1",
     "react": "^16.8.6"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-transform-react-jsx": "^7.3.0",
-    "@babel/preset-env": "^7.5.5",
-    "babel-register": "^6.26.0"
-  },
+  "devDependencies": {},
   "scripts": {
-    "build": "babel --plugins @babel/plugin-transform-react-jsx pre-jsx/overhaul.js -d pre-build-js-o && babel pre-build-js-o -d js-o",
-    "start": "npm run build && nodemon js-o/init.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel --presets @babel/preset-react pre/pre-build-js-o -d js-o",
+    "start": "npm run build && nodemon --exec babel-node js-o/init.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build2": "babel pre/pre-build-js-o -d js-o"
   },
   "repository": {
     "type": "git",
