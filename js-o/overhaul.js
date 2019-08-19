@@ -71,20 +71,27 @@ function (_React$Component2) {
   _createClass(AngularDivider, [{
     key: "genClassName",
     value: function genClassName() {
-      console.log("Getting class name for divider");
-
       if (this.divOrientation === undefined || this.divOrientation === "") {
         return this.baseName;
       } else {
         return this.baseName + "-" + this.divOrientation;
       }
+    } // Get the correct background color from the parent object
+
+  }, {
+    key: "getBackgroundFromParent",
+    value: function getBackgroundFromParent() {
+      return {
+        backgroundColor: this.props.state.backgroundColor
+      };
     }
   }, {
     key: "render",
     value: function render() {
       var cName = this.genClassName();
       return React.createElement("div", {
-        "class": "ang-div-wrapper"
+        "class": "ang-div-wrapper",
+        style: this.getBackgroundFromParent()
       }, React.createElement("div", {
         "class": cName
       }));
@@ -106,17 +113,47 @@ function (_React$Component3) {
 
     _this3 = _possibleConstructorReturn(this, _getPrototypeOf(AngularSection).call(this, props));
     _this3.name = props.name;
-    _this3.color = props.color;
+    _this3.hoverBG = props.hoverBG;
     _this3.bannerImg = props.bannerImg;
     _this3.divOrientation = props.divOrientation;
+    _this3.state = {
+      text: "normal",
+      backgroundColor: ""
+    };
+    _this3.toggleState = _this3.toggleState.bind(_assertThisInitialized(_this3));
     return _this3;
   }
 
   _createClass(AngularSection, [{
+    key: "toggleState",
+    value: function toggleState() {
+      if (this.state.text === "normal") {
+        this.setState({
+          text: "hover",
+          backgroundColor: this.hoverBG
+        });
+      } else {
+        this.setState({
+          text: "normal",
+          backgroundColor: ""
+        });
+      }
+    }
+  }, {
+    key: "getBackground",
+    value: function getBackground() {
+      return {
+        backgroundColor: this.state.backgroundColor
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(React.Fragment, null, React.createElement("div", {
+        onMouseLeave: this.toggleState,
+        onMouseEnter: this.toggleState,
         id: this.name,
+        style: this.getBackground(),
         "class": "angular-section"
       }, React.createElement("div", {
         "class": "angular-content"
@@ -125,7 +162,8 @@ function (_React$Component3) {
       }, React.createElement("img", {
         src: this.bannerImg
       })))), React.createElement(AngularDivider, {
-        orientation: this.divOrientation
+        divOrientation: this.divOrientation,
+        state: this.state
       }));
     }
   }]);
@@ -146,6 +184,7 @@ function (_React$Component4) {
     _this4 = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
     _this4.sections = props.sections;
     _this4.counter = 0;
+    _this4.key = "SECT_LIST";
     return _this4;
   } // Get orientation of angular divider given the section index
 
@@ -160,6 +199,13 @@ function (_React$Component4) {
       }
 
       return "";
+    } // Return a key for the current section given it's name
+
+  }, {
+    key: "genKey",
+    value: function genKey(n) {
+      var k = n + "-" + Math.random().toString().substr(2);
+      return k;
     }
   }, {
     key: "render",
@@ -168,10 +214,11 @@ function (_React$Component4) {
 
       var my_sections = this.sections.map(function (obj) {
         return React.createElement(AngularSection, {
+          key: _this5.genKey(obj.name),
           name: obj.name,
-          color: obj.color,
+          hoverBG: obj.hoverBG,
           bannerImg: obj.bannerImg,
-          divOrientation: _this5.divOrientation
+          divOrientation: _this5.divOrientation()
         });
       });
       return React.createElement("section", {
@@ -188,13 +235,13 @@ function (_React$Component4) {
 var mainPageSects = {
   "angular-sections": [{
     "name": "jmusic",
-    "colorName": "scloudOrange",
-    "color": "#F50",
+    "hoverBGName": "scloudOrange",
+    "hoverBG": "#F50",
     "bannerImg": "../img/page/jm logo 3 -- music - clean.svg"
   }, {
     "name": "jprojects",
-    "colorName": "sharpYellow",
-    "color": "#FFDD0E",
+    "hoverBGName": "sharpYellow",
+    "hoverBG": "#FFDD0E",
     "bannerImg": "../img/page/jm logo 3 -- project.svg"
   }] // Render to main view
 

@@ -7,11 +7,12 @@ var my_display_dimensions = {
     "height": 0
 }
 
-function recordDisplayDimensions() {
+function recordDisplayDimensions(debug) {
     var b = document.getElementsByTagName("body")[0];
     my_display_dimensions.height = b.clientHeight;
     my_display_dimensions.width = b.clientWidth;
-    console.log(my_display_dimensions);
+    // Print to console if debugging enabled
+    if (debug) console.log(my_display_dimensions);
 }
 
 // Show the section list
@@ -28,7 +29,10 @@ function showSectionList() {
 
 // Properly format angular dividers on given page
 function angularDivSetup() {
-    recordDisplayDimensions();    
+    // Enable or disable debugging screen dimensions
+    var debug = false;
+    // Record the display dimensions
+    recordDisplayDimensions(debug);    
     var dividers = document.querySelectorAll(ANGLR_DIV_SEL + ", " + ANGLR_DIV_REV_SEL);
     // Iterate through each angular divider on page
     for (var i = 0; i < dividers.length; ++i) {

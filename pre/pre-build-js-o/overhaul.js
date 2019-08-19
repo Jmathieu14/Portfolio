@@ -28,10 +28,14 @@ class AngularDivider extends React.Component {
             return this.baseName + "-" + this.divOrientation;
         }
     }
+    // Get the correct background color from the parent object
+    getBackgroundFromParent() {
+        return {backgroundColor: this.props.state.backgroundColor};
+    }
     render() {
         const cName = this.genClassName();
         return (
-            <div class='ang-div-wrapper'>
+            <div class='ang-div-wrapper' style={this.getBackgroundFromParent()}>
                 <div class={cName}></div>
             </div>
         );
@@ -41,21 +45,36 @@ class AngularSection extends React.Component {
     constructor(props) {
         super(props);
         this.name = props.name;
-        this.color = props.color;
+        this.hoverBG = props.hoverBG;
         this.bannerImg = props.bannerImg;
         this.divOrientation = props.divOrientation;
+        this.state = {
+            text: "normal",
+            backgroundColor: ""
+        };
+        this.toggleState = this.toggleState.bind(this);
+    }
+    toggleState() {
+        if (this.state.text === "normal") {
+            this.setState({text: "hover", backgroundColor: this.hoverBG});
+        } else {
+            this.setState({text: "normal", backgroundColor: ""});
+        }
+    }
+    getBackground() {
+        return {backgroundColor: this.state.backgroundColor};
     }
     render() {
         return (
             <React.Fragment>
-                <div id={this.name} class="angular-section">
+                <div onMouseLeave={this.toggleState} onMouseEnter={this.toggleState} id={this.name} style={this.getBackground()} class="angular-section">
                     <div class="angular-content">
                         <div class="banner-title-img">
                             <img src={this.bannerImg} />
                         </div>
                     </div>
                 </div>
-                <AngularDivider divOrientation={this.divOrientation} />
+                <AngularDivider divOrientation={this.divOrientation} state={this.state} />
             </React.Fragment>
         );
     }
@@ -65,6 +84,7 @@ class SectionList extends React.Component {
         super(props);
         this.sections = props.sections;
         this.counter = 0;
+        this.key = "SECT_LIST";
     }
     // Get orientation of angular divider given the section index
     divOrientation() {
@@ -74,8 +94,13 @@ class SectionList extends React.Component {
         }
         return "";
     }
+    // Return a key for the current section given it's name
+    genKey(n) {
+        var k = n + "-" + Math.random().toString().substr(2,);
+        return k;
+    }
     render() {
-        const my_sections = this.sections.map((obj) => <AngularSection name={obj.name} color={obj.color} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} />);
+        const my_sections = this.sections.map((obj) => <AngularSection key={this.genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} />);
         return (
             <section class="section-list">
                 {my_sections}
@@ -90,14 +115,14 @@ const mainPageSects = {
     "angular-sections": [
         {
             "name": "jmusic",
-            "colorName": "scloudOrange",
-            "color": "#F50",
+            "hoverBGName": "scloudOrange",
+            "hoverBG": "#F50",
             "bannerImg": "../img/page/jm logo 3 -- music - clean.svg"
         },
         {
             "name": "jprojects",
-            "colorName": "sharpYellow",
-            "color": "#FFDD0E",
+            "hoverBGName": "sharpYellow",
+            "hoverBG": "#FFDD0E",
             "bannerImg": "../img/page/jm logo 3 -- project.svg"
         }
     ]
