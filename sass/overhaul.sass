@@ -59,7 +59,7 @@ $as-bottom-padding: 2.5%
 //        +default_transition()
 
 // Angular section hover colors
-#jmusic:hover, #jmusic:hover + .ang-div-wrapper
+//#jmusic:hover, #jmusic:hover + .ang-div-wrapper
 //    background-color: $scloud-orange
 //    +default_transition()
 
@@ -72,6 +72,8 @@ $as-bottom-padding: 2.5%
     width: 100%
     height: $ang-div-full-H
     +default_transition()
+//    display: flex
+//    flex-direction: row
     
 // Main content for angular sections
 .angular-content
@@ -80,9 +82,21 @@ $as-bottom-padding: 2.5%
     padding-left: 5%
     padding-right: 5%
     .banner-title-img
-        width: 100%
         height: 100%
+        display: inline-block
         img
             height: 100% !important
             position: relative
             float: left
+
+$sl-dimensions: 20%
+// Styling for section links in angular sections
+.section-link
+    position: relative
+    float: right
+    height: $sl-dimensions
+    max-height: 2.75em
+    top: calc(50% - (#{$sl-dimensions}/2))
+    .a, img
+        height: 100%
+//        border-radius: 50%

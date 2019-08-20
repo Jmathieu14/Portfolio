@@ -1,20 +1,11 @@
-//babel --plugins @babel/plugin-transform-react-jsx pre/pre-jsx/overhaul.js -d pre/pre-build-js-o && 
-class SectionLink extends React.Component {
-    constructor(props) {
-        super(props);
-        this.url = props.url;
-        this.logo = props.logo;
-    }
-    render() {
-        return (
-            <div class='section-link'>
-                <img src={this.logo}>
-                    <a href={this.url} target='_blank'></a>
-                </img>
-            </div>
-        );
-    }
+//babel --plugins @babel/plugin-transform-react-jsx pre/pre-jsx/overhaul.js -d pre/pre-build-js-o &&
+
+// Return a key for given it's name (n)
+function genKey(n) {
+    var k = n + "-" + Math.random().toString().substr(2,);
+    return k;
 }
+
 class AngularDivider extends React.Component {
     constructor(props) {
         super(props);
@@ -41,18 +32,49 @@ class AngularDivider extends React.Component {
         );
     }
 }
+class SectionLink extends React.Component {
+    constructor(props) {
+        super(props);
+        this.url = props.url;
+        this.logo = props.logo;
+        this.name = props.name;
+        this.hoverBG = props.hoverBG;
+        this.hoverBGName = props.hoverBGName;
+        this.parentBG = props.parentBG;
+        this.setBackground = props.setBackground;
+        this.mouseEnterLogo = this.mouseEnterLogo.bind(this);
+        this.mouseLeaveLogo = this.mouseLeaveLogo.bind(this);
+    }
+    mouseEnterLogo() {
+        this.props.setBackground("hover", this.hoverBG);
+    }
+    mouseLeaveLogo() {
+        this.props.setBackground("hover", this.parentBG);
+    }
+    render() {
+        return (
+            <div onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} class='section-link'>
+                <a href={this.url} target='_blank'>
+                    <img src={this.logo} />
+                </a>
+            </div>
+        );
+    }
+}
 class AngularSection extends React.Component {
     constructor(props) {
         super(props);
         this.name = props.name;
         this.hoverBG = props.hoverBG;
         this.bannerImg = props.bannerImg;
+        this.sectionLinks = props.sectionLinks;
         this.divOrientation = props.divOrientation;
         this.state = {
             text: "normal",
             backgroundColor: ""
         };
         this.toggleState = this.toggleState.bind(this);
+        this.setBackground = this.setBackground.bind(this);
     }
     toggleState() {
         if (this.state.text === "normal") {
@@ -64,7 +86,19 @@ class AngularSection extends React.Component {
     getBackground() {
         return {backgroundColor: this.state.backgroundColor};
     }
+    // Set the background and state text with the given state text and color
+    setBackground(s_text, color) {
+        this.setState({text: s_text, backgroundColor: color});
+    }
     render() {
+        let section_links = null;
+        if (this.sectionLinks !== undefined && this.sectionLinks !== null && this.sectionLinks.length > 0) {
+            section_links = this.sectionLinks.map((obj) => 
+              <SectionLink key={genKey(obj.name)} name={obj.name} 
+                url={obj.url} logo={obj.logo} state={this.state} 
+                hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} parentBG={this.hoverBG} setBackground={this.setBackground} 
+            />);
+        }
         return (
             <React.Fragment>
                 <div onMouseLeave={this.toggleState} onMouseEnter={this.toggleState} id={this.name} style={this.getBackground()} class="angular-section">
@@ -72,6 +106,7 @@ class AngularSection extends React.Component {
                         <div class="banner-title-img">
                             <img src={this.bannerImg} />
                         </div>
+                        {section_links}
                     </div>
                 </div>
                 <AngularDivider divOrientation={this.divOrientation} state={this.state} />
@@ -94,13 +129,8 @@ class SectionList extends React.Component {
         }
         return "";
     }
-    // Return a key for the current section given it's name
-    genKey(n) {
-        var k = n + "-" + Math.random().toString().substr(2,);
-        return k;
-    }
     render() {
-        const my_sections = this.sections.map((obj) => <AngularSection key={this.genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} />);
+        const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks} />);
         return (
             <section class="section-list">
                 {my_sections}
@@ -115,15 +145,35 @@ const mainPageSects = {
     "angular-sections": [
         {
             "name": "jmusic",
-            "hoverBGName": "scloudOrange",
-            "hoverBG": "#F50",
-            "bannerImg": "../img/page/jm logo 3 -- music - clean.svg"
+            "hoverBGName": "lightGrey",
+            "hoverBG": "#DDD",
+            "bannerImg": "../img/page/jm logo 3 -- music - clean.svg",
+            "sectionLinks": [
+                {
+                    "name": "jmSoundcloud",
+                    "url": "https://soundcloud.com/jacques_mathieu",
+                    "logo": "../../img/page/Social Media/SVG/24/4419136 - cloud logo sound sound cloud soundcloud square icon.svg",
+                    "hoverBG": "#F50",
+                    "hoverBGName": "scloudOrange"
+                }
+            ]
         },
         {
             "name": "jprojects",
-            "hoverBGName": "sharpYellow",
-            "hoverBG": "#FFDD0E",
-            "bannerImg": "../img/page/jm logo 3 -- project.svg"
+//            "hoverBGName": "sharpYellow",
+//            "hoverBG": "#FFDD0E",
+            "hoverBGName": "lightBlueGrey",
+            "hoverBG": "#DDEEDD",
+            "bannerImg": "../img/page/jm logo 3 -- project.svg",
+            "sectionLinks": [
+                {
+                    "name": "GitHub",
+                    "url": "https://github.com/Jmathieu14",
+                    "logo": "../../img/page/Social Media/SVG/24/4419165 - circle github outline social-media icon.svg",
+                    "hoverBG": "#A54AB0",
+                    "hoverBGName": "githubDesktopPurple"
+                }
+            ]
         }
     ]
 }
