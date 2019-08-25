@@ -44,6 +44,8 @@ class SectionLink extends React.Component {
         this.setBackground = props.setBackground;
         this.mouseEnterLogo = this.mouseEnterLogo.bind(this);
         this.mouseLeaveLogo = this.mouseLeaveLogo.bind(this);
+        this.arrowClass = props.arrowClass;
+        this.key = props.key;
     }
     mouseEnterLogo() {
         this.props.setBackground("hover", this.hoverBG);
@@ -53,11 +55,15 @@ class SectionLink extends React.Component {
     }
     render() {
         return (
-            <div onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} class='section-link'>
-                <a href={this.url} target='_blank'>
-                    <img src={this.logo} />
-                </a>
-            </div>
+            <React.Fragment>
+                <div onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} class='section-link'>
+                    <a href={this.url} target='_blank'>
+                        <img src={this.logo} />
+                    </a>
+                    <div id={this.key} class={this.arrowClass}>
+                    </div>
+                </div>
+            </React.Fragment>
         );
     }
 }
@@ -86,6 +92,16 @@ class AngularSection extends React.Component {
     getBackground() {
         return {backgroundColor: this.state.backgroundColor};
     }
+    getArrowClassName(slBG) {
+        const baseName = "sl-hover-arrow";
+        if (this.state.text === "normal") {
+            return baseName;
+        } else if (this.state.backgroundColor === slBG) {
+            return baseName + " react-hover";
+        } else {
+            return baseName;
+        }
+    }
     // Set the background and state text with the given state text and color
     setBackground(s_text, color) {
         this.setState({text: s_text, backgroundColor: color});
@@ -96,7 +112,7 @@ class AngularSection extends React.Component {
             section_links = this.sectionLinks.map((obj) => 
               <SectionLink key={genKey(obj.name)} name={obj.name} 
                 url={obj.url} logo={obj.logo} state={this.state} 
-                hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} parentBG={this.hoverBG} setBackground={this.setBackground} 
+                hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} parentBG={this.hoverBG} setBackground={this.setBackground} arrowClass={this.getArrowClassName(obj.hoverBG)} 
             />);
         }
         return (

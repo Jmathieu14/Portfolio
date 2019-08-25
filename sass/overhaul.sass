@@ -26,6 +26,9 @@ $ang-div-full-H: calc(5% + #{$ang-div-base-H})
 =default_transition()
     transition: all 0.2s linear
 
+=default_transition_imp()
+    transition: all 0.2s linear !important
+
 // Init page to enable % based widths and heights
 html, body, .section-list, #page-content
     position: relative
@@ -90,13 +93,43 @@ $as-bottom-padding: 2.5%
             float: left
 
 $sl-dimensions: 20%
+$arrow-size: 0.5rem
+
+=arrow_transition()
+    transition: all .2s linear 0.1s
+    
+=arrow_transition_imp()
+    transition: all .2s ease
+    
 // Styling for section links in angular sections
 .section-link
     position: relative
     float: right
     height: $sl-dimensions
     max-height: 2.75em
+    max-width: 2.75em
     top: calc(50% - (#{$sl-dimensions}/2))
-    .a, img
+    padding-bottom: 0px
+    +default_transition()
+    a, img
         height: 100%
-//        border-radius: 50%
+        position: relative
+
+// Custom to make hovering work again b/c of React
+.sl-hover-arrow.react-hover
+    opacity: 1
+    top: calc(#{$arrow-size}/1.5)
+    +arrow_transition()
+
+// Section link hover arrow
+.sl-hover-arrow
+    height: 0px
+    width: 0px
+    opacity: 0.2
+    position: relative
+    left: calc(45% - (#{$arrow-size}/2))
+    border-bottom: $arrow-size solid black
+    border-left: $arrow-size solid transparent
+    border-right: $arrow-size solid transparent
+    top: 0px
+    +arrow_transition_imp()

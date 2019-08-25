@@ -76,10 +76,33 @@ html, body, .section-list, #page-content {
   float: right;
   height: 20%;
   max-height: 2.75em;
+  max-width: 2.75em;
   top: calc(50% - (20%/2));
+  padding-bottom: 0px;
+  transition: all 0.2s linear;
 }
-.section-link .a, .section-link img {
+.section-link a, .section-link img {
   height: 100%;
+  position: relative;
+}
+
+.sl-hover-arrow.react-hover {
+  opacity: 1;
+  top: calc(0.5rem/1.5);
+  transition: all 0.2s linear 0.1s;
+}
+
+.sl-hover-arrow {
+  height: 0px;
+  width: 0px;
+  opacity: 0.2;
+  position: relative;
+  left: calc(45% - (0.5rem/2));
+  border-bottom: 0.5rem solid black;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  top: 0px;
+  transition: all 0.2s ease;
 }
 
 /*# sourceMappingURL=overhaul.css.map */

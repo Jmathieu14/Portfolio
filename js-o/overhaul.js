@@ -110,7 +110,7 @@ function (_React$Component2) {
   }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", {
+      return React.createElement(React.Fragment, null, React.createElement("div", {
         onMouseEnter: this.mouseEnterLogo,
         onMouseLeave: this.mouseLeaveLogo,
         "class": "section-link"
@@ -119,6 +119,8 @@ function (_React$Component2) {
         target: "_blank"
       }, React.createElement("img", {
         src: this.logo
+      })), React.createElement("div", {
+        "class": "sl-hover-arrow"
       })));
     }
   }]);
