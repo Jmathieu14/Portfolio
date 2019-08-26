@@ -56,16 +56,12 @@ class SectionLink extends React.Component {
     mouseEnterLogo() {
         this.toggleSLAState()
         this.updateArrowClass(this.slaHover);
-        window.setTimeout(300, () => {
-            this.props.setBackground("hover", this.hoverBG);
-        });
+        this.props.setBackground("hover", this.hoverBG);
     }
     mouseLeaveLogo() {
         this.toggleSLAState()
         this.updateArrowClass(this.slaHover);
-        window.setTimeout(300, () => {
-            this.props.setBackground("hover", this.parentBG);
-        });
+        this.props.setBackground("hover", this.parentBG);
     }
     updateArrowClass(hover) {
         const arrowClass = this.slaHover ? "sl-hover-arrow react-hover" : "sl-hover-arrow";
@@ -87,6 +83,12 @@ class SectionLink extends React.Component {
         );
     }
 }
+
+// Set the state of the given object 'o' to the given text and color
+function setBackgroundHelper(o, s_text, color) {
+    o.setState({text: s_text, backgroundColor: color});
+}
+
 class AngularSection extends React.Component {
     constructor(props) {
         super(props);
@@ -124,7 +126,7 @@ class AngularSection extends React.Component {
     }
     // Set the background and state text with the given state text and color
     setBackground(s_text, color) {
-        this.setState({text: s_text, backgroundColor: color});
+        window.setTimeout(2000, setBackgroundHelper(this, s_text, color));
     }
     render() {
         let section_links = null;
