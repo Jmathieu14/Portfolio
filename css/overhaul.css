@@ -83,16 +83,17 @@ html, body, .section-list, #page-content {
 }
 .section-link a, .section-link img {
   height: 100%;
+  max-height: 2.75em;
   position: relative;
 }
 
 .sl-hover-arrow {
   height: 0px;
-  width: 0px;
+  width: 0.5rem;
   opacity: 0;
   top: 0px;
   position: relative;
-  left: calc(45% - (0.5rem/2));
+  left: calc(50% - 0.5rem);
   border-bottom: 0.5rem solid black;
   border-left: 0.5rem solid transparent;
   border-right: 0.5rem solid transparent;

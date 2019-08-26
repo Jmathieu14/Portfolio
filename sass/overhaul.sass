@@ -110,16 +110,17 @@ $arrow-size: 0.5rem
     +default_transition()
     a, img
         height: 100%
+        max-height: 2.75em
         position: relative
 
 // Section link hover arrow
 .sl-hover-arrow
     height: 0px
-    width: 0px
+    width: $arrow-size
     opacity: 0
     top: 0px
     position: relative
-    left: calc(45% - (#{$arrow-size}/2))
+    left: calc(50% - #{$arrow-size})
     border-bottom: $arrow-size solid black
     border-left: $arrow-size solid transparent
     border-right: $arrow-size solid transparent

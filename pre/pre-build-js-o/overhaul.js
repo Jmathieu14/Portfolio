@@ -45,6 +45,25 @@ class SectionLink extends React.Component {
         this.mouseEnterLogo = this.mouseEnterLogo.bind(this);
         this.mouseLeaveLogo = this.mouseLeaveLogo.bind(this);
         this.arrowClassName = "sl-hover-arrow";
+        this.arrowID = props.arrowID;
+        this.arrowRef = React.createRef();
+        this.arrowStyle = {width: "0.5rem"};
+        this.centerArrow();
+    }
+    // Center the hover arrow to middle of section link
+    centerArrow() {
+        window.setTimeout(() => {
+            let arrow = this.arrowRef.current;
+            if (arrow !== null) {
+                const imgNode = arrow.previousSibling.children[0];
+                const imgWidth = imgNode.clientWidth;
+                const nWidth = arrow.clientWidth;
+                // Set arrow back to width 0 so we get an arrow shape and not trapezoid shape
+                arrow.style.width = "0px";
+                const centeringAmount = (imgWidth/2) - nWidth;
+                arrow.style.left = centeringAmount + "px";
+            }
+        }, 25);
     }
     mouseEnterLogo() {
         this.props.setBackground("hover", this.hoverBG);
@@ -63,7 +82,8 @@ class SectionLink extends React.Component {
                     <a href={this.url} target='_blank'>
                         <img src={this.logo} />
                     </a>
-                    <div style={this.slStyle} id={this.key} class={this.arrowClassName}>
+                    <div style={this.arrowStyle} id={this.name + "-arrow"} class={this.arrowClassName}
+                    ref={this.arrowRef}>
                     </div>
                 </div>
             </React.Fragment>
@@ -142,7 +162,7 @@ class SectionList extends React.Component {
         return "";
     }
     render() {
-        const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks} />);
+        const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks}/>);
         return (
             <section class="section-list">
                 {my_sections}
