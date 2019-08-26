@@ -94,12 +94,9 @@ $as-bottom-padding: 2.5%
 
 $sl-dimensions: 20%
 $arrow-size: 0.5rem
-
-=arrow_transition()
-    transition: all .2s linear 0.1s
     
-=arrow_transition_imp()
-    transition: all .2s ease
+=arrow_transition()
+    transition: all .2s ease 0.1s
     
 // Styling for section links in angular sections
 .section-link
@@ -115,21 +112,21 @@ $arrow-size: 0.5rem
         height: 100%
         position: relative
 
-// Custom to make hovering work again b/c of React
-.sl-hover-arrow.react-hover
-    opacity: 1
-    top: calc(#{$arrow-size}/1.5)
-    +arrow_transition()
-
 // Section link hover arrow
 .sl-hover-arrow
     height: 0px
     width: 0px
-    opacity: 0.2
+    opacity: 0
+    top: 0px
     position: relative
     left: calc(45% - (#{$arrow-size}/2))
     border-bottom: $arrow-size solid black
     border-left: $arrow-size solid transparent
     border-right: $arrow-size solid transparent
     top: 0px
-    +arrow_transition_imp()
+    +arrow_transition()
+
+.sl-hover-arrow.react-hover
+    opacity: 1
+    top: calc(#{$arrow-size}/1.5)
+    +arrow_transition()

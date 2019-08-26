@@ -44,14 +44,34 @@ class SectionLink extends React.Component {
         this.setBackground = props.setBackground;
         this.mouseEnterLogo = this.mouseEnterLogo.bind(this);
         this.mouseLeaveLogo = this.mouseLeaveLogo.bind(this);
-        this.arrowClass = props.arrowClass;
-        this.key = props.key;
+        this.slaHover = props.slaHover;
+        this.arrowClassName = "";
+        this.updateArrowClass = this.updateArrowClass.bind(this);
+        this.updateArrowClass(!this.slaHover);
+        window.setTimeout(50, () => {this.updateArrowClass(this.slaHover);});
+    }
+    toggleSLAState() {
+        this.slaHover = !this.slaHover;
     }
     mouseEnterLogo() {
-        this.props.setBackground("hover", this.hoverBG);
+        this.toggleSLAState()
+        this.updateArrowClass(this.slaHover);
+        window.setTimeout(300, () => {
+            this.props.setBackground("hover", this.hoverBG);
+        });
     }
     mouseLeaveLogo() {
-        this.props.setBackground("hover", this.parentBG);
+        this.toggleSLAState()
+        this.updateArrowClass(this.slaHover);
+        window.setTimeout(300, () => {
+            this.props.setBackground("hover", this.parentBG);
+        });
+    }
+    updateArrowClass(hover) {
+        const arrowClass = this.slaHover ? "sl-hover-arrow react-hover" : "sl-hover-arrow";
+        this.arrowClassName = arrowClass;
+        let myArrow = document.getElementById(this.key);
+        this.slaHover ? console.log(this) : console.log("nah");
     }
     render() {
         return (
@@ -60,7 +80,7 @@ class SectionLink extends React.Component {
                     <a href={this.url} target='_blank'>
                         <img src={this.logo} />
                     </a>
-                    <div id={this.key} class={this.arrowClass}>
+                    <div style={this.slStyle} id={this.key} class={this.arrowClassName}>
                     </div>
                 </div>
             </React.Fragment>
@@ -92,14 +112,14 @@ class AngularSection extends React.Component {
     getBackground() {
         return {backgroundColor: this.state.backgroundColor};
     }
-    getArrowClassName(slBG) {
-        const baseName = "sl-hover-arrow";
-        if (this.state.text === "normal") {
-            return baseName;
-        } else if (this.state.backgroundColor === slBG) {
-            return baseName + " react-hover";
+    // Get the appropriate style modifications for Section Link Arrows
+    // if hover is activated
+    getArrowState(slBG) {
+        // If the section is in the hover state and the background color has changed to the matching section link's hover color, enable hover style for the section link's hover arrow indicator
+        if (this.state.text === "hover" && this.state.backgroundColor === slBG) {
+            return true;
         } else {
-            return baseName;
+            return false;
         }
     }
     // Set the background and state text with the given state text and color
@@ -112,7 +132,9 @@ class AngularSection extends React.Component {
             section_links = this.sectionLinks.map((obj) => 
               <SectionLink key={genKey(obj.name)} name={obj.name} 
                 url={obj.url} logo={obj.logo} state={this.state} 
-                hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} parentBG={this.hoverBG} setBackground={this.setBackground} arrowClass={this.getArrowClassName(obj.hoverBG)} 
+                hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} 
+                parentBG={this.hoverBG} setBackground={this.setBackground} 
+                slaHover={this.getArrowState(obj.hoverBG)}
             />);
         }
         return (
