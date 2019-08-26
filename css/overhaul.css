@@ -97,13 +97,13 @@ html, body, .section-list, #page-content {
   border-left: 0.5rem solid transparent;
   border-right: 0.5rem solid transparent;
   top: 0px;
-  transition: all 0.2s ease 0.1s;
+  transition: all 0.2s ease;
 }
 
 .section-link:hover .sl-hover-arrow, .sl-hover-arrow.react-hover {
   opacity: 1;
   top: calc(0.5rem/1.5);
-  transition: all 0.2s ease 0.1s;
+  transition: all 0.2s ease;
 }
 
 /*# sourceMappingURL=overhaul.css.map */

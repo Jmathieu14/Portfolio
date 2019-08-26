@@ -44,30 +44,17 @@ class SectionLink extends React.Component {
         this.setBackground = props.setBackground;
         this.mouseEnterLogo = this.mouseEnterLogo.bind(this);
         this.mouseLeaveLogo = this.mouseLeaveLogo.bind(this);
-        this.slaHover = props.slaHover;
-        this.arrowClassName = "";
-        this.updateArrowClass = this.updateArrowClass.bind(this);
-        this.updateArrowClass(!this.slaHover);
-        window.setTimeout(50, () => {this.updateArrowClass(this.slaHover);});
-    }
-    toggleSLAState() {
-        this.slaHover = !this.slaHover;
+        this.arrowClassName = "sl-hover-arrow";
     }
     mouseEnterLogo() {
-        this.toggleSLAState()
-        this.updateArrowClass(this.slaHover);
         this.props.setBackground("hover", this.hoverBG);
+        
     }
     mouseLeaveLogo() {
-        this.toggleSLAState()
-        this.updateArrowClass(this.slaHover);
-        this.props.setBackground("hover", this.parentBG);
-    }
-    updateArrowClass(hover) {
-        const arrowClass = this.slaHover ? "sl-hover-arrow react-hover" : "sl-hover-arrow";
-        this.arrowClassName = arrowClass;
-        let myArrow = document.getElementById(this.key);
-        this.slaHover ? console.log(this) : console.log("nah");
+        // Delay update to allow transition to occur (only needed for mouse out)
+        window.setTimeout(() => {
+            this.props.setBackground("hover", this.parentBG);
+        }, 75);
     }
     render() {
         return (
@@ -82,11 +69,6 @@ class SectionLink extends React.Component {
             </React.Fragment>
         );
     }
-}
-
-// Set the state of the given object 'o' to the given text and color
-function setBackgroundHelper(o, s_text, color) {
-    o.setState({text: s_text, backgroundColor: color});
 }
 
 class AngularSection extends React.Component {
@@ -114,19 +96,10 @@ class AngularSection extends React.Component {
     getBackground() {
         return {backgroundColor: this.state.backgroundColor};
     }
-    // Get the appropriate style modifications for Section Link Arrows
-    // if hover is activated
-    getArrowState(slBG) {
-        // If the section is in the hover state and the background color has changed to the matching section link's hover color, enable hover style for the section link's hover arrow indicator
-        if (this.state.text === "hover" && this.state.backgroundColor === slBG) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
     // Set the background and state text with the given state text and color
     setBackground(s_text, color) {
-        window.setTimeout(2000, setBackgroundHelper(this, s_text, color));
+        this.setState({text: s_text, backgroundColor: color});
     }
     render() {
         let section_links = null;
@@ -135,8 +108,7 @@ class AngularSection extends React.Component {
               <SectionLink key={genKey(obj.name)} name={obj.name} 
                 url={obj.url} logo={obj.logo} state={this.state} 
                 hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} 
-                parentBG={this.hoverBG} setBackground={this.setBackground} 
-                slaHover={this.getArrowState(obj.hoverBG)}
+                parentBG={this.hoverBG} setBackground={this.setBackground}
             />);
         }
         return (
