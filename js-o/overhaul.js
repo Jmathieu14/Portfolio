@@ -72,12 +72,36 @@ function (_React$Component) {
   }]);
 
   return AngularDivider;
+}(React.Component); // Header for section links (to add clarity and ease of use to site)
+
+
+var SectionLinksHeader =
+/*#__PURE__*/
+function (_React$Component2) {
+  _inherits(SectionLinksHeader, _React$Component2);
+
+  function SectionLinksHeader(props) {
+    _classCallCheck(this, SectionLinksHeader);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(SectionLinksHeader).call(this, props));
+  }
+
+  _createClass(SectionLinksHeader, [{
+    key: "render",
+    value: function render() {
+      return React.createElement("div", {
+        "class": "section-links-header"
+      }, "Links");
+    }
+  }]);
+
+  return SectionLinksHeader;
 }(React.Component);
 
 var SectionLink =
 /*#__PURE__*/
-function (_React$Component2) {
-  _inherits(SectionLink, _React$Component2);
+function (_React$Component3) {
+  _inherits(SectionLink, _React$Component3);
 
   function SectionLink(props) {
     var _this2;
@@ -94,10 +118,39 @@ function (_React$Component2) {
     _this2.setBackground = props.setBackground;
     _this2.mouseEnterLogo = _this2.mouseEnterLogo.bind(_assertThisInitialized(_this2));
     _this2.mouseLeaveLogo = _this2.mouseLeaveLogo.bind(_assertThisInitialized(_this2));
+    _this2.arrowClassName = "sl-hover-arrow";
+    _this2.arrowID = props.arrowID;
+    _this2.arrowRef = React.createRef();
+    _this2.arrowStyle = {
+      width: "0.5rem"
+    };
+
+    _this2.centerArrow();
+
     return _this2;
-  }
+  } // Center the hover arrow to middle of section link
+
 
   _createClass(SectionLink, [{
+    key: "centerArrow",
+    value: function centerArrow() {
+      var _this3 = this;
+
+      window.setTimeout(function () {
+        var arrow = _this3.arrowRef.current;
+
+        if (arrow !== null) {
+          var imgNode = arrow.previousSibling.children[0];
+          var imgWidth = imgNode.clientWidth;
+          var nWidth = arrow.clientWidth; // Set arrow back to width 0 so we get an arrow shape and not trapezoid shape
+
+          arrow.style.width = "0px";
+          var centeringAmount = imgWidth / 2 - nWidth;
+          arrow.style.left = centeringAmount + "px";
+        }
+      }, 25);
+    }
+  }, {
     key: "mouseEnterLogo",
     value: function mouseEnterLogo() {
       this.props.setBackground("hover", this.hoverBG);
@@ -105,7 +158,12 @@ function (_React$Component2) {
   }, {
     key: "mouseLeaveLogo",
     value: function mouseLeaveLogo() {
-      this.props.setBackground("hover", this.parentBG);
+      var _this4 = this;
+
+      // Delay update to allow transition to occur (only needed for mouse out)
+      window.setTimeout(function () {
+        _this4.props.setBackground("hover", _this4.parentBG);
+      }, 75);
     }
   }, {
     key: "render",
@@ -120,7 +178,10 @@ function (_React$Component2) {
       }, React.createElement("img", {
         src: this.logo
       })), React.createElement("div", {
-        "class": "sl-hover-arrow"
+        style: this.arrowStyle,
+        id: this.name + "-arrow",
+        "class": this.arrowClassName,
+        ref: this.arrowRef
       })));
     }
   }]);
@@ -130,27 +191,27 @@ function (_React$Component2) {
 
 var AngularSection =
 /*#__PURE__*/
-function (_React$Component3) {
-  _inherits(AngularSection, _React$Component3);
+function (_React$Component4) {
+  _inherits(AngularSection, _React$Component4);
 
   function AngularSection(props) {
-    var _this3;
+    var _this5;
 
     _classCallCheck(this, AngularSection);
 
-    _this3 = _possibleConstructorReturn(this, _getPrototypeOf(AngularSection).call(this, props));
-    _this3.name = props.name;
-    _this3.hoverBG = props.hoverBG;
-    _this3.bannerImg = props.bannerImg;
-    _this3.sectionLinks = props.sectionLinks;
-    _this3.divOrientation = props.divOrientation;
-    _this3.state = {
+    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(AngularSection).call(this, props));
+    _this5.name = props.name;
+    _this5.hoverBG = props.hoverBG;
+    _this5.bannerImg = props.bannerImg;
+    _this5.sectionLinks = props.sectionLinks;
+    _this5.divOrientation = props.divOrientation;
+    _this5.state = {
       text: "normal",
       backgroundColor: ""
     };
-    _this3.toggleState = _this3.toggleState.bind(_assertThisInitialized(_this3));
-    _this3.setBackground = _this3.setBackground.bind(_assertThisInitialized(_this3));
-    return _this3;
+    _this5.toggleState = _this5.toggleState.bind(_assertThisInitialized(_this5));
+    _this5.setBackground = _this5.setBackground.bind(_assertThisInitialized(_this5));
+    return _this5;
   }
 
   _createClass(AngularSection, [{
@@ -187,7 +248,7 @@ function (_React$Component3) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this6 = this;
 
       var section_links = null;
 
@@ -198,11 +259,11 @@ function (_React$Component3) {
             name: obj.name,
             url: obj.url,
             logo: obj.logo,
-            state: _this4.state,
+            state: _this6.state,
             hoverBG: obj.hoverBG,
             hoverBGName: obj.hoverBGName,
-            parentBG: _this4.hoverBG,
-            setBackground: _this4.setBackground
+            parentBG: _this6.hoverBG,
+            setBackground: _this6.setBackground
           });
         });
       }
@@ -219,7 +280,9 @@ function (_React$Component3) {
         "class": "banner-title-img"
       }, React.createElement("img", {
         src: this.bannerImg
-      })), section_links)), React.createElement(AngularDivider, {
+      })), React.createElement("div", {
+        "class": "section-links-wrapper"
+      }, React.createElement(SectionLinksHeader, null), section_links))), React.createElement(AngularDivider, {
         divOrientation: this.divOrientation,
         state: this.state
       }));
@@ -231,19 +294,19 @@ function (_React$Component3) {
 
 var SectionList =
 /*#__PURE__*/
-function (_React$Component4) {
-  _inherits(SectionList, _React$Component4);
+function (_React$Component5) {
+  _inherits(SectionList, _React$Component5);
 
   function SectionList(props) {
-    var _this5;
+    var _this7;
 
     _classCallCheck(this, SectionList);
 
-    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
-    _this5.sections = props.sections;
-    _this5.counter = 0;
-    _this5.key = "SECT_LIST";
-    return _this5;
+    _this7 = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
+    _this7.sections = props.sections;
+    _this7.counter = 0;
+    _this7.key = "SECT_LIST";
+    return _this7;
   } // Get orientation of angular divider given the section index
 
 
@@ -261,7 +324,7 @@ function (_React$Component4) {
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this8 = this;
 
       var my_sections = this.sections.map(function (obj) {
         return React.createElement(AngularSection, {
@@ -269,7 +332,7 @@ function (_React$Component4) {
           name: obj.name,
           hoverBG: obj.hoverBG,
           bannerImg: obj.bannerImg,
-          divOrientation: _this6.divOrientation(),
+          divOrientation: _this8.divOrientation(),
           sectionLinks: obj.sectionLinks
         });
       });

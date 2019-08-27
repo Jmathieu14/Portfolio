@@ -50,12 +50,13 @@ html, body, .section-list, #page-content
 // A section of a page with sharp angles dividing it from another angular section
 $as-top-padding: 2.5%
 $as-bottom-padding: 2.5%
+$as-base-h: 45%
 .angular-section
     width: 100%
     padding-top: $as-top-padding
     padding-bottom: $as-bottom-padding
     // Substract padding from overall height along with angular divider height
-    height: calc(50% - #{$as-top-padding + $as-bottom-padding} - #{$ang-div-full-H})
+    height: calc(#{$as-base-h} - #{$as-top-padding + $as-bottom-padding} - #{$ang-div-full-H})
     +default_transition()
 //    &:hover, &:hover + .ang-div-wrapper
 //        background-color: $sharp-yellow
@@ -87,16 +88,47 @@ $as-bottom-padding: 2.5%
     .banner-title-img
         height: 100%
         display: inline-block
+        max-width: 34%
         img
             height: 100% !important
             position: relative
             float: left
+            max-width: 100%
 
 $sl-dimensions: 20%
 $arrow-size: 0.5rem
+$sl-h-font-size: 1.2rem
+$sl-h-padding-top: 0px
+$sl-h-padding-left: 1.2rem
+$sl-h-height: calc(#{$sl-h-font-size} + #{$sl-h-padding-top})
+
+=sl_header_font()
+    font-family: "Monserrat", monospace, sans-serif
+    font-weight: 400
+    color: black
+    text-align: center
+    font-size: $sl-h-font-size
+    padding-top: $sl-h-padding-top
+    padding-left: $sl-h-padding-left
+    height: $sl-h-height
     
 =arrow_transition()
     transition: all .2s ease
+
+// Wrapper that holds all contents of section link related items
+.section-links-wrapper
+    width: 66%
+    height: 100%
+    position: relative
+    float: right
+
+// Header for section links
+// TODO: consider changing name to that of hovered link on hover
+.section-links-header
+    position: relative
+    float: right
+    top: calc(50% - (#{$sl-h-height}/2))
+    +sl_header_font()
     
 // Styling for section links in angular sections
 .section-link
@@ -104,7 +136,6 @@ $arrow-size: 0.5rem
     float: right
     height: $sl-dimensions
     max-height: 2.75em
-    max-width: 2.75em
     top: calc(50% - (#{$sl-dimensions}/2))
     padding-bottom: 0px
     +default_transition()
@@ -131,3 +162,4 @@ $arrow-size: 0.5rem
     opacity: 1
     top: calc(#{$arrow-size}/1.5)
     +arrow_transition()
+    

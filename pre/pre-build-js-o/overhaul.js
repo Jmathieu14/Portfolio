@@ -32,6 +32,19 @@ class AngularDivider extends React.Component {
         );
     }
 }
+
+// Header for section links (to add clarity and ease of use to site)
+class SectionLinksHeader extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <div class="section-links-header">Links</div>
+        );
+    }
+}
+
 class SectionLink extends React.Component {
     constructor(props) {
         super(props);
@@ -138,7 +151,10 @@ class AngularSection extends React.Component {
                         <div class="banner-title-img">
                             <img src={this.bannerImg} />
                         </div>
-                        {section_links}
+                        <div class="section-links-wrapper">
+                            <SectionLinksHeader />
+                            {section_links}
+                        </div>
                     </div>
                 </div>
                 <AngularDivider divOrientation={this.divOrientation} state={this.state} />
