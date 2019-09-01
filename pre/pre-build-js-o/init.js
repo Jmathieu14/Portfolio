@@ -1,3 +1,5 @@
+// Init file for Node.js server
+
 // Copied and modified from node.js website's tutorial
 // https://nodejs.org/en/docs/guides/getting-started-guide/
 
