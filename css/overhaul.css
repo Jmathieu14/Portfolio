@@ -90,7 +90,7 @@ html, body, .section-list, #page-content {
   text-align: center;
   font-size: 1.2rem;
   padding-top: 0px;
-  padding-left: 1.2rem;
+  padding-left: 0.65rem;
   height: calc(1.2rem + 0px);
 }
 
@@ -101,6 +101,7 @@ html, body, .section-list, #page-content {
   max-height: 2.75em;
   top: calc(50% - (20%/2));
   padding-bottom: 0px;
+  padding-right: 1.3rem;
   transition: all 0.2s linear;
 }
 .section-link a, .section-link img {

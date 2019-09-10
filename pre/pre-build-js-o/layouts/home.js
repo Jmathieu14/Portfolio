@@ -18,8 +18,6 @@ const mainPageSects = {
         },
         {
             "name": "jprojects",
-//            "hoverBGName": "sharpYellow",
-//            "hoverBG": "#FFDD0E",
             "hoverBGName": "lightBlueGrey",
             "hoverBG": "#DDEEDD",
             "bannerImg": "../img/page/jm logo 3 -- project.svg",
@@ -30,6 +28,28 @@ const mainPageSects = {
                     "logo": "../../img/page/Social Media/SVG/24/4419165 - circle github outline social-media icon.svg",
                     "hoverBG": "#A54AB0",
                     "hoverBGName": "githubDesktopPurple"
+                }
+            ]
+        },
+        {
+            "name": "jwork",
+            "hoverBGName": "gray",
+            "hoverBG": "#AAA",
+            "bannerImg": "../img/page/jm logo 3 -- work.svg",
+            "sectionLinks": [
+                {
+                    "name": "LinkedIn",
+                    "url": "https://www.linkedin.com/in/jacques-mathieu-743389119/",
+                    "logo": "../../img/page/Social Media/SVG/24/4419149 - linkedin logo social icon.svg",
+                    "hoverBG": "#0077B5",
+                    "hoverBGName": "linkedInHoverBlue"
+                },
+                {
+                    "name": "Resume",
+                    "url": "../../pdf/JSMathieu Resume Summer 2019.pdf",
+                    "logo": "../../img/page/Google Icons/list_alt-48dp.svg",
+                    "hoverBG": "#33ff5f",
+                    "hoverBGName": "goodGreen"
                 }
             ]
         }

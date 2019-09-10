@@ -99,7 +99,7 @@ $sl-dimensions: 20%
 $arrow-size: 0.5rem
 $sl-h-font-size: 1.2rem
 $sl-h-padding-top: 0px
-$sl-h-padding-left: 1.2rem
+$sl-h-padding-left: 0.65rem
 $sl-h-height: calc(#{$sl-h-font-size} + #{$sl-h-padding-top})
 
 =sl_header_font()
@@ -129,7 +129,8 @@ $sl-h-height: calc(#{$sl-h-font-size} + #{$sl-h-padding-top})
     float: right
     top: calc(50% - (#{$sl-h-height}/2))
     +sl_header_font()
-    
+
+$sl-padding-right: 1.3rem
 // Styling for section links in angular sections
 .section-link
     position: relative
@@ -138,6 +139,7 @@ $sl-h-height: calc(#{$sl-h-font-size} + #{$sl-h-padding-top})
     max-height: 2.75em
     top: calc(50% - (#{$sl-dimensions}/2))
     padding-bottom: 0px
+    padding-right: $sl-padding-right
     +default_transition()
     a, img
         height: 100%
