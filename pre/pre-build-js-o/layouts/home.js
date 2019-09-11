@@ -1,8 +1,23 @@
+const myOpacity = 0.85;
+const myOpacityStyle = {opacity: myOpacity};
 // Set up layout of homepage
-const mainPageSects = {
+const pageLayout = {
+    "font-import-link" : "https://fonts.googleapis.com/css?family=Montserrat:500|Open+Sans|Roboto|Source+Sans+Pro&display=swap",
+    "page-header": {
+        "title": "",
+        "logo": "../../img/page/jm logo 3 - white.svg",
+        "logoOpacity": myOpacity,
+        "background": "#000",
+        "backgroundName": "black",
+        "fontColor": "#FFF",
+        "fontColorName": "White",
+        "headerFontOpacity": myOpacity,
+        "fontFamily": "'Montserrat', 'Roboto', sans-serif",
+        "mobileMoreIcon": "path2"
+    },
     "angular-sections": [
         {
-            "name": "jmusic",
+            "name": "music",
             "hoverBGName": "lightGrey",
             "hoverBG": "#DDD",
             "bannerImg": "../img/page/jm logo 3 -- music - clean.svg",
@@ -14,10 +29,11 @@ const mainPageSects = {
                     "hoverBG": "#F50",
                     "hoverBGName": "scloudOrange"
                 }
-            ]
+            ],
+            "opacityAsTab": myOpacityStyle
         },
         {
-            "name": "jprojects",
+            "name": "projects",
             "hoverBGName": "lightBlueGrey",
             "hoverBG": "#DDEEDD",
             "bannerImg": "../img/page/jm logo 3 -- project.svg",
@@ -29,10 +45,11 @@ const mainPageSects = {
                     "hoverBG": "#A54AB0",
                     "hoverBGName": "githubDesktopPurple"
                 }
-            ]
+            ],
+            "opacityAsTab": myOpacityStyle
         },
         {
-            "name": "jwork",
+            "name": "work",
             "hoverBGName": "gray",
             "hoverBG": "#AAA",
             "bannerImg": "../img/page/jm logo 3 -- work.svg",
@@ -51,13 +68,14 @@ const mainPageSects = {
                     "hoverBG": "#33ff5f",
                     "hoverBGName": "goodGreen"
                 }
-            ]
+            ],
+            "opacityAsTab": myOpacityStyle
         }
     ]
 }
 
 // Render layout to main view
 ReactDOM.render(
-  <SectionList sections={mainPageSects["angular-sections"]} />,
+  <SectionList sections={pageLayout["angular-sections"]} pageHeader={pageLayout["page-header"]} customFontPath={pageLayout['font-import-link']} />,
   document.getElementById('page-content')
 );

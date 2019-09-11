@@ -174,12 +174,86 @@ class AngularSection extends React.Component {
         );
     }
 }
+class PageHeader extends React.Component {
+    constructor(props) {
+        super(props);
+        this.sections = props.sections;
+        this.key = "PAGE_HEADER"
+        this.pageHeaderSpecs = props.pageHeader;
+        this.state = {
+            "description": "active",
+            "backgroundColor": this.pageHeaderSpecs['background'],
+            "fontColor": this.pageHeaderSpecs['fontColor'],
+            "fontFamily": this.pageHeaderSpecs['fontFamily'],
+            "logoOpacity": this.pageHeaderSpecs['logoOpacity'],
+            "headerOpacity": this.pageHeaderSpecs['headerOpacity']
+        }
+    }
+    getStyle() {
+        return {
+            backgroundColor: this.state.backgroundColor,
+            color: this.state.fontColor,
+            fontFamily: this.state.fontFamily
+        };
+    }
+    getLogoStyle() {
+        return {
+          opacity: this.state.logoOpacity  
+        };
+    }
+    getHeaderStyle() {
+        let hStyle = {
+            opacity: this.state.headerFontOpacity
+        };
+        if (this.pageHeaderSpecs['title'].trim() == "") {
+            hStyle.display = "None";
+        }
+        return hStyle;
+    }
+    getHeaderFontOpacity() {
+        return {
+            opacity: this.state.headerFontOpacity
+        };
+    }
+    render() {
+        const my_opacity = this.getHeaderFontOpacity();
+        const my_tabs = this.sections.map((obj) => 
+            <a class="header-tab" style={obj.opacityAsTab}>
+                {obj.name}
+            </a>);
+        return(
+            <section id={this.key} class="page-header" style={this.getStyle()}>
+                <div class="header-title" style={this.getHeaderStyle()}>
+                    {this.pageHeaderSpecs['title']}
+                </div>
+                <div class="header-logo-wrapper" style={this.getLogoStyle()}>
+                    <a href="#">
+                        <img src={this.pageHeaderSpecs['logo']}>
+                        </img>
+                    </a>
+                </div>
+                <div class="header-tabs">
+                    {my_tabs}
+                </div>
+            </section>
+        );
+    }
+}
+// Import our custom font(s)
+function FontImport(props) {
+    return (
+        <link href={props.path} rel="stylesheet">
+        </link>
+    );
+}
 class SectionList extends React.Component {
     constructor(props) {
         super(props);
         this.sections = props.sections;
         this.counter = 0;
         this.key = "SECT_LIST";
+        this.pageHeader = props.pageHeader;
+        this.customFontPath = props.customFontPath;
     }
     // Get orientation of angular divider given the section index
     divOrientation() {
@@ -192,9 +266,14 @@ class SectionList extends React.Component {
     render() {
         const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks}/>);
         return (
-            <section class="section-list">
-                {my_sections}
-            </section>
+            <React.Fragment>
+                <FontImport path={this.customFontPath}></FontImport>
+                <PageHeader pageHeader={this.pageHeader} sections={this.sections}>
+                </PageHeader>
+                <section class="section-list">
+                    {my_sections}
+                </section>
+            </React.Fragment>
         );
     }
 }

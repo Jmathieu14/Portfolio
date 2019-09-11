@@ -78,13 +78,15 @@ $as-base-h: 45%
     +default_transition()
 //    display: flex
 //    flex-direction: row
-    
+
 // Main content for angular sections
+$ang-content-lr-padding: 5%
+
 .angular-content
     height: 100%
     width: 90%
-    padding-left: 5%
-    padding-right: 5%
+    padding-left: $ang-content-lr-padding
+    padding-right: $ang-content-lr-padding
     .banner-title-img
         height: 100%
         display: inline-block
@@ -103,8 +105,8 @@ $sl-h-padding-left: 0.65rem
 $sl-h-height: calc(#{$sl-h-font-size} + #{$sl-h-padding-top})
 
 =sl_header_font()
-    font-family: "Monserrat", monospace, sans-serif
-    font-weight: 400
+    font-family: "Montserrat", monospace, sans-serif
+    font-weight: 500
     color: black
     text-align: center
     font-size: $sl-h-font-size
@@ -164,4 +166,43 @@ $sl-padding-right: 1.3rem
     opacity: 1
     top: calc(#{$arrow-size}/1.5)
     +arrow_transition()
+
+// Styling for Page Header component
+$page-header-font-size: 1rem
+$page-header-H: 2.4rem
+// Set line height to 1/12th less than the header height
+$page-line-H: calc(#{$page-header-H} * 11 / 12)
+$one-twelth-padding: calc(#{$page-header-H} / 12)
+$one-sixth-padding: calc(#{$page-header-H} / 6)
+=header-comp()
+    padding-left: 1rem
+    text-align: center
+    line-height: $page-line-H
+
+section.page-header
+    height: $page-header-H
+    font-size: $page-header-font-size
+    padding-left: $ang-content-lr-padding
+    .header-title
+        position: relative
+        float: left
+        +header-comp()
+    .header-logo-wrapper
+        height: calc(100% - (#{$one-sixth-padding} * 2))
+        padding-top: $one-sixth-padding
+        padding-bottom: $one-sixth-padding
+        position: relative
+        float: left
+        +header-comp()
+        img
+            height: 100%
+    .header-tabs
+        position: relative
+        float: right
+        padding-right: $ang-content-lr-padding
+        .header-tab
+            position: relative
+            float: left
+            padding-right: $one-sixth-padding
+            +header_comp()
     
