@@ -54,7 +54,7 @@ class SectionLink extends React.Component {
         this.hoverBG = props.hoverBG;
         this.hoverBGName = props.hoverBGName;
         this.parentBG = props.parentBG;
-        this.setBackground = props.setBackground;
+        this.childSetParentSectBG = props.childSetParentSectBG;
         this.mouseEnterLogo = this.mouseEnterLogo.bind(this);
         this.mouseLeaveLogo = this.mouseLeaveLogo.bind(this);
         this.arrowClassName = "sl-hover-arrow";
@@ -79,21 +79,23 @@ class SectionLink extends React.Component {
         }, 25);
     }
     mouseEnterLogo() {
-        this.props.setBackground("hover", this.hoverBG);
+        // Set priority to 1 so that when one moves the mouse from one link to the next, the 
+        // background color is not overwritten by the delayed by the dehovering of this link
+        var priority = 1;
+        this.props.childSetParentSectBG("hover", this.hoverBG, priority);
         
     }
     mouseLeaveLogo() {
-        // Delay update to allow transition to occur (only needed for mouse out)
-        window.setTimeout(() => {
-            this.props.setBackground("hover", this.parentBG);
-        }, 75);
+        // Set priority to 0 so that this does not overwrite mouse enter of a different link
+        var priority = 0;
+        this.props.childSetParentSectBG("hover", this.parentBG, priority);
     }
     render() {
         return (
             <React.Fragment>
-                <div onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} class='section-link'>
+                <div class='section-link'>
                     <a href={this.url} target='_blank'>
-                        <img src={this.logo} />
+                        <img src={this.logo} onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} />
                     </a>
                     <div style={this.arrowStyle} id={this.name + "-arrow"} class={this.arrowClassName}
                     ref={this.arrowRef}>
@@ -117,7 +119,9 @@ class AngularSection extends React.Component {
             backgroundColor: ""
         };
         this.toggleState = this.toggleState.bind(this);
-        this.setBackground = this.setBackground.bind(this);
+        // Keep track of the priorities set forth by the last active section link
+        this.prevSectionLinkPriority = -1;
+        this.childSetParentSectBG = this.childSetParentSectBG.bind(this);
     }
     toggleState() {
         if (this.state.text === "normal") {
@@ -130,9 +134,17 @@ class AngularSection extends React.Component {
         return {backgroundColor: this.state.backgroundColor};
     }
 
-    // Set the background and state text with the given state text and color
-    setBackground(s_text, color) {
-        this.setState({text: s_text, backgroundColor: color});
+    // Set the background and state text with the given state text and color; Will be called from the child
+    // section links
+    childSetParentSectBG(s_text, color, priority) {
+        if (priority < this.prevSectionLinkPriority) {
+            this.setState({text: s_text, backgroundColor: color});
+        } else {
+            window.setTimeout(() => {
+                this.setState({text: s_text, backgroundColor: color});
+            }, 25);
+        }
+        this.prevSectionLinkPriority = priority;
     }
     render() {
         let section_links = null;
@@ -141,7 +153,7 @@ class AngularSection extends React.Component {
               <SectionLink key={genKey(obj.name)} name={obj.name} 
                 url={obj.url} logo={obj.logo} state={this.state} 
                 hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} 
-                parentBG={this.hoverBG} setBackground={this.setBackground}
+                parentBG={this.hoverBG} childSetParentSectBG={this.childSetParentSectBG}
             />);
         }
         return (
