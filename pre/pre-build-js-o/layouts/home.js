@@ -23,7 +23,7 @@ const pageLayout = {
             "bannerImg": "../img/page/jm logo 3 -- music - clean.svg",
             "sectionLinks": [
                 {
-                    "name": "jmSoundcloud",
+                    "name": "SoundCloud",
                     "url": "https://soundcloud.com/jacques_mathieu",
                     "logo": "../../img/page/Social Media/SVG/24/4419136 - cloud logo sound sound cloud soundcloud square icon.svg",
                     "hoverBG": "#F50",

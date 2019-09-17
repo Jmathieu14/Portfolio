@@ -62,11 +62,6 @@ $as-base-h: 45%
 //        background-color: $sharp-yellow
 //        +default_transition()
 
-// Angular section hover colors
-//#jmusic:hover, #jmusic:hover + .ang-div-wrapper
-//    background-color: $scloud-orange
-//    +default_transition()
-
 // Angularly shaped divider to separate sections
 .angular-divider, .angular-divider-rev
     width: 100%
@@ -100,9 +95,9 @@ $ang-content-lr-padding: 5%
 $sl-dimensions: 20%
 $arrow-size: 0.5rem
 $sl-h-font-size: 1.2rem
-$sl-h-padding-top: 0px
+$sl-h-padding-top: 0rem
 $sl-h-padding-left: 0.65rem
-$sl-h-height: calc(#{$sl-h-font-size} + #{$sl-h-padding-top})
+$sl-h-height: $sl-h-font-size + $sl-h-padding-top
 
 =sl_header_font()
     font-family: "Montserrat", monospace, sans-serif
@@ -207,3 +202,48 @@ section.page-header
             +header_comp()
             &:hover
                 cursor: pointer
+            
+// Mobile Stylings
+//$phone-layout-enable: 450px
+$phone-layout-enable: 500px
+$mobile-sl-H: $sl-h-height * 2
+$mobile-banner-img-H: 75%
+$mobile-sl-wrapper-H: 100% - $mobile-banner-img-H
+$mobile-as-top-padding: 3%
+$mobile-as-bottom-padding: 2%
+$mobile-as-H: 55%
+$mobile-as-min-H: 14rem
+@media only screen and (max-width: $phone-layout-enable)
+    .angular-section
+        min-height: $mobile-as-min-H
+        height: calc(#{$mobile-as-H} - #{$mobile-as-top-padding} - #{$mobile-as-bottom-padding} - #{$ang-div-full-H})
+        padding-bottom: $mobile-as-bottom-padding
+        padding-top: $mobile-as-top-padding
+        .angular-content
+            .banner-title-img
+                max-width: 100%
+                width: 100%
+                height: $mobile-banner-img-H
+                img
+                    height: auto
+                    width: 55%
+                    left: calc(45%/2)
+            .section-links-wrapper
+                max-width: 100%
+                width: 55%
+                float: left
+                left: calc(45%/2)
+                height: $mobile-sl-wrapper-H
+                .section-links-header
+                    float: left
+                .section-link
+                    top: calc(50% - (#{$mobile-sl-H}/2))
+                    padding-left: $sl-padding-right
+                    padding-right: 0px
+                    max-height: 100%
+                    height: $mobile-sl-H
+                    &:last-child
+                        padding-right: 0.2rem
+                    a, a img
+                        max-height: 100%
+                        height: $mobile-sl-H
