@@ -115,7 +115,7 @@ function (_React$Component3) {
     _this2.hoverBG = props.hoverBG;
     _this2.hoverBGName = props.hoverBGName;
     _this2.parentBG = props.parentBG;
-    _this2.setBackground = props.setBackground;
+    _this2.childSetParentSectBG = props.childSetParentSectBG;
     _this2.mouseEnterLogo = _this2.mouseEnterLogo.bind(_assertThisInitialized(_this2));
     _this2.mouseLeaveLogo = _this2.mouseLeaveLogo.bind(_assertThisInitialized(_this2));
     _this2.arrowClassName = "sl-hover-arrow";
@@ -153,30 +153,30 @@ function (_React$Component3) {
   }, {
     key: "mouseEnterLogo",
     value: function mouseEnterLogo() {
-      this.props.setBackground("hover", this.hoverBG);
+      // Set priority to 1 so that when one moves the mouse from one link to the next, the 
+      // background color is not overwritten by the delayed by the dehovering of this link
+      var priority = 1;
+      this.props.childSetParentSectBG("hover", this.hoverBG, priority);
     }
   }, {
     key: "mouseLeaveLogo",
     value: function mouseLeaveLogo() {
-      var _this4 = this;
-
-      // Delay update to allow transition to occur (only needed for mouse out)
-      window.setTimeout(function () {
-        _this4.props.setBackground("hover", _this4.parentBG);
-      }, 75);
+      // Set priority to 0 so that this does not overwrite mouse enter of a different link
+      var priority = 0;
+      this.props.childSetParentSectBG("hover", this.parentBG, priority);
     }
   }, {
     key: "render",
     value: function render() {
       return React.createElement(React.Fragment, null, React.createElement("div", {
-        onMouseEnter: this.mouseEnterLogo,
-        onMouseLeave: this.mouseLeaveLogo,
         "class": "section-link"
       }, React.createElement("a", {
         href: this.url,
         target: "_blank"
       }, React.createElement("img", {
-        src: this.logo
+        src: this.logo,
+        onMouseEnter: this.mouseEnterLogo,
+        onMouseLeave: this.mouseLeaveLogo
       })), React.createElement("div", {
         style: this.arrowStyle,
         id: this.name + "-arrow",
@@ -195,23 +195,25 @@ function (_React$Component4) {
   _inherits(AngularSection, _React$Component4);
 
   function AngularSection(props) {
-    var _this5;
+    var _this4;
 
     _classCallCheck(this, AngularSection);
 
-    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(AngularSection).call(this, props));
-    _this5.name = props.name;
-    _this5.hoverBG = props.hoverBG;
-    _this5.bannerImg = props.bannerImg;
-    _this5.sectionLinks = props.sectionLinks;
-    _this5.divOrientation = props.divOrientation;
-    _this5.state = {
+    _this4 = _possibleConstructorReturn(this, _getPrototypeOf(AngularSection).call(this, props));
+    _this4.name = props.name;
+    _this4.hoverBG = props.hoverBG;
+    _this4.bannerImg = props.bannerImg;
+    _this4.sectionLinks = props.sectionLinks;
+    _this4.divOrientation = props.divOrientation;
+    _this4.state = {
       text: "normal",
       backgroundColor: ""
     };
-    _this5.toggleState = _this5.toggleState.bind(_assertThisInitialized(_this5));
-    _this5.setBackground = _this5.setBackground.bind(_assertThisInitialized(_this5));
-    return _this5;
+    _this4.toggleState = _this4.toggleState.bind(_assertThisInitialized(_this4)); // Keep track of the priorities set forth by the last active section link
+
+    _this4.prevSectionLinkPriority = -1;
+    _this4.childSetParentSectBG = _this4.childSetParentSectBG.bind(_assertThisInitialized(_this4));
+    return _this4;
   }
 
   _createClass(AngularSection, [{
@@ -235,15 +237,29 @@ function (_React$Component4) {
       return {
         backgroundColor: this.state.backgroundColor
       };
-    } // Set the background and state text with the given state text and color
+    } // Set the background and state text with the given state text and color; Will be called from the child
+    // section links
 
   }, {
-    key: "setBackground",
-    value: function setBackground(s_text, color) {
-      this.setState({
-        text: s_text,
-        backgroundColor: color
-      });
+    key: "childSetParentSectBG",
+    value: function childSetParentSectBG(s_text, color, priority) {
+      var _this5 = this;
+
+      if (priority < this.prevSectionLinkPriority) {
+        this.setState({
+          text: s_text,
+          backgroundColor: color
+        });
+      } else {
+        window.setTimeout(function () {
+          _this5.setState({
+            text: s_text,
+            backgroundColor: color
+          });
+        }, 25);
+      }
+
+      this.prevSectionLinkPriority = priority;
     }
   }, {
     key: "render",
@@ -263,7 +279,7 @@ function (_React$Component4) {
             hoverBG: obj.hoverBG,
             hoverBGName: obj.hoverBGName,
             parentBG: _this6.hoverBG,
-            setBackground: _this6.setBackground
+            childSetParentSectBG: _this6.childSetParentSectBG
           });
         });
       }
@@ -292,21 +308,168 @@ function (_React$Component4) {
   return AngularSection;
 }(React.Component);
 
-var SectionList =
+var HeaderTab =
 /*#__PURE__*/
 function (_React$Component5) {
-  _inherits(SectionList, _React$Component5);
+  _inherits(HeaderTab, _React$Component5);
+
+  function HeaderTab(props) {
+    var _this7;
+
+    _classCallCheck(this, HeaderTab);
+
+    _this7 = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTab).call(this, props));
+    _this7.name = props.name;
+    _this7.opacityAsTab = props.opacityAsTab;
+    _this7.scrollToSection = _this7.scrollToSection.bind(_assertThisInitialized(_this7));
+    return _this7;
+  }
+
+  _createClass(HeaderTab, [{
+    key: "scrollToSection",
+    value: function scrollToSection() {
+      var thisE = document.getElementById(this.name);
+
+      if (thisE != null) {
+        thisE.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return React.createElement("a", {
+        "class": "header-tab",
+        onClick: this.scrollToSection,
+        style: this.opacityAsTab
+      }, this.name);
+    }
+  }]);
+
+  return HeaderTab;
+}(React.Component);
+
+var PageHeader =
+/*#__PURE__*/
+function (_React$Component6) {
+  _inherits(PageHeader, _React$Component6);
+
+  function PageHeader(props) {
+    var _this8;
+
+    _classCallCheck(this, PageHeader);
+
+    _this8 = _possibleConstructorReturn(this, _getPrototypeOf(PageHeader).call(this, props));
+    _this8.sections = props.sections;
+    _this8.key = "PAGE_HEADER";
+    _this8.pageHeaderSpecs = props.pageHeader;
+    _this8.state = {
+      "description": "active",
+      "backgroundColor": _this8.pageHeaderSpecs['background'],
+      "fontColor": _this8.pageHeaderSpecs['fontColor'],
+      "fontFamily": _this8.pageHeaderSpecs['fontFamily'],
+      "logoOpacity": _this8.pageHeaderSpecs['logoOpacity'],
+      "headerOpacity": _this8.pageHeaderSpecs['headerOpacity']
+    };
+    return _this8;
+  }
+
+  _createClass(PageHeader, [{
+    key: "getStyle",
+    value: function getStyle() {
+      return {
+        backgroundColor: this.state.backgroundColor,
+        color: this.state.fontColor,
+        fontFamily: this.state.fontFamily
+      };
+    }
+  }, {
+    key: "getLogoStyle",
+    value: function getLogoStyle() {
+      return {
+        opacity: this.state.logoOpacity
+      };
+    }
+  }, {
+    key: "getHeaderStyle",
+    value: function getHeaderStyle() {
+      var hStyle = {
+        opacity: this.state.headerFontOpacity
+      };
+
+      if (this.pageHeaderSpecs['title'].trim() == "") {
+        hStyle.display = "None";
+      }
+
+      return hStyle;
+    }
+  }, {
+    key: "getHeaderFontOpacity",
+    value: function getHeaderFontOpacity() {
+      return {
+        opacity: this.state.headerFontOpacity
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var my_opacity = this.getHeaderFontOpacity();
+      var my_tabs = this.sections.map(function (obj) {
+        return React.createElement(HeaderTab, {
+          opacityAsTab: obj.opacityAsTab,
+          name: obj.name,
+          key: genKey(obj.name)
+        });
+      });
+      return React.createElement("section", {
+        id: this.key,
+        "class": "page-header",
+        style: this.getStyle()
+      }, React.createElement("div", {
+        "class": "header-title",
+        style: this.getHeaderStyle()
+      }, this.pageHeaderSpecs['title']), React.createElement("div", {
+        "class": "header-logo-wrapper",
+        style: this.getLogoStyle()
+      }, React.createElement("a", {
+        href: "#"
+      }, React.createElement("img", {
+        src: this.pageHeaderSpecs['logo']
+      }))), React.createElement("div", {
+        "class": "header-tabs"
+      }, my_tabs));
+    }
+  }]);
+
+  return PageHeader;
+}(React.Component); // Import our custom font(s)
+
+
+function FontImport(props) {
+  return React.createElement("link", {
+    href: props.path,
+    rel: "stylesheet"
+  });
+}
+
+var SectionList =
+/*#__PURE__*/
+function (_React$Component7) {
+  _inherits(SectionList, _React$Component7);
 
   function SectionList(props) {
-    var _this7;
+    var _this9;
 
     _classCallCheck(this, SectionList);
 
-    _this7 = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
-    _this7.sections = props.sections;
-    _this7.counter = 0;
-    _this7.key = "SECT_LIST";
-    return _this7;
+    _this9 = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
+    _this9.sections = props.sections;
+    _this9.counter = 0;
+    _this9.key = "SECT_LIST";
+    _this9.pageHeader = props.pageHeader;
+    _this9.customFontPath = props.customFontPath;
+    return _this9;
   } // Get orientation of angular divider given the section index
 
 
@@ -324,7 +487,7 @@ function (_React$Component5) {
   }, {
     key: "render",
     value: function render() {
-      var _this8 = this;
+      var _this10 = this;
 
       var my_sections = this.sections.map(function (obj) {
         return React.createElement(AngularSection, {
@@ -332,13 +495,18 @@ function (_React$Component5) {
           name: obj.name,
           hoverBG: obj.hoverBG,
           bannerImg: obj.bannerImg,
-          divOrientation: _this8.divOrientation(),
+          divOrientation: _this10.divOrientation(),
           sectionLinks: obj.sectionLinks
         });
       });
-      return React.createElement("section", {
+      return React.createElement(React.Fragment, null, React.createElement(FontImport, {
+        path: this.customFontPath
+      }), React.createElement(PageHeader, {
+        pageHeader: this.pageHeader,
+        sections: this.sections
+      }), React.createElement("section", {
         "class": "section-list"
-      }, my_sections);
+      }, my_sections));
     }
   }]);
 
