@@ -174,6 +174,28 @@ class AngularSection extends React.Component {
         );
     }
 }
+
+class HeaderTab extends React.Component {
+    constructor(props) {
+        super(props);
+        this.name = props.name;
+        this.opacityAsTab = props.opacityAsTab;
+        this.scrollToSection = this.scrollToSection.bind(this);
+    }
+    scrollToSection() {
+        var thisE = document.getElementById(this.name);
+        if (thisE != null) {
+            thisE.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    render() {
+        return (
+            <a class="header-tab" onClick={this.scrollToSection} style={this.opacityAsTab}>
+                {this.name}
+            </a>
+        );
+    }
+}
 class PageHeader extends React.Component {
     constructor(props) {
         super(props);
@@ -217,10 +239,10 @@ class PageHeader extends React.Component {
     }
     render() {
         const my_opacity = this.getHeaderFontOpacity();
-        const my_tabs = this.sections.map((obj) => 
-            <a class="header-tab" style={obj.opacityAsTab}>
-                {obj.name}
-            </a>);
+        let my_tabs = this.sections.map((obj) => 
+            <HeaderTab opacityAsTab={obj.opacityAsTab} 
+             name={obj.name} key={genKey(obj.name)} />
+            );
         return(
             <section id={this.key} class="page-header" style={this.getStyle()}>
                 <div class="header-title" style={this.getHeaderStyle()}>

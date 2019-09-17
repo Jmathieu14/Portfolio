@@ -168,5 +168,8 @@ section.page-header .header-tabs .header-tab {
   text-align: center;
   line-height: calc(2.4rem * 11 / 12);
 }
+section.page-header .header-tabs .header-tab:hover {
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=overhaul.css.map */
