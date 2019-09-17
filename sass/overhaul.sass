@@ -213,6 +213,8 @@ $mobile-as-top-padding: 3%
 $mobile-as-bottom-padding: 2%
 $mobile-as-H: 55%
 $mobile-as-min-H: 14rem
+$mobile-sl-padding: 0.5rem
+$mobile-sl-font-size: 1.1rem
 @media only screen and (max-width: $phone-layout-enable)
     .angular-section
         min-height: $mobile-as-min-H
@@ -236,9 +238,10 @@ $mobile-as-min-H: 14rem
                 height: $mobile-sl-wrapper-H
                 .section-links-header
                     float: left
+                    font-size: $mobile-sl-font-size
                 .section-link
                     top: calc(50% - (#{$mobile-sl-H}/2))
-                    padding-left: $sl-padding-right
+                    padding-left: $mobile-sl-padding
                     padding-right: 0px
                     max-height: 100%
                     height: $mobile-sl-H
@@ -247,3 +250,17 @@ $mobile-as-min-H: 14rem
                     a, a img
                         max-height: 100%
                         height: $mobile-sl-H
+
+$super-mobile-width: 330px
+$super-mobile-sl-font-size:0.8rem
+$super-mobile-sl-H: $sl-h-height * 1.5
+@media only screen and (max-width: $super-mobile-width)
+    .angular-section
+        .angular-content
+            .section-links-wrapper
+                .section-links-header
+                    font-size: $super-mobile-sl-font-size
+                .section-link
+                    height: $super-mobile-sl-H
+                    a, a img
+                        height: $super-mobile-sl-H
