@@ -20,7 +20,7 @@ const pageLayout = {
             "name": "music",
             "hoverBGName": "lightGrey",
             "hoverBG": "#DDD",
-            "bannerImg": "../img/page/jm logo 3 -- music - clean.svg",
+            "bannerImg": "../img/page/sections/jm logo 3 -- music - text_to_path.svg",
             "sectionLinks": [
                 {
                     "name": "SoundCloud",
@@ -36,7 +36,7 @@ const pageLayout = {
             "name": "projects",
             "hoverBGName": "lightBlueGrey",
             "hoverBG": "#DDEEDD",
-            "bannerImg": "../img/page/jm logo 3 -- project.svg",
+            "bannerImg": "../img/page/sections/jm logo 3 -- project - text_to_path.svg",
             "sectionLinks": [
                 {
                     "name": "GitHub",
@@ -52,7 +52,7 @@ const pageLayout = {
             "name": "work",
             "hoverBGName": "gray",
             "hoverBG": "#AAA",
-            "bannerImg": "../img/page/jm logo 3 -- work.svg",
+            "bannerImg": "../img/page/sections/jm logo 3 -- work - text_to_path.svg",
             "sectionLinks": [
                 {
                     "name": "LinkedIn",
