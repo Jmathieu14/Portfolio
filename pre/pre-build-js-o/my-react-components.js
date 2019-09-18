@@ -180,13 +180,27 @@ class HeaderTab extends React.Component {
         super(props);
         this.name = props.name;
         this.opacityAsTab = props.opacityAsTab;
-        this.scrollToSection = this.scrollToSection.bind(this);
         this.mobileVersion = props.mobileVersion;
+        this.toggleMobileTabsHelper = props.toggleMobileTabsHelper;
+        this.delay = 200;
+        this.scrollToSection = this.scrollToSection.bind(this);
+        this.mobileScrollToSection = this.mobileScrollToSection.bind(this);
     }
     scrollToSection() {
         var thisE = document.getElementById(this.name);
         if (thisE != null) {
-            thisE.scrollIntoView({ behavior: 'smooth' });
+            window.setTimeout(function() {
+                thisE.scrollIntoView({ behavior: 'smooth' });
+            }, this.delay);
+        }
+    }
+    mobileScrollToSection() {
+        this.props.toggleMobileTabsHelper(this.delay * 1.5);
+        var thisE = document.getElementById(this.name);
+        if (thisE != null) {
+            window.setTimeout(function() {
+                thisE.scrollIntoView({ behavior: 'smooth' });
+            }, this.delay);
         }
     }
     render() {
@@ -198,7 +212,7 @@ class HeaderTab extends React.Component {
             );
         } else {
             return (
-                <a class="mobile-header-tab" onClick={this.scrollToSection} style={this.opacityAsTab}>
+                <a class="mobile-header-tab" onClick={this.mobileScrollToSection} style={this.opacityAsTab}>
                     {this.name}
                 </a>
             );
@@ -212,23 +226,47 @@ class HeaderTabs extends React.Component {
         this.moreIcon = props.moreIcon;
         this.moreStyle = props.moreStyle;
         this.state = {
-            mobileTabsOpacity: 0
+            mobileTabsOpacity: 0,
+            mobileTabsMaxHeight: '0px'
         }
         this.toggleMobileTabs = this.toggleMobileTabs.bind(this);
+        this.toggleMobileTabsHelper = this.toggleMobileTabsHelper.bind(this);
+    }
+    // Get the height of the section list, and use that to set the mobile tab sections' max height
+    getSectionListHeight() {
+        let my_sl = document.querySelector('section.section-list');
+        if (my_sl != null) {
+            return my_sl.offsetHeight;
+        } else {
+            return 0;
+        }
+    }
+    toggleMobileTabsHelper(delay) {
+        if (delay > 0) {
+            this.toggleMobileTabs();
+        } else {
+            this.toggleMobileTabs();
+        }
     }
     toggleMobileTabs() {
+        let slHeight = (this.getSectionListHeight() * 0.6).toString() + 'px';
         if (this.state.mobileTabsOpacity == 1) {
             this.setState({
-                mobileTabsOpacity: 0
+                mobileTabsOpacity: 0,
+                mobileTabsMaxHeight: '0px'
             });
         } else {
             this.setState({
-                mobileTabsOpacity: 1
+                mobileTabsOpacity: 1,
+                mobileTabsMaxHeight: slHeight
             });
         }
     }
-    getMobileTabsOpacity() {
-        return {opacity: this.state.mobileTabsOpacity};
+    getMobileTabsStyle() {
+        return {
+            opacity: this.state.mobileTabsOpacity,
+            maxHeight: this.state.mobileTabsMaxHeight
+        };
     }
     render() {
         let my_tabs = this.sections.map((obj) => 
@@ -237,7 +275,7 @@ class HeaderTabs extends React.Component {
         );
         let my_mobile_tabs = this.sections.map((obj) => 
         <HeaderTab opacityAsTab={obj.opacityAsTab} 
-         name={obj.name} key={genKey(obj.name)} mobileVersion={true} />
+         name={obj.name} key={genKey(obj.name)} mobileVersion={true} toggleMobileTabsHelper={this.toggleMobileTabsHelper} />
         );
         return (
             <React.Fragment>
@@ -245,7 +283,7 @@ class HeaderTabs extends React.Component {
                     <img src={this.moreIcon} style={this.moreStyle}>
                     </img>
                 </div>
-                <div class="mobile-header-tabs" style={this.getMobileTabsOpacity()}>
+                <div class="mobile-header-tabs" style={this.getMobileTabsStyle()}>
                     {my_mobile_tabs}
                 </div>
                 <div class="header-tabs">

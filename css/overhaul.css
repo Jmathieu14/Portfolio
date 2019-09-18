@@ -163,16 +163,27 @@ section.page-header .header-tabs {
 section.page-header .header-tabs .header-tab {
   position: relative;
   float: left;
-  padding-right: 0.4rem;
+  padding-right: 0.5rem;
   padding-left: 1rem;
   text-align: center;
   line-height: 2.2rem;
+  padding-left: 0.5rem;
+  transition: all 0.2s linear;
 }
 section.page-header .header-tabs .header-tab:hover {
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all 0.2s linear;
+}
+section.page-header .header-tabs .header-tab:focus, section.page-header .header-tabs .header-tab:active {
+  background: rgba(255, 255, 255, 0.45);
+  transition: all 0.2s linear;
 }
 section.page-header .mobile-header-tabs {
   display: none;
+  height: 0px;
+  max-height: 0px;
+  transition: all 0.6s ease;
 }
 section.page-header .mobile-show-tabs-icon {
   position: relative;
@@ -199,13 +210,29 @@ section.page-header .mobile-show-tabs-icon img {
     display: block;
   }
   section.page-header .mobile-header-tabs {
-    display: block;
-    position: relative;
-    float: left;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0px;
+    top: 2.4rem;
+    padding-right: 5%;
+    padding-left: 5%;
+    width: calc(100% - (5% * 2));
     z-index: 10;
-    width: 100%;
-    height: 50%;
+    height: auto;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
     background: black;
+    transition: all 0.6s ease;
+  }
+  section.page-header .mobile-header-tabs .mobile-header-tab {
+    text-align: right;
+    width: calc(100% - (0.3rem * 2));
+    padding: 0.3rem;
+  }
+  section.page-header .mobile-header-tabs .mobile-header-tab:hover, section.page-header .mobile-header-tabs .mobile-header-tab:focus, section.page-header .mobile-header-tabs .mobile-header-tab:active {
+    background: rgba(255, 255, 255, 0.25);
+    transition: all 0.2s linear;
   }
 
   .angular-section {
