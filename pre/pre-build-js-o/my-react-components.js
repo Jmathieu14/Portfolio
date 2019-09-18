@@ -181,6 +181,7 @@ class HeaderTab extends React.Component {
         this.name = props.name;
         this.opacityAsTab = props.opacityAsTab;
         this.scrollToSection = this.scrollToSection.bind(this);
+        this.mobileVersion = props.mobileVersion;
     }
     scrollToSection() {
         var thisE = document.getElementById(this.name);
@@ -189,10 +190,68 @@ class HeaderTab extends React.Component {
         }
     }
     render() {
+        if (!this.mobileVersion) {
+            return (
+                <a class="header-tab" onClick={this.scrollToSection} style={this.opacityAsTab}>
+                    {this.name}
+                </a>
+            );
+        } else {
+            return (
+                <a class="mobile-header-tab" onClick={this.scrollToSection} style={this.opacityAsTab}>
+                    {this.name}
+                </a>
+            );
+        }
+    }
+}
+class HeaderTabs extends React.Component {
+    constructor(props) {
+        super(props);
+        this.sections = props.sections;
+        this.moreIcon = props.moreIcon;
+        this.moreStyle = props.moreStyle;
+        this.state = {
+            mobileTabsOpacity: 0
+        }
+        this.toggleMobileTabs = this.toggleMobileTabs.bind(this);
+    }
+    toggleMobileTabs() {
+        if (this.state.mobileTabsOpacity == 1) {
+            this.setState({
+                mobileTabsOpacity: 0
+            });
+        } else {
+            this.setState({
+                mobileTabsOpacity: 1
+            });
+        }
+    }
+    getMobileTabsOpacity() {
+        return {opacity: this.state.mobileTabsOpacity};
+    }
+    render() {
+        let my_tabs = this.sections.map((obj) => 
+        <HeaderTab opacityAsTab={obj.opacityAsTab} 
+         name={obj.name} key={genKey(obj.name)} mobileVersion={false} />
+        );
+        let my_mobile_tabs = this.sections.map((obj) => 
+        <HeaderTab opacityAsTab={obj.opacityAsTab} 
+         name={obj.name} key={genKey(obj.name)} mobileVersion={true} />
+        );
         return (
-            <a class="header-tab" onClick={this.scrollToSection} style={this.opacityAsTab}>
-                {this.name}
-            </a>
+            <React.Fragment>
+                <div onClick={this.toggleMobileTabs} class="mobile-show-tabs-icon">
+                    <img src={this.moreIcon} style={this.moreStyle}>
+                    </img>
+                </div>
+                <div class="mobile-header-tabs" style={this.getMobileTabsOpacity()}>
+                    {my_mobile_tabs}
+                </div>
+                <div class="header-tabs">
+                    {my_tabs}
+                </div>
+            </React.Fragment>
         );
     }
 }
@@ -207,7 +266,6 @@ class PageHeader extends React.Component {
             "backgroundColor": this.pageHeaderSpecs['background'],
             "fontColor": this.pageHeaderSpecs['fontColor'],
             "fontFamily": this.pageHeaderSpecs['fontFamily'],
-            "logoOpacity": this.pageHeaderSpecs['logoOpacity'],
             "headerOpacity": this.pageHeaderSpecs['headerOpacity']
         }
     }
@@ -216,11 +274,6 @@ class PageHeader extends React.Component {
             backgroundColor: this.state.backgroundColor,
             color: this.state.fontColor,
             fontFamily: this.state.fontFamily
-        };
-    }
-    getLogoStyle() {
-        return {
-          opacity: this.state.logoOpacity  
         };
     }
     getHeaderStyle() {
@@ -239,24 +292,18 @@ class PageHeader extends React.Component {
     }
     render() {
         const my_opacity = this.getHeaderFontOpacity();
-        let my_tabs = this.sections.map((obj) => 
-            <HeaderTab opacityAsTab={obj.opacityAsTab} 
-             name={obj.name} key={genKey(obj.name)} />
-            );
-        return(
+        return (
             <section id={this.key} class="page-header" style={this.getStyle()}>
                 <div class="header-title" style={this.getHeaderStyle()}>
                     {this.pageHeaderSpecs['title']}
                 </div>
-                <div class="header-logo-wrapper" style={this.getLogoStyle()}>
+                <div class="header-logo-wrapper" style={this.pageHeaderSpecs['logoStyle']}>
                     <a href="#">
                         <img src={this.pageHeaderSpecs['logo']}>
                         </img>
                     </a>
                 </div>
-                <div class="header-tabs">
-                    {my_tabs}
-                </div>
+                <HeaderTabs sections={this.sections} moreIcon={this.pageHeaderSpecs['mobileMoreIcon']} moreStyle={this.pageHeaderSpecs['mobileMoreStyle']} />
             </section>
         );
     }

@@ -6,14 +6,15 @@ const pageLayout = {
     "page-header": {
         "title": "",
         "logo": "../img/page/jm logo 3 - white.svg",
-        "logoOpacity": myOpacity,
+        "logoStyle": myOpacityStyle,
         "background": "#000",
         "backgroundName": "black",
         "fontColor": "#FFF",
         "fontColorName": "White",
         "headerFontOpacity": myOpacity,
         "fontFamily": "'Montserrat', 'Roboto', sans-serif",
-        "mobileMoreIcon": "path2"
+        "mobileMoreIcon": "../img/page/Google Icons/baseline_menu_white_48dp.png",
+        "mobileMoreStyle": { color: "#FFF", opacity: myOpacity }
     },
     "angular-sections": [
         {
