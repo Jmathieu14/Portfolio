@@ -22,8 +22,10 @@ function recordDisplayDimensions(debug) {
 }
 // Variables that store the section list class name and whether 
 // or not the section list is displayed
-var SECT_LIST_CLASS = "section-list";
+const SECT_LIST_CLASS = "section-list";
 var SECT_DISPLAYED = false;
+// Represents the maximum allowed width for the mobile view (in pixels)
+const MOBILE_VIEW_MAX_WIDTH = 450;
 
 // Show the section list
 function showSectionList() {
@@ -37,8 +39,8 @@ function showSectionList() {
     }
 }
 // Selectors for angular dividers
-var ANGLR_DIV_SEL = ".angular-divider";
-var ANGLR_DIV_REV_SEL = ".angular-divider-rev";
+const ANGLR_DIV_SEL = ".angular-divider";
+const ANGLR_DIV_REV_SEL = ".angular-divider-rev";
 // Update dimensions of Angular Section Dividers on page
 // (the non-react way)
 function handleAngDivResize() {
@@ -65,6 +67,8 @@ function handleAngDivResize() {
             d.style.borderRight = wrapper.clientWidth + "px solid black";
         }
     }
+    // Show the section list if not yet shown
+    showSectionList();
 }
 // End of Utility functions -----------------------------------------
 
@@ -455,6 +459,16 @@ class SectionList extends React.Component {
         }
         return "";
     }
+    // Add 'show' to end of the class name if mobile view is enabled;
+    // Otherwise, onload will handle it.
+    handleClassName() {
+        if (window.innerWidth <= MOBILE_VIEW_MAX_WIDTH) {
+            SECT_DISPLAYED = true;
+            return SECT_LIST_CLASS + " show";
+        } else {
+            return SECT_LIST_CLASS;
+        }
+    }
     render() {
         const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks}/>);
         return (
@@ -462,7 +476,7 @@ class SectionList extends React.Component {
                 <FontImport path={this.customFontPath}></FontImport>
                 <PageHeader pageHeader={this.pageHeader} sections={this.sections}>
                 </PageHeader>
-                <section class={SECT_LIST_CLASS}>
+                <section class={this.handleClassName()}>
                     {my_sections}
                 </section>
             </React.Fragment>
@@ -474,8 +488,6 @@ class SectionList extends React.Component {
 window.addEventListener("resize", handleAngDivResize);
 // Help for this from: https://www.tutorialrepublic.com/faq/how-to-capture-browser-window-resize-event-in-javascript.php
 window.onload = () => {
-    window.setTimeout(() => {
-        handleAngDivResize();
-        showSectionList();
-    }, 100);
+    // This function also calls 'showSectionList()'
+    handleAngDivResize();
 }

@@ -45,7 +45,9 @@ function recordDisplayDimensions(debug) {
 
 
 var SECT_LIST_CLASS = "section-list";
-var SECT_DISPLAYED = false; // Show the section list
+var SECT_DISPLAYED = false; // Represents the maximum allowed width for the mobile view (in pixels)
+
+var MOBILE_VIEW_MAX_WIDTH = 450; // Show the section list
 
 function showSectionList() {
   if (!SECT_DISPLAYED) {
@@ -84,7 +86,10 @@ function handleAngDivResize() {
     } else {
       d.style.borderRight = wrapper.clientWidth + "px solid black";
     }
-  }
+  } // Show the section list if not yet shown
+
+
+  showSectionList();
 } // End of Utility functions -----------------------------------------
 
 
@@ -695,6 +700,18 @@ function (_React$Component8) {
       }
 
       return "";
+    } // Add 'show' to end of the class name if mobile view is enabled;
+    // Otherwise, onload will handle it.
+
+  }, {
+    key: "handleClassName",
+    value: function handleClassName() {
+      if (window.innerWidth <= MOBILE_VIEW_MAX_WIDTH) {
+        SECT_DISPLAYED = true;
+        return SECT_LIST_CLASS + " show";
+      } else {
+        return SECT_LIST_CLASS;
+      }
     }
   }, {
     key: "render",
@@ -717,7 +734,7 @@ function (_React$Component8) {
         pageHeader: this.pageHeader,
         sections: this.sections
       }), React.createElement("section", {
-        "class": SECT_LIST_CLASS
+        "class": this.handleClassName()
       }, my_sections));
     }
   }]);
@@ -729,8 +746,6 @@ function (_React$Component8) {
 window.addEventListener("resize", handleAngDivResize); // Help for this from: https://www.tutorialrepublic.com/faq/how-to-capture-browser-window-resize-event-in-javascript.php
 
 window.onload = function () {
-  window.setTimeout(function () {
-    handleAngDivResize();
-    showSectionList();
-  }, 100);
+  // This function also calls 'showSectionList()'
+  handleAngDivResize();
 };
