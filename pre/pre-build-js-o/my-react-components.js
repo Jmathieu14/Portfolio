@@ -1,16 +1,81 @@
 //babel --plugins @babel/plugin-transform-react-jsx pre/pre-jsx/overhaul.js -d pre/pre-build-js-o &&
 
+// Utility functions ------------------------------------------------
+// 
 // Return a key for given it's name (n)
 function genKey(n) {
     var k = n + "-" + Math.random().toString().substr(2,);
     return k;
 }
+// Variable to store our display dimensions
+var my_display_dimensions = {
+    "width": 0,
+    "height": 0
+}
+// Record body dimensions to our display dimensions variable (above)
+function recordDisplayDimensions(debug) {
+    var b = document.getElementsByTagName("body")[0];
+    my_display_dimensions.height = b.clientHeight;
+    my_display_dimensions.width = b.clientWidth;
+    // Print to console if debugging enabled
+    if (debug) console.log(my_display_dimensions);
+}
+// Variables that store the section list class name and whether 
+// or not the section list is displayed
+var SECT_LIST_CLASS = "section-list";
+var SECT_DISPLAYED = false;
+
+// Show the section list
+function showSectionList() {
+    if (!SECT_DISPLAYED) {
+        var sectList = document.getElementsByClassName(SECT_LIST_CLASS)[0];
+        // If there is a section list on the page
+        if (sectList !== null) {
+            sectList.className = SECT_LIST_CLASS + " show";
+            SECT_DISPLAYED = true;
+        }
+    }
+}
+// Selectors for angular dividers
+var ANGLR_DIV_SEL = ".angular-divider";
+var ANGLR_DIV_REV_SEL = ".angular-divider-rev";
+// Update dimensions of Angular Section Dividers on page
+// (the non-react way)
+function handleAngDivResize() {
+    // Enable or disable debugging screen dimensions
+    var debug = false;
+    // Record the display dimensions
+    recordDisplayDimensions(debug);    
+    var dividers = document.querySelectorAll(ANGLR_DIV_SEL + ", " + ANGLR_DIV_REV_SEL);
+    // Iterate through each angular divider on page
+    for (var i = 0; i < dividers.length; ++i) {
+        var d = dividers[i];
+        var wrapper = d.parentElement;
+        var angContent = wrapper.previousElementSibling;
+        var dBorderH = wrapper.clientHeight - d.clientHeight;
+        
+        // Set element d's width to 0, b/c border width takes up space
+        d.style.width = "0px";
+        d.style.borderTop = dBorderH + "px solid transparent";
+        // Apply proper styling to reverse angular divider
+        if (d.className.indexOf("-rev") > 0) {
+            d.style.borderLeft = wrapper.clientWidth + "px solid black";
+        // Else apply normal styling
+        } else {
+            d.style.borderRight = wrapper.clientWidth + "px solid black";
+        }
+    }
+    // Show the section list if not yet shown
+    showSectionList();
+}
+// End of Utility functions -----------------------------------------
 
 class AngularDivider extends React.Component {
     constructor(props) {
         super(props);
         this.divOrientation = props.divOrientation;
         this.baseName = "angular-divider";
+        this.element = React.createRef();
     }
     genClassName() {
         if (this.divOrientation === undefined || this.divOrientation === "") {
@@ -19,15 +84,35 @@ class AngularDivider extends React.Component {
             return this.baseName + "-" + this.divOrientation;
         }
     }
+    getDividerStyle() {
+        let style = {
+            width: '0px'
+        }
+        let d = this.element.current;
+        if (d != null) {
+            const wrapper = d.parentElement;
+            const dBorderH = wrapper.clientHeight - d.clientHeight;
+            const borderLRText = wrapper.clientWidth + 'px solid black';            
+            style.borderTop = dBorderH + 'px solid transparent';
+            // Apply proper styling to reverse angular divider
+            if (d.className.indexOf("-rev") > 0) {
+                style.borderLeft = borderLRText;
+            // Else apply normal styling
+            } else {
+                style.borderRight = borderLRText;
+            }           
+        }
+        return style;
+    }
     // Get the correct background color from the parent object
-    getBackgroundFromParent() {
+    getParentBackgroundForWrapper() {
         return {backgroundColor: this.props.state.backgroundColor};
     }
     render() {
         const cName = this.genClassName();
         return (
-            <div class='ang-div-wrapper' style={this.getBackgroundFromParent()}>
-                <div class={cName}></div>
+            <div class='ang-div-wrapper' style={this.getParentBackgroundForWrapper()}>
+                <div ref={this.element} class={cName}></div>
             </div>
         );
     }
@@ -146,6 +231,7 @@ class AngularSection extends React.Component {
         }
         this.prevSectionLinkPriority = priority;
     }
+    
     render() {
         let section_links = null;
         if (this.sectionLinks !== undefined && this.sectionLinks !== null && this.sectionLinks.length > 0) {
@@ -353,6 +439,7 @@ function FontImport(props) {
         </link>
     );
 }
+
 class SectionList extends React.Component {
     constructor(props) {
         super(props);
@@ -377,10 +464,18 @@ class SectionList extends React.Component {
                 <FontImport path={this.customFontPath}></FontImport>
                 <PageHeader pageHeader={this.pageHeader} sections={this.sections}>
                 </PageHeader>
-                <section class="section-list">
+                <section class={SECT_LIST_CLASS}>
                     {my_sections}
                 </section>
             </React.Fragment>
         );
     }
+}
+
+// Add event listener to window resizing event
+window.addEventListener("resize", handleAngDivResize);
+// Help for this from: https://www.tutorialrepublic.com/faq/how-to-capture-browser-window-resize-event-in-javascript.php
+window.onload = () => {
+    showSectionList();
+    handleAngDivResize();
 }

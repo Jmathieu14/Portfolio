@@ -1,31 +1,6 @@
 var ANGLR_DIV_SEL = ".angular-divider";
 var ANGLR_DIV_REV_SEL = ".angular-divider-rev";
-var SECT_LIST_CLASS = "section-list";
-var SECT_DISPLAYED = false;
-var my_display_dimensions = {
-    "width": 0,
-    "height": 0
-}
 
-function recordDisplayDimensions(debug) {
-    var b = document.getElementsByTagName("body")[0];
-    my_display_dimensions.height = b.clientHeight;
-    my_display_dimensions.width = b.clientWidth;
-    // Print to console if debugging enabled
-    if (debug) console.log(my_display_dimensions);
-}
-
-// Show the section list
-function showSectionList() {
-    if (!SECT_DISPLAYED) {
-        var sectList = document.getElementsByClassName(SECT_LIST_CLASS)[0];
-        // If there is a section list on the page
-        if (sectList !== null) {
-            sectList.className = SECT_LIST_CLASS + " show";
-            SECT_DISPLAYED = true;
-        }
-    }
-}
 
 // Properly format angular dividers on given page
 function angularDivSetup() {
