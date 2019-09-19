@@ -19,11 +19,77 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 //babel --plugins @babel/plugin-transform-react-jsx pre/pre-jsx/overhaul.js -d pre/pre-build-js-o &&
+// Utility functions ------------------------------------------------
+// 
 // Return a key for given it's name (n)
 function genKey(n) {
   var k = n + "-" + Math.random().toString().substr(2);
   return k;
-}
+} // Variable to store our display dimensions
+
+
+var my_display_dimensions = {
+  "width": 0,
+  "height": 0 // Record body dimensions to our display dimensions variable (above)
+
+};
+
+function recordDisplayDimensions(debug) {
+  var b = document.getElementsByTagName("body")[0];
+  my_display_dimensions.height = b.clientHeight;
+  my_display_dimensions.width = b.clientWidth; // Print to console if debugging enabled
+
+  if (debug) console.log(my_display_dimensions);
+} // Variables that store the section list class name and whether 
+// or not the section list is displayed
+
+
+var SECT_LIST_CLASS = "section-list";
+var SECT_DISPLAYED = false; // Show the section list
+
+function showSectionList() {
+  if (!SECT_DISPLAYED) {
+    var sectList = document.getElementsByClassName(SECT_LIST_CLASS)[0]; // If there is a section list on the page
+
+    if (sectList !== null) {
+      sectList.className = SECT_LIST_CLASS + " show";
+      SECT_DISPLAYED = true;
+    }
+  }
+} // Selectors for angular dividers
+
+
+var ANGLR_DIV_SEL = ".angular-divider";
+var ANGLR_DIV_REV_SEL = ".angular-divider-rev"; // Update dimensions of Angular Section Dividers on page
+// (the non-react way)
+
+function handleAngDivResize() {
+  // Enable or disable debugging screen dimensions
+  var debug = false; // Record the display dimensions
+
+  recordDisplayDimensions(debug);
+  var dividers = document.querySelectorAll(ANGLR_DIV_SEL + ", " + ANGLR_DIV_REV_SEL); // Iterate through each angular divider on page
+
+  for (var i = 0; i < dividers.length; ++i) {
+    var d = dividers[i];
+    var wrapper = d.parentElement;
+    var angContent = wrapper.previousElementSibling;
+    var dBorderH = wrapper.clientHeight - d.clientHeight; // Set element d's width to 0, b/c border width takes up space
+
+    d.style.width = "0px";
+    d.style.borderTop = dBorderH + "px solid transparent"; // Apply proper styling to reverse angular divider
+
+    if (d.className.indexOf("-rev") > 0) {
+      d.style.borderLeft = wrapper.clientWidth + "px solid black"; // Else apply normal styling
+    } else {
+      d.style.borderRight = wrapper.clientWidth + "px solid black";
+    }
+  } // Show the section list if not yet shown
+
+
+  showSectionList();
+} // End of Utility functions -----------------------------------------
+
 
 var AngularDivider =
 /*#__PURE__*/
@@ -38,6 +104,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(AngularDivider).call(this, props));
     _this.divOrientation = props.divOrientation;
     _this.baseName = "angular-divider";
+    _this.element = React.createRef();
     return _this;
   }
 
@@ -49,11 +116,34 @@ function (_React$Component) {
       } else {
         return this.baseName + "-" + this.divOrientation;
       }
+    }
+  }, {
+    key: "getDividerStyle",
+    value: function getDividerStyle() {
+      var style = {
+        width: '0px'
+      };
+      var d = this.element.current;
+
+      if (d != null) {
+        var wrapper = d.parentElement;
+        var dBorderH = wrapper.clientHeight - d.clientHeight;
+        var borderLRText = wrapper.clientWidth + 'px solid black';
+        style.borderTop = dBorderH + 'px solid transparent'; // Apply proper styling to reverse angular divider
+
+        if (d.className.indexOf("-rev") > 0) {
+          style.borderLeft = borderLRText; // Else apply normal styling
+        } else {
+          style.borderRight = borderLRText;
+        }
+      }
+
+      return style;
     } // Get the correct background color from the parent object
 
   }, {
-    key: "getBackgroundFromParent",
-    value: function getBackgroundFromParent() {
+    key: "getParentBackgroundForWrapper",
+    value: function getParentBackgroundForWrapper() {
       return {
         backgroundColor: this.props.state.backgroundColor
       };
@@ -64,8 +154,9 @@ function (_React$Component) {
       var cName = this.genClassName();
       return React.createElement("div", {
         "class": "ang-div-wrapper",
-        style: this.getBackgroundFromParent()
+        style: this.getParentBackgroundForWrapper()
       }, React.createElement("div", {
+        ref: this.element,
         "class": cName
       }));
     }
@@ -321,7 +412,11 @@ function (_React$Component5) {
     _this7 = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTab).call(this, props));
     _this7.name = props.name;
     _this7.opacityAsTab = props.opacityAsTab;
+    _this7.mobileVersion = props.mobileVersion;
+    _this7.toggleMobileTabsHelper = props.toggleMobileTabsHelper;
+    _this7.delay = 200;
     _this7.scrollToSection = _this7.scrollToSection.bind(_assertThisInitialized(_this7));
+    _this7.mobileScrollToSection = _this7.mobileScrollToSection.bind(_assertThisInitialized(_this7));
     return _this7;
   }
 
@@ -331,48 +426,180 @@ function (_React$Component5) {
       var thisE = document.getElementById(this.name);
 
       if (thisE != null) {
-        thisE.scrollIntoView({
-          behavior: 'smooth'
-        });
+        window.setTimeout(function () {
+          thisE.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }, this.delay);
+      }
+    }
+  }, {
+    key: "mobileScrollToSection",
+    value: function mobileScrollToSection() {
+      this.props.toggleMobileTabsHelper(this.delay * 1.5);
+      var thisE = document.getElementById(this.name);
+
+      if (thisE != null) {
+        window.setTimeout(function () {
+          thisE.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }, this.delay);
       }
     }
   }, {
     key: "render",
     value: function render() {
-      return React.createElement("a", {
-        "class": "header-tab",
-        onClick: this.scrollToSection,
-        style: this.opacityAsTab
-      }, this.name);
+      if (!this.mobileVersion) {
+        return React.createElement("a", {
+          "class": "header-tab",
+          onClick: this.scrollToSection,
+          style: this.opacityAsTab
+        }, this.name);
+      } else {
+        return React.createElement("a", {
+          "class": "mobile-header-tab",
+          onClick: this.mobileScrollToSection,
+          style: this.opacityAsTab
+        }, this.name);
+      }
     }
   }]);
 
   return HeaderTab;
 }(React.Component);
 
-var PageHeader =
+var HeaderTabs =
 /*#__PURE__*/
 function (_React$Component6) {
-  _inherits(PageHeader, _React$Component6);
+  _inherits(HeaderTabs, _React$Component6);
+
+  function HeaderTabs(props) {
+    var _this8;
+
+    _classCallCheck(this, HeaderTabs);
+
+    _this8 = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTabs).call(this, props));
+    _this8.sections = props.sections;
+    _this8.moreIcon = props.moreIcon;
+    _this8.moreStyle = props.moreStyle;
+    _this8.state = {
+      mobileTabsOpacity: 0,
+      mobileTabsMaxHeight: '0px'
+    };
+    _this8.toggleMobileTabs = _this8.toggleMobileTabs.bind(_assertThisInitialized(_this8));
+    _this8.toggleMobileTabsHelper = _this8.toggleMobileTabsHelper.bind(_assertThisInitialized(_this8));
+    return _this8;
+  } // Get the height of the section list, and use that to set the mobile tab sections' max height
+
+
+  _createClass(HeaderTabs, [{
+    key: "getSectionListHeight",
+    value: function getSectionListHeight() {
+      var my_sl = document.querySelector('section.section-list');
+
+      if (my_sl != null) {
+        return my_sl.offsetHeight;
+      } else {
+        return 0;
+      }
+    }
+  }, {
+    key: "toggleMobileTabsHelper",
+    value: function toggleMobileTabsHelper(delay) {
+      if (delay > 0) {
+        this.toggleMobileTabs();
+      } else {
+        this.toggleMobileTabs();
+      }
+    }
+  }, {
+    key: "toggleMobileTabs",
+    value: function toggleMobileTabs() {
+      var slHeight = (this.getSectionListHeight() * 0.6).toString() + 'px';
+
+      if (this.state.mobileTabsOpacity == 1) {
+        this.setState({
+          mobileTabsOpacity: 0,
+          mobileTabsMaxHeight: '0px'
+        });
+      } else {
+        this.setState({
+          mobileTabsOpacity: 1,
+          mobileTabsMaxHeight: slHeight
+        });
+      }
+    }
+  }, {
+    key: "getMobileTabsStyle",
+    value: function getMobileTabsStyle() {
+      return {
+        opacity: this.state.mobileTabsOpacity,
+        maxHeight: this.state.mobileTabsMaxHeight
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this9 = this;
+
+      var my_tabs = this.sections.map(function (obj) {
+        return React.createElement(HeaderTab, {
+          opacityAsTab: obj.opacityAsTab,
+          name: obj.name,
+          key: genKey(obj.name),
+          mobileVersion: false
+        });
+      });
+      var my_mobile_tabs = this.sections.map(function (obj) {
+        return React.createElement(HeaderTab, {
+          opacityAsTab: obj.opacityAsTab,
+          name: obj.name,
+          key: genKey(obj.name),
+          mobileVersion: true,
+          toggleMobileTabsHelper: _this9.toggleMobileTabsHelper
+        });
+      });
+      return React.createElement(React.Fragment, null, React.createElement("div", {
+        onClick: this.toggleMobileTabs,
+        "class": "mobile-show-tabs-icon"
+      }, React.createElement("img", {
+        src: this.moreIcon,
+        style: this.moreStyle
+      })), React.createElement("div", {
+        "class": "mobile-header-tabs",
+        style: this.getMobileTabsStyle()
+      }, my_mobile_tabs), React.createElement("div", {
+        "class": "header-tabs"
+      }, my_tabs));
+    }
+  }]);
+
+  return HeaderTabs;
+}(React.Component);
+
+var PageHeader =
+/*#__PURE__*/
+function (_React$Component7) {
+  _inherits(PageHeader, _React$Component7);
 
   function PageHeader(props) {
-    var _this8;
+    var _this10;
 
     _classCallCheck(this, PageHeader);
 
-    _this8 = _possibleConstructorReturn(this, _getPrototypeOf(PageHeader).call(this, props));
-    _this8.sections = props.sections;
-    _this8.key = "PAGE_HEADER";
-    _this8.pageHeaderSpecs = props.pageHeader;
-    _this8.state = {
+    _this10 = _possibleConstructorReturn(this, _getPrototypeOf(PageHeader).call(this, props));
+    _this10.sections = props.sections;
+    _this10.key = "PAGE_HEADER";
+    _this10.pageHeaderSpecs = props.pageHeader;
+    _this10.state = {
       "description": "active",
-      "backgroundColor": _this8.pageHeaderSpecs['background'],
-      "fontColor": _this8.pageHeaderSpecs['fontColor'],
-      "fontFamily": _this8.pageHeaderSpecs['fontFamily'],
-      "logoOpacity": _this8.pageHeaderSpecs['logoOpacity'],
-      "headerOpacity": _this8.pageHeaderSpecs['headerOpacity']
+      "backgroundColor": _this10.pageHeaderSpecs['background'],
+      "fontColor": _this10.pageHeaderSpecs['fontColor'],
+      "fontFamily": _this10.pageHeaderSpecs['fontFamily'],
+      "headerOpacity": _this10.pageHeaderSpecs['headerOpacity']
     };
-    return _this8;
+    return _this10;
   }
 
   _createClass(PageHeader, [{
@@ -382,13 +609,6 @@ function (_React$Component6) {
         backgroundColor: this.state.backgroundColor,
         color: this.state.fontColor,
         fontFamily: this.state.fontFamily
-      };
-    }
-  }, {
-    key: "getLogoStyle",
-    value: function getLogoStyle() {
-      return {
-        opacity: this.state.logoOpacity
       };
     }
   }, {
@@ -415,13 +635,6 @@ function (_React$Component6) {
     key: "render",
     value: function render() {
       var my_opacity = this.getHeaderFontOpacity();
-      var my_tabs = this.sections.map(function (obj) {
-        return React.createElement(HeaderTab, {
-          opacityAsTab: obj.opacityAsTab,
-          name: obj.name,
-          key: genKey(obj.name)
-        });
-      });
       return React.createElement("section", {
         id: this.key,
         "class": "page-header",
@@ -431,14 +644,16 @@ function (_React$Component6) {
         style: this.getHeaderStyle()
       }, this.pageHeaderSpecs['title']), React.createElement("div", {
         "class": "header-logo-wrapper",
-        style: this.getLogoStyle()
+        style: this.pageHeaderSpecs['logoStyle']
       }, React.createElement("a", {
         href: "#"
       }, React.createElement("img", {
         src: this.pageHeaderSpecs['logo']
-      }))), React.createElement("div", {
-        "class": "header-tabs"
-      }, my_tabs));
+      }))), React.createElement(HeaderTabs, {
+        sections: this.sections,
+        moreIcon: this.pageHeaderSpecs['mobileMoreIcon'],
+        moreStyle: this.pageHeaderSpecs['mobileMoreStyle']
+      }));
     }
   }]);
 
@@ -455,21 +670,21 @@ function FontImport(props) {
 
 var SectionList =
 /*#__PURE__*/
-function (_React$Component7) {
-  _inherits(SectionList, _React$Component7);
+function (_React$Component8) {
+  _inherits(SectionList, _React$Component8);
 
   function SectionList(props) {
-    var _this9;
+    var _this11;
 
     _classCallCheck(this, SectionList);
 
-    _this9 = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
-    _this9.sections = props.sections;
-    _this9.counter = 0;
-    _this9.key = "SECT_LIST";
-    _this9.pageHeader = props.pageHeader;
-    _this9.customFontPath = props.customFontPath;
-    return _this9;
+    _this11 = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
+    _this11.sections = props.sections;
+    _this11.counter = 0;
+    _this11.key = "SECT_LIST";
+    _this11.pageHeader = props.pageHeader;
+    _this11.customFontPath = props.customFontPath;
+    return _this11;
   } // Get orientation of angular divider given the section index
 
 
@@ -487,7 +702,7 @@ function (_React$Component7) {
   }, {
     key: "render",
     value: function render() {
-      var _this10 = this;
+      var _this12 = this;
 
       var my_sections = this.sections.map(function (obj) {
         return React.createElement(AngularSection, {
@@ -495,7 +710,7 @@ function (_React$Component7) {
           name: obj.name,
           hoverBG: obj.hoverBG,
           bannerImg: obj.bannerImg,
-          divOrientation: _this10.divOrientation(),
+          divOrientation: _this12.divOrientation(),
           sectionLinks: obj.sectionLinks
         });
       });
@@ -505,10 +720,18 @@ function (_React$Component7) {
         pageHeader: this.pageHeader,
         sections: this.sections
       }), React.createElement("section", {
-        "class": "section-list"
+        "class": SECT_LIST_CLASS
       }, my_sections));
     }
   }]);
 
   return SectionList;
-}(React.Component);
+}(React.Component); // Add event listener to window resizing event
+
+
+window.addEventListener("resize", handleAngDivResize); // Help for this from: https://www.tutorialrepublic.com/faq/how-to-capture-browser-window-resize-event-in-javascript.php
+
+window.onload = function () {
+  showSectionList();
+  handleAngDivResize();
+};
