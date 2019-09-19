@@ -65,8 +65,6 @@ function handleAngDivResize() {
             d.style.borderRight = wrapper.clientWidth + "px solid black";
         }
     }
-    // Show the section list if not yet shown
-    showSectionList();
 }
 // End of Utility functions -----------------------------------------
 
@@ -476,6 +474,8 @@ class SectionList extends React.Component {
 window.addEventListener("resize", handleAngDivResize);
 // Help for this from: https://www.tutorialrepublic.com/faq/how-to-capture-browser-window-resize-event-in-javascript.php
 window.onload = () => {
-    showSectionList();
-    handleAngDivResize();
+    window.setTimeout(() => {
+        handleAngDivResize();
+        showSectionList();
+    }, 100);
 }
