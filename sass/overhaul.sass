@@ -83,6 +83,7 @@ $ang-content-lr-padding: 5%
     padding-left: $ang-content-lr-padding
     padding-right: $ang-content-lr-padding
     .banner-title-img
+        user-select: none
         height: 100%
         display: inline-block
         max-width: 34%
@@ -114,6 +115,7 @@ $sl-h-height: $sl-h-font-size + $sl-h-padding-top
 
 // Wrapper that holds all contents of section link related items
 .section-links-wrapper
+    user-select: none
     width: 66%
     height: 100%
     position: relative
@@ -187,6 +189,7 @@ section.page-header
         float: left
         +header-comp()
     .header-logo-wrapper
+        user-select: none
         height: calc(100% - (#{$one-sixth-padding} * 2))
         padding-top: $one-sixth-padding
         padding-bottom: $one-sixth-padding
@@ -196,6 +199,7 @@ section.page-header
         img
             height: 100%
     .header-tabs
+        user-select: none
         position: relative
         float: right
         padding-right: $ang-content-lr-padding
@@ -214,6 +218,7 @@ section.page-header
                 background: rgba(255, 255, 255, 0.45)
                 +default_transition()
     .mobile-header-tabs
+        user-select: none
         display: none
         height: 0px
         max-height: 0px
@@ -221,12 +226,6 @@ section.page-header
     .mobile-show-tabs-icon
         position: relative
         float: right
-        height: calc(#{$page-header-H} - (#{$one-sixth-padding} * 2))
-        padding-top: $one-sixth-padding
-        padding-bottom: $one-sixth-padding
-        +header_comp()
-        padding-left: $one-sixth-padding
-        padding-right: $ang-content-lr-padding
         display: none
         img
             height: 100%
@@ -235,29 +234,39 @@ section.page-header
 $phone-layout-enable: 450px
 // The following is a test width for dev use only
 // $phone-layout-enable: 500px
-$mobile-sl-H: $sl-h-height * 2
 $mobile-banner-img-H: 75%
-$mobile-sl-wrapper-H: 100% - $mobile-banner-img-H
 $mobile-as-top-padding: 3%
 $mobile-as-bottom-padding: 2%
 $mobile-as-H: 55%
 $mobile-as-min-H: 14rem
+$mobile-sl-H: $sl-h-height * 2
+$mobile-sl-wrapper-H: 100% - $mobile-banner-img-H
 $mobile-sl-padding: 0.5rem
 $mobile-sl-font-size: 1.1rem
-$mobile-menu-vert-padding: 0.6rem
+$mobile-page-header-font-size: $page-header-font-size * 1.5
+$mobile-page-header-H: $page-header-H * 1.5
+$mobile-menu-vert-padding: 0.8rem
 $mobile-menu-option-padding: $mobile-menu-vert-padding / 2
 @media only screen and (max-width: $phone-layout-enable)
     section.page-header
+        height: $mobile-page-header-H
+        font-size: $mobile-page-header-font-size
         .header-tabs
             display: none
         .mobile-show-tabs-icon
+            height: calc(#{$mobile-page-header-H} - (#{$one-sixth-padding} * 2))
+            padding-top: $one-sixth-padding
+            padding-bottom: $one-sixth-padding
+            +header_comp()
+            padding-left: $one-sixth-padding
+            padding-right: $ang-content-lr-padding
             display: block
         .mobile-header-tabs
             display: flex
             flex-direction: column
             position: absolute
             left: 0px
-            top: $page-header-H
+            top: $mobile-page-header-H
             padding-right: $ang-content-lr-padding
             padding-left: $ang-content-lr-padding
             width: calc(100% - (#{$ang-content-lr-padding} * 2))

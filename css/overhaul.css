@@ -62,6 +62,7 @@ html, body, .section-list, #page-content {
   padding-right: 5%;
 }
 .angular-content .banner-title-img {
+  user-select: none;
   height: 100%;
   display: inline-block;
   max-width: 34%;
@@ -74,6 +75,7 @@ html, body, .section-list, #page-content {
 }
 
 .section-links-wrapper {
+  user-select: none;
   width: 66%;
   height: 100%;
   position: relative;
@@ -143,6 +145,7 @@ section.page-header .header-title {
   line-height: 2.2rem;
 }
 section.page-header .header-logo-wrapper {
+  user-select: none;
   height: calc(100% - (0.4rem * 2));
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
@@ -156,6 +159,7 @@ section.page-header .header-logo-wrapper img {
   height: 100%;
 }
 section.page-header .header-tabs {
+  user-select: none;
   position: relative;
   float: right;
   padding-right: 5%;
@@ -180,6 +184,7 @@ section.page-header .header-tabs .header-tab:focus, section.page-header .header-
   transition: all 0.2s linear;
 }
 section.page-header .mobile-header-tabs {
+  user-select: none;
   display: none;
   height: 0px;
   max-height: 0px;
@@ -188,14 +193,6 @@ section.page-header .mobile-header-tabs {
 section.page-header .mobile-show-tabs-icon {
   position: relative;
   float: right;
-  height: calc(2.4rem - (0.4rem * 2));
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
-  padding-left: 1rem;
-  text-align: center;
-  line-height: 2.2rem;
-  padding-left: 0.4rem;
-  padding-right: 5%;
   display: none;
 }
 section.page-header .mobile-show-tabs-icon img {
@@ -203,10 +200,22 @@ section.page-header .mobile-show-tabs-icon img {
 }
 
 @media only screen and (max-width: 450px) {
+  section.page-header {
+    height: 3.6rem;
+    font-size: 1.5rem;
+  }
   section.page-header .header-tabs {
     display: none;
   }
   section.page-header .mobile-show-tabs-icon {
+    height: calc(3.6rem - (0.4rem * 2));
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 1rem;
+    text-align: center;
+    line-height: 2.2rem;
+    padding-left: 0.4rem;
+    padding-right: 5%;
     display: block;
   }
   section.page-header .mobile-header-tabs {
@@ -214,21 +223,21 @@ section.page-header .mobile-show-tabs-icon img {
     flex-direction: column;
     position: absolute;
     left: 0px;
-    top: 2.4rem;
+    top: 3.6rem;
     padding-right: 5%;
     padding-left: 5%;
     width: calc(100% - (5% * 2));
     z-index: 10;
     height: auto;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
     background: black;
     transition: all 0.6s ease;
   }
   section.page-header .mobile-header-tabs .mobile-header-tab {
     text-align: right;
-    width: calc(100% - (0.3rem * 2));
-    padding: 0.3rem;
+    width: calc(100% - (0.4rem * 2));
+    padding: 0.4rem;
   }
   section.page-header .mobile-header-tabs .mobile-header-tab:hover, section.page-header .mobile-header-tabs .mobile-header-tab:focus, section.page-header .mobile-header-tabs .mobile-header-tab:active {
     background: rgba(255, 255, 255, 0.25);
