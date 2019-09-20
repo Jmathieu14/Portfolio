@@ -65,7 +65,7 @@ var ANGLR_DIV_SEL = ".angular-divider";
 var ANGLR_DIV_REV_SEL = ".angular-divider-rev"; // Update dimensions of Angular Section Dividers on page
 // (the non-react way)
 
-function handleAngDivResize() {
+function resizeDividersOnPageResize() {
   // Enable or disable debugging screen dimensions
   var debug = false; // Record the display dimensions
 
@@ -118,29 +118,31 @@ function (_React$Component) {
       } else {
         return this.baseName + "-" + this.divOrientation;
       }
-    }
+    } // Best compromise between React and non-react approach
+
   }, {
-    key: "getDividerStyle",
-    value: function getDividerStyle() {
-      var style = {
-        width: '0px'
-      };
+    key: "resizeDividerOnMount",
+    value: function resizeDividerOnMount() {
       var d = this.element.current;
 
       if (d != null) {
+        d.style.width = "0px";
         var wrapper = d.parentElement;
         var dBorderH = wrapper.clientHeight - d.clientHeight;
         var borderLRText = wrapper.clientWidth + 'px solid black';
-        style.borderTop = dBorderH + 'px solid transparent'; // Apply proper styling to reverse angular divider
+        d.style.borderTop = dBorderH + 'px solid transparent'; // Apply proper styling to reverse angular divider
 
         if (d.className.indexOf("-rev") > 0) {
-          style.borderLeft = borderLRText; // Else apply normal styling
+          d.style.borderLeft = borderLRText; // Else apply normal styling
         } else {
-          style.borderRight = borderLRText;
+          d.style.borderRight = borderLRText;
         }
       }
-
-      return style;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.resizeDividerOnMount();
     } // Get the correct background color from the parent object
 
   }, {
@@ -686,6 +688,7 @@ function (_React$Component8) {
     _this11.key = "SECT_LIST";
     _this11.pageHeader = props.pageHeader;
     _this11.customFontPath = props.customFontPath;
+    _this11.showSectionList = false;
     return _this11;
   } // Get orientation of angular divider given the section index
 
@@ -706,12 +709,17 @@ function (_React$Component8) {
   }, {
     key: "handleClassName",
     value: function handleClassName() {
-      if (window.innerWidth <= MOBILE_VIEW_MAX_WIDTH) {
+      if (showSectionList) {
         SECT_DISPLAYED = true;
         return SECT_LIST_CLASS + " show";
       } else {
         return SECT_LIST_CLASS;
       }
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.showSectionList = true;
     }
   }, {
     key: "render",
@@ -743,9 +751,8 @@ function (_React$Component8) {
 }(React.Component); // Add event listener to window resizing event
 
 
-window.addEventListener("resize", handleAngDivResize); // Help for this from: https://www.tutorialrepublic.com/faq/how-to-capture-browser-window-resize-event-in-javascript.php
-
-window.onload = function () {
-  // This function also calls 'showSectionList()'
-  handleAngDivResize();
-};
+window.addEventListener("resize", resizeDividersOnPageResize); // Help for this from: https://www.tutorialrepublic.com/faq/how-to-capture-browser-window-resize-event-in-javascript.php
+//window.onload = () => {
+//    // This function also calls 'showSectionList()'
+//    resizeDividersOnPageResize();
+//}
