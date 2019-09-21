@@ -32,7 +32,7 @@ function showSectionList() {
     if (!SECT_DISPLAYED) {
         var sectList = document.getElementsByClassName(SECT_LIST_CLASS)[0];
         // If there is a section list on the page
-        if (sectList !== null) {
+        if (sectList !== undefined && sectList !== null) {
             sectList.className = SECT_LIST_CLASS + " show";
             SECT_DISPLAYED = true;
         }
@@ -274,6 +274,7 @@ class HeaderTab extends React.Component {
         this.delay = 200;
         this.scrollToSection = this.scrollToSection.bind(this);
         this.mobileScrollToSection = this.mobileScrollToSection.bind(this);
+        this.mobileMenuActive = props.mobileMenuActive;
     }
     scrollToSection() {
         var thisE = document.getElementById(this.name);
@@ -284,12 +285,14 @@ class HeaderTab extends React.Component {
         }
     }
     mobileScrollToSection() {
-        this.props.toggleMobileTabsHelper(this.delay * 1.5);
-        var thisE = document.getElementById(this.name);
-        if (thisE != null) {
-            window.setTimeout(function() {
-                thisE.scrollIntoView({ behavior: 'smooth' });
-            }, this.delay);
+        if (this.mobileMenuActive) {
+            this.props.toggleMobileTabsHelper(this.delay * 1.5);
+            var thisE = document.getElementById(this.name);
+            if (thisE != null) {
+                window.setTimeout(function() {
+                    thisE.scrollIntoView({ behavior: 'smooth' });
+                }, this.delay);
+            }
         }
     }
     render() {
@@ -316,7 +319,8 @@ class HeaderTabs extends React.Component {
         this.moreStyle = props.moreStyle;
         this.state = {
             mobileTabsOpacity: 0,
-            mobileTabsMaxHeight: '0px'
+            mobileTabsMaxHeight: '0px',
+            mobileMenuActive: false
         }
         this.toggleMobileTabs = this.toggleMobileTabs.bind(this);
         this.toggleMobileTabsHelper = this.toggleMobileTabsHelper.bind(this);
@@ -342,12 +346,14 @@ class HeaderTabs extends React.Component {
         if (this.state.mobileTabsOpacity == 1) {
             this.setState({
                 mobileTabsOpacity: 0,
-                mobileTabsMaxHeight: '0px'
+                mobileTabsMaxHeight: '0px',
+                mobileMenuActive: false
             });
         } else {
             this.setState({
                 mobileTabsOpacity: 1,
-                mobileTabsMaxHeight: slHeight
+                mobileTabsMaxHeight: slHeight,
+                mobileMenuActive: true
             });
         }
     }
@@ -364,7 +370,7 @@ class HeaderTabs extends React.Component {
         );
         let my_mobile_tabs = this.sections.map((obj) => 
         <HeaderTab opacityAsTab={obj.opacityAsTab} 
-         name={obj.name} key={genKey(obj.name)} mobileVersion={true} toggleMobileTabsHelper={this.toggleMobileTabsHelper} />
+         name={obj.name} key={genKey(obj.name)} mobileVersion={true} toggleMobileTabsHelper={this.toggleMobileTabsHelper} mobileMenuActive={this.state.mobileMenuActive} />
         );
         return (
             <React.Fragment>
