@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--   Fix issues in testing mobile views using the Opera mobile emulator     -->
+        <!--   Enables mobile view to be displayed via media queries     -->
         <meta name="viewport" content="width=device-width">
         <!-- Load css libraries -->
         <link href="../css/overhaul.css" rel="stylesheet">
@@ -10,15 +10,25 @@
         <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
         
-        <!-- Load JSX to use it with react -->
-        <!--    TODO: Consider replacing with TypeScript or w/e    -->
+        <!-- Load JSX to use it with react in dev mode -->
+        
+        
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-<!--         Load custom react components here (*with babel labels*) -->
-        <script src="../pre/pre-build-js-o/my-react-components.js" type="text/babel"></script>
-<!--        <script src="../js-o/my-react-components.js" type="text/babel"></script>-->
+        
+<!--         Load custom react components here (*with babel labels if in dev mode*) -->
+        
+        
+<!--        <script src="../pre-prod/js/my-react-components.js" type="text/babel"></script>-->
+        
+        <script src="../js/my-react-components.js" type="text/javascript"></script>
+        
         <!-- Load page layout file -->
-        <script src="../pre/pre-build-js-o/layouts/home.js" type="text/babel"></script>
-<!--        <script src="../js-o/layouts/home.js" type="text/babel"></script>-->
+        
+        
+<!--        <script src="../pre-prod/js/layouts/home.js" type="text/babel"></script>-->
+        
+        <script src="../js/layouts/home.js" type="text/babel"></script>
+        
         <!-- Load custom js here -->
     </head>
     <body>

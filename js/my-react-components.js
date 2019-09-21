@@ -53,7 +53,7 @@ function showSectionList() {
   if (!SECT_DISPLAYED) {
     var sectList = document.getElementsByClassName(SECT_LIST_CLASS)[0]; // If there is a section list on the page
 
-    if (sectList !== null) {
+    if (sectList !== undefined && sectList !== null) {
       sectList.className = SECT_LIST_CLASS + " show";
       SECT_DISPLAYED = true;
     }
@@ -421,6 +421,7 @@ function (_React$Component5) {
     _this7.delay = 200;
     _this7.scrollToSection = _this7.scrollToSection.bind(_assertThisInitialized(_this7));
     _this7.mobileScrollToSection = _this7.mobileScrollToSection.bind(_assertThisInitialized(_this7));
+    _this7.mobileMenuActive = props.mobileMenuActive;
     return _this7;
   }
 
@@ -440,15 +441,17 @@ function (_React$Component5) {
   }, {
     key: "mobileScrollToSection",
     value: function mobileScrollToSection() {
-      this.props.toggleMobileTabsHelper(this.delay * 1.5);
-      var thisE = document.getElementById(this.name);
+      if (this.mobileMenuActive) {
+        this.props.toggleMobileTabsHelper(this.delay * 1.5);
+        var thisE = document.getElementById(this.name);
 
-      if (thisE != null) {
-        window.setTimeout(function () {
-          thisE.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }, this.delay);
+        if (thisE != null) {
+          window.setTimeout(function () {
+            thisE.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }, this.delay);
+        }
       }
     }
   }, {
@@ -489,7 +492,8 @@ function (_React$Component6) {
     _this8.moreStyle = props.moreStyle;
     _this8.state = {
       mobileTabsOpacity: 0,
-      mobileTabsMaxHeight: '0px'
+      mobileTabsMaxHeight: '0px',
+      mobileMenuActive: false
     };
     _this8.toggleMobileTabs = _this8.toggleMobileTabs.bind(_assertThisInitialized(_this8));
     _this8.toggleMobileTabsHelper = _this8.toggleMobileTabsHelper.bind(_assertThisInitialized(_this8));
@@ -525,12 +529,14 @@ function (_React$Component6) {
       if (this.state.mobileTabsOpacity == 1) {
         this.setState({
           mobileTabsOpacity: 0,
-          mobileTabsMaxHeight: '0px'
+          mobileTabsMaxHeight: '0px',
+          mobileMenuActive: false
         });
       } else {
         this.setState({
           mobileTabsOpacity: 1,
-          mobileTabsMaxHeight: slHeight
+          mobileTabsMaxHeight: slHeight,
+          mobileMenuActive: true
         });
       }
     }
@@ -561,7 +567,8 @@ function (_React$Component6) {
           name: obj.name,
           key: genKey(obj.name),
           mobileVersion: true,
-          toggleMobileTabsHelper: _this9.toggleMobileTabsHelper
+          toggleMobileTabsHelper: _this9.toggleMobileTabsHelper,
+          mobileMenuActive: _this9.state.mobileMenuActive
         });
       });
       return React.createElement(React.Fragment, null, React.createElement("div", {

@@ -75,8 +75,9 @@ const pageLayout = {
     ]
 }
 
+const renderTarget = document.getElementById('page-content');
 // Render layout to main view
 ReactDOM.render(
   <SectionList sections={pageLayout["angular-sections"]} pageHeader={pageLayout["page-header"]} customFontPath={pageLayout['font-import-link']} />,
-  document.getElementById('page-content')
+  renderTarget
 );

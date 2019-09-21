@@ -68,11 +68,12 @@ var pageLayout = {
       "hoverBGName": "goodGreen"
     }],
     "opacityAsTab": myOpacityStyle
-  }] // Render layout to main view
-
+  }]
 };
+var renderTarget = document.getElementById('page-content'); // Render layout to main view
+
 ReactDOM.render(React.createElement(SectionList, {
   sections: pageLayout["angular-sections"],
   pageHeader: pageLayout["page-header"],
   customFontPath: pageLayout['font-import-link']
-}), document.getElementById('page-content'));
+}), renderTarget);
