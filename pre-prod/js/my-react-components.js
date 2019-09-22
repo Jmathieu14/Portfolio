@@ -53,7 +53,7 @@ function resizeDividersOnPageResize() {
     for (var i = 0; i < dividers.length; ++i) {
         var d = dividers[i];
         var wrapper = d.parentElement;
-        var angContent = wrapper.previousElementSibling;
+        var angContent = wrapper.previousElementSibling.previousElementSibling;
         var dBorderH = wrapper.clientHeight - d.clientHeight;
         
         // Set element d's width to 0, b/c border width takes up space
@@ -69,6 +69,17 @@ function resizeDividersOnPageResize() {
     }
     // Show the section list if not yet shown
     showSectionList();
+}
+// Return the string repeated n times (as a string)
+function repeatStringNTimes(str, n, sep) {
+    let strPlusSep = str + sep;
+    let res = "";
+    let ctr = 0;
+    while (ctr < n) {
+        res = res + strPlusSep;
+        ++ctr;
+    }
+    return res;
 }
 // End of Utility functions -----------------------------------------
 
@@ -142,7 +153,7 @@ class SectionLink extends React.Component {
         this.hoverBG = props.hoverBG;
         this.hoverBGName = props.hoverBGName;
         this.parentBG = props.parentBG;
-        this.childSetParentSectBG = props.childSetParentSectBG;
+        this.childSetParentSectBGAndHoverText = props.childSetParentSectBGAndHoverText;
         this.mouseEnterLogo = this.mouseEnterLogo.bind(this);
         this.mouseLeaveLogo = this.mouseLeaveLogo.bind(this);
         this.arrowClassName = "sl-hover-arrow";
@@ -169,14 +180,14 @@ class SectionLink extends React.Component {
     mouseEnterLogo() {
         // Set priority to 1 so that when one moves the mouse from one link to the next, the 
         // background color is not overwritten by the delayed by the dehovering of this link
-        var priority = 1;
-        this.props.childSetParentSectBG("hover", this.hoverBG, priority);
+        let priority = 1; const hoverTextShow = true; const hoverText = this.name;
+        this.props.childSetParentSectBGAndHoverText("hover", this.hoverBG, priority, hoverText, hoverTextShow);
         
     }
     mouseLeaveLogo() {
         // Set priority to 0 so that this does not overwrite mouse enter of a different link
-        var priority = 0;
-        this.props.childSetParentSectBG("hover", this.parentBG, priority);
+        let priority = 0; const hoverTextShow = false; const hoverText = this.name;
+        this.props.childSetParentSectBGAndHoverText("hover", this.parentBG, priority, hoverText, hoverTextShow);
     }
     render() {
         return (
@@ -194,6 +205,14 @@ class SectionLink extends React.Component {
     }
 }
 
+function SectionLinkHoverText(props) {
+    return (
+        <div class={props.specs['className']} style={props.specs['textColor']}>
+            {repeatStringNTimes(props.specs['text'], 200, ' ')}
+        </div>
+    );
+}
+
 class AngularSection extends React.Component {
     constructor(props) {
         super(props);
@@ -204,18 +223,20 @@ class AngularSection extends React.Component {
         this.divOrientation = props.divOrientation;
         this.state = {
             text: "normal",
-            backgroundColor: ""
+            backgroundColor: "",
+            hoverText: "test",
+            hoverTextShow: false
         };
         this.toggleState = this.toggleState.bind(this);
         // Keep track of the priorities set forth by the last active section link
         this.prevSectionLinkPriority = -1;
-        this.childSetParentSectBG = this.childSetParentSectBG.bind(this);
+        this.childSetParentSectBGAndHoverText = this.childSetParentSectBGAndHoverText.bind(this);
     }
     toggleState() {
         if (this.state.text === "normal") {
-            this.setState({text: "hover", backgroundColor: this.hoverBG});
+            this.setState({text: "hover", backgroundColor: this.hoverBG, hoverTextShow: false});
         } else {
-            this.setState({text: "normal", backgroundColor: ""});
+            this.setState({text: "normal", backgroundColor: "", hoverTextShow: false});
         }
     }
     getBackground() {
@@ -224,17 +245,28 @@ class AngularSection extends React.Component {
 
     // Set the background and state text with the given state text and color; Will be called from the child
     // section links
-    childSetParentSectBG(s_text, color, priority) {
+    childSetParentSectBGAndHoverText(s_text, color, priority, hoverText, hoverTextShow) {
         if (priority < this.prevSectionLinkPriority) {
-            this.setState({text: s_text, backgroundColor: color});
+            this.setState({text: s_text, backgroundColor: color, hoverText: hoverText, hoverTextShow: hoverTextShow});
         } else {
             window.setTimeout(() => {
-                this.setState({text: s_text, backgroundColor: color});
+                this.setState({text: s_text, backgroundColor: color, hoverText: hoverText, hoverTextShow: hoverTextShow});
             }, 25);
         }
         this.prevSectionLinkPriority = priority;
     }
-    
+    // Get the specs needed for the section link hover text component
+    getSLHoverTextSpecs() {
+        let specs = {
+            className: 'sl-hover-text',
+            text: this.state['hoverText'],
+            textColor: { color: this.state['backgroundColor'] }
+        }
+        if (this.state['hoverTextShow']) {
+            specs.className = specs.className + " show";
+        }
+        return specs;
+    }
     render() {
         let section_links = null;
         if (this.sectionLinks !== undefined && this.sectionLinks !== null && this.sectionLinks.length > 0) {
@@ -242,7 +274,7 @@ class AngularSection extends React.Component {
               <SectionLink key={genKey(obj.name)} name={obj.name} 
                 url={obj.url} logo={obj.logo} state={this.state} 
                 hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} 
-                parentBG={this.hoverBG} childSetParentSectBG={this.childSetParentSectBG}
+                parentBG={this.hoverBG} childSetParentSectBGAndHoverText={this.childSetParentSectBGAndHoverText}
             />);
         }
         return (
@@ -258,6 +290,7 @@ class AngularSection extends React.Component {
                         </div>
                     </div>
                 </div>
+                <SectionLinkHoverText specs={this.getSLHoverTextSpecs()} />
                 <AngularDivider divOrientation={this.divOrientation} state={this.state} />
             </React.Fragment>
         );

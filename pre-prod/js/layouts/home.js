@@ -2,7 +2,7 @@ const myOpacity = 0.85;
 const myOpacityStyle = {opacity: myOpacity};
 // Set up layout of homepage
 const pageLayout = {
-    "font-import-link" : "https://fonts.googleapis.com/css?family=Montserrat:500|Open+Sans|Roboto|Source+Sans+Pro&display=swap",
+    "font-import-link" : "https://fonts.googleapis.com/css?family=Montserrat:500,800,900|Open+Sans|Roboto|Source+Sans+Pro&display=swap",
     "page-header": {
         "title": "",
         "logo": "../img/page/jm logo 3 - white.svg",

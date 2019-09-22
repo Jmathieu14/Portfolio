@@ -29,6 +29,11 @@ $ang-div-full-H: calc(5% + #{$ang-div-base-H})
 =default_transition_imp()
     transition: all 0.2s linear !important
 
+// Make sure no element (by default) goes beyond the width of the body
+// element or html element
+html, body
+    max-width: 100%    
+    
 // Init page to enable % based widths and heights
 html, body, .section-list, #page-content
     position: relative
@@ -163,6 +168,31 @@ $sl-padding-right: 1.3rem
     opacity: 1
     top: calc(#{$arrow-size}/1.5)
     +arrow_transition()
+
+//white-space: nowrap
+$sl-ht-lr-padding: 0px
+$sl-ht-width: calc(100% - (#{$sl-ht-lr-padding} * 2))
+.sl-hover-text
+    +sl_header_font()
+    font-weight: 800
+    color: white
+    height: 5%
+    font-size: 0.75rem
+    text-align: left
+    position: absolute
+    display: inline
+    width: $sl-ht-width
+    padding-left: $sl-ht-lr-padding
+    padding-right: $sl-ht-lr-padding
+    text-transform: uppercase
+    overflow-wrap: break-word
+    overflow-x: hidden
+    overflow-y: hidden
+    opacity: 0
+    +default_transition()
+    &.show
+        opacity: 1
+        +default_transition()
 
 // Styling for Page Header component
 $page-header-font-size: 1rem

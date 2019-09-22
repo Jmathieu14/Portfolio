@@ -17,6 +17,10 @@
  * asciiflow.com )
  * -------------|
  * */
+html, body {
+  max-width: 100%;
+}
+
 html, body, .section-list, #page-content {
   position: relative;
   width: 100%;
@@ -130,6 +134,37 @@ html, body, .section-list, #page-content {
   opacity: 1;
   top: calc(0.5rem/1.5);
   transition: all 0.2s ease;
+}
+
+.sl-hover-text {
+  font-family: "Montserrat", monospace, sans-serif;
+  font-weight: 500;
+  color: black;
+  text-align: center;
+  font-size: 1.2rem;
+  padding-top: 0rem;
+  padding-left: 0.65rem;
+  height: 1.2rem;
+  font-weight: 800;
+  color: white;
+  height: 5%;
+  font-size: 0.75rem;
+  text-align: left;
+  position: absolute;
+  display: inline;
+  width: calc(100% - (0px * 2));
+  padding-left: 0px;
+  padding-right: 0px;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  opacity: 0;
+  transition: all 0.2s linear;
+}
+.sl-hover-text.show {
+  opacity: 1;
+  transition: all 0.2s linear;
 }
 
 section.page-header {
