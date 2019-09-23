@@ -3,9 +3,11 @@ const myOpacityStyle = {opacity: myOpacity};
 // Set up layout of homepage
 const pageLayout = {
     "font-import-link" : "https://fonts.googleapis.com/css?family=Montserrat:500,800,900|Open+Sans|Roboto|Source+Sans+Pro&display=swap",
+    "pageTitle": "Jacques Mathieu - Home",
     "page-header": {
         "title": "",
         "logo": "../img/page/jm logo 3 - white.svg",
+        "logoURL": "#",
         "logoStyle": myOpacityStyle,
         "background": "#000",
         "backgroundName": "black",
@@ -78,6 +80,11 @@ const pageLayout = {
 const renderTarget = document.getElementById('page-content');
 // Render layout to main view
 ReactDOM.render(
-  <SectionList sections={pageLayout["angular-sections"]} pageHeader={pageLayout["page-header"]} customFontPath={pageLayout['font-import-link']} />,
+    <React.Fragment>
+        <PageTitle text={pageLayout["pageTitle"]} />
+        <FontImport path={pageLayout['font-import-link']} />
+        <PageHeader pageHeader={pageLayout["page-header"]} sections={pageLayout["angular-sections"]} />
+        <SectionList sections={pageLayout["angular-sections"]} />
+    </React.Fragment>,
   renderTarget
 );

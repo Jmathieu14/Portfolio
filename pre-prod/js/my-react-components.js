@@ -460,14 +460,14 @@ class PageHeader extends React.Component {
         const my_opacity = this.getHeaderFontOpacity();
         return (
             <section id={this.key} class="page-header" style={this.getStyle()}>
-                <div class="header-title" style={this.getHeaderStyle()}>
-                    {this.pageHeaderSpecs['title']}
-                </div>
                 <div class="header-logo-wrapper" style={this.pageHeaderSpecs['logoStyle']}>
-                    <a href="#">
+                    <a href={this.pageHeaderSpecs['logoURL']}>
                         <img src={this.pageHeaderSpecs['logo']}>
                         </img>
                     </a>
+                </div>            
+                <div class="header-title" style={this.getHeaderStyle()}>
+                    {this.pageHeaderSpecs['title']}
                 </div>
                 <HeaderTabs sections={this.sections} moreIcon={this.pageHeaderSpecs['mobileMoreIcon']} moreStyle={this.pageHeaderSpecs['mobileMoreStyle']} />
             </section>
@@ -481,6 +481,12 @@ function FontImport(props) {
         </link>
     );
 }
+// Set title for tab of web page in browser
+function PageTitle(props) {
+    return (
+        <title>{props.text}</title>
+    );
+}
 
 class SectionList extends React.Component {
     constructor(props) {
@@ -488,8 +494,6 @@ class SectionList extends React.Component {
         this.sections = props.sections;
         this.counter = 0;
         this.key = "SECT_LIST";
-        this.pageHeader = props.pageHeader;
-        this.customFontPath = props.customFontPath;
         this.showSectionList = false;
     }
     // Get orientation of angular divider given the section index
@@ -517,9 +521,6 @@ class SectionList extends React.Component {
         const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks}/>);
         return (
             <React.Fragment>
-                <FontImport path={this.customFontPath}></FontImport>
-                <PageHeader pageHeader={this.pageHeader} sections={this.sections}>
-                </PageHeader>
                 <section class={this.handleClassName()}>
                     {my_sections}
                 </section>
