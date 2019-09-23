@@ -20,7 +20,7 @@ const pageLayout = {
     }
 }
 
-const renderTarget = document.getElementById('work-examples-content');
+const renderTarget = document.getElementById('example-work-content');
 // Render layout to main view
 ReactDOM.render(
     <React.Fragment>

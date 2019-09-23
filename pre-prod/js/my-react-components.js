@@ -160,6 +160,7 @@ class SectionLink extends React.Component {
         this.arrowID = props.arrowID;
         this.arrowRef = React.createRef();
         this.arrowStyle = {width: "0.5rem"};
+        this.target = props.target;
         this.centerArrow();
     }
     // Center the hover arrow to middle of section link
@@ -193,7 +194,7 @@ class SectionLink extends React.Component {
         return (
             <React.Fragment>
                 <div class='section-link'>
-                    <a href={this.url} target='_blank'>
+                    <a href={this.url} target={this.target}>
                         <img src={this.logo} onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} />
                     </a>
                     <div style={this.arrowStyle} id={this.name + "-arrow"} class={this.arrowClassName}
@@ -274,7 +275,7 @@ class AngularSection extends React.Component {
               <SectionLink key={genKey(obj.name)} name={obj.name} 
                 url={obj.url} logo={obj.logo} state={this.state} 
                 hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} 
-                parentBG={this.hoverBG} childSetParentSectBGAndHoverText={this.childSetParentSectBGAndHoverText}
+                parentBG={this.hoverBG} target={obj.target} childSetParentSectBGAndHoverText={this.childSetParentSectBGAndHoverText}
             />);
         }
         return (
@@ -432,7 +433,7 @@ class PageHeader extends React.Component {
             "backgroundColor": this.pageHeaderSpecs['background'],
             "fontColor": this.pageHeaderSpecs['fontColor'],
             "fontFamily": this.pageHeaderSpecs['fontFamily'],
-            "headerOpacity": this.pageHeaderSpecs['headerOpacity']
+            "headerFontOpacity": this.pageHeaderSpecs['headerFontOpacity']
         }
     }
     getStyle() {
@@ -451,13 +452,7 @@ class PageHeader extends React.Component {
         }
         return hStyle;
     }
-    getHeaderFontOpacity() {
-        return {
-            opacity: this.state.headerFontOpacity
-        };
-    }
     render() {
-        const my_opacity = this.getHeaderFontOpacity();
         return (
             <section id={this.key} class="page-header" style={this.getStyle()}>
                 <div class="header-logo-wrapper" style={this.pageHeaderSpecs['logoStyle']}>

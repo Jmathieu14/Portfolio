@@ -175,6 +175,7 @@ section.page-header {
 section.page-header .header-title {
   position: relative;
   float: left;
+  user-select: none;
   padding-left: 1rem;
   text-align: center;
   line-height: 2.2rem;
