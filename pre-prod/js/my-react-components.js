@@ -81,6 +81,10 @@ function repeatStringNTimes(str, n, sep) {
     }
     return res;
 }
+// Return true if the object 'o' is not undefined and contains the key 'k'
+function checkObjAndKey(o, k) {
+    return o != null && k in o;
+}
 // End of Utility functions -----------------------------------------
 
 class AngularDivider extends React.Component {
@@ -219,7 +223,7 @@ class AngularSection extends React.Component {
         super(props);
         this.name = props.name;
         this.hoverBG = props.hoverBG;
-        this.bannerImg = props.bannerImg;
+        this.bannerSpecs = props.bannerSpecs;
         this.sectionLinks = props.sectionLinks;
         this.divOrientation = props.divOrientation;
         this.state = {
@@ -268,6 +272,32 @@ class AngularSection extends React.Component {
         }
         return specs;
     }
+    getBannerTextStyle() {
+        if (checkObjAndKey(this.bannerSpecs, 'bannerTextStyle')) {
+            return this.bannerSpecs['bannerTextStyle'];
+        }
+    }
+    getBannerImgStyle() {
+        if (checkObjAndKey(this.bannerSpecs, 'bannerImgStyle')) {
+            return this.bannerSpecs['bannerImgStyle'];
+        }
+    }
+    getBannerTextHTML() {
+        if (checkObjAndKey(this.bannerSpecs, 'bannerText')) {
+            return (<div class="banner-title-text" style={this.getBannerTextStyle()}>
+                        {this.bannerSpecs['bannerText']}
+                    </div>
+            );
+        } else return null;
+    }
+    getBannerImgHTML() {
+        if (checkObjAndKey(this.bannerSpecs, 'bannerImg')) {
+            return (<div class="banner-title-img" style={this.getBannerImgStyle()}>
+                        <img src={this.bannerSpecs['bannerImg']} />
+                    </div>
+            );
+        } else return null;
+    }
     render() {
         let section_links = null;
         if (this.sectionLinks !== undefined && this.sectionLinks !== null && this.sectionLinks.length > 0) {
@@ -278,13 +308,14 @@ class AngularSection extends React.Component {
                 parentBG={this.hoverBG} target={obj.target} childSetParentSectBGAndHoverText={this.childSetParentSectBGAndHoverText}
             />);
         }
+        let banner_text = this.getBannerTextHTML();
+        let banner_img = this.getBannerImgHTML();
         return (
             <React.Fragment>
                 <div onMouseLeave={this.toggleState} onMouseEnter={this.toggleState} id={this.name} style={this.getBackground()} class="angular-section">
                     <div class="angular-content">
-                        <div class="banner-title-img">
-                            <img src={this.bannerImg} />
-                        </div>
+                        {banner_text}
+                        {banner_img}
                         <div class="section-links-wrapper">
                             <SectionLinksHeader />
                             {section_links}
@@ -513,7 +544,7 @@ class SectionList extends React.Component {
         this.showSectionList = true;
     }
     render() {
-        const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerImg={obj.bannerImg} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks}/>);
+        const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerSpecs={obj.bannerSpecs} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks}/>);
         return (
             <React.Fragment>
                 <section class={this.handleClassName()}>
@@ -527,8 +558,3 @@ class SectionList extends React.Component {
 // Add event listener to window resizing event
 window.addEventListener("resize", resizeDividersOnPageResize);
 // Help for this from: https://www.tutorialrepublic.com/faq/how-to-capture-browser-window-resize-event-in-javascript.php
-
-//window.onload = () => {
-//    // This function also calls 'showSectionList()'
-//    resizeDividersOnPageResize();
-//}

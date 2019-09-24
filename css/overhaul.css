@@ -21,7 +21,7 @@ html, body {
   max-width: 100%;
 }
 
-html, body, .section-list, #page-content {
+html, body, .section-list, #react-content {
   position: relative;
   width: 100%;
   height: 100%;
@@ -44,38 +44,53 @@ html, body, .section-list, #page-content {
   width: 100%;
   padding-top: 2.5%;
   padding-bottom: 2.5%;
-  height: calc(45% - 5% - calc(5% + 0.5em));
+  height: calc(45% - calc(5% + 0.5rem));
   transition: all 0.2s linear;
 }
 
 .angular-divider, .angular-divider-rev {
   width: 100%;
-  height: 0.5em;
+  height: 0.5rem;
 }
 
 .ang-div-wrapper {
   width: 100%;
-  height: calc(5% + 0.5em);
+  height: calc(5% + 0.5rem);
   transition: all 0.2s linear;
 }
 
-.angular-content {
+.angular-section .angular-content {
   height: 100%;
   width: 90%;
   padding-left: 5%;
   padding-right: 5%;
 }
-.angular-content .banner-title-img {
+.angular-section .angular-content .banner-title-img, .angular-section .angular-content .banner-title-text {
   user-select: none;
   height: 100%;
   display: inline-block;
   max-width: 34%;
 }
-.angular-content .banner-title-img img {
+.angular-section .angular-content .banner-title-img img, .angular-section .angular-content .banner-title-text img {
   height: 100% !important;
   position: relative;
   float: left;
   max-width: 100%;
+}
+.angular-section .angular-content .banner-title-text {
+  font-family: "Montserrat", monospace, sans-serif;
+  font-weight: 400;
+  color: black;
+  line-height: 95%;
+  font-size: 2rem;
+  position: relative;
+  float: left;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  padding-top: 5%;
+  height: calc(95% - 2rem);
 }
 
 .section-links-wrapper {
@@ -282,7 +297,7 @@ section.page-header .mobile-show-tabs-icon img {
 
   .angular-section {
     min-height: 14rem;
-    height: calc(55% - 3% - 2% - calc(5% + 0.5em));
+    height: calc(55% - 3% - 2% - calc(5% + 0.5rem));
     padding-bottom: 2%;
     padding-top: 3%;
   }

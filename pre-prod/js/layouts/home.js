@@ -2,7 +2,7 @@ const myOpacity = 0.85;
 const myOpacityStyle = {opacity: myOpacity};
 // Set up layout of homepage
 const pageLayout = {
-    "font-import-link" : "https://fonts.googleapis.com/css?family=Montserrat:500,800,900|Open+Sans|Roboto|Source+Sans+Pro&display=swap",
+    "font-import-link" : "https://fonts.googleapis.com/css?family=Montserrat:400,500,800,900|Roboto|Source+Sans+Pro&display=swap",
     "pageTitle": "Jacques Mathieu - Home",
     "page-header": {
         "title": "",
@@ -23,7 +23,9 @@ const pageLayout = {
             "name": "music",
             "hoverBGName": "lightGrey",
             "hoverBG": "#DDD",
-            "bannerImg": "../img/page/sections/jm logo 3 -- music - text_to_path.svg",
+            "bannerSpecs": {
+                "bannerImg": "../img/page/sections/jm logo 3 -- music - text_to_path.svg"
+            },
             "sectionLinks": [
                 {
                     "name": "SoundCloud",
@@ -40,7 +42,9 @@ const pageLayout = {
             "name": "projects",
             "hoverBGName": "lightBlueGrey",
             "hoverBG": "#DDEEDD",
-            "bannerImg": "../img/page/sections/jm logo 3 -- project - text_to_path.svg",
+            "bannerSpecs": {
+                "bannerImg": "../img/page/sections/jm logo 3 -- project - text_to_path.svg"
+            },
             "sectionLinks": [
                 {
                     "name": "GitHub",
@@ -57,7 +61,9 @@ const pageLayout = {
             "name": "work",
             "hoverBGName": "gray",
             "hoverBG": "#AAA",
-            "bannerImg": "../img/page/sections/jm logo 3 -- work - text_to_path.svg",
+            "bannerSpecs": {
+                "bannerImg": "../img/page/sections/jm logo 3 -- work - text_to_path.svg"
+            },
             "sectionLinks": [
                 {
                     "name": "LinkedIn",
@@ -89,7 +95,9 @@ const pageLayout = {
     ]
 }
 
-const renderTarget = document.getElementById('page-content');
+// Variable that stores DOM element in which all react components will be rendered under
+const renderTarget = document.getElementById('react-content');
+
 // Render layout to main view
 ReactDOM.render(
     <React.Fragment>

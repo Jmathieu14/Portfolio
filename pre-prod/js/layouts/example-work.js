@@ -2,7 +2,7 @@ const myOpacity = 0.85;
 const myOpacityStyle = {opacity: myOpacity};
 // Set up layout of work examples page
 const pageLayout = {
-    "font-import-link" : "https://fonts.googleapis.com/css?family=Montserrat:500,800,900|Open+Sans|Roboto|Source+Sans+Pro&display=swap",
+    "font-import-link" : "https://fonts.googleapis.com/css?family=Montserrat:400,500,800,900|Roboto|Source+Sans+Pro&display=swap",
     "pageTitle": "Jacques Mathieu - Work Examples",
     "page-header": {
         "title": "work examples",
@@ -17,16 +17,47 @@ const pageLayout = {
         "fontFamily": "'Montserrat', 'Roboto', sans-serif",
         "mobileMoreIcon": "../img/page/Google Icons/baseline_menu_white_48dp.png",
         "mobileMoreStyle": { color: "#FFF", opacity: myOpacity }
-    }
+    },
+    "angular-sections": [
+        {
+            "name": "work @ sparksales",
+            "hoverBGName": "lightGreyBlue",
+            "hoverBG": "#CCCCFF",
+            "bannerSpecs": {
+                "bannerText": "work @ sparksales"
+            },
+            "sectionLinks": [
+                {
+                    "name": "screenshots",
+                    "url": "../img/Sparksales",
+                    "logo": "../img/page/Google Icons/folderx2_36dp.png",
+                    "hoverBG": "#58d170",
+                    "hoverBGName": "sparkGreen",
+                    "target": "_blank"
+                },
+                {
+                    "name": "videos",
+                    "url": "../video/Sparksales",
+                    "logo": "../img/page/Google Icons/folderx2_36dp.png",
+                    "hoverBG": "#58c8B9",
+                    "hoverBGName": "sparkBlueGreen",
+                    "target": "_blank"
+                }
+            ]
+        }
+    ]
 }
 
-const renderTarget = document.getElementById('example-work-content');
+// Variable that stores DOM element in which all react components will be rendered under
+const renderTarget = document.getElementById('react-content');
+
 // Render layout to main view
 ReactDOM.render(
     <React.Fragment>
         <PageTitle text={pageLayout["pageTitle"]} />
         <FontImport path={pageLayout["font-import-link"]} />
-        <PageHeader pageHeader={pageLayout["page-header"]} sections={[]} />
+        <PageHeader pageHeader={pageLayout["page-header"]} sections={pageLayout["angular-sections"]} />
+        <SectionList sections={pageLayout["angular-sections"]} />
     </React.Fragment>,
     renderTarget
 );
