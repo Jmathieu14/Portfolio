@@ -38,7 +38,7 @@ const pageLayout = {
                 {
                     "name": "videos",
                     "url": "../video/Sparksales",
-                    "logo": "../img/page/Google Icons/folderx2_36dp.png",
+                    "logo": "../img/page/Google Icons/video_icon.png",
                     "hoverBG": "#58c8B9",
                     "hoverBGName": "sparkBlueGreen",
                     "target": "_blank"
