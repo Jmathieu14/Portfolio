@@ -67,10 +67,13 @@ $as-base-h: 45%
 .angular-divider, .angular-divider-rev
     width: 100%
     height: $ang-div-base-H
+    z-index: 5
     
 .ang-div-wrapper
     width: 100%
     height: $ang-div-full-H
+    position: relative
+    float: left
     +default_transition()
 //    display: flex
 //    flex-direction: row
@@ -85,9 +88,12 @@ $ang-content-lr-padding: 5%
     line-height: 95%
     font-size: 2rem
 
-.angular-section 
+.angular-section
+    display: flex
+    flex-direction: column
     .angular-content
         height: 100%
+        min-height: 100%
         width: 90%
         padding-left: $ang-content-lr-padding
         padding-right: $ang-content-lr-padding
@@ -111,11 +117,32 @@ $ang-content-lr-padding: 5%
             overflow-wrap: break-word
             padding-top: 5%
             height: calc(95% - 2rem)
-        .expandable-content-wrapper
-            background: none
+    .expandable-content-wrapper
+        background: none
+        width: 100%
+        min-height: 1.6rem
+        overflow-x: hidden
+        position: relative
+        float: left
+        .ec-menu-bar
             width: 100%
-            .ec-menu-bar
-                width: 100%
+            min-height: 1.5rem
+            button.ec-button
+                background: none
+                position: relative
+                float: left
+                margin-left: 5%
+                border-width: 0px
+                padding: 0px
+                &:hover
+                    cursor: pointer 
+                .ec-icon
+                    height: 1.5rem
+                    display: block
+        &.expanded
+            min-height: 7rem
+            border: 1px dashed red
+            width: calc(100% - 2px)
 
 $sl-dimensions: 20%
 $arrow-size: 0.5rem
@@ -192,6 +219,7 @@ $sl-padding-right: 1.3rem
 $sl-ht-lr-padding: 0px
 $sl-ht-width: calc(100% - (#{$sl-ht-lr-padding} * 2))
 .sl-hover-text
+    z-index: 20
     +sl_header_font()
     font-weight: 800
     color: white

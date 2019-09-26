@@ -237,19 +237,19 @@ class AngularSection extends React.Component {
             text: "normal",
             backgroundColor: "",
             hoverText: "test",
-            hoverTextShow: false
+            hoverTextShow: false,
+            contentExpanded: false
         };
         this.toggleState = this.toggleState.bind(this);
         // Keep track of the priorities set forth by the last active section link
         this.prevSectionLinkPriority = -1;
         this.childSetParentSectBGAndHoverText = this.childSetParentSectBGAndHoverText.bind(this);
+        this.handleContentExpansion = this.handleContentExpansion.bind(this);
     }
     toggleState() {
         if (this.state.text === "normal") {
             this.setState({text: "hover", backgroundColor: this.hoverBG, hoverTextShow: false});
-        } else {
-            this.setState({text: "normal", backgroundColor: "", hoverTextShow: false});
-        }
+        } else this.setState({text: "normal", backgroundColor: "", hoverTextShow: false});
     }
     getBackground() {
         return {backgroundColor: this.state.backgroundColor};
@@ -267,6 +267,11 @@ class AngularSection extends React.Component {
         }
         this.prevSectionLinkPriority = priority;
     }
+    handleContentExpansion() {
+        if (this.state.contentExpanded) {
+            this.setState({contentExpanded: false});
+        } else this.setState({contentExpanded: true});
+    }
     // Get the specs needed for the section link hover text component
     getSLHoverTextSpecs() {
         let specs = {
@@ -278,6 +283,11 @@ class AngularSection extends React.Component {
             specs.className = specs.className + " show";
         }
         return specs;
+    }
+    getECClassName() {
+        if (this.state.contentExpanded) {
+            return "expandable-content-wrapper expanded";
+        } else return "expandable-content-wrapper"; 
     }
     getBannerTextStyle() {
         if (checkObjAndKey(this.bannerSpecs, 'bannerTextStyle')) {
@@ -307,9 +317,9 @@ class AngularSection extends React.Component {
     }
     getExpandableContentHTML() {
         if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
-            return (<div class="expandable-content-wrapper">
+            return (<div class={this.getECClassName()}>
                         <div class="ec-menu-bar">
-                            <button class="ec-button">
+                            <button onClick={this.handleContentExpansion} class="ec-button">
                                 <img class="ec-icon" src={this.eCSpecs['icon']}>
                                 </img>
                             </button>

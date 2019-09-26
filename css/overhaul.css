@@ -51,16 +51,24 @@ html, body, .section-list, #react-content {
 .angular-divider, .angular-divider-rev {
   width: 100%;
   height: 0.5rem;
+  z-index: 5;
 }
 
 .ang-div-wrapper {
   width: 100%;
   height: calc(5% + 0.5rem);
+  position: relative;
+  float: left;
   transition: all 0.2s linear;
 }
 
+.angular-section {
+  display: flex;
+  flex-direction: column;
+}
 .angular-section .angular-content {
   height: 100%;
+  min-height: 100%;
   width: 90%;
   padding-left: 5%;
   padding-right: 5%;
@@ -92,12 +100,37 @@ html, body, .section-list, #react-content {
   padding-top: 5%;
   height: calc(95% - 2rem);
 }
-.angular-section .angular-content .expandable-content-wrapper {
+.angular-section .expandable-content-wrapper {
   background: none;
   width: 100%;
+  min-height: 1.6rem;
+  overflow-x: hidden;
+  position: relative;
+  float: left;
 }
-.angular-section .angular-content .expandable-content-wrapper .ec-menu-bar {
+.angular-section .expandable-content-wrapper .ec-menu-bar {
   width: 100%;
+  min-height: 1.5rem;
+}
+.angular-section .expandable-content-wrapper .ec-menu-bar button.ec-button {
+  background: none;
+  position: relative;
+  float: left;
+  margin-left: 5%;
+  border-width: 0px;
+  padding: 0px;
+}
+.angular-section .expandable-content-wrapper .ec-menu-bar button.ec-button:hover {
+  cursor: pointer;
+}
+.angular-section .expandable-content-wrapper .ec-menu-bar button.ec-button .ec-icon {
+  height: 1.5rem;
+  display: block;
+}
+.angular-section .expandable-content-wrapper.expanded {
+  min-height: 7rem;
+  border: 1px dashed red;
+  width: calc(100% - 2px);
 }
 
 .section-links-wrapper {
@@ -159,6 +192,7 @@ html, body, .section-list, #react-content {
 }
 
 .sl-hover-text {
+  z-index: 20;
   font-family: "Montserrat", monospace, sans-serif;
   font-weight: 500;
   color: black;
