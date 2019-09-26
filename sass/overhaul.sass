@@ -93,7 +93,6 @@ $ang-content-lr-padding: 5%
     flex-direction: column
     .angular-content
         height: 100%
-        min-height: 100%
         width: 90%
         padding-left: $ang-content-lr-padding
         padding-right: $ang-content-lr-padding
@@ -121,9 +120,11 @@ $ang-content-lr-padding: 5%
         background: none
         width: 100%
         min-height: 1.6rem
+        height: 1.6rem
         overflow-x: hidden
         position: relative
         float: left
+        +default_transition()
         .ec-menu-bar
             width: 100%
             min-height: 1.5rem
@@ -140,9 +141,10 @@ $ang-content-lr-padding: 5%
                     height: 1.5rem
                     display: block
         &.expanded
-            min-height: 7rem
+            height: 100%
             border: 1px dashed red
             width: calc(100% - 2px)
+            +default_transition()
 
 $sl-dimensions: 20%
 $arrow-size: 0.5rem

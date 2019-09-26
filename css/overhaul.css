@@ -68,7 +68,6 @@ html, body, .section-list, #react-content {
 }
 .angular-section .angular-content {
   height: 100%;
-  min-height: 100%;
   width: 90%;
   padding-left: 5%;
   padding-right: 5%;
@@ -104,9 +103,11 @@ html, body, .section-list, #react-content {
   background: none;
   width: 100%;
   min-height: 1.6rem;
+  height: 1.6rem;
   overflow-x: hidden;
   position: relative;
   float: left;
+  transition: all 0.2s linear;
 }
 .angular-section .expandable-content-wrapper .ec-menu-bar {
   width: 100%;
@@ -128,9 +129,10 @@ html, body, .section-list, #react-content {
   display: block;
 }
 .angular-section .expandable-content-wrapper.expanded {
-  min-height: 7rem;
+  height: 100%;
   border: 1px dashed red;
   width: calc(100% - 2px);
+  transition: all 0.2s linear;
 }
 
 .section-links-wrapper {

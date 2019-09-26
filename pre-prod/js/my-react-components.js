@@ -245,14 +245,23 @@ class AngularSection extends React.Component {
         this.prevSectionLinkPriority = -1;
         this.childSetParentSectBGAndHoverText = this.childSetParentSectBGAndHoverText.bind(this);
         this.handleContentExpansion = this.handleContentExpansion.bind(this);
+        this.sectionRef = React.createRef();
     }
     toggleState() {
         if (this.state.text === "normal") {
             this.setState({text: "hover", backgroundColor: this.hoverBG, hoverTextShow: false});
         } else this.setState({text: "normal", backgroundColor: "", hoverTextShow: false});
     }
-    getBackground() {
-        return {backgroundColor: this.state.backgroundColor};
+    getStyle() {
+        let debug = false;
+        recordDisplayDimensions(debug);
+        let element = this.sectionRef.current;
+        let style = {backgroundColor: this.state.backgroundColor};
+        let new_height = my_display_dimensions.height * 0.8;
+        if (element != null && this.state.contentExpanded && element.style.height != new_height) {
+            style['height'] = new_height.toString() + 'px';
+        }
+        return style;
     }
 
     // Set the background and state text with the given state text and color; Will be called from the child
@@ -345,7 +354,7 @@ class AngularSection extends React.Component {
         let expandable_content = this.getExpandableContentHTML();
         return (
             <React.Fragment>
-                <div onMouseLeave={this.toggleState} onMouseEnter={this.toggleState} id={this.name} style={this.getBackground()} class="angular-section">
+                <div onMouseLeave={this.toggleState} onMouseEnter={this.toggleState} id={this.name} style={this.getStyle()} class="angular-section" ref={this.sectionRef}>
                     <div class="angular-content">
                         {banner_text}
                         {banner_img}
