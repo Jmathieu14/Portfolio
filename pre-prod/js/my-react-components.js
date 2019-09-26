@@ -4,7 +4,7 @@
 // 
 // Return a key for given it's name (n)
 function genKey(n) {
-    var k = n + "-" + Math.random().toString().substr(2,);
+    var k = n + "-" + Math.random().toString().substr(2, );
     return k;
 }
 // Variable to store our display dimensions
@@ -218,12 +218,19 @@ function SectionLinkHoverText(props) {
     );
 }
 
+class ExpandableContent extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+}
+
 class AngularSection extends React.Component {
     constructor(props) {
         super(props);
         this.name = props.name;
         this.hoverBG = props.hoverBG;
         this.bannerSpecs = props.bannerSpecs;
+        this.eCSpecs = props.eCSpecs;
         this.sectionLinks = props.sectionLinks;
         this.divOrientation = props.divOrientation;
         this.state = {
@@ -298,6 +305,21 @@ class AngularSection extends React.Component {
             );
         } else return null;
     }
+    getExpandableContentHTML() {
+        if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
+            return (<div class="expandable-content-wrapper">
+                        <div class="ec-menu-bar">
+                            <button class="ec-button">
+                                <img class="ec-icon" src={this.eCSpecs['icon']}>
+                                </img>
+                            </button>
+                        </div>
+                        <div class="expandable-content">
+                        </div>
+                    </div>
+            );
+        } else return null;
+    }
     render() {
         let section_links = null;
         if (this.sectionLinks !== undefined && this.sectionLinks !== null && this.sectionLinks.length > 0) {
@@ -310,6 +332,7 @@ class AngularSection extends React.Component {
         }
         let banner_text = this.getBannerTextHTML();
         let banner_img = this.getBannerImgHTML();
+        let expandable_content = this.getExpandableContentHTML();
         return (
             <React.Fragment>
                 <div onMouseLeave={this.toggleState} onMouseEnter={this.toggleState} id={this.name} style={this.getBackground()} class="angular-section">
@@ -321,6 +344,7 @@ class AngularSection extends React.Component {
                             {section_links}
                         </div>
                     </div>
+                    {expandable_content}
                 </div>
                 <SectionLinkHoverText specs={this.getSLHoverTextSpecs()} />
                 <AngularDivider divOrientation={this.divOrientation} state={this.state} />
@@ -544,7 +568,7 @@ class SectionList extends React.Component {
         this.showSectionList = true;
     }
     render() {
-        const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerSpecs={obj.bannerSpecs} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks}/>);
+        const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerSpecs={obj.bannerSpecs} eCSpecs={obj.expandableContentSpecs} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks}/>);
         return (
             <React.Fragment>
                 <section class={this.handleClassName()}>

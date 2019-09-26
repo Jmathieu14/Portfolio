@@ -44,6 +44,10 @@ const pageLayout = {
                     "target": "_blank"
                 }
             ],
+            "expandableContentSpecs": {
+                "show": true,
+                "icon": "../img/page/Google Icons/expand_more-24px.svg"
+            },
             "opacityAsTab": myOpacityStyle
         }
     ]

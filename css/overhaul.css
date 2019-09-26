@@ -92,6 +92,13 @@ html, body, .section-list, #react-content {
   padding-top: 5%;
   height: calc(95% - 2rem);
 }
+.angular-section .angular-content .expandable-content-wrapper {
+  background: none;
+  width: 100%;
+}
+.angular-section .angular-content .expandable-content-wrapper .ec-menu-bar {
+  width: 100%;
+}
 
 .section-links-wrapper {
   user-select: none;
