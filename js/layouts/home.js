@@ -47,6 +47,12 @@ var pageLayout = {
       "logo": "../img/page/Social Media/SVG/24/4419165 - circle github outline social-media icon.svg",
       "hoverBG": "#A54AB0",
       "hoverBGName": "githubDesktopPurple"
+    }, {
+      "name": "Codepen.io",
+      "url": "https://codepen.io/jmathieu145",
+      "logo": "../img/page/Other Icons/codepen-black-fill-small.png",
+      "hoverBG": "#0EBEFF",
+      "hoverBGName": "hyperlinkBlue"
     }],
     "opacityAsTab": myOpacityStyle
   }, {
@@ -62,7 +68,7 @@ var pageLayout = {
       "hoverBGName": "linkedInHoverBlue"
     }, {
       "name": "Resume",
-      "url": "../pdf/JSMathieu Resume Redesign - Summer, Fall 19.pdf",
+      "url": "../pdf/JSMathieu Summer Fall 2019 - Expanded Version.pdf",
       "logo": "../img/page/Google Icons/list_alt-48dp.svg",
       "hoverBG": "#33ff5f",
       "hoverBGName": "goodGreen"

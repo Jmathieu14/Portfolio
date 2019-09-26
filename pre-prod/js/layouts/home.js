@@ -45,7 +45,14 @@ const pageLayout = {
                     "logo": "../img/page/Social Media/SVG/24/4419165 - circle github outline social-media icon.svg",
                     "hoverBG": "#A54AB0",
                     "hoverBGName": "githubDesktopPurple"
-                }
+                },
+                {
+                    "name": "Codepen.io",
+                    "url": "https://codepen.io/jmathieu145",
+                    "logo": "../img/page/Other Icons/codepen-black-fill-small.png",
+                    "hoverBG": "#0EBEFF",
+                    "hoverBGName": "hyperlinkBlue"
+                }                
             ],
             "opacityAsTab": myOpacityStyle
         },
