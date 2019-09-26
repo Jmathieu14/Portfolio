@@ -31,7 +31,7 @@ const pageLayout = {
                     "name": "screenshots",
                     "url": "../img/Sparksales",
                     "logo": "../img/page/Google Icons/folderx2_36dp.png",
-                    "hoverBG": "#58d170",
+                    "hoverBG": "#00BA65",
                     "hoverBGName": "sparkGreen",
                     "target": "_blank"
                 },
@@ -43,7 +43,8 @@ const pageLayout = {
                     "hoverBGName": "sparkBlueGreen",
                     "target": "_blank"
                 }
-            ]
+            ],
+            "opacityAsTab": myOpacityStyle
         }
     ]
 }

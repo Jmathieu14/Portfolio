@@ -75,7 +75,7 @@ function resizeDividersOnPageResize() {
   for (var i = 0; i < dividers.length; ++i) {
     var d = dividers[i];
     var wrapper = d.parentElement;
-    var angContent = wrapper.previousElementSibling;
+    var angContent = wrapper.previousElementSibling.previousElementSibling;
     var dBorderH = wrapper.clientHeight - d.clientHeight; // Set element d's width to 0, b/c border width takes up space
 
     d.style.width = "0px";
@@ -90,6 +90,25 @@ function resizeDividersOnPageResize() {
 
 
   showSectionList();
+} // Return the string repeated n times (as a string)
+
+
+function repeatStringNTimes(str, n, sep) {
+  var strPlusSep = str + sep;
+  var res = "";
+  var ctr = 0;
+
+  while (ctr < n) {
+    res = res + strPlusSep;
+    ++ctr;
+  }
+
+  return res;
+} // Return true if the object 'o' is not undefined and contains the key 'k'
+
+
+function checkObjAndKey(o, k) {
+  return o != null && k in o;
 } // End of Utility functions -----------------------------------------
 
 
@@ -210,7 +229,7 @@ function (_React$Component3) {
     _this2.hoverBG = props.hoverBG;
     _this2.hoverBGName = props.hoverBGName;
     _this2.parentBG = props.parentBG;
-    _this2.childSetParentSectBG = props.childSetParentSectBG;
+    _this2.childSetParentSectBGAndHoverText = props.childSetParentSectBGAndHoverText;
     _this2.mouseEnterLogo = _this2.mouseEnterLogo.bind(_assertThisInitialized(_this2));
     _this2.mouseLeaveLogo = _this2.mouseLeaveLogo.bind(_assertThisInitialized(_this2));
     _this2.arrowClassName = "sl-hover-arrow";
@@ -219,6 +238,7 @@ function (_React$Component3) {
     _this2.arrowStyle = {
       width: "0.5rem"
     };
+    _this2.target = props.target;
 
     _this2.centerArrow();
 
@@ -251,14 +271,18 @@ function (_React$Component3) {
       // Set priority to 1 so that when one moves the mouse from one link to the next, the 
       // background color is not overwritten by the delayed by the dehovering of this link
       var priority = 1;
-      this.props.childSetParentSectBG("hover", this.hoverBG, priority);
+      var hoverTextShow = true;
+      var hoverText = this.name;
+      this.props.childSetParentSectBGAndHoverText("hover", this.hoverBG, priority, hoverText, hoverTextShow);
     }
   }, {
     key: "mouseLeaveLogo",
     value: function mouseLeaveLogo() {
       // Set priority to 0 so that this does not overwrite mouse enter of a different link
       var priority = 0;
-      this.props.childSetParentSectBG("hover", this.parentBG, priority);
+      var hoverTextShow = false;
+      var hoverText = this.name;
+      this.props.childSetParentSectBGAndHoverText("hover", this.parentBG, priority, hoverText, hoverTextShow);
     }
   }, {
     key: "render",
@@ -267,7 +291,7 @@ function (_React$Component3) {
         "class": "section-link"
       }, React.createElement("a", {
         href: this.url,
-        target: "_blank"
+        target: this.target
       }, React.createElement("img", {
         src: this.logo,
         onMouseEnter: this.mouseEnterLogo,
@@ -284,6 +308,13 @@ function (_React$Component3) {
   return SectionLink;
 }(React.Component);
 
+function SectionLinkHoverText(props) {
+  return React.createElement("div", {
+    "class": props.specs['className'],
+    style: props.specs['textColor']
+  }, repeatStringNTimes(props.specs['text'], 200, ' '));
+}
+
 var AngularSection =
 /*#__PURE__*/
 function (_React$Component4) {
@@ -297,17 +328,19 @@ function (_React$Component4) {
     _this4 = _possibleConstructorReturn(this, _getPrototypeOf(AngularSection).call(this, props));
     _this4.name = props.name;
     _this4.hoverBG = props.hoverBG;
-    _this4.bannerImg = props.bannerImg;
+    _this4.bannerSpecs = props.bannerSpecs;
     _this4.sectionLinks = props.sectionLinks;
     _this4.divOrientation = props.divOrientation;
     _this4.state = {
       text: "normal",
-      backgroundColor: ""
+      backgroundColor: "",
+      hoverText: "test",
+      hoverTextShow: false
     };
     _this4.toggleState = _this4.toggleState.bind(_assertThisInitialized(_this4)); // Keep track of the priorities set forth by the last active section link
 
     _this4.prevSectionLinkPriority = -1;
-    _this4.childSetParentSectBG = _this4.childSetParentSectBG.bind(_assertThisInitialized(_this4));
+    _this4.childSetParentSectBGAndHoverText = _this4.childSetParentSectBGAndHoverText.bind(_assertThisInitialized(_this4));
     return _this4;
   }
 
@@ -317,12 +350,14 @@ function (_React$Component4) {
       if (this.state.text === "normal") {
         this.setState({
           text: "hover",
-          backgroundColor: this.hoverBG
+          backgroundColor: this.hoverBG,
+          hoverTextShow: false
         });
       } else {
         this.setState({
           text: "normal",
-          backgroundColor: ""
+          backgroundColor: "",
+          hoverTextShow: false
         });
       }
     }
@@ -336,25 +371,83 @@ function (_React$Component4) {
     // section links
 
   }, {
-    key: "childSetParentSectBG",
-    value: function childSetParentSectBG(s_text, color, priority) {
+    key: "childSetParentSectBGAndHoverText",
+    value: function childSetParentSectBGAndHoverText(s_text, color, priority, hoverText, hoverTextShow) {
       var _this5 = this;
 
       if (priority < this.prevSectionLinkPriority) {
         this.setState({
           text: s_text,
-          backgroundColor: color
+          backgroundColor: color,
+          hoverText: hoverText,
+          hoverTextShow: hoverTextShow
         });
       } else {
         window.setTimeout(function () {
           _this5.setState({
             text: s_text,
-            backgroundColor: color
+            backgroundColor: color,
+            hoverText: hoverText,
+            hoverTextShow: hoverTextShow
           });
         }, 25);
       }
 
       this.prevSectionLinkPriority = priority;
+    } // Get the specs needed for the section link hover text component
+
+  }, {
+    key: "getSLHoverTextSpecs",
+    value: function getSLHoverTextSpecs() {
+      var specs = {
+        className: 'sl-hover-text',
+        text: this.state['hoverText'],
+        textColor: {
+          color: this.state['backgroundColor']
+        }
+      };
+
+      if (this.state['hoverTextShow']) {
+        specs.className = specs.className + " show";
+      }
+
+      return specs;
+    }
+  }, {
+    key: "getBannerTextStyle",
+    value: function getBannerTextStyle() {
+      if (checkObjAndKey(this.bannerSpecs, 'bannerTextStyle')) {
+        return this.bannerSpecs['bannerTextStyle'];
+      }
+    }
+  }, {
+    key: "getBannerImgStyle",
+    value: function getBannerImgStyle() {
+      if (checkObjAndKey(this.bannerSpecs, 'bannerImgStyle')) {
+        return this.bannerSpecs['bannerImgStyle'];
+      }
+    }
+  }, {
+    key: "getBannerTextHTML",
+    value: function getBannerTextHTML() {
+      if (checkObjAndKey(this.bannerSpecs, 'bannerText')) {
+        return React.createElement("div", {
+          "class": "banner-title-text",
+          style: this.getBannerTextStyle()
+        }, this.bannerSpecs['bannerText']);
+      } else return null;
+    }
+  }, {
+    key: "getBannerImgHTML",
+    value: function getBannerImgHTML() {
+      if (checkObjAndKey(this.bannerSpecs, 'bannerImg')) {
+        return React.createElement("div", {
+          "class": "banner-title-img",
+          style: this.getBannerImgStyle()
+        }, React.createElement("img", {
+          src: this.bannerSpecs['bannerImg']
+        }));
+      } else return null;
     }
   }, {
     key: "render",
@@ -374,11 +467,14 @@ function (_React$Component4) {
             hoverBG: obj.hoverBG,
             hoverBGName: obj.hoverBGName,
             parentBG: _this6.hoverBG,
-            childSetParentSectBG: _this6.childSetParentSectBG
+            target: obj.target,
+            childSetParentSectBGAndHoverText: _this6.childSetParentSectBGAndHoverText
           });
         });
       }
 
+      var banner_text = this.getBannerTextHTML();
+      var banner_img = this.getBannerImgHTML();
       return React.createElement(React.Fragment, null, React.createElement("div", {
         onMouseLeave: this.toggleState,
         onMouseEnter: this.toggleState,
@@ -387,13 +483,11 @@ function (_React$Component4) {
         "class": "angular-section"
       }, React.createElement("div", {
         "class": "angular-content"
-      }, React.createElement("div", {
-        "class": "banner-title-img"
-      }, React.createElement("img", {
-        src: this.bannerImg
-      })), React.createElement("div", {
+      }, banner_text, banner_img, React.createElement("div", {
         "class": "section-links-wrapper"
-      }, React.createElement(SectionLinksHeader, null), section_links))), React.createElement(AngularDivider, {
+      }, React.createElement(SectionLinksHeader, null), section_links))), React.createElement(SectionLinkHoverText, {
+        specs: this.getSLHoverTextSpecs()
+      }), React.createElement(AngularDivider, {
         divOrientation: this.divOrientation,
         state: this.state
       }));
@@ -608,7 +702,7 @@ function (_React$Component7) {
       "backgroundColor": _this10.pageHeaderSpecs['background'],
       "fontColor": _this10.pageHeaderSpecs['fontColor'],
       "fontFamily": _this10.pageHeaderSpecs['fontFamily'],
-      "headerOpacity": _this10.pageHeaderSpecs['headerOpacity']
+      "headerFontOpacity": _this10.pageHeaderSpecs['headerFontOpacity']
     };
     return _this10;
   }
@@ -636,31 +730,23 @@ function (_React$Component7) {
       return hStyle;
     }
   }, {
-    key: "getHeaderFontOpacity",
-    value: function getHeaderFontOpacity() {
-      return {
-        opacity: this.state.headerFontOpacity
-      };
-    }
-  }, {
     key: "render",
     value: function render() {
-      var my_opacity = this.getHeaderFontOpacity();
       return React.createElement("section", {
         id: this.key,
         "class": "page-header",
         style: this.getStyle()
       }, React.createElement("div", {
-        "class": "header-title",
-        style: this.getHeaderStyle()
-      }, this.pageHeaderSpecs['title']), React.createElement("div", {
         "class": "header-logo-wrapper",
         style: this.pageHeaderSpecs['logoStyle']
       }, React.createElement("a", {
-        href: "#"
+        href: this.pageHeaderSpecs['logoURL']
       }, React.createElement("img", {
         src: this.pageHeaderSpecs['logo']
-      }))), React.createElement(HeaderTabs, {
+      }))), React.createElement("div", {
+        "class": "header-title",
+        style: this.getHeaderStyle()
+      }, this.pageHeaderSpecs['title']), React.createElement(HeaderTabs, {
         sections: this.sections,
         moreIcon: this.pageHeaderSpecs['mobileMoreIcon'],
         moreStyle: this.pageHeaderSpecs['mobileMoreStyle']
@@ -677,6 +763,11 @@ function FontImport(props) {
     href: props.path,
     rel: "stylesheet"
   });
+} // Set title for tab of web page in browser
+
+
+function PageTitle(props) {
+  return React.createElement("title", null, props.text);
 }
 
 var SectionList =
@@ -693,8 +784,6 @@ function (_React$Component8) {
     _this11.sections = props.sections;
     _this11.counter = 0;
     _this11.key = "SECT_LIST";
-    _this11.pageHeader = props.pageHeader;
-    _this11.customFontPath = props.customFontPath;
     _this11.showSectionList = false;
     return _this11;
   } // Get orientation of angular divider given the section index
@@ -738,17 +827,12 @@ function (_React$Component8) {
           key: genKey(obj.name),
           name: obj.name,
           hoverBG: obj.hoverBG,
-          bannerImg: obj.bannerImg,
+          bannerSpecs: obj.bannerSpecs,
           divOrientation: _this12.divOrientation(),
           sectionLinks: obj.sectionLinks
         });
       });
-      return React.createElement(React.Fragment, null, React.createElement(FontImport, {
-        path: this.customFontPath
-      }), React.createElement(PageHeader, {
-        pageHeader: this.pageHeader,
-        sections: this.sections
-      }), React.createElement("section", {
+      return React.createElement(React.Fragment, null, React.createElement("section", {
         "class": this.handleClassName()
       }, my_sections));
     }
@@ -759,7 +843,3 @@ function (_React$Component8) {
 
 
 window.addEventListener("resize", resizeDividersOnPageResize); // Help for this from: https://www.tutorialrepublic.com/faq/how-to-capture-browser-window-resize-event-in-javascript.php
-//window.onload = () => {
-//    // This function also calls 'showSectionList()'
-//    resizeDividersOnPageResize();
-//}
