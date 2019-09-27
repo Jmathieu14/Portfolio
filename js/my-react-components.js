@@ -19,6 +19,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 //babel --plugins @babel/plugin-transform-react-jsx pre/pre-jsx/overhaul.js -d pre/pre-build-js-o &&
+// Define this to enable exporting this file as a module
+//module.exports = function() {
+//    const React = require('react');
+//    const ReactDOM = require('react-dom');    
+//    console.log("wow!");
+//}
 // Utility functions ------------------------------------------------
 // 
 // Return a key for given it's name (n)
@@ -30,9 +36,8 @@ function genKey(n) {
 
 var my_display_dimensions = {
   "width": 0,
-  "height": 0 // Record body dimensions to our display dimensions variable (above)
-
-};
+  "height": 0
+}; // Record body dimensions to our display dimensions variable (above)
 
 function recordDisplayDimensions(debug) {
   var b = document.getElementsByTagName("body")[0];
@@ -315,10 +320,24 @@ function SectionLinkHoverText(props) {
   }, repeatStringNTimes(props.specs['text'], 200, ' '));
 }
 
-var AngularSection =
+var ExpandableContent =
 /*#__PURE__*/
 function (_React$Component4) {
-  _inherits(AngularSection, _React$Component4);
+  _inherits(ExpandableContent, _React$Component4);
+
+  function ExpandableContent(props) {
+    _classCallCheck(this, ExpandableContent);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ExpandableContent).call(this, props));
+  }
+
+  return ExpandableContent;
+}(React.Component);
+
+var AngularSection =
+/*#__PURE__*/
+function (_React$Component5) {
+  _inherits(AngularSection, _React$Component5);
 
   function AngularSection(props) {
     var _this4;
@@ -329,18 +348,22 @@ function (_React$Component4) {
     _this4.name = props.name;
     _this4.hoverBG = props.hoverBG;
     _this4.bannerSpecs = props.bannerSpecs;
+    _this4.eCSpecs = props.eCSpecs;
     _this4.sectionLinks = props.sectionLinks;
     _this4.divOrientation = props.divOrientation;
     _this4.state = {
       text: "normal",
       backgroundColor: "",
       hoverText: "test",
-      hoverTextShow: false
+      hoverTextShow: false,
+      contentExpanded: false
     };
     _this4.toggleState = _this4.toggleState.bind(_assertThisInitialized(_this4)); // Keep track of the priorities set forth by the last active section link
 
     _this4.prevSectionLinkPriority = -1;
     _this4.childSetParentSectBGAndHoverText = _this4.childSetParentSectBGAndHoverText.bind(_assertThisInitialized(_this4));
+    _this4.handleContentExpansion = _this4.handleContentExpansion.bind(_assertThisInitialized(_this4));
+    _this4.sectionRef = React.createRef();
     return _this4;
   }
 
@@ -353,20 +376,28 @@ function (_React$Component4) {
           backgroundColor: this.hoverBG,
           hoverTextShow: false
         });
-      } else {
-        this.setState({
-          text: "normal",
-          backgroundColor: "",
-          hoverTextShow: false
-        });
-      }
+      } else this.setState({
+        text: "normal",
+        backgroundColor: "",
+        hoverTextShow: false
+      });
     }
   }, {
-    key: "getBackground",
-    value: function getBackground() {
-      return {
+    key: "getStyle",
+    value: function getStyle() {
+      var debug = false;
+      recordDisplayDimensions(debug);
+      var element = this.sectionRef.current;
+      var style = {
         backgroundColor: this.state.backgroundColor
       };
+      var new_height = my_display_dimensions.height * 0.8;
+
+      if (element != null && this.state.contentExpanded && element.style.height != new_height) {
+        style['height'] = new_height.toString() + 'px';
+      }
+
+      return style;
     } // Set the background and state text with the given state text and color; Will be called from the child
     // section links
 
@@ -394,6 +425,17 @@ function (_React$Component4) {
       }
 
       this.prevSectionLinkPriority = priority;
+    }
+  }, {
+    key: "handleContentExpansion",
+    value: function handleContentExpansion() {
+      if (this.state.contentExpanded) {
+        this.setState({
+          contentExpanded: false
+        });
+      } else this.setState({
+        contentExpanded: true
+      });
     } // Get the specs needed for the section link hover text component
 
   }, {
@@ -412,6 +454,13 @@ function (_React$Component4) {
       }
 
       return specs;
+    }
+  }, {
+    key: "getECClassName",
+    value: function getECClassName() {
+      if (this.state.contentExpanded) {
+        return "expandable-content-wrapper expanded";
+      } else return "expandable-content-wrapper";
     }
   }, {
     key: "getBannerTextStyle",
@@ -450,6 +499,25 @@ function (_React$Component4) {
       } else return null;
     }
   }, {
+    key: "getExpandableContentHTML",
+    value: function getExpandableContentHTML() {
+      if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
+        return React.createElement("div", {
+          "class": this.getECClassName()
+        }, React.createElement("div", {
+          "class": "ec-menu-bar"
+        }, React.createElement("button", {
+          onClick: this.handleContentExpansion,
+          "class": "ec-button"
+        }, React.createElement("img", {
+          "class": "ec-icon",
+          src: this.eCSpecs['icon']
+        }))), React.createElement("div", {
+          "class": "expandable-content"
+        }));
+      } else return null;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this6 = this;
@@ -475,17 +543,19 @@ function (_React$Component4) {
 
       var banner_text = this.getBannerTextHTML();
       var banner_img = this.getBannerImgHTML();
+      var expandable_content = this.getExpandableContentHTML();
       return React.createElement(React.Fragment, null, React.createElement("div", {
         onMouseLeave: this.toggleState,
         onMouseEnter: this.toggleState,
         id: this.name,
-        style: this.getBackground(),
-        "class": "angular-section"
+        style: this.getStyle(),
+        "class": "angular-section",
+        ref: this.sectionRef
       }, React.createElement("div", {
         "class": "angular-content"
       }, banner_text, banner_img, React.createElement("div", {
         "class": "section-links-wrapper"
-      }, React.createElement(SectionLinksHeader, null), section_links))), React.createElement(SectionLinkHoverText, {
+      }, React.createElement(SectionLinksHeader, null), section_links)), expandable_content), React.createElement(SectionLinkHoverText, {
         specs: this.getSLHoverTextSpecs()
       }), React.createElement(AngularDivider, {
         divOrientation: this.divOrientation,
@@ -499,8 +569,8 @@ function (_React$Component4) {
 
 var HeaderTab =
 /*#__PURE__*/
-function (_React$Component5) {
-  _inherits(HeaderTab, _React$Component5);
+function (_React$Component6) {
+  _inherits(HeaderTab, _React$Component6);
 
   function HeaderTab(props) {
     var _this7;
@@ -572,8 +642,8 @@ function (_React$Component5) {
 
 var HeaderTabs =
 /*#__PURE__*/
-function (_React$Component6) {
-  _inherits(HeaderTabs, _React$Component6);
+function (_React$Component7) {
+  _inherits(HeaderTabs, _React$Component7);
 
   function HeaderTabs(props) {
     var _this8;
@@ -685,8 +755,8 @@ function (_React$Component6) {
 
 var PageHeader =
 /*#__PURE__*/
-function (_React$Component7) {
-  _inherits(PageHeader, _React$Component7);
+function (_React$Component8) {
+  _inherits(PageHeader, _React$Component8);
 
   function PageHeader(props) {
     var _this10;
@@ -772,8 +842,8 @@ function PageTitle(props) {
 
 var SectionList =
 /*#__PURE__*/
-function (_React$Component8) {
-  _inherits(SectionList, _React$Component8);
+function (_React$Component9) {
+  _inherits(SectionList, _React$Component9);
 
   function SectionList(props) {
     var _this11;
@@ -828,6 +898,7 @@ function (_React$Component8) {
           name: obj.name,
           hoverBG: obj.hoverBG,
           bannerSpecs: obj.bannerSpecs,
+          eCSpecs: obj.expandableContentSpecs,
           divOrientation: _this12.divOrientation(),
           sectionLinks: obj.sectionLinks
         });

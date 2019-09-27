@@ -1,5 +1,12 @@
 //babel --plugins @babel/plugin-transform-react-jsx pre/pre-jsx/overhaul.js -d pre/pre-build-js-o &&
 
+// Define this to enable exporting this file as a module
+//module.exports = function() {
+//    const React = require('react');
+//    const ReactDOM = require('react-dom');    
+//    console.log("wow!");
+//}
+
 // Utility functions ------------------------------------------------
 // 
 // Return a key for given it's name (n)

@@ -8,3 +8,8 @@ I also used the following example project to further refine my setup: https://gi
 
 How to smoothly scroll to an element with plain JS:
 https://stackoverflow.com/questions/12102118/scrollintoview-animation
+
+How to write unit tests in Node.js (using Mocha):
+https://developer.ibm.com/tutorials/learn-nodejs-unit-testing-in-nodejs/
+and
+https://github.com/jstevenperry/IBM-Developer/tree/master/Node.js/Course/Unit-9

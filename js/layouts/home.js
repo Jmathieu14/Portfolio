@@ -40,6 +40,10 @@ var pageLayout = {
       "hoverBGName": "scloudOrange",
       "target": "_blank"
     }],
+    "expandableContentSpecs": {
+      "show": true,
+      "icon": "../img/page/Google Icons/expand_more-24px.svg"
+    },
     "opacityAsTab": myOpacityStyle
   }, {
     "name": "projects",
@@ -94,9 +98,9 @@ var pageLayout = {
       "target": "_self"
     }],
     "opacityAsTab": myOpacityStyle
-  }] // Variable that stores DOM element in which all react components will be rendered under
+  }]
+}; // Variable that stores DOM element in which all react components will be rendered under
 
-};
 var renderTarget = document.getElementById('react-content'); // Render layout to main view
 
 ReactDOM.render(React.createElement(React.Fragment, null, React.createElement(PageTitle, {
