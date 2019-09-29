@@ -1,9 +1,7 @@
 "use strict";
 
-var React = require('react');
-
-var ReactDOM = require('react-dom');
-
+//const React = require('react');
+//const ReactDOM = require('react-dom');
 var _require = require('mocha'),
     describe = _require.describe,
     it = _require.it;

@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "babel --presets @babel/preset-react pre-prod/js -d js",
-    "start": "npm run build && nodemon --exec babel-node js/init.js",
+    "start": "npm run build && nodemon --exec babel-node js/server/init.js",
     "buildTests": "babel --presets @babel/preset-react tests/pre -d tests/build",
     "test": "npm run buildTests && mocha tests/build -r jsdom-global/register",
     "build2": "babel pre-prod/js -d js"

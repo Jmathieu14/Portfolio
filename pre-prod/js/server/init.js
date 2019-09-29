@@ -5,8 +5,6 @@
 
 const http = require('http');
 const bytenode = require('bytenode');
-const React = require('react');
-const ReactDOM = require('react-dom');
 //const overhaul = require('overhaul.jsc');
 //https://hackernoon.com/how-to-compile-node-js-code-using-bytenode-11dcba856fa9
 const hostname = '127.0.0.1';
@@ -19,7 +17,12 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, hostname, () => {
-  console.log(`Server is running at http://${hostname}:${port}/`);
+    console.log(`Server is running at http://${hostname}:${port}/`);
+    const React = require('react');
+    const ReactDOM = require('react-dom');
+    // Load test files on init
+    require('../tests/build/test_utility_func.js')();
 });
+
 
 export default server;
