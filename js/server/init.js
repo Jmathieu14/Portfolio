@@ -23,9 +23,6 @@ var server = http.createServer(function (req, res) {
 });
 server.listen(port, hostname, function () {
   console.log("Server is running at http://".concat(hostname, ":").concat(port, "/"));
-}); // Load test files on init
-
-require('../../tests/build/test_utility_func.js')();
-
+});
 var _default = server;
 exports["default"] = _default;

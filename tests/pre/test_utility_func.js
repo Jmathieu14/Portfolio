@@ -1,15 +1,16 @@
-//const React = require('react');
-//const ReactDOM = require('react-dom');
 const {describe, it} = require('mocha');
 const assert = require('assert');
-// Import my-react-components.js
-require('../../js/components/my-react-components.js')();
+// Import test ready version of my-react-components.js
+const mrc = require('../../concat/files/test-ready-mrc.js');
 
 describe('Testing utility functions', function() {
-    it('key1 should be different from key2', function() {
-        const myName = "poof";
-        let key1 = genKey(myName);
-        let key2 = genKey(myName);
-        assert(key1 !== key2);
-    });
+    const maxIter = 10;
+    for (var iter = 0; iter < maxIter; ++iter) {
+        it('key1 should !== key2 iter: ' + iter.toString(), function() {
+            const myName = "poof";
+            let key1 = mrc.genKey(myName);
+            let key2 = mrc.genKey(myName);
+            assert(key1 !== key2);
+        });
+    }
 });

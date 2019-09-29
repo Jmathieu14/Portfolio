@@ -20,7 +20,4 @@ server.listen(port, hostname, () => {
     console.log(`Server is running at http://${hostname}:${port}/`);
 });
 
-// Load test files on init
-require('../../tests/build/test_utility_func.js')();
-
 export default server;

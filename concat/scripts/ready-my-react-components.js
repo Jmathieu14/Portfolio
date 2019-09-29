@@ -2,9 +2,9 @@
 
 const concat = require('concat-files');
 
-let fileList = ["../../js/react-require.js", "../../js/components/my-react-components.js"];
+let fileList = ["js/react-require.js", "js/components/my-react-components.js", "js/components/mrc-exports.js"];
 
-let destination = "../files";
+let destination = "concat/files/test-ready-mrc.js";
 
 concat(fileList, destination, function(err) {
     if (err) throw err

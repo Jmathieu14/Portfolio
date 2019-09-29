@@ -1,21 +1,23 @@
 "use strict";
 
-//const React = require('react');
-//const ReactDOM = require('react-dom');
 var _require = require('mocha'),
     describe = _require.describe,
     it = _require.it;
 
-var assert = require('assert'); // Import my-react-components.js
+var assert = require('assert'); // Import test ready version of my-react-components.js
 
 
-require('../../js/components/my-react-components.js')();
+var mrc = require('../../concat/files/test-ready-mrc.js');
 
 describe('Testing utility functions', function () {
-  it('key1 should be different from key2', function () {
-    var myName = "poof";
-    var key1 = genKey(myName);
-    var key2 = genKey(myName);
-    assert(key1 !== key2);
-  });
+  var maxIter = 10;
+
+  for (var iter = 0; iter < maxIter; ++iter) {
+    it('key1 should !== key2 iter: ' + iter.toString(), function () {
+      var myName = "poof";
+      var key1 = mrc.genKey(myName);
+      var key2 = mrc.genKey(myName);
+      assert(key1 !== key2);
+    });
+  }
 });
