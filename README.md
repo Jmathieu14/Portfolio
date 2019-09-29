@@ -13,3 +13,6 @@ How to write unit tests in Node.js (using Mocha):
 https://developer.ibm.com/tutorials/learn-nodejs-unit-testing-in-nodejs/
 and
 https://github.com/jstevenperry/IBM-Developer/tree/master/Node.js/Course/Unit-9
+
+Used concat-files to concatenate files to ease Node.js testing process:
+https://www.npmjs.com/package/concat-files

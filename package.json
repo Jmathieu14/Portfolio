@@ -16,6 +16,7 @@
     "react": "^16.10.0"
   },
   "devDependencies": {
+    "concat-files": "^0.1.1",
     "jsdom": "15.1.1",
     "jsdom-global": "3.0.2",
     "mocha": "^6.2.0",
@@ -26,7 +27,7 @@
     "start": "npm run build && nodemon --exec babel-node js/server/init.js",
     "buildTests": "babel --presets @babel/preset-react tests/pre -d tests/build",
     "test": "npm run buildTests && mocha tests/build -r jsdom-global/register",
-    "build2": "babel pre-prod/js -d js"
+    "runConcats": "node concat/scripts/ready-my-react-components.js"
   },
   "repository": {
     "type": "git",

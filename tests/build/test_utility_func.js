@@ -9,7 +9,7 @@ var _require = require('mocha'),
 var assert = require('assert'); // Import my-react-components.js
 
 
-require('../../js/my-react-components.js')();
+require('../../js/components/my-react-components.js')();
 
 describe('Testing utility functions', function () {
   it('key1 should be different from key2', function () {

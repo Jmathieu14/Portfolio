@@ -18,11 +18,9 @@ const server = http.createServer((req, res) => {
 
 server.listen(port, hostname, () => {
     console.log(`Server is running at http://${hostname}:${port}/`);
-    const React = require('react');
-    const ReactDOM = require('react-dom');
-    // Load test files on init
-    require('../tests/build/test_utility_func.js')();
 });
 
+// Load test files on init
+require('../../tests/build/test_utility_func.js')();
 
 export default server;
