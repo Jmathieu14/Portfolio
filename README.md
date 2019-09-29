@@ -16,3 +16,6 @@ https://github.com/jstevenperry/IBM-Developer/tree/master/Node.js/Course/Unit-9
 
 Used concat-files to concatenate files to ease Node.js testing process:
 https://www.npmjs.com/package/concat-files
+
+How to use module.exports and why it's necessary in Node.js:
+https://stackoverflow.com/questions/33589571/module-exports-that-include-all-functions-in-a-single-line
