@@ -114,6 +114,7 @@ function repeatStringNTimes(str, n, sep) {
 function checkObjAndKey(o, k) {
   return o != null && k in o;
 } // End of Utility functions -----------------------------------------
+// Begin custom react components
 
 
 var AngularDivider =
@@ -916,5 +917,7 @@ window.addEventListener("resize", resizeDividersOnPageResize); // Help for this 
 
 // Function that defines what functions will be exported from my-react-components.js [for testing using mocha on node.js]
 module.exports = {
-  "genKey": genKey
+  "genKey": genKey,
+  "repeatStringNTimes": repeatStringNTimes,
+  "checkObjAndKey": checkObjAndKey
 };

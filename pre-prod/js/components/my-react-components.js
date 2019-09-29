@@ -87,6 +87,7 @@ function checkObjAndKey(o, k) {
 }
 // End of Utility functions -----------------------------------------
 
+// Begin custom react components
 class AngularDivider extends React.Component {
     constructor(props) {
         super(props);

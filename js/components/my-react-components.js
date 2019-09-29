@@ -109,6 +109,7 @@ function repeatStringNTimes(str, n, sep) {
 function checkObjAndKey(o, k) {
   return o != null && k in o;
 } // End of Utility functions -----------------------------------------
+// Begin custom react components
 
 
 var AngularDivider =
