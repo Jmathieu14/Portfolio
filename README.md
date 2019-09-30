@@ -31,7 +31,7 @@ This is a portfolio of some of the work I have done in relation to Web Design an
 - Lastly, you can create the actual test file!
     - Create the test file under `tests > pre`
     - Be sure to include `const {describe, it} = require('mocha');` and `const assert = require('assert');` at the top of the test file
-    - Next, include the file you are testing (the concatenated/test ready version of it):
+    - Next, include the the concatenated/test ready version of the file you are testing:
         ```JavaScript
         // Import test ready version of my-concatenated-file.js
         const myModuleName = require('../../concat/files/my-concatenated-file.js');
