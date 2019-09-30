@@ -134,6 +134,20 @@ html, body, .section-list, #react-content {
   width: calc(100% - 2px);
   transition: all 0.2s linear;
 }
+.angular-section .expandable-content-wrapper .expandable-content {
+  z-index: 15;
+}
+.angular-section .expandable-content-wrapper .expandable-content .ec-image-slider {
+  z-index: 15;
+}
+.angular-section .expandable-content-wrapper .expandable-content .ec-image-slider div > div > div:nth-child(2) div > div {
+  background-color: red;
+  z-index: 15 !important;
+}
+.angular-section .expandable-content-wrapper .expandable-content .ec-image-slider div > div > div:nth-child(2) div > div img {
+  z-index: 15 !important;
+  opacity: 1 !important;
+}
 
 .section-links-wrapper {
   user-select: none;

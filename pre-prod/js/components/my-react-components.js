@@ -225,22 +225,25 @@ function SectionLinkHoverText(props) {
 class JssorImageSlider extends React.Component {
     constructor(props) {
         super(props);
-        this.images = props.images;
+        this.imageSliderSpecs = props.imageSliderSpecs;
+        this.images = this.imageSliderSpecs.images;
         this.options = { $AutoPlay: 1 };
         this.slider = null;
+        this.id = props.id;
+        console.log(this.id);
     }
     componentDidMount() {
-        this.slider = new $JssorSlider$(this.key, this.options);
+        new $JssorSlider$(this.id, this.options);
     }
     render() {
         let imageElements = this.images.map((obj) => 
             <div>
-                <img data-u="image" src={obj} />
+                <img data-u="image" src={obj.path} />
             </div>
         );
         return (
             <React.Fragment>
-                <div id={this.key} class="ec-image-slider">
+                <div id={this.id} class="ec-image-slider">
                     <div data-u="slides">
                         {imageElements}
                     </div>
@@ -254,32 +257,45 @@ class ExpandableContent extends React.Component {
     constructor(props) {
         super(props);
         this.eCSpecs = props.eCSpecs;
-        this.handleContentExpansion = this.handleContentExpansion.bind(this);
-        this.state = {
-            contentExpanded: false
+        this.handleContentExpansion = props.handleContentExpansion;
+        this.state = props.state;
+        this.updateParentObject = this.updateParentObject.bind(this);
+        this.toggleLocalState = this.toggleLocalState.bind(this);
+    }
+    // Toggle the local state of this object
+    toggleLocalState() {
+        if (this.state !== null) {
+            this.setState({ contentExpanded: !this.state.contentExpanded })
         }
     }
-    handleContentExpansion() {
-        if (this.state.contentExpanded) {
-            this.setState({contentExpanded: false});
-        } else this.setState({contentExpanded: true});
+    updateParentObject() {
+        this.toggleLocalState();
+        this.props.handleContentExpansion();
     }
     getECClassName() {
-        if (this.state.contentExpanded) {
+        if (this.state !== null && this.state.contentExpanded) {
             return "expandable-content-wrapper expanded";
         } else return "expandable-content-wrapper"; 
     }
     render() {
         if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
+            let imageSlider = null;
+            if (checkObjAndKey(this.eCSpecs, 'imageSliderSpecs') && this.eCSpecs.imageSliderSpecs !== null) {
+                imageSlider = <JssorImageSlider imageSliderSpecs={this.eCSpecs.imageSliderSpecs}
+                id={genKey("IMAGE_SLIDER")} 
+                key={genKey("IMAGE_SLIDER_KEY")}
+                />
+            }
             return (
                 <div class={this.getECClassName()}>
                     <div class="ec-menu-bar">
-                        <button onClick={this.handleContentExpansion} class="ec-button">
+                        <button onClick={this.updateParentObject} class="ec-button">
                             <img class="ec-icon" src={this.eCSpecs['icon']}>
                             </img>
                         </button>
                     </div>
                     <div class="expandable-content">
+                        {imageSlider}
                     </div>
                 </div>
             );
@@ -300,18 +316,25 @@ class AngularSection extends React.Component {
             text: "normal",
             backgroundColor: "",
             hoverText: "test",
-            hoverTextShow: false
+            hoverTextShow: false,
+            contentExpanded: false
         };
         this.toggleState = this.toggleState.bind(this);
         // Keep track of the priorities set forth by the last active section link
         this.prevSectionLinkPriority = -1;
         this.childSetParentSectBGAndHoverText = this.childSetParentSectBGAndHoverText.bind(this);
+        this.handleContentExpansion = this.handleContentExpansion.bind(this);
         this.sectionRef = React.createRef();
     }
     toggleState() {
         if (this.state.text === "normal") {
             this.setState({text: "hover", backgroundColor: this.hoverBG, hoverTextShow: false});
         } else this.setState({text: "normal", backgroundColor: "", hoverTextShow: false});
+    }
+    handleContentExpansion() {
+        if (this.state.contentExpanded) {
+            this.setState({contentExpanded: false});
+        } else this.setState({contentExpanded: true});
     }
     getStyle() {
         let debug = false;
@@ -398,7 +421,7 @@ class AngularSection extends React.Component {
                             {section_links}
                         </div>
                     </div>
-                    <ExpandableContent eCSpecs={this.eCSpecs} handleContentExpansion={this.handleContentExpansion} />
+                    <ExpandableContent eCSpecs={this.eCSpecs} state={this.state} handleContentExpansion={this.handleContentExpansion} />
                 </div>
                 <SectionLinkHoverText specs={this.getSLHoverTextSpecs()} />
                 <AngularDivider divOrientation={this.divOrientation} state={this.state} />
