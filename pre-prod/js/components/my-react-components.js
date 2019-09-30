@@ -72,14 +72,15 @@ function resizeDividersOnPageResize() {
 }
 // Return the string repeated n times (as a string)
 function repeatStringNTimes(str, n, sep) {
+    if (n <= 0) return "";
     let strPlusSep = str + sep;
     let res = "";
     let ctr = 0;
-    while (ctr < n) {
+    while (ctr < n - 1) {
         res = res + strPlusSep;
         ++ctr;
     }
-    return res;
+    return res + str;
 }
 // Return true if the object 'o' is not undefined and contains the key 'k'
 function checkObjAndKey(o, k) {
@@ -88,6 +89,7 @@ function checkObjAndKey(o, k) {
 // End of Utility functions -----------------------------------------
 
 // Begin custom react components
+// A divider for our Angular Sections
 class AngularDivider extends React.Component {
     constructor(props) {
         super(props);
@@ -149,6 +151,7 @@ class SectionLinksHeader extends React.Component {
     }
 }
 
+// Links that appear under their respective Angular Sections
 class SectionLink extends React.Component {
     constructor(props) {
         super(props);
@@ -219,9 +222,68 @@ function SectionLinkHoverText(props) {
     );
 }
 
+class JssorImageSlider extends React.Component {
+    constructor(props) {
+        super(props);
+        this.images = props.images;
+        this.options = { $AutoPlay: 1 };
+        this.slider = null;
+    }
+    componentDidMount() {
+        this.slider = new $JssorSlider$(this.key, this.options);
+    }
+    render() {
+        let imageElements = this.images.map((obj) => 
+            <div>
+                <img data-u="image" src={obj} />
+            </div>
+        );
+        return (
+            <React.Fragment>
+                <div id={this.key} class="ec-image-slider">
+                    <div data-u="slides">
+                        {imageElements}
+                    </div>
+                </div>
+            </React.Fragment>
+        );
+    }
+}
+
 class ExpandableContent extends React.Component {
     constructor(props) {
         super(props);
+        this.eCSpecs = props.eCSpecs;
+        this.handleContentExpansion = this.handleContentExpansion.bind(this);
+        this.state = {
+            contentExpanded: false
+        }
+    }
+    handleContentExpansion() {
+        if (this.state.contentExpanded) {
+            this.setState({contentExpanded: false});
+        } else this.setState({contentExpanded: true});
+    }
+    getECClassName() {
+        if (this.state.contentExpanded) {
+            return "expandable-content-wrapper expanded";
+        } else return "expandable-content-wrapper"; 
+    }
+    render() {
+        if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
+            return (
+                <div class={this.getECClassName()}>
+                    <div class="ec-menu-bar">
+                        <button onClick={this.handleContentExpansion} class="ec-button">
+                            <img class="ec-icon" src={this.eCSpecs['icon']}>
+                            </img>
+                        </button>
+                    </div>
+                    <div class="expandable-content">
+                    </div>
+                </div>
+            );
+        } else return null;
     }
 }
 
@@ -238,14 +300,12 @@ class AngularSection extends React.Component {
             text: "normal",
             backgroundColor: "",
             hoverText: "test",
-            hoverTextShow: false,
-            contentExpanded: false
+            hoverTextShow: false
         };
         this.toggleState = this.toggleState.bind(this);
         // Keep track of the priorities set forth by the last active section link
         this.prevSectionLinkPriority = -1;
         this.childSetParentSectBGAndHoverText = this.childSetParentSectBGAndHoverText.bind(this);
-        this.handleContentExpansion = this.handleContentExpansion.bind(this);
         this.sectionRef = React.createRef();
     }
     toggleState() {
@@ -277,11 +337,6 @@ class AngularSection extends React.Component {
         }
         this.prevSectionLinkPriority = priority;
     }
-    handleContentExpansion() {
-        if (this.state.contentExpanded) {
-            this.setState({contentExpanded: false});
-        } else this.setState({contentExpanded: true});
-    }
     // Get the specs needed for the section link hover text component
     getSLHoverTextSpecs() {
         let specs = {
@@ -293,11 +348,6 @@ class AngularSection extends React.Component {
             specs.className = specs.className + " show";
         }
         return specs;
-    }
-    getECClassName() {
-        if (this.state.contentExpanded) {
-            return "expandable-content-wrapper expanded";
-        } else return "expandable-content-wrapper"; 
     }
     getBannerTextStyle() {
         if (checkObjAndKey(this.bannerSpecs, 'bannerTextStyle')) {
@@ -325,21 +375,6 @@ class AngularSection extends React.Component {
             );
         } else return null;
     }
-    getExpandableContentHTML() {
-        if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
-            return (<div class={this.getECClassName()}>
-                        <div class="ec-menu-bar">
-                            <button onClick={this.handleContentExpansion} class="ec-button">
-                                <img class="ec-icon" src={this.eCSpecs['icon']}>
-                                </img>
-                            </button>
-                        </div>
-                        <div class="expandable-content">
-                        </div>
-                    </div>
-            );
-        } else return null;
-    }
     render() {
         let section_links = null;
         if (this.sectionLinks !== undefined && this.sectionLinks !== null && this.sectionLinks.length > 0) {
@@ -352,7 +387,6 @@ class AngularSection extends React.Component {
         }
         let banner_text = this.getBannerTextHTML();
         let banner_img = this.getBannerImgHTML();
-        let expandable_content = this.getExpandableContentHTML();
         return (
             <React.Fragment>
                 <div onMouseLeave={this.toggleState} onMouseEnter={this.toggleState} id={this.name} style={this.getStyle()} class="angular-section" ref={this.sectionRef}>
@@ -364,7 +398,7 @@ class AngularSection extends React.Component {
                             {section_links}
                         </div>
                     </div>
-                    {expandable_content}
+                    <ExpandableContent eCSpecs={this.eCSpecs} handleContentExpansion={this.handleContentExpansion} />
                 </div>
                 <SectionLinkHoverText specs={this.getSLHoverTextSpecs()} />
                 <AngularDivider divOrientation={this.divOrientation} state={this.state} />

@@ -12,7 +12,7 @@ This is a portfolio of some of the work I have done in relation to Web Design an
         - Ex) The React and ReactDOM library is loaded on your HTML page via script tags, thus negating the need to require these libraries in your JavaScript file that uses functions and objects from these libraries. Also, require nor import compiles in plain JS.
     - A footer file can include all the functions and classes that need to be exported as public to allow the test file to test them
         - Ex) `module.exports = { myFunction: myFunction, mySecondFunction: mySecondFunction };`
-    - *Note:* `module.exports` can be written at the bottom of the file you are testing, however, it will throw an error to the console on each page load that uses the file. The page will function properly nonetheless, but this is not great practice.
+    - *Note:* `module.exports` can be written at the bottom of the file you are testing, however, it will throw an error to the console on each page load that uses this file. The page will function properly nonetheless, but this is not great practice.
 - Next, create a concat script under `concat > scripts` and include `const concat = require('concat-files');` at the top of this file
     - In this file, you can write the code that will concatenate the file you are testing with the header file and footer file you made for it
     - Define the files you would like to concatenate in a list variable:

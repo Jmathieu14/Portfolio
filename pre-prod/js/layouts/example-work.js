@@ -46,7 +46,27 @@ const pageLayout = {
             ],
             "expandableContentSpecs": {
                 "show": true,
-                "icon": "../img/page/Google Icons/expand_more-24px.svg"
+                "icon": "../img/page/Google Icons/expand_more-24px.svg",
+                "imageSliderSpecs": {
+                    "images": [
+                        {
+                            "path": "../img/Sparksales/Step 1 signup process.png",
+                            "text": ""
+                        },
+                        {
+                            "path": "../img/Sparksales/Step 2 signup process.png",
+                            "text": ""
+                        },
+                        {
+                            "path": "../img/Sparksales/Step 3 signup process.png",
+                            "text": ""
+                        },
+                        {
+                            "path": "../img/Sparksales/Step 4 signup process.png",
+                            "text": ""
+                        }                        
+                    ]
+                }
             },
             "opacityAsTab": myOpacityStyle
         }

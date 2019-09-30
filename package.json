@@ -12,6 +12,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-plugin-inline-json-import": "^0.3.2",
     "bytenode": "^1.1.1",
+    "jssor-slider": "^27.5.0",
     "nodemon": "^1.19.2",
     "react": "^16.10.0"
   },
