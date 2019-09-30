@@ -32,19 +32,20 @@ This is a portfolio of some of the work I have done in relation to Web Design an
     - Create the test file under `tests > pre`
     - Be sure to include `const {describe, it} = require('mocha');` and `const assert = require('assert');` at the top of the test file
     - Next, include the file you are testing (the concatenated/test ready version of it):
-        - ```JavaScript
+        ```JavaScript
         // Import test ready version of my-concatenated-file.js
         const myModuleName = require('../../concat/files/my-concatenated-file.js');
         ```
     - Lastly, write any tests needed for the file in question using mocha and assert
-        - Ex) ```JavaScript
-            describe('Write purpose of following tests here', function() {
-                it('what must be true for this first test to pass in human language', function() {
-                    let actual = myModuleName.function1();
-                    let expected = <Insert Expected Value Here>;
-                    assert(actual === expected);
-                });
+        - Ex) 
+        ```JavaScript
+        describe('Write purpose of following tests here', function() {
+            it('what must be true for this first test to pass in human language', function() {
+                let actual = myModuleName.function1();
+                let expected = <Insert Expected Value Here>;
+                assert(actual === expected);
             });
+        });
         ```
 - Now you are ready to run your test! Follow the instructions under *Running Tests*
 
