@@ -12,7 +12,7 @@ This is a portfolio of some of the work I have done in relation to Web Design an
         - Ex) The React and ReactDOM library is loaded on your HTML page via script tags, thus negating the need to require these libraries in your JavaScript file that uses functions and objects from these libraries. Also, require nor import compiles in plain JS.
     - A footer file can include all the functions and classes that need to be exported as public to allow the test file to test them
         - Ex) `module.exports = { myFunction: myFunction, mySecondFunction: mySecondFunction };`
-    - *Note*: `module.exports` can be written at the bottom of the file you are testing, however, it will throw an error to the console on each page load that uses the file. The page will function properly nonetheless, but this is not great practice.
+    - *Note:* `module.exports` can be written at the bottom of the file you are testing, however, it will throw an error to the console on each page load that uses the file. The page will function properly nonetheless, but this is not great practice.
 - Next, create a concat script under `concat > scripts` and include `const concat = require('concat-files');` at the top of this file
     - In this file, you can write the code that will concatenate the file you are testing with the header file and footer file you made for it
     - Define the files you would like to concatenate in a list variable:
@@ -20,26 +20,32 @@ This is a portfolio of some of the work I have done in relation to Web Design an
     - Define the destination for the concatenated file. This should be put under `concat > files`:
         - `let destination = "concat/files/my-concatenated-file.js";`
     - Now paste this script in to concatenate the files:
-        `concat(fileList, destination, function(err) {
+        ```JavaScript
+        concat(fileList, destination, function(err) {
             if (err) throw err
             console.log('Files concatenated successfully');
-        });`
+        });
+        ```
 - Next up, go to package.json and modify the script `execConcats`
     - Simply add `node concat/scripts/my-concat-script.js` to the script, and separate each new addition with `&&`
 - Lastly, you can create the actual test file!
     - Create the test file under `tests > pre`
     - Be sure to include `const {describe, it} = require('mocha');` and `const assert = require('assert');` at the top of the test file
     - Next, include the file you are testing (the concatenated/test ready version of it):
-        - `// Import test ready version of my-concatenated-file.js
-           const myModuleName = require('../../concat/files/my-concatenated-file.js');`
+        - ```JavaScript
+        // Import test ready version of my-concatenated-file.js
+        const myModuleName = require('../../concat/files/my-concatenated-file.js');
+        ```
     - Lastly, write any tests needed for the file in question using mocha and assert
-        - Ex) `describe('Write purpose of following tests here', function() {
+        - Ex) ```JavaScript
+            describe('Write purpose of following tests here', function() {
                 it('what must be true for this first test to pass in human language', function() {
                     let actual = myModuleName.function1();
                     let expected = <Insert Expected Value Here>;
                     assert(actual === expected);
                 });
-            });`
+            });
+        ```
 - Now you are ready to run your test! Follow the instructions under *Running Tests*
 
 # Resources used:
