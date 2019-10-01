@@ -225,8 +225,8 @@ function SectionLinkHoverText(props) {
 class JssorImageSlider extends React.Component {
     constructor(props) {
         super(props);
-        this.imageSliderSpecs = props.imageSliderSpecs;
-        this.images = this.imageSliderSpecs.images;
+        this.specs = props.specs;
+        this.images = this.specs.images;
         this.options = { $AutoPlay: 1, $FillMode: 1 };
         this.slider = null;
         this.id = props.id;
@@ -246,6 +246,32 @@ class JssorImageSlider extends React.Component {
                     {imageElements}
                 </div>
             </div>
+        );
+    }
+}
+
+class BottomSpawnModal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.specs = props.modalSpecs;
+    }
+    getStyle() {
+        if (checkObjAndKey(this.specs, 'style')) {
+            return this.specs['style'];
+        }
+    }
+    render() {
+        let imageSlider = null;
+        if (checkObjAndKey(this.specs, 'imageSliderSpecs') && this.specs.imageSliderSpecs !== null) {
+            imageSlider = <JssorImageSlider specs={this.specs.imageSliderSpecs}
+            id={genKey("IMAGE_SLIDER")} 
+            key={genKey("IMAGE_SLIDER_KEY")}
+            />
+        }        
+        return (
+            <span class="bottom-spawn-modal" style={this.getStyle()}>
+            
+            </span>
         );
     }
 }
@@ -278,10 +304,9 @@ class ExpandableContent extends React.Component {
         if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
             let imageSlider = null;
             if (checkObjAndKey(this.eCSpecs, 'imageSliderSpecs') && this.eCSpecs.imageSliderSpecs !== null) {
-                imageSlider = <JssorImageSlider imageSliderSpecs={this.eCSpecs.imageSliderSpecs}
+                imageSlider = <JssorImageSlider specs={this.eCSpecs.imageSliderSpecs}
                 id={genKey("IMAGE_SLIDER")} 
                 key={genKey("IMAGE_SLIDER_KEY")}
-                imgSliderHeight={this.imgSliderHeight}
                 />
             }
             return (

@@ -131,8 +131,6 @@ html, body, .section-list, #react-content {
 }
 .angular-section .expandable-content-wrapper.expanded {
   height: 100%;
-  border: 1px dashed red;
-  width: calc(100% - 2px);
   transition: all 0.2s linear;
 }
 .angular-section .expandable-content-wrapper .expandable-content {
