@@ -227,10 +227,9 @@ class JssorImageSlider extends React.Component {
         super(props);
         this.imageSliderSpecs = props.imageSliderSpecs;
         this.images = this.imageSliderSpecs.images;
-        this.options = { $AutoPlay: 1 };
+        this.options = { $AutoPlay: 1, $FillMode: 1 };
         this.slider = null;
         this.id = props.id;
-        console.log(this.id);
     }
     componentDidMount() {
         new $JssorSlider$(this.id, this.options);
@@ -242,13 +241,11 @@ class JssorImageSlider extends React.Component {
             </div>
         );
         return (
-            <React.Fragment>
-                <div id={this.id} class="ec-image-slider">
-                    <div data-u="slides">
-                        {imageElements}
-                    </div>
+            <div id={this.id} class="ec-image-slider">
+                <div data-u="slides">
+                    {imageElements}
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }
@@ -284,6 +281,7 @@ class ExpandableContent extends React.Component {
                 imageSlider = <JssorImageSlider imageSliderSpecs={this.eCSpecs.imageSliderSpecs}
                 id={genKey("IMAGE_SLIDER")} 
                 key={genKey("IMAGE_SLIDER_KEY")}
+                imgSliderHeight={this.imgSliderHeight}
                 />
             }
             return (
@@ -327,38 +325,45 @@ class AngularSection extends React.Component {
         this.sectionRef = React.createRef();
     }
     toggleState() {
-        if (this.state.text === "normal") {
-            this.setState({text: "hover", backgroundColor: this.hoverBG, hoverTextShow: false});
-        } else this.setState({text: "normal", backgroundColor: "", hoverTextShow: false});
+        // Do not update state if the expandable section is active
+        if (!this.state.contentExpanded) {
+            if (this.state.text === "normal") {
+                this.setState({text: "hover", backgroundColor: this.hoverBG, hoverTextShow: false});
+            } else this.setState({text: "normal", backgroundColor: "", hoverTextShow: false});
+        }
     }
     handleContentExpansion() {
         if (this.state.contentExpanded) {
             this.setState({contentExpanded: false});
         } else this.setState({contentExpanded: true});
     }
+    // Get style for the section
     getStyle() {
         let debug = false;
         recordDisplayDimensions(debug);
         let element = this.sectionRef.current;
-        let style = {backgroundColor: this.state.backgroundColor};
+        let as_style = {backgroundColor: this.state.backgroundColor};
         let new_height = my_display_dimensions.height * 0.8;
         if (element != null && this.state.contentExpanded && element.style.height != new_height) {
-            style['height'] = new_height.toString() + 'px';
+            as_style['height'] = new_height.toString() + 'px';
         }
-        return style;
+        return as_style;
     }
 
     // Set the background and state text with the given state text and color; Will be called from the child
     // section links
     childSetParentSectBGAndHoverText(s_text, color, priority, hoverText, hoverTextShow) {
-        if (priority < this.prevSectionLinkPriority) {
-            this.setState({text: s_text, backgroundColor: color, hoverText: hoverText, hoverTextShow: hoverTextShow});
-        } else {
-            window.setTimeout(() => {
+        // Do not update background color if the expandable section is active
+        if (!this.state.contentExpanded) {
+            if (priority < this.prevSectionLinkPriority) {
                 this.setState({text: s_text, backgroundColor: color, hoverText: hoverText, hoverTextShow: hoverTextShow});
-            }, 25);
+            } else {
+                window.setTimeout(() => {
+                    this.setState({text: s_text, backgroundColor: color, hoverText: hoverText, hoverTextShow: hoverTextShow});
+                }, 25);
+            }
+            this.prevSectionLinkPriority = priority;
         }
-        this.prevSectionLinkPriority = priority;
     }
     // Get the specs needed for the section link hover text component
     getSLHoverTextSpecs() {

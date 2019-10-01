@@ -117,6 +117,7 @@ $ang-content-lr-padding: 5%
             padding-top: 5%
             height: calc(95% - 2rem)
     .expandable-content-wrapper
+        max-height: 100%
         background: none
         width: 100%
         min-height: 1.6rem
@@ -146,16 +147,13 @@ $ang-content-lr-padding: 5%
             width: calc(100% - 2px)
             +default_transition()
         .expandable-content
-            z-index: 15
+            max-height: 100%
             .ec-image-slider
-                z-index: 15
+                max-height: 100% !important
                 div > div > div:nth-child(2)
                     div > div
-                        background-color: red
-                        z-index: 15 !important
                         img
-                            z-index: 15 !important
-                            opacity: 1 !important
+                            object-fit: scale-down
 
 $sl-dimensions: 20%
 $arrow-size: 0.5rem

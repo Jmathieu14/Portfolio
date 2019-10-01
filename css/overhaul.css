@@ -100,6 +100,7 @@ html, body, .section-list, #react-content {
   height: calc(95% - 2rem);
 }
 .angular-section .expandable-content-wrapper {
+  max-height: 100%;
   background: none;
   width: 100%;
   min-height: 1.6rem;
@@ -135,18 +136,13 @@ html, body, .section-list, #react-content {
   transition: all 0.2s linear;
 }
 .angular-section .expandable-content-wrapper .expandable-content {
-  z-index: 15;
+  max-height: 100%;
 }
 .angular-section .expandable-content-wrapper .expandable-content .ec-image-slider {
-  z-index: 15;
-}
-.angular-section .expandable-content-wrapper .expandable-content .ec-image-slider div > div > div:nth-child(2) div > div {
-  background-color: red;
-  z-index: 15 !important;
+  max-height: 100% !important;
 }
 .angular-section .expandable-content-wrapper .expandable-content .ec-image-slider div > div > div:nth-child(2) div > div img {
-  z-index: 15 !important;
-  opacity: 1 !important;
+  object-fit: scale-down;
 }
 
 .section-links-wrapper {
