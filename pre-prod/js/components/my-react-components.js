@@ -139,6 +139,68 @@ class AngularDivider extends React.Component {
     }
 }
 
+class BottomSpawnModal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.specs = props.modalSpecs;
+        this.state = {
+            show: false
+        }
+        this.toggleState = this.toggleState.bind(this);
+    }
+    toggleState() {
+        this.setState({ show: !this.state.show });
+    }
+    getStyle() {
+        if (checkObjAndKey(this.specs, 'style')) {
+            return this.specs['style'];
+        }
+    }
+    getTitle() {
+        if (checkObjAndKey(this.specs, 'title')) {
+            return this.specs['title'];
+        }
+        return "";
+    }
+    getClassName() {
+        const baseCName = "bottom-spawn-modal";
+        if (this.state.show) {
+            return baseCName + " show";
+        }
+        return baseCName;
+    }
+    getCloseImagePath() {
+        if (checkObjAndKey(this.specs, 'close')) {
+            return this.specs['close'];
+        }
+    }
+    render() {
+        let imageSlider = null;
+        if (checkObjAndKey(this.specs, 'imageSliderSpecs') && this.specs.imageSliderSpecs !== null) {
+            imageSlider = <JssorImageSlider specs={this.specs.imageSliderSpecs}
+            id={genKey("IMAGE_SLIDER")} 
+            key={genKey("IMAGE_SLIDER_KEY")}
+            />
+        }        
+        return (
+            <span class={this.getClassName()} style={this.getStyle()}>
+                <span class="bs-modal-menu-bar">
+                    <span class="bs-modal-header">
+                        {this.getTitle()}
+                    </span>
+                    <span class="bs-modal-close" onClick={this.toggleState}>
+                        <img src={this.getCloseImagePath()}>
+                        </img>
+                    </span>
+                </span>
+                <span class="bs-modal-content">
+                    {imageSlider}
+                </span>
+            </span>
+        );
+    }
+}
+
 // Header for section links (to add clarity and ease of use to site)
 class SectionLinksHeader extends React.Component {
     constructor(props) {
@@ -155,21 +217,17 @@ class SectionLinksHeader extends React.Component {
 class SectionLink extends React.Component {
     constructor(props) {
         super(props);
-        this.url = props.url;
-        this.logo = props.logo;
-        this.name = props.name;
-        this.hoverBG = props.hoverBG;
-        this.hoverBGName = props.hoverBGName;
-        this.parentBG = props.parentBG;
+        this.url = props.url; this.logo = props.logo;
+        this.name = props.name; this.hoverBG = props.hoverBG;
+        this.hoverBGName = props.hoverBGName; this.parentBG = props.parentBG;
         this.childSetParentSectBGAndHoverText = props.childSetParentSectBGAndHoverText;
         this.mouseEnterLogo = this.mouseEnterLogo.bind(this);
         this.mouseLeaveLogo = this.mouseLeaveLogo.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.arrowClassName = "sl-hover-arrow";
-        this.arrowID = props.arrowID;
-        this.arrowRef = React.createRef();
+        this.arrowID = props.arrowID; this.arrowRef = React.createRef();
         this.arrowStyle = {width: "0.5rem"};
-        this.target = props.target;
-        this.centerArrow();
+        this.target = props.target; this.centerArrow();
     }
     // Center the hover arrow to middle of section link
     centerArrow() {
@@ -198,11 +256,18 @@ class SectionLink extends React.Component {
         let priority = 0; const hoverTextShow = false; const hoverText = this.name;
         this.props.childSetParentSectBGAndHoverText("hover", this.parentBG, priority, hoverText, hoverTextShow);
     }
+    handleClick() {
+        if (this.target === "MODAL") {
+            console.log("Yo open this modal boi!");
+        } else {
+            window.open(this.url, this.target);
+        }
+    }
     render() {
         return (
             <React.Fragment>
                 <div class='section-link'>
-                    <a href={this.url} target={this.target}>
+                    <a onClick={this.handleClick}>
                         <img src={this.logo} onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} />
                     </a>
                     <div style={this.arrowStyle} id={this.name + "-arrow"} class={this.arrowClassName}
@@ -246,32 +311,6 @@ class JssorImageSlider extends React.Component {
                     {imageElements}
                 </div>
             </div>
-        );
-    }
-}
-
-class BottomSpawnModal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.specs = props.modalSpecs;
-    }
-    getStyle() {
-        if (checkObjAndKey(this.specs, 'style')) {
-            return this.specs['style'];
-        }
-    }
-    render() {
-        let imageSlider = null;
-        if (checkObjAndKey(this.specs, 'imageSliderSpecs') && this.specs.imageSliderSpecs !== null) {
-            imageSlider = <JssorImageSlider specs={this.specs.imageSliderSpecs}
-            id={genKey("IMAGE_SLIDER")} 
-            key={genKey("IMAGE_SLIDER_KEY")}
-            />
-        }        
-        return (
-            <span class="bottom-spawn-modal" style={this.getStyle()}>
-            
-            </span>
         );
     }
 }
@@ -652,6 +691,7 @@ class SectionList extends React.Component {
         this.counter = 0;
         this.key = "SECT_LIST";
         this.showSectionList = false;
+        this.modalSpecs = {'title': 'My Modal', 'close': '../img/page/Google Icons/baseline_close_white_48dp.png'};
     }
     // Get orientation of angular divider given the section index
     divOrientation() {
@@ -681,6 +721,7 @@ class SectionList extends React.Component {
                 <section class={this.handleClassName()}>
                     {my_sections}
                 </section>
+                <BottomSpawnModal modalSpecs={this.modalSpecs} />
             </React.Fragment>
         );
     }

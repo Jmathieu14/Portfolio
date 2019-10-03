@@ -204,6 +204,8 @@ $sl-padding-right: 1.3rem
         height: 100%
         max-height: 2.75em
         position: relative
+        &:hover
+            cursor: pointer
 
 // Section link hover arrow
 .sl-hover-arrow
@@ -316,6 +318,64 @@ section.page-header
         display: none
         img
             height: 100%
+            
+// Styling for Bottom Spawn Modal
+
+$modal-H-font-size: 1.6rem
+$modal-menu-bar-H: $modal-H-font-size + 0.6rem
+$modal-menu-close-padding: 0.3rem
+$modal-menu-opacity: 0.9
+=modal-H-font()
+    font-family: "Montserrat", monospace, sans-serif
+    font-weight: 500
+    color: white
+    padding-left: 5%
+    opacity: $modal-menu-opacity
+
+.bottom-spawn-modal
+    width: 100%
+    height: 75%
+    position: absolute
+    bottom: 0px
+    background: white
+    opacity: 0.5
+    z-index: 0
+    display: none
+    +default_transition()
+    &.show
+        display: block
+        z-index: 20
+        opacity: 1
+        +default_transition()
+    .bs-modal-menu-bar
+        display: block
+        width: 100%
+        background-color: black
+        height: $modal-menu-bar-H
+        user-select: none
+        text-transform: lowercase
+        .bs-modal-header
+            position: relative
+            float: left
+            font-size: $modal-H-font-size
+            +modal-H-font()
+        .bs-modal-close
+            position: relative
+            float: right
+            margin-right: 5%
+            padding: $modal-menu-close-padding
+            height: calc(100% - (2 * #{$modal-menu-close-padding}))
+            background-color: rgba(255, 255, 255, 0)
+            +default_transition()
+            img
+                width: $modal-H-font-size
+                height: $modal-H-font-size
+                opacity: $modal-menu-opacity
+            &:hover
+                background-color: rgba(255, 255, 255, 0.25)
+                +default_transition()
+        .bs-modal-content
+            position: relative
             
 // Mobile Stylings
 $phone-layout-enable: 450px

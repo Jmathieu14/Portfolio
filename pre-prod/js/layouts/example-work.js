@@ -33,7 +33,7 @@ const pageLayout = {
                     "logo": "../img/page/Google Icons/folderx2_36dp.png",
                     "hoverBG": "#00BA65",
                     "hoverBGName": "sparkGreen",
-                    "target": "_blank",
+                    "target": "MODAL",
                     "imageSliderSpecs": {
                         "images": [
                             {
