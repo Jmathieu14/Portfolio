@@ -20,7 +20,7 @@
 // Init default variables here
 $sharp-yellow: #FFDD0E
 $scloud-orange: #F50
-$ang-div-base-H: 0.5em
+$ang-div-base-H: 0.5rem
 $ang-div-full-H: calc(5% + #{$ang-div-base-H})
 
 =default_transition()
@@ -29,8 +29,13 @@ $ang-div-full-H: calc(5% + #{$ang-div-base-H})
 =default_transition_imp()
     transition: all 0.2s linear !important
 
+// Make sure no element (by default) goes beyond the width of the body
+// element or html element
+html, body
+    max-width: 100%    
+    
 // Init page to enable % based widths and heights
-html, body, .section-list, #page-content
+html, body, .section-list, #react-content
     position: relative
     width: 100%
     height: 100%
@@ -55,21 +60,20 @@ $as-base-h: 45%
     width: 100%
     padding-top: $as-top-padding
     padding-bottom: $as-bottom-padding
-    // Substract padding from overall height along with angular divider height
-    height: calc(#{$as-base-h} - #{$as-top-padding + $as-bottom-padding} - #{$ang-div-full-H})
+    height: calc(#{$as-base-h - $as-top-padding + $as-bottom-padding} - #{$ang-div-full-H})
     +default_transition()
-//    &:hover, &:hover + .ang-div-wrapper
-//        background-color: $sharp-yellow
-//        +default_transition()
 
 // Angularly shaped divider to separate sections
 .angular-divider, .angular-divider-rev
     width: 100%
     height: $ang-div-base-H
+    z-index: 5
     
 .ang-div-wrapper
     width: 100%
     height: $ang-div-full-H
+    position: relative
+    float: left
     +default_transition()
 //    display: flex
 //    flex-direction: row
@@ -77,21 +81,77 @@ $as-base-h: 45%
 // Main content for angular sections
 $ang-content-lr-padding: 5%
 
-.angular-content
-    height: 100%
-    width: 90%
-    padding-left: $ang-content-lr-padding
-    padding-right: $ang-content-lr-padding
-    .banner-title-img
-        user-select: none
+=banner_default_title_font()
+    font-family: "Montserrat", monospace, sans-serif
+    font-weight: 400
+    color: black
+    line-height: 95%
+    font-size: 2rem
+
+.angular-section
+    display: flex
+    flex-direction: column
+    .angular-content
         height: 100%
-        display: inline-block
-        max-width: 34%
-        img
-            height: 100% !important
+        width: 90%
+        padding-left: $ang-content-lr-padding
+        padding-right: $ang-content-lr-padding
+        .banner-title-img, .banner-title-text
+            user-select: none
+            height: 100%
+            display: inline-block
+            max-width: 34%
+            img
+                height: 100% !important
+                position: relative
+                float: left
+                max-width: 100%
+        .banner-title-text
+            +banner_default_title_font()
             position: relative
             float: left
-            max-width: 100%
+            overflow-y: hidden
+            overflow-x: hidden
+            text-transform: uppercase
+            overflow-wrap: break-word
+            padding-top: 5%
+            height: calc(95% - 2rem)
+    .expandable-content-wrapper
+        max-height: 100%
+        background: none
+        width: 100%
+        min-height: 1.6rem
+        height: 1.6rem
+        overflow-x: hidden
+        position: relative
+        float: left
+        +default_transition()
+        .ec-menu-bar
+            width: 100%
+            min-height: 1.5rem
+            button.ec-button
+                background: none
+                position: relative
+                float: left
+                margin-left: 5%
+                border-width: 0px
+                padding: 0px
+                &:hover
+                    cursor: pointer 
+                .ec-icon
+                    height: 1.5rem
+                    display: block
+        &.expanded
+            height: 100%
+            +default_transition()
+        .expandable-content
+            max-height: 100%
+            .ec-image-slider
+                max-height: 100% !important
+                div > div > div:nth-child(2)
+                    div > div
+                        img
+                            object-fit: scale-down
 
 $sl-dimensions: 20%
 $arrow-size: 0.5rem
@@ -144,6 +204,8 @@ $sl-padding-right: 1.3rem
         height: 100%
         max-height: 2.75em
         position: relative
+        &:hover
+            cursor: pointer
 
 // Section link hover arrow
 .sl-hover-arrow
@@ -163,6 +225,32 @@ $sl-padding-right: 1.3rem
     opacity: 1
     top: calc(#{$arrow-size}/1.5)
     +arrow_transition()
+
+//white-space: nowrap
+$sl-ht-lr-padding: 0px
+$sl-ht-width: calc(100% - (#{$sl-ht-lr-padding} * 2))
+.sl-hover-text
+    z-index: 20
+    +sl_header_font()
+    font-weight: 800
+    color: white
+    height: 5%
+    font-size: 0.75rem
+    text-align: left
+    position: absolute
+    display: block
+    width: $sl-ht-width
+    padding-left: $sl-ht-lr-padding
+    padding-right: $sl-ht-lr-padding
+    text-transform: uppercase
+    overflow-wrap: break-word
+    overflow-x: hidden
+    overflow-y: hidden
+    opacity: 0
+    +default_transition()
+    &.show
+        opacity: 1
+        +default_transition()
 
 // Styling for Page Header component
 $page-header-font-size: 1rem
@@ -187,6 +275,7 @@ section.page-header
     .header-title
         position: relative
         float: left
+        user-select: none
         +header-comp()
     .header-logo-wrapper
         user-select: none
@@ -230,6 +319,64 @@ section.page-header
         img
             height: 100%
             
+// Styling for Bottom Spawn Modal
+
+$modal-H-font-size: 1.6rem
+$modal-menu-bar-H: $modal-H-font-size + 0.6rem
+$modal-menu-close-padding: 0.3rem
+$modal-menu-opacity: 0.9
+=modal-H-font()
+    font-family: "Montserrat", monospace, sans-serif
+    font-weight: 500
+    color: white
+    padding-left: 5%
+    opacity: $modal-menu-opacity
+
+.bottom-spawn-modal
+    width: 100%
+    height: 75%
+    position: absolute
+    bottom: 0px
+    background: white
+    opacity: 0.5
+    z-index: 0
+    display: none
+    +default_transition()
+    &.show
+        display: block
+        z-index: 20
+        opacity: 1
+        +default_transition()
+    .bs-modal-menu-bar
+        display: block
+        width: 100%
+        background-color: black
+        height: $modal-menu-bar-H
+        user-select: none
+        text-transform: lowercase
+        .bs-modal-header
+            position: relative
+            float: left
+            font-size: $modal-H-font-size
+            +modal-H-font()
+        .bs-modal-close
+            position: relative
+            float: right
+            margin-right: 5%
+            padding: $modal-menu-close-padding
+            height: calc(100% - (2 * #{$modal-menu-close-padding}))
+            background-color: rgba(255, 255, 255, 0)
+            +default_transition()
+            img
+                width: $modal-H-font-size
+                height: $modal-H-font-size
+                opacity: $modal-menu-opacity
+            &:hover
+                background-color: rgba(255, 255, 255, 0.25)
+                +default_transition()
+        .bs-modal-content
+            position: relative
+            
 // Mobile Stylings
 $phone-layout-enable: 450px
 // The following is a test width for dev use only
@@ -251,7 +398,7 @@ $mobile-menu-option-padding: $mobile-menu-vert-padding / 2
     section.page-header
         height: $mobile-page-header-H
         font-size: $mobile-page-header-font-size
-        .header-tabs
+        .header-tabs, .header-title
             display: none
         .mobile-show-tabs-icon
             height: calc(#{$mobile-page-header-H} - (#{$one-sixth-padding} * 2))
