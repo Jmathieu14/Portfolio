@@ -220,7 +220,7 @@ html, body, .section-list, #react-content {
   font-size: 0.75rem;
   text-align: left;
   position: absolute;
-  display: inline;
+  display: block;
   width: calc(100% - (0px * 2));
   padding-left: 0px;
   padding-right: 0px;
