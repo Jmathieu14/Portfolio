@@ -34,11 +34,26 @@ var pageLayout = {
     },
     "sectionLinks": [{
       "name": "screenshots",
-      "url": "../img/Sparksales",
+      "url": "modal",
       "logo": "../img/page/Google Icons/folderx2_36dp.png",
       "hoverBG": "#00BA65",
       "hoverBGName": "sparkGreen",
-      "target": "_blank"
+      "target": "MODAL",
+      "imageSliderSpecs": {
+        "images": [{
+          "path": "../img/Sparksales/Step 1 signup process.png",
+          "text": ""
+        }, {
+          "path": "../img/Sparksales/Step 2 signup process.png",
+          "text": ""
+        }, {
+          "path": "../img/Sparksales/Step 3 signup process.png",
+          "text": ""
+        }, {
+          "path": "../img/Sparksales/Step 4 signup process.png",
+          "text": ""
+        }]
+      }
     }, {
       "name": "videos",
       "url": "../video/Sparksales",
@@ -48,7 +63,7 @@ var pageLayout = {
       "target": "_blank"
     }],
     "expandableContentSpecs": {
-      "show": true,
+      "show": false,
       "icon": "../img/page/Google Icons/expand_more-24px.svg"
     },
     "opacityAsTab": myOpacityStyle

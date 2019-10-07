@@ -188,13 +188,107 @@ function (_React$Component) {
   }]);
 
   return AngularDivider;
+}(React.Component);
+
+var BottomSpawnModal =
+/*#__PURE__*/
+function (_React$Component2) {
+  _inherits(BottomSpawnModal, _React$Component2);
+
+  function BottomSpawnModal(props) {
+    var _this2;
+
+    _classCallCheck(this, BottomSpawnModal);
+
+    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(BottomSpawnModal).call(this, props));
+    _this2.specs = props.modalSpecs;
+    _this2.state = {
+      show: false
+    };
+    _this2.toggleState = _this2.toggleState.bind(_assertThisInitialized(_this2));
+    return _this2;
+  }
+
+  _createClass(BottomSpawnModal, [{
+    key: "toggleState",
+    value: function toggleState() {
+      this.setState({
+        show: !this.state.show
+      });
+    }
+  }, {
+    key: "getStyle",
+    value: function getStyle() {
+      if (checkObjAndKey(this.specs, 'style')) {
+        return this.specs['style'];
+      }
+    }
+  }, {
+    key: "getTitle",
+    value: function getTitle() {
+      if (checkObjAndKey(this.specs, 'title')) {
+        return this.specs['title'];
+      }
+
+      return "";
+    }
+  }, {
+    key: "getClassName",
+    value: function getClassName() {
+      var baseCName = "bottom-spawn-modal";
+
+      if (this.state.show) {
+        return baseCName + " show";
+      }
+
+      return baseCName;
+    }
+  }, {
+    key: "getCloseImagePath",
+    value: function getCloseImagePath() {
+      if (checkObjAndKey(this.specs, 'close')) {
+        return this.specs['close'];
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var imageSlider = null;
+
+      if (checkObjAndKey(this.specs, 'imageSliderSpecs') && this.specs.imageSliderSpecs !== null) {
+        imageSlider = React.createElement(JssorImageSlider, {
+          specs: this.specs.imageSliderSpecs,
+          id: genKey("IMAGE_SLIDER"),
+          key: genKey("IMAGE_SLIDER_KEY")
+        });
+      }
+
+      return React.createElement("span", {
+        "class": this.getClassName(),
+        style: this.getStyle()
+      }, React.createElement("span", {
+        "class": "bs-modal-menu-bar"
+      }, React.createElement("span", {
+        "class": "bs-modal-header"
+      }, this.getTitle()), React.createElement("span", {
+        "class": "bs-modal-close",
+        onClick: this.toggleState
+      }, React.createElement("img", {
+        src: this.getCloseImagePath()
+      }))), React.createElement("span", {
+        "class": "bs-modal-content"
+      }, imageSlider));
+    }
+  }]);
+
+  return BottomSpawnModal;
 }(React.Component); // Header for section links (to add clarity and ease of use to site)
 
 
 var SectionLinksHeader =
 /*#__PURE__*/
-function (_React$Component2) {
-  _inherits(SectionLinksHeader, _React$Component2);
+function (_React$Component3) {
+  _inherits(SectionLinksHeader, _React$Component3);
 
   function SectionLinksHeader(props) {
     _classCallCheck(this, SectionLinksHeader);
@@ -217,45 +311,46 @@ function (_React$Component2) {
 
 var SectionLink =
 /*#__PURE__*/
-function (_React$Component3) {
-  _inherits(SectionLink, _React$Component3);
+function (_React$Component4) {
+  _inherits(SectionLink, _React$Component4);
 
   function SectionLink(props) {
-    var _this2;
+    var _this3;
 
     _classCallCheck(this, SectionLink);
 
-    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(SectionLink).call(this, props));
-    _this2.url = props.url;
-    _this2.logo = props.logo;
-    _this2.name = props.name;
-    _this2.hoverBG = props.hoverBG;
-    _this2.hoverBGName = props.hoverBGName;
-    _this2.parentBG = props.parentBG;
-    _this2.childSetParentSectBGAndHoverText = props.childSetParentSectBGAndHoverText;
-    _this2.mouseEnterLogo = _this2.mouseEnterLogo.bind(_assertThisInitialized(_this2));
-    _this2.mouseLeaveLogo = _this2.mouseLeaveLogo.bind(_assertThisInitialized(_this2));
-    _this2.arrowClassName = "sl-hover-arrow";
-    _this2.arrowID = props.arrowID;
-    _this2.arrowRef = React.createRef();
-    _this2.arrowStyle = {
+    _this3 = _possibleConstructorReturn(this, _getPrototypeOf(SectionLink).call(this, props));
+    _this3.url = props.url;
+    _this3.logo = props.logo;
+    _this3.name = props.name;
+    _this3.hoverBG = props.hoverBG;
+    _this3.hoverBGName = props.hoverBGName;
+    _this3.parentBG = props.parentBG;
+    _this3.childSetParentSectBGAndHoverText = props.childSetParentSectBGAndHoverText;
+    _this3.mouseEnterLogo = _this3.mouseEnterLogo.bind(_assertThisInitialized(_this3));
+    _this3.mouseLeaveLogo = _this3.mouseLeaveLogo.bind(_assertThisInitialized(_this3));
+    _this3.handleClick = _this3.handleClick.bind(_assertThisInitialized(_this3));
+    _this3.arrowClassName = "sl-hover-arrow";
+    _this3.arrowID = props.arrowID;
+    _this3.arrowRef = React.createRef();
+    _this3.arrowStyle = {
       width: "0.5rem"
     };
-    _this2.target = props.target;
+    _this3.target = props.target;
 
-    _this2.centerArrow();
+    _this3.centerArrow();
 
-    return _this2;
+    return _this3;
   } // Center the hover arrow to middle of section link
 
 
   _createClass(SectionLink, [{
     key: "centerArrow",
     value: function centerArrow() {
-      var _this3 = this;
+      var _this4 = this;
 
       window.setTimeout(function () {
-        var arrow = _this3.arrowRef.current;
+        var arrow = _this4.arrowRef.current;
 
         if (arrow !== null) {
           var imgNode = arrow.previousSibling.children[0];
@@ -288,13 +383,21 @@ function (_React$Component3) {
       this.props.childSetParentSectBGAndHoverText("hover", this.parentBG, priority, hoverText, hoverTextShow);
     }
   }, {
+    key: "handleClick",
+    value: function handleClick() {
+      if (this.target === "MODAL") {
+        console.log("Yo open this modal boi!");
+      } else {
+        window.open(this.url, this.target);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(React.Fragment, null, React.createElement("div", {
         "class": "section-link"
       }, React.createElement("a", {
-        href: this.url,
-        target: this.target
+        onClick: this.handleClick
       }, React.createElement("img", {
         src: this.logo,
         onMouseEnter: this.mouseEnterLogo,
@@ -320,27 +423,30 @@ function SectionLinkHoverText(props) {
 
 var JssorImageSlider =
 /*#__PURE__*/
-function (_React$Component4) {
-  _inherits(JssorImageSlider, _React$Component4);
+function (_React$Component5) {
+  _inherits(JssorImageSlider, _React$Component5);
 
   function JssorImageSlider(props) {
-    var _this4;
+    var _this5;
 
     _classCallCheck(this, JssorImageSlider);
 
-    _this4 = _possibleConstructorReturn(this, _getPrototypeOf(JssorImageSlider).call(this, props));
-    _this4.images = props.images;
-    _this4.options = {
-      $AutoPlay: 1
+    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(JssorImageSlider).call(this, props));
+    _this5.specs = props.specs;
+    _this5.images = _this5.specs.images;
+    _this5.options = {
+      $AutoPlay: 1,
+      $FillMode: 1
     };
-    _this4.slider = null;
-    return _this4;
+    _this5.slider = null;
+    _this5.id = props.id;
+    return _this5;
   }
 
   _createClass(JssorImageSlider, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.slider = new $JssorSlider$(this.key, this.options);
+      new $JssorSlider$(this.id, this.options);
     }
   }, {
     key: "render",
@@ -348,15 +454,15 @@ function (_React$Component4) {
       var imageElements = this.images.map(function (obj) {
         return React.createElement("div", null, React.createElement("img", {
           "data-u": "image",
-          src: obj
+          src: obj.path
         }));
       });
-      return React.createElement(React.Fragment, null, React.createElement("div", {
-        id: this.key,
+      return React.createElement("div", {
+        id: this.id,
         "class": "ec-image-slider"
       }, React.createElement("div", {
         "data-u": "slides"
-      }, imageElements)));
+      }, imageElements));
     }
   }]);
 
@@ -365,109 +471,130 @@ function (_React$Component4) {
 
 var ExpandableContent =
 /*#__PURE__*/
-function (_React$Component5) {
-  _inherits(ExpandableContent, _React$Component5);
+function (_React$Component6) {
+  _inherits(ExpandableContent, _React$Component6);
 
   function ExpandableContent(props) {
+    var _this6;
+
     _classCallCheck(this, ExpandableContent);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ExpandableContent).call(this, props));
-  }
+    _this6 = _possibleConstructorReturn(this, _getPrototypeOf(ExpandableContent).call(this, props));
+    _this6.eCSpecs = props.eCSpecs;
+    _this6.handleContentExpansion = props.handleContentExpansion;
+    _this6.state = props.state;
+    _this6.updateParentObject = _this6.updateParentObject.bind(_assertThisInitialized(_this6));
+    _this6.toggleLocalState = _this6.toggleLocalState.bind(_assertThisInitialized(_this6));
+    return _this6;
+  } // Toggle the local state of this object
+
+
+  _createClass(ExpandableContent, [{
+    key: "toggleLocalState",
+    value: function toggleLocalState() {
+      if (this.state !== null) {
+        this.setState({
+          contentExpanded: !this.state.contentExpanded
+        });
+      }
+    }
+  }, {
+    key: "updateParentObject",
+    value: function updateParentObject() {
+      this.toggleLocalState();
+      this.props.handleContentExpansion();
+    }
+  }, {
+    key: "getECClassName",
+    value: function getECClassName() {
+      if (this.state !== null && this.state.contentExpanded) {
+        return "expandable-content-wrapper expanded";
+      } else return "expandable-content-wrapper";
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
+        var imageSlider = null;
+
+        if (checkObjAndKey(this.eCSpecs, 'imageSliderSpecs') && this.eCSpecs.imageSliderSpecs !== null) {
+          imageSlider = React.createElement(JssorImageSlider, {
+            specs: this.eCSpecs.imageSliderSpecs,
+            id: genKey("IMAGE_SLIDER"),
+            key: genKey("IMAGE_SLIDER_KEY")
+          });
+        }
+
+        return React.createElement("div", {
+          "class": this.getECClassName()
+        }, React.createElement("div", {
+          "class": "ec-menu-bar"
+        }, React.createElement("button", {
+          onClick: this.updateParentObject,
+          "class": "ec-button"
+        }, React.createElement("img", {
+          "class": "ec-icon",
+          src: this.eCSpecs['icon']
+        }))), React.createElement("div", {
+          "class": "expandable-content"
+        }, imageSlider));
+      } else return null;
+    }
+  }]);
 
   return ExpandableContent;
 }(React.Component);
 
 var AngularSection =
 /*#__PURE__*/
-function (_React$Component6) {
-  _inherits(AngularSection, _React$Component6);
+function (_React$Component7) {
+  _inherits(AngularSection, _React$Component7);
 
   function AngularSection(props) {
-    var _this5;
+    var _this7;
 
     _classCallCheck(this, AngularSection);
 
-    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(AngularSection).call(this, props));
-    _this5.name = props.name;
-    _this5.hoverBG = props.hoverBG;
-    _this5.bannerSpecs = props.bannerSpecs;
-    _this5.eCSpecs = props.eCSpecs;
-    _this5.sectionLinks = props.sectionLinks;
-    _this5.divOrientation = props.divOrientation;
-    _this5.state = {
+    _this7 = _possibleConstructorReturn(this, _getPrototypeOf(AngularSection).call(this, props));
+    _this7.name = props.name;
+    _this7.hoverBG = props.hoverBG;
+    _this7.bannerSpecs = props.bannerSpecs;
+    _this7.eCSpecs = props.eCSpecs;
+    _this7.sectionLinks = props.sectionLinks;
+    _this7.divOrientation = props.divOrientation;
+    _this7.state = {
       text: "normal",
       backgroundColor: "",
       hoverText: "test",
       hoverTextShow: false,
       contentExpanded: false
     };
-    _this5.toggleState = _this5.toggleState.bind(_assertThisInitialized(_this5)); // Keep track of the priorities set forth by the last active section link
+    _this7.toggleState = _this7.toggleState.bind(_assertThisInitialized(_this7)); // Keep track of the priorities set forth by the last active section link
 
-    _this5.prevSectionLinkPriority = -1;
-    _this5.childSetParentSectBGAndHoverText = _this5.childSetParentSectBGAndHoverText.bind(_assertThisInitialized(_this5));
-    _this5.handleContentExpansion = _this5.handleContentExpansion.bind(_assertThisInitialized(_this5));
-    _this5.sectionRef = React.createRef();
-    return _this5;
+    _this7.prevSectionLinkPriority = -1;
+    _this7.childSetParentSectBGAndHoverText = _this7.childSetParentSectBGAndHoverText.bind(_assertThisInitialized(_this7));
+    _this7.handleContentExpansion = _this7.handleContentExpansion.bind(_assertThisInitialized(_this7));
+    _this7.sectionRef = React.createRef();
+    return _this7;
   }
 
   _createClass(AngularSection, [{
     key: "toggleState",
     value: function toggleState() {
-      if (this.state.text === "normal") {
-        this.setState({
-          text: "hover",
-          backgroundColor: this.hoverBG,
+      // Do not update state if the expandable section is active
+      if (!this.state.contentExpanded) {
+        if (this.state.text === "normal") {
+          this.setState({
+            text: "hover",
+            backgroundColor: this.hoverBG,
+            hoverTextShow: false
+          });
+        } else this.setState({
+          text: "normal",
+          backgroundColor: "",
           hoverTextShow: false
         });
-      } else this.setState({
-        text: "normal",
-        backgroundColor: "",
-        hoverTextShow: false
-      });
-    }
-  }, {
-    key: "getStyle",
-    value: function getStyle() {
-      var debug = false;
-      recordDisplayDimensions(debug);
-      var element = this.sectionRef.current;
-      var style = {
-        backgroundColor: this.state.backgroundColor
-      };
-      var new_height = my_display_dimensions.height * 0.8;
-
-      if (element != null && this.state.contentExpanded && element.style.height != new_height) {
-        style['height'] = new_height.toString() + 'px';
       }
-
-      return style;
-    } // Set the background and state text with the given state text and color; Will be called from the child
-    // section links
-
-  }, {
-    key: "childSetParentSectBGAndHoverText",
-    value: function childSetParentSectBGAndHoverText(s_text, color, priority, hoverText, hoverTextShow) {
-      var _this6 = this;
-
-      if (priority < this.prevSectionLinkPriority) {
-        this.setState({
-          text: s_text,
-          backgroundColor: color,
-          hoverText: hoverText,
-          hoverTextShow: hoverTextShow
-        });
-      } else {
-        window.setTimeout(function () {
-          _this6.setState({
-            text: s_text,
-            backgroundColor: color,
-            hoverText: hoverText,
-            hoverTextShow: hoverTextShow
-          });
-        }, 25);
-      }
-
-      this.prevSectionLinkPriority = priority;
     }
   }, {
     key: "handleContentExpansion",
@@ -479,6 +606,54 @@ function (_React$Component6) {
       } else this.setState({
         contentExpanded: true
       });
+    } // Get style for the section
+
+  }, {
+    key: "getStyle",
+    value: function getStyle() {
+      var debug = false;
+      recordDisplayDimensions(debug);
+      var element = this.sectionRef.current;
+      var as_style = {
+        backgroundColor: this.state.backgroundColor
+      };
+      var new_height = my_display_dimensions.height * 0.8;
+
+      if (element != null && this.state.contentExpanded && element.style.height != new_height) {
+        as_style['height'] = new_height.toString() + 'px';
+      }
+
+      return as_style;
+    } // Set the background and state text with the given state text and color; Will be called from the child
+    // section links
+
+  }, {
+    key: "childSetParentSectBGAndHoverText",
+    value: function childSetParentSectBGAndHoverText(s_text, color, priority, hoverText, hoverTextShow) {
+      var _this8 = this;
+
+      // Do not update background color if the expandable section is active
+      if (!this.state.contentExpanded) {
+        if (priority < this.prevSectionLinkPriority) {
+          this.setState({
+            text: s_text,
+            backgroundColor: color,
+            hoverText: hoverText,
+            hoverTextShow: hoverTextShow
+          });
+        } else {
+          window.setTimeout(function () {
+            _this8.setState({
+              text: s_text,
+              backgroundColor: color,
+              hoverText: hoverText,
+              hoverTextShow: hoverTextShow
+            });
+          }, 25);
+        }
+
+        this.prevSectionLinkPriority = priority;
+      }
     } // Get the specs needed for the section link hover text component
 
   }, {
@@ -497,13 +672,6 @@ function (_React$Component6) {
       }
 
       return specs;
-    }
-  }, {
-    key: "getECClassName",
-    value: function getECClassName() {
-      if (this.state.contentExpanded) {
-        return "expandable-content-wrapper expanded";
-      } else return "expandable-content-wrapper";
     }
   }, {
     key: "getBannerTextStyle",
@@ -542,28 +710,9 @@ function (_React$Component6) {
       } else return null;
     }
   }, {
-    key: "getExpandableContentHTML",
-    value: function getExpandableContentHTML() {
-      if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
-        return React.createElement("div", {
-          "class": this.getECClassName()
-        }, React.createElement("div", {
-          "class": "ec-menu-bar"
-        }, React.createElement("button", {
-          onClick: this.handleContentExpansion,
-          "class": "ec-button"
-        }, React.createElement("img", {
-          "class": "ec-icon",
-          src: this.eCSpecs['icon']
-        }))), React.createElement("div", {
-          "class": "expandable-content"
-        }));
-      } else return null;
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this7 = this;
+      var _this9 = this;
 
       var section_links = null;
 
@@ -574,19 +723,18 @@ function (_React$Component6) {
             name: obj.name,
             url: obj.url,
             logo: obj.logo,
-            state: _this7.state,
+            state: _this9.state,
             hoverBG: obj.hoverBG,
             hoverBGName: obj.hoverBGName,
-            parentBG: _this7.hoverBG,
+            parentBG: _this9.hoverBG,
             target: obj.target,
-            childSetParentSectBGAndHoverText: _this7.childSetParentSectBGAndHoverText
+            childSetParentSectBGAndHoverText: _this9.childSetParentSectBGAndHoverText
           });
         });
       }
 
       var banner_text = this.getBannerTextHTML();
       var banner_img = this.getBannerImgHTML();
-      var expandable_content = this.getExpandableContentHTML();
       return React.createElement(React.Fragment, null, React.createElement("div", {
         onMouseLeave: this.toggleState,
         onMouseEnter: this.toggleState,
@@ -598,7 +746,11 @@ function (_React$Component6) {
         "class": "angular-content"
       }, banner_text, banner_img, React.createElement("div", {
         "class": "section-links-wrapper"
-      }, React.createElement(SectionLinksHeader, null), section_links)), expandable_content), React.createElement(SectionLinkHoverText, {
+      }, React.createElement(SectionLinksHeader, null), section_links)), React.createElement(ExpandableContent, {
+        eCSpecs: this.eCSpecs,
+        state: this.state,
+        handleContentExpansion: this.handleContentExpansion
+      })), React.createElement(SectionLinkHoverText, {
         specs: this.getSLHoverTextSpecs()
       }), React.createElement(AngularDivider, {
         divOrientation: this.divOrientation,
@@ -612,24 +764,24 @@ function (_React$Component6) {
 
 var HeaderTab =
 /*#__PURE__*/
-function (_React$Component7) {
-  _inherits(HeaderTab, _React$Component7);
+function (_React$Component8) {
+  _inherits(HeaderTab, _React$Component8);
 
   function HeaderTab(props) {
-    var _this8;
+    var _this10;
 
     _classCallCheck(this, HeaderTab);
 
-    _this8 = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTab).call(this, props));
-    _this8.name = props.name;
-    _this8.opacityAsTab = props.opacityAsTab;
-    _this8.mobileVersion = props.mobileVersion;
-    _this8.toggleMobileTabsHelper = props.toggleMobileTabsHelper;
-    _this8.delay = 200;
-    _this8.scrollToSection = _this8.scrollToSection.bind(_assertThisInitialized(_this8));
-    _this8.mobileScrollToSection = _this8.mobileScrollToSection.bind(_assertThisInitialized(_this8));
-    _this8.mobileMenuActive = props.mobileMenuActive;
-    return _this8;
+    _this10 = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTab).call(this, props));
+    _this10.name = props.name;
+    _this10.opacityAsTab = props.opacityAsTab;
+    _this10.mobileVersion = props.mobileVersion;
+    _this10.toggleMobileTabsHelper = props.toggleMobileTabsHelper;
+    _this10.delay = 200;
+    _this10.scrollToSection = _this10.scrollToSection.bind(_assertThisInitialized(_this10));
+    _this10.mobileScrollToSection = _this10.mobileScrollToSection.bind(_assertThisInitialized(_this10));
+    _this10.mobileMenuActive = props.mobileMenuActive;
+    return _this10;
   }
 
   _createClass(HeaderTab, [{
@@ -685,26 +837,26 @@ function (_React$Component7) {
 
 var HeaderTabs =
 /*#__PURE__*/
-function (_React$Component8) {
-  _inherits(HeaderTabs, _React$Component8);
+function (_React$Component9) {
+  _inherits(HeaderTabs, _React$Component9);
 
   function HeaderTabs(props) {
-    var _this9;
+    var _this11;
 
     _classCallCheck(this, HeaderTabs);
 
-    _this9 = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTabs).call(this, props));
-    _this9.sections = props.sections;
-    _this9.moreIcon = props.moreIcon;
-    _this9.moreStyle = props.moreStyle;
-    _this9.state = {
+    _this11 = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTabs).call(this, props));
+    _this11.sections = props.sections;
+    _this11.moreIcon = props.moreIcon;
+    _this11.moreStyle = props.moreStyle;
+    _this11.state = {
       mobileTabsOpacity: 0,
       mobileTabsMaxHeight: '0px',
       mobileMenuActive: false
     };
-    _this9.toggleMobileTabs = _this9.toggleMobileTabs.bind(_assertThisInitialized(_this9));
-    _this9.toggleMobileTabsHelper = _this9.toggleMobileTabsHelper.bind(_assertThisInitialized(_this9));
-    return _this9;
+    _this11.toggleMobileTabs = _this11.toggleMobileTabs.bind(_assertThisInitialized(_this11));
+    _this11.toggleMobileTabsHelper = _this11.toggleMobileTabsHelper.bind(_assertThisInitialized(_this11));
+    return _this11;
   } // Get the height of the section list, and use that to set the mobile tab sections' max height
 
 
@@ -758,7 +910,7 @@ function (_React$Component8) {
   }, {
     key: "render",
     value: function render() {
-      var _this10 = this;
+      var _this12 = this;
 
       var my_tabs = this.sections.map(function (obj) {
         return React.createElement(HeaderTab, {
@@ -774,8 +926,8 @@ function (_React$Component8) {
           name: obj.name,
           key: genKey(obj.name),
           mobileVersion: true,
-          toggleMobileTabsHelper: _this10.toggleMobileTabsHelper,
-          mobileMenuActive: _this10.state.mobileMenuActive
+          toggleMobileTabsHelper: _this12.toggleMobileTabsHelper,
+          mobileMenuActive: _this12.state.mobileMenuActive
         });
       });
       return React.createElement(React.Fragment, null, React.createElement("div", {
@@ -798,26 +950,26 @@ function (_React$Component8) {
 
 var PageHeader =
 /*#__PURE__*/
-function (_React$Component9) {
-  _inherits(PageHeader, _React$Component9);
+function (_React$Component10) {
+  _inherits(PageHeader, _React$Component10);
 
   function PageHeader(props) {
-    var _this11;
+    var _this13;
 
     _classCallCheck(this, PageHeader);
 
-    _this11 = _possibleConstructorReturn(this, _getPrototypeOf(PageHeader).call(this, props));
-    _this11.sections = props.sections;
-    _this11.key = "PAGE_HEADER";
-    _this11.pageHeaderSpecs = props.pageHeader;
-    _this11.state = {
+    _this13 = _possibleConstructorReturn(this, _getPrototypeOf(PageHeader).call(this, props));
+    _this13.sections = props.sections;
+    _this13.key = "PAGE_HEADER";
+    _this13.pageHeaderSpecs = props.pageHeader;
+    _this13.state = {
       "description": "active",
-      "backgroundColor": _this11.pageHeaderSpecs['background'],
-      "fontColor": _this11.pageHeaderSpecs['fontColor'],
-      "fontFamily": _this11.pageHeaderSpecs['fontFamily'],
-      "headerFontOpacity": _this11.pageHeaderSpecs['headerFontOpacity']
+      "backgroundColor": _this13.pageHeaderSpecs['background'],
+      "fontColor": _this13.pageHeaderSpecs['fontColor'],
+      "fontFamily": _this13.pageHeaderSpecs['fontFamily'],
+      "headerFontOpacity": _this13.pageHeaderSpecs['headerFontOpacity']
     };
-    return _this11;
+    return _this13;
   }
 
   _createClass(PageHeader, [{
@@ -885,20 +1037,24 @@ function PageTitle(props) {
 
 var SectionList =
 /*#__PURE__*/
-function (_React$Component10) {
-  _inherits(SectionList, _React$Component10);
+function (_React$Component11) {
+  _inherits(SectionList, _React$Component11);
 
   function SectionList(props) {
-    var _this12;
+    var _this14;
 
     _classCallCheck(this, SectionList);
 
-    _this12 = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
-    _this12.sections = props.sections;
-    _this12.counter = 0;
-    _this12.key = "SECT_LIST";
-    _this12.showSectionList = false;
-    return _this12;
+    _this14 = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
+    _this14.sections = props.sections;
+    _this14.counter = 0;
+    _this14.key = "SECT_LIST";
+    _this14.showSectionList = false;
+    _this14.modalSpecs = {
+      'title': 'My Modal',
+      'close': '../img/page/Google Icons/baseline_close_white_48dp.png'
+    };
+    return _this14;
   } // Get orientation of angular divider given the section index
 
 
@@ -933,7 +1089,7 @@ function (_React$Component10) {
   }, {
     key: "render",
     value: function render() {
-      var _this13 = this;
+      var _this15 = this;
 
       var my_sections = this.sections.map(function (obj) {
         return React.createElement(AngularSection, {
@@ -942,13 +1098,15 @@ function (_React$Component10) {
           hoverBG: obj.hoverBG,
           bannerSpecs: obj.bannerSpecs,
           eCSpecs: obj.expandableContentSpecs,
-          divOrientation: _this13.divOrientation(),
+          divOrientation: _this15.divOrientation(),
           sectionLinks: obj.sectionLinks
         });
       });
       return React.createElement(React.Fragment, null, React.createElement("section", {
         "class": this.handleClassName()
-      }, my_sections));
+      }, my_sections), React.createElement(BottomSpawnModal, {
+        modalSpecs: this.modalSpecs
+      }));
     }
   }]);
 
