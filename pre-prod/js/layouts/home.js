@@ -37,7 +37,7 @@ const pageLayout = {
                 }
             ],
             "expandableContentSpecs": {
-                "show": true,
+                "show": false,
                 "icon": "../img/page/Google Icons/expand_more-24px.svg"
             },
             "opacityAsTab": myOpacityStyle
