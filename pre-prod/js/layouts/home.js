@@ -92,14 +92,6 @@ const pageLayout = {
                     "hoverBG": "#33ff5f",
                     "hoverBGName": "goodGreen",
                     "target": "_blank"
-                },
-                {
-                    "name": "Example Work",
-                    "url": "../html/example-work.html",
-                    "logo": "../img/page/example icon.svg",
-                    "hoverBG": "#3dffb9",
-                    "hoverBGName": "turqoise",
-                    "target": "_self"
                 }
             ],
             "opacityAsTab": myOpacityStyle
