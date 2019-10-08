@@ -313,6 +313,8 @@ section.page-header .mobile-show-tabs-icon img {
   opacity: 0.5;
   z-index: 0;
   display: none;
+  overflow-x: hidden;
+  overflow-y: hidden;
   transition: all 0.2s linear;
 }
 .bottom-spawn-modal.show {
@@ -332,25 +334,26 @@ section.page-header .mobile-show-tabs-icon img {
 .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-header {
   position: relative;
   float: left;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-family: "Montserrat", monospace, sans-serif;
   font-weight: 500;
   color: white;
   padding-left: 5%;
+  padding-top: 0.15rem;
   opacity: 0.9;
 }
 .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-close {
   position: relative;
   float: right;
   margin-right: 5%;
-  padding: 0.3rem;
-  height: calc(100% - (2 * 0.3rem));
+  padding: 0.4rem;
+  height: calc(100% - (2 * 0.4rem));
   background-color: rgba(255, 255, 255, 0);
   transition: all 0.2s linear;
 }
 .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-close img {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.4rem;
+  height: 1.4rem;
   opacity: 0.9;
 }
 .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-close:hover {

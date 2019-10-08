@@ -18,6 +18,9 @@ const pageLayout = {
         "mobileMoreIcon": "../img/page/Google Icons/baseline_menu_white_48dp.png",
         "mobileMoreStyle": { color: "#FFF", opacity: myOpacity }
     },
+    "modalSpecs": {
+        
+    },
     "angular-sections": [
         {
             "name": "work @ sparksales",
@@ -29,30 +32,35 @@ const pageLayout = {
             "sectionLinks": [
                 {
                     "name": "screenshots",
-                    "url": "modal",
+                    "url": "",
                     "logo": "../img/page/Google Icons/folderx2_36dp.png",
                     "hoverBG": "#00BA65",
                     "hoverBGName": "sparkGreen",
                     "target": "MODAL",
-                    "imageSliderSpecs": {
-                        "images": [
-                            {
-                                "path": "../img/Sparksales/Step 1 signup process.png",
-                                "text": ""
-                            },
-                            {
-                                "path": "../img/Sparksales/Step 2 signup process.png",
-                                "text": ""
-                            },
-                            {
-                                "path": "../img/Sparksales/Step 3 signup process.png",
-                                "text": ""
-                            },
-                            {
-                                "path": "../img/Sparksales/Step 4 signup process.png",
-                                "text": ""
-                            }                        
-                        ]
+                    "modalSpecs": {
+                        "contentType": "imageSlider",
+                        "title": "screenshots of work @ sparksales",
+                        "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
+                        "imageSliderSpecs": {
+                            "images": [
+                                {
+                                    "path": "../img/Sparksales/Step 1 signup process.png",
+                                    "text": ""
+                                },
+                                {
+                                    "path": "../img/Sparksales/Step 2 signup process.png",
+                                    "text": ""
+                                },
+                                {
+                                    "path": "../img/Sparksales/Step 3 signup process.png",
+                                    "text": ""
+                                },
+                                {
+                                    "path": "../img/Sparksales/Step 4 signup process.png",
+                                    "text": ""
+                                }                        
+                            ]
+                        }
                     }
                 },
                 {
@@ -83,6 +91,7 @@ ReactDOM.render(
         <FontImport path={pageLayout["font-import-link"]} />
         <PageHeader pageHeader={pageLayout["page-header"]} sections={pageLayout["angular-sections"]} />
         <SectionList sections={pageLayout["angular-sections"]} />
+        <ModalRenderTarget />
     </React.Fragment>,
     renderTarget
 );

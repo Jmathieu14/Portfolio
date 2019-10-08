@@ -93,7 +93,6 @@ const oldDomain = "rawgit.com";
 // Redirect the user to the github pages location of the site if the url is of domain rawgit
 function redirectToGitHubPages() {
     let curDomain = window.location.hostname;
-    console.log(curDomain);
     if (curDomain.toLowerCase() === oldDomain) {
         // Where to redirect to
         const updatedLoc = "https://jmathieu14.github.io/Portfolio/html/home.html";
@@ -154,13 +153,18 @@ class AngularDivider extends React.Component {
     }
 }
 
+// Return html element that will serve as the target to render a modal on activation
+function ModalRenderTarget(props) {
+    return ( 
+        <div id="MODAL_RENDER_TARGET"></div>
+    );
+}
+
 class BottomSpawnModal extends React.Component {
     constructor(props) {
         super(props);
-        this.specs = props.modalSpecs;
-        this.state = {
-            show: false
-        }
+        this.specs = props.specs;
+        this.state = props.state;
         this.toggleState = this.toggleState.bind(this);
     }
     toggleState() {
@@ -232,17 +236,21 @@ class SectionLinksHeader extends React.Component {
 class SectionLink extends React.Component {
     constructor(props) {
         super(props);
-        this.url = props.url; this.logo = props.logo;
-        this.name = props.name; this.hoverBG = props.hoverBG;
-        this.hoverBGName = props.hoverBGName; this.parentBG = props.parentBG;
+        this.specs = props.specs;
+            // this.specs has the following keys:
+            // name, url, logo, hoverBG, hoverBGname, target
+            // ---------------------------------------------
+            // it sometimes has:
+            // modalSpecs
+        this.parentBG = props.parentBG;
         this.childSetParentSectBGAndHoverText = props.childSetParentSectBGAndHoverText;
         this.mouseEnterLogo = this.mouseEnterLogo.bind(this);
         this.mouseLeaveLogo = this.mouseLeaveLogo.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.arrowClassName = "sl-hover-arrow";
-        this.arrowID = props.arrowID; this.arrowRef = React.createRef();
+        this.arrowRef = React.createRef();
         this.arrowStyle = {width: "0.5rem"};
-        this.target = props.target; this.centerArrow();
+        this.centerArrow();
     }
     // Center the hover arrow to middle of section link
     centerArrow() {
@@ -262,20 +270,26 @@ class SectionLink extends React.Component {
     mouseEnterLogo() {
         // Set priority to 1 so that when one moves the mouse from one link to the next, the 
         // background color is not overwritten by the delayed by the dehovering of this link
-        let priority = 1; const hoverTextShow = true; const hoverText = this.name;
-        this.props.childSetParentSectBGAndHoverText("hover", this.hoverBG, priority, hoverText, hoverTextShow);
+        let priority = 1; const hoverTextShow = true; const hoverText = this.specs.name;
+        this.props.childSetParentSectBGAndHoverText("hover", this.specs.hoverBG, priority, hoverText, hoverTextShow);
         
     }
     mouseLeaveLogo() {
         // Set priority to 0 so that this does not overwrite mouse enter of a different link
-        let priority = 0; const hoverTextShow = false; const hoverText = this.name;
+        let priority = 0; const hoverTextShow = false; const hoverText = this.specs.name;
         this.props.childSetParentSectBGAndHoverText("hover", this.parentBG, priority, hoverText, hoverTextShow);
     }
     handleClick() {
-        if (this.target === "MODAL") {
-            console.log("Yo open this modal boi!");
+        if (this.specs.target === "MODAL" && checkObjAndKey(this.specs, "modalSpecs")) {
+            const modalTarget = document.getElementById('MODAL_RENDER_TARGET');
+            const initialState = { show: true };
+            // Remove previous modal if it exists
+            ReactDOM.unmountComponentAtNode(modalTarget);
+            ReactDOM.render(
+                <BottomSpawnModal specs={this.specs.modalSpecs} state={initialState} />
+            , modalTarget);
         } else {
-            window.open(this.url, this.target);
+            window.open(this.specs.url, this.specs.target);
         }
     }
     render() {
@@ -283,9 +297,9 @@ class SectionLink extends React.Component {
             <React.Fragment>
                 <div class='section-link'>
                     <a onClick={this.handleClick}>
-                        <img src={this.logo} onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} />
+                        <img src={this.specs.logo} onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} />
                     </a>
-                    <div style={this.arrowStyle} id={this.name + "-arrow"} class={this.arrowClassName}
+                    <div style={this.arrowStyle} id={this.specs.name + "-arrow"} class={this.arrowClassName}
                     ref={this.arrowRef}>
                     </div>
                 </div>
@@ -486,10 +500,7 @@ class AngularSection extends React.Component {
         let section_links = null;
         if (this.sectionLinks !== undefined && this.sectionLinks !== null && this.sectionLinks.length > 0) {
             section_links = this.sectionLinks.map((obj) => 
-              <SectionLink key={genKey(obj.name)} name={obj.name} 
-                url={obj.url} logo={obj.logo} state={this.state} 
-                hoverBG={obj.hoverBG} hoverBGName={obj.hoverBGName} 
-                parentBG={this.hoverBG} target={obj.target} childSetParentSectBGAndHoverText={this.childSetParentSectBGAndHoverText}
+              <SectionLink key={genKey(obj.name)} specs={obj} state={this.state} parentBG={this.hoverBG} childSetParentSectBGAndHoverText={this.childSetParentSectBGAndHoverText}
             />);
         }
         let banner_text = this.getBannerTextHTML();
@@ -737,7 +748,6 @@ class SectionList extends React.Component {
                 <section class={this.handleClassName()}>
                     {my_sections}
                 </section>
-                <BottomSpawnModal modalSpecs={this.modalSpecs} />
             </React.Fragment>
         );
     }

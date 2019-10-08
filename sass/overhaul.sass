@@ -321,15 +321,16 @@ section.page-header
             
 // Styling for Bottom Spawn Modal
 
-$modal-H-font-size: 1.6rem
-$modal-menu-bar-H: $modal-H-font-size + 0.6rem
-$modal-menu-close-padding: 0.3rem
+$modal-H-font-size: 1.4rem
+$modal-menu-bar-H: $modal-H-font-size + 0.8rem
+$modal-menu-close-padding: 0.4rem
 $modal-menu-opacity: 0.9
 =modal-H-font()
     font-family: "Montserrat", monospace, sans-serif
     font-weight: 500
     color: white
     padding-left: 5%
+    padding-top: 0.15rem
     opacity: $modal-menu-opacity
 
 .bottom-spawn-modal
@@ -341,6 +342,8 @@ $modal-menu-opacity: 0.9
     opacity: 0.5
     z-index: 0
     display: none
+    overflow-x: hidden
+    overflow-y: hidden
     +default_transition()
     &.show
         display: block
