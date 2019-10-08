@@ -109,6 +109,21 @@ function repeatStringNTimes(str, n, sep) {
 
 function checkObjAndKey(o, k) {
   return o != null && k in o;
+} // Old domain we do not want users using any further
+// Make sure it is in lowercase or redirect will fail!
+
+
+var oldDomain = "rawgit"; // Redirect the user to the github pages location of the site if the url is of domain rawgit
+
+function redirectToGitHubPages() {
+  var curDomain = window.location.hostname;
+
+  if (curDomain.toLowerCase() === oldDomain) {
+    // Where to redirect to
+    var updatedLoc = "https://jmathieu14.github.io/Portfolio/html/home.html";
+    console.log("Must redirect!");
+    window.open(updatedLoc, "_self");
+  }
 } // End of Utility functions -----------------------------------------
 // Begin custom react components
 // A divider for our Angular Sections
@@ -1084,6 +1099,7 @@ function (_React$Component11) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      redirectToGitHubPages();
       this.showSectionList = true;
     }
   }, {
