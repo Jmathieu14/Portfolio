@@ -93,6 +93,7 @@ const oldDomain = "rawgit";
 // Redirect the user to the github pages location of the site if the url is of domain rawgit
 function redirectToGitHubPages() {
     let curDomain = window.location.hostname;
+    console.log(curDomain);
     if (curDomain.toLowerCase() === oldDomain) {
         // Where to redirect to
         const updatedLoc = "https://jmathieu14.github.io/Portfolio/html/home.html";
