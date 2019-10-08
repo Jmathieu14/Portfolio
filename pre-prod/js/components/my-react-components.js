@@ -86,6 +86,21 @@ function repeatStringNTimes(str, n, sep) {
 function checkObjAndKey(o, k) {
     return o != null && k in o;
 }
+
+// Old domain we do not want users using any further
+// Make sure it is in lowercase or redirect will fail!
+const oldDomain = "rawgit.com";
+// Redirect the user to the github pages location of the site if the url is of domain rawgit
+function redirectToGitHubPages() {
+    let curDomain = window.location.hostname;
+    console.log(curDomain);
+    if (curDomain.toLowerCase() === oldDomain) {
+        // Where to redirect to
+        const updatedLoc = "https://jmathieu14.github.io/Portfolio/html/home.html";
+        console.log("Redirecting to most up to date page");
+        window.open(updatedLoc, "_self");
+    }
+}
 // End of Utility functions -----------------------------------------
 
 // Begin custom react components
@@ -712,6 +727,7 @@ class SectionList extends React.Component {
         }
     }
     componentDidMount() {
+        redirectToGitHubPages();
         this.showSectionList = true;
     }
     render() {
