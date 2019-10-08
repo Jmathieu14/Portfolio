@@ -89,7 +89,7 @@ function checkObjAndKey(o, k) {
 
 // Old domain we do not want users using any further
 // Make sure it is in lowercase or redirect will fail!
-const oldDomain = "rawgit";
+const oldDomain = "rawgit.com";
 // Redirect the user to the github pages location of the site if the url is of domain rawgit
 function redirectToGitHubPages() {
     let curDomain = window.location.hostname;
