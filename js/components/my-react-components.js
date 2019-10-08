@@ -117,11 +117,12 @@ var oldDomain = "rawgit"; // Redirect the user to the github pages location of t
 
 function redirectToGitHubPages() {
   var curDomain = window.location.hostname;
+  console.log(curDomain);
 
   if (curDomain.toLowerCase() === oldDomain) {
     // Where to redirect to
     var updatedLoc = "https://jmathieu14.github.io/Portfolio/html/home.html";
-    console.log("Must redirect!");
+    console.log("Redirecting to most up to date page");
     window.open(updatedLoc, "_self");
   }
 } // End of Utility functions -----------------------------------------
