@@ -100,6 +100,7 @@ function redirectToGitHubPages() {
         window.open(updatedLoc, "_self");
     }
 }
+var GLOBAL_IMAGE_SLIDER = null;
 // End of Utility functions -----------------------------------------
 
 // Begin custom react components
@@ -321,17 +322,17 @@ class JssorImageSlider extends React.Component {
         super(props);
         this.specs = props.specs;
         this.images = this.specs.images;
-        this.options = { $AutoPlay: 1, $FillMode: 1 };
+        this.options = { $AutoPlay: 1, $FillMode: 5, $Idle: 5000 };
         this.slider = null;
         this.id = props.id;
     }
     componentDidMount() {
-        new $JssorSlider$(this.id, this.options);
+        GLOBAL_IMAGE_SLIDER = new $JssorSlider$(this.id, this.options);
     }
     render() {
         let imageElements = this.images.map((obj) => 
             <div>
-                <img data-u="image" src={obj.path} />
+                <img alt="" data-u="image" src={obj.path} />
             </div>
         );
         return (
