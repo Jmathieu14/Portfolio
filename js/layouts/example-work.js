@@ -25,6 +25,7 @@ var pageLayout = {
       opacity: myOpacity
     }
   },
+  "modalSpecs": {},
   "angular-sections": [{
     "name": "work @ sparksales",
     "hoverBGName": "lightGreyBlue",
@@ -34,25 +35,33 @@ var pageLayout = {
     },
     "sectionLinks": [{
       "name": "screenshots",
-      "url": "modal",
+      "url": "",
       "logo": "../img/page/Google Icons/folderx2_36dp.png",
       "hoverBG": "#00BA65",
       "hoverBGName": "sparkGreen",
       "target": "MODAL",
-      "imageSliderSpecs": {
-        "images": [{
-          "path": "../img/Sparksales/Step 1 signup process.png",
-          "text": ""
-        }, {
-          "path": "../img/Sparksales/Step 2 signup process.png",
-          "text": ""
-        }, {
-          "path": "../img/Sparksales/Step 3 signup process.png",
-          "text": ""
-        }, {
-          "path": "../img/Sparksales/Step 4 signup process.png",
-          "text": ""
-        }]
+      "modalSpecs": {
+        "contentType": "imageSlider",
+        "title": "screenshots of work @ sparksales",
+        "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
+        "imageSliderSpecs": {
+          "images": [{
+            "path": "../img/page/Google Icons/video_icon.png",
+            "text": "weh"
+          }, {
+            "path": "../img/Sparksales/Step 1 signup process.png",
+            "text": ""
+          }, {
+            "path": "../img/Sparksales/Step 2 signup process.png",
+            "text": ""
+          }, {
+            "path": "../img/Sparksales/Step 3 signup process.png",
+            "text": ""
+          }, {
+            "path": "../img/Sparksales/Step 4 signup process.png",
+            "text": ""
+          }]
+        }
       }
     }, {
       "name": "videos",
@@ -81,4 +90,4 @@ ReactDOM.render(React.createElement(React.Fragment, null, React.createElement(Pa
   sections: pageLayout["angular-sections"]
 }), React.createElement(SectionList, {
   sections: pageLayout["angular-sections"]
-})), renderTarget);
+}), React.createElement(ModalRenderTarget, null)), renderTarget);

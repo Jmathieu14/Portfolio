@@ -358,6 +358,7 @@ section.page-header .mobile-show-tabs-icon img {
 }
 .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-close:hover {
   background-color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
   transition: all 0.2s linear;
 }
 .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-content {
