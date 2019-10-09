@@ -197,7 +197,7 @@ class BottomSpawnModal extends React.Component {
     render() {
         let imageSlider = null;
         if (checkObjAndKey(this.specs, 'imageSliderSpecs') && this.specs.imageSliderSpecs !== null) {
-            imageSlider = <MyImageSlider specs={this.specs.imageSliderSpecs}
+            imageSlider = <ImageSlider specs={this.specs.imageSliderSpecs}
             id={genKey("IMAGE_SLIDER")} 
             key={genKey("IMAGE_SLIDER_KEY")}
             />
@@ -318,7 +318,7 @@ function SectionLinkHoverText(props) {
     );
 }
 
-class MyImageSlider extends React.Component {
+class ImageSlider extends React.Component {
     constructor(props) {
         super(props);
         this.specs = props.specs;
@@ -330,22 +330,18 @@ class MyImageSlider extends React.Component {
         }
     }
     componentDidMount() {
+        $('#' + this.id).slick(this.settings);
     }
     render() {
         let imageElements = this.images.map((obj) => 
-            <div>
+            <div key={genKey(obj.text)}>
                 <img alt={obj.text} src={obj.path} />
             </div>
         );
-        var settings = {dots: true}
         return (
-            <React.Fragment>
-                <div id={this.id} className="ec-image-slider container">
-                    <Slider {...settings}>
-                        {imageElements}
-                    </Slider>
-                </div>
-            </React.Fragment>
+            <div id={this.id} className="ec-image-slider container">
+                {imageElements}
+            </div>
         );
     }
 }
@@ -378,20 +374,20 @@ class ExpandableContent extends React.Component {
         if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
             let imageSlider = null;
             if (checkObjAndKey(this.eCSpecs, 'imageSliderSpecs') && this.eCSpecs.imageSliderSpecs !== null) {
-                imageSlider = <MyImageSlider specs={this.eCSpecs.imageSliderSpecs}
+                imageSlider = <ImageSlider specs={this.eCSpecs.imageSliderSpecs}
                 id={genKey("IMAGE_SLIDER")} 
                 key={genKey("IMAGE_SLIDER_KEY")}
                 />
             }
             return (
-                <div class={this.getECClassName()}>
-                    <div class="ec-menu-bar">
-                        <button onClick={this.updateParentObject} class="ec-button">
-                            <img class="ec-icon" src={this.eCSpecs['icon']}>
+                <div className={this.getECClassName()}>
+                    <div className="ec-menu-bar">
+                        <button onClick={this.updateParentObject} className="ec-button">
+                            <img className="ec-icon" src={this.eCSpecs['icon']}>
                             </img>
                         </button>
                     </div>
-                    <div class="expandable-content">
+                    <div className="expandable-content">
                         {imageSlider}
                     </div>
                 </div>

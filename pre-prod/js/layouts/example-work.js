@@ -44,10 +44,6 @@ const pageLayout = {
                         "imageSliderSpecs": {
                             "images": [
                                 {
-                                    "path": "../img/page/Google Icons/video_icon.png",
-                                    "text": "weh"
-                                },
-                                {
                                     "path": "../img/Sparksales/Step 1 signup process.png",
                                     "text": ""
                                 },
