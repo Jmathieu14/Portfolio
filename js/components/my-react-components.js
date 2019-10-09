@@ -277,7 +277,7 @@ function (_React$Component2) {
       var imageSlider = null;
 
       if (checkObjAndKey(this.specs, 'imageSliderSpecs') && this.specs.imageSliderSpecs !== null) {
-        imageSlider = React.createElement(JssorImageSlider, {
+        imageSlider = React.createElement(ImageSlider, {
           specs: this.specs.imageSliderSpecs,
           id: genKey("IMAGE_SLIDER"),
           key: genKey("IMAGE_SLIDER_KEY")
@@ -450,34 +450,27 @@ function SectionLinkHoverText(props) {
   }, repeatStringNTimes(props.specs['text'], 200, ' '));
 }
 
-var JssorImageSlider =
+var ImageSlider =
 /*#__PURE__*/
 function (_React$Component5) {
-  _inherits(JssorImageSlider, _React$Component5);
+  _inherits(ImageSlider, _React$Component5);
 
-  function JssorImageSlider(props) {
+  function ImageSlider(props) {
     var _this5;
 
-    _classCallCheck(this, JssorImageSlider);
+    _classCallCheck(this, ImageSlider);
 
-    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(JssorImageSlider).call(this, props));
+    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(ImageSlider).call(this, props));
     _this5.specs = props.specs;
     _this5.images = _this5.specs.images;
-    _this5.options = {
-      $AutoPlay: 1,
-      $FillMode: 5,
-      $Idle: 5000
-    };
     _this5.slider = null;
     _this5.id = props.id;
     return _this5;
   }
 
-  _createClass(JssorImageSlider, [{
+  _createClass(ImageSlider, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      GLOBAL_IMAGE_SLIDER = new $JssorSlider$(this.id, this.options);
-    }
+    value: function componentDidMount() {}
   }, {
     key: "render",
     value: function render() {
@@ -497,7 +490,7 @@ function (_React$Component5) {
     }
   }]);
 
-  return JssorImageSlider;
+  return ImageSlider;
 }(React.Component);
 
 var ExpandableContent =

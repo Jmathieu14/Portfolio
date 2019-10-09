@@ -197,7 +197,7 @@ class BottomSpawnModal extends React.Component {
     render() {
         let imageSlider = null;
         if (checkObjAndKey(this.specs, 'imageSliderSpecs') && this.specs.imageSliderSpecs !== null) {
-            imageSlider = <JssorImageSlider specs={this.specs.imageSliderSpecs}
+            imageSlider = <ImageSlider specs={this.specs.imageSliderSpecs}
             id={genKey("IMAGE_SLIDER")} 
             key={genKey("IMAGE_SLIDER_KEY")}
             />
@@ -317,17 +317,15 @@ function SectionLinkHoverText(props) {
     );
 }
 
-class JssorImageSlider extends React.Component {
+class ImageSlider extends React.Component {
     constructor(props) {
         super(props);
         this.specs = props.specs;
         this.images = this.specs.images;
-        this.options = { $AutoPlay: 1, $FillMode: 5, $Idle: 5000 };
         this.slider = null;
         this.id = props.id;
     }
     componentDidMount() {
-        GLOBAL_IMAGE_SLIDER = new $JssorSlider$(this.id, this.options);
     }
     render() {
         let imageElements = this.images.map((obj) => 
