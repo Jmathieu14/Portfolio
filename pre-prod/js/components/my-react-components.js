@@ -197,7 +197,7 @@ class BottomSpawnModal extends React.Component {
     render() {
         let imageSlider = null;
         if (checkObjAndKey(this.specs, 'imageSliderSpecs') && this.specs.imageSliderSpecs !== null) {
-            imageSlider = <ImageSlider specs={this.specs.imageSliderSpecs}
+            imageSlider = <MyImageSlider specs={this.specs.imageSliderSpecs}
             id={genKey("IMAGE_SLIDER")} 
             key={genKey("IMAGE_SLIDER_KEY")}
             />
@@ -287,7 +287,8 @@ class SectionLink extends React.Component {
             // Remove previous modal if it exists
             ReactDOM.unmountComponentAtNode(modalTarget);
             ReactDOM.render(
-                <BottomSpawnModal specs={this.specs.modalSpecs} state={initialState} />
+                <BottomSpawnModal specs={this.specs.modalSpecs} state={initialState}>
+                </BottomSpawnModal>
             , modalTarget);
         } else {
             window.open(this.specs.url, this.specs.target);
@@ -317,28 +318,34 @@ function SectionLinkHoverText(props) {
     );
 }
 
-class ImageSlider extends React.Component {
+class MyImageSlider extends React.Component {
     constructor(props) {
         super(props);
         this.specs = props.specs;
         this.images = this.specs.images;
         this.slider = null;
         this.id = props.id;
+        this.settings = {
+            dots: true
+        }
     }
     componentDidMount() {
     }
     render() {
         let imageElements = this.images.map((obj) => 
             <div>
-                <img alt="" data-u="image" src={obj.path} />
+                <img alt={obj.text} src={obj.path} />
             </div>
         );
+        var settings = {dots: true}
         return (
-            <div id={this.id} class="ec-image-slider">
-                <div data-u="slides">
-                    {imageElements}
+            <React.Fragment>
+                <div id={this.id} className="ec-image-slider container">
+                    <Slider {...settings}>
+                        {imageElements}
+                    </Slider>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }
@@ -371,7 +378,7 @@ class ExpandableContent extends React.Component {
         if (checkObjAndKey(this.eCSpecs, 'show') && this.eCSpecs['show']) {
             let imageSlider = null;
             if (checkObjAndKey(this.eCSpecs, 'imageSliderSpecs') && this.eCSpecs.imageSliderSpecs !== null) {
-                imageSlider = <JssorImageSlider specs={this.eCSpecs.imageSliderSpecs}
+                imageSlider = <MyImageSlider specs={this.eCSpecs.imageSliderSpecs}
                 id={genKey("IMAGE_SLIDER")} 
                 key={genKey("IMAGE_SLIDER_KEY")}
                 />
@@ -680,14 +687,14 @@ class PageHeader extends React.Component {
     }
     render() {
         return (
-            <section id={this.key} class="page-header" style={this.getStyle()}>
-                <div class="header-logo-wrapper" style={this.pageHeaderSpecs['logoStyle']}>
+            <section id={this.key} className="page-header" style={this.getStyle()}>
+                <div className="header-logo-wrapper" style={this.pageHeaderSpecs['logoStyle']}>
                     <a href={this.pageHeaderSpecs['logoURL']}>
                         <img src={this.pageHeaderSpecs['logo']}>
                         </img>
                     </a>
                 </div>            
-                <div class="header-title" style={this.getHeaderStyle()}>
+                <div className="header-title" style={this.getHeaderStyle()}>
                     {this.pageHeaderSpecs['title']}
                 </div>
                 <HeaderTabs sections={this.sections} moreIcon={this.pageHeaderSpecs['mobileMoreIcon']} moreStyle={this.pageHeaderSpecs['mobileMoreStyle']} />
