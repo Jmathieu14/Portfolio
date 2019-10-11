@@ -93,6 +93,42 @@ const pageLayout = {
                 }
             ],
             "opacityAsTab": myOpacityStyle
+        },
+        {
+            "name": "work @ AGO",
+            "hoverBGName": "matteLightGrey",
+            "hoverBG": "#DDDDCC",
+            "bannerSpecs": {
+                "bannerText": "work @ AGO"
+            },
+            "sectionLinks": [
+                {
+                    "name": "screenshots",
+                    "url": "",
+                    "logo": "../img/page/Google Icons/baseline_photo_black_48dp.png",
+                    "hoverBG": "#14558F",
+                    "hoverBGName": "agoBlue",
+                    "target": "MODAL",
+                    "modalSpecs": {
+                        "contentType": "imageSlider",
+                        "title": "screenshots of work @ AGO",
+                        "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
+                        "imageSliderSpecs": {
+                            "images": [
+                                {
+                                    "path": "../img/AGO/MLU after.png",
+                                    "text": "Improved MLU Form"
+                                },
+                                {
+                                    "path": "../img/AGO/OML.png",
+                                    "text": "Improved OML Form"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ],
+            "opacityAsTab": myOpacityStyle
         }
     ]
 }
