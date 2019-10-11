@@ -105,7 +105,10 @@ $ang-content-lr-padding: 5%
             text-transform: uppercase
             overflow-wrap: break-word
             padding-top: 5%
-            height: calc(95% - 2rem)
+            top: 20%
+            height: 55%
+            margin: auto !important
+            vertical-align: middle
     .expandable-content-wrapper
         max-height: 100%
         background: none
@@ -136,12 +139,6 @@ $ang-content-lr-padding: 5%
             +default_transition()
         .expandable-content
             max-height: 100%
-            .ec-image-slider
-                max-height: 100% !important
-                div > div > div:nth-child(2)
-                    div > div
-                        img
-                            object-fit: scale-down
 
 $sl-dimensions: 20%
 $arrow-size: 0.5rem
@@ -416,11 +413,12 @@ $ss-max-width: 1336px
     .slick-prev, .slick-next
         z-index: 100
         &:before
-            color: rgba(0, 0, 0, .50) !important
+            color: rgba(0, 0, 0, .40) !important
+            font-size: 1.4rem
     .slick-prev
-        left: 1rem
+        left: 1.4rem
     .slick-next
-        right: 1rem
+        right: 1.4rem
         
         
 // Mobile Stylings

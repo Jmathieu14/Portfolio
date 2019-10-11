@@ -44,20 +44,40 @@ const pageLayout = {
                         "imageSliderSpecs": {
                             "images": [
                                 {
+                                    "path": "../img/Sparksales/Achievements Page.png",
+                                    "text": "Achievements Page"
+                                },
+                                {
+                                    "path": "../img/Sparksales/Agent Dashboard.png",
+                                    "text": "Sales Agent Dashboard"
+                                },
+                                {
+                                    "path": "../img/Sparksales/Agent Resources Page.png",
+                                    "text": "Sales Agent Resource Page"
+                                },
+                                {
+                                    "path": "../img/Sparksales/Welcome page - first page client sees on first login.png",
+                                    "text": "Client Welcome Page"
+                                },
+                                {
                                     "path": "../img/Sparksales/Step 1 signup process.png",
-                                    "text": ""
+                                    "text": "Client Setup Process: Step 1"
                                 },
                                 {
                                     "path": "../img/Sparksales/Step 2 signup process.png",
-                                    "text": ""
+                                    "text": "Client Setup Process: Step 2"
                                 },
                                 {
                                     "path": "../img/Sparksales/Step 3 signup process.png",
-                                    "text": ""
+                                    "text": "Client Setup Process: Step 3"
+                                },
+                                {
+                                    "path": "../img/Sparksales/Step 3 reminder for client.png",
+                                    "text": "Client Setup Process: Step 3 | Reminder"
                                 },
                                 {
                                     "path": "../img/Sparksales/Step 4 signup process.png",
-                                    "text": ""
+                                    "text": "Client Setup Process: Step 4"
                                 }                        
                             ]
                         }

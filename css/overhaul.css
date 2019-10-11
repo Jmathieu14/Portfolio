@@ -86,7 +86,10 @@ html, body, .section-list, #react-content {
   text-transform: uppercase;
   overflow-wrap: break-word;
   padding-top: 5%;
-  height: calc(95% - 2rem);
+  top: 20%;
+  height: 55%;
+  margin: auto !important;
+  vertical-align: middle;
 }
 .angular-section .expandable-content-wrapper {
   max-height: 100%;
@@ -124,12 +127,6 @@ html, body, .section-list, #react-content {
 }
 .angular-section .expandable-content-wrapper .expandable-content {
   max-height: 100%;
-}
-.angular-section .expandable-content-wrapper .expandable-content .ec-image-slider {
-  max-height: 100% !important;
-}
-.angular-section .expandable-content-wrapper .expandable-content .ec-image-slider div > div > div:nth-child(2) div > div img {
-  object-fit: scale-down;
 }
 
 .section-links-wrapper {
@@ -400,13 +397,14 @@ section.page-header .mobile-show-tabs-icon img {
   z-index: 100;
 }
 .ec-image-slider .slick-prev:before, .ec-image-slider .slick-next:before {
-  color: rgba(0, 0, 0, 0.5) !important;
+  color: rgba(0, 0, 0, 0.4) !important;
+  font-size: 1.4rem;
 }
 .ec-image-slider .slick-prev {
-  left: 1rem;
+  left: 1.4rem;
 }
 .ec-image-slider .slick-next {
-  right: 1rem;
+  right: 1.4rem;
 }
 
 @media only screen and (max-width: 450px) {
