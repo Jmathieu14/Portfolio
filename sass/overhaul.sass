@@ -438,6 +438,9 @@ $mobile-page-header-font-size: $page-header-font-size * 1.5
 $mobile-page-header-H: $page-header-H * 1.5
 $mobile-menu-vert-padding: 0.8rem
 $mobile-menu-option-padding: $mobile-menu-vert-padding / 2
+=mobile-ang-content-width()
+    width: 65%
+    left: calc(35%/2)
 @media only screen and (max-width: $phone-layout-enable)
     section.page-header
         height: $mobile-page-header-H
@@ -480,20 +483,20 @@ $mobile-menu-option-padding: $mobile-menu-vert-padding / 2
         padding-bottom: $mobile-as-bottom-padding
         padding-top: $mobile-as-top-padding
         .angular-content
-            .banner-title-img
+            .banner-title-img, .banner-title-text
                 max-width: 100%
                 width: 100%
                 height: $mobile-banner-img-H
                 img
                     height: auto
-                    width: 55%
-                    left: calc(45%/2)
+                    +mobile-ang-content-width()
+            .banner-title-text
+                text-align: center
             .section-links-wrapper
                 max-width: 100%
-                width: 55%
                 float: left
-                left: calc(45%/2)
                 height: $mobile-sl-wrapper-H
+                +mobile-ang-content-width()
                 .section-links-header
                     float: left
                     font-size: $mobile-sl-font-size
@@ -508,6 +511,15 @@ $mobile-menu-option-padding: $mobile-menu-vert-padding / 2
                     a, a img
                         max-height: 100%
                         height: $mobile-sl-H
+    .bottom-spawn-modal
+        .bs-modal-menu-bar
+            overflow-y: hidden
+            .bs-modal-header
+                overflow: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
+                width: 75%
+
 
 $super-mobile-width: 330px
 $super-mobile-sl-font-size:0.8rem
@@ -522,3 +534,10 @@ $super-mobile-sl-H: $sl-h-height * 1.5
                     height: $super-mobile-sl-H
                     a, a img
                         height: $super-mobile-sl-H
+    .bottom-spawn-modal
+        .bs-modal-menu-bar
+            .bs-modal-header
+                width: 75%
+                padding-left: 2%
+            .bs-modal-close
+                margin-right: 2%

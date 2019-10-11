@@ -39,7 +39,7 @@ const pageLayout = {
                     "target": "MODAL",
                     "modalSpecs": {
                         "contentType": "imageSlider",
-                        "title": "screenshots of work @ sparksales",
+                        "title": "ex. of work @ sparksales",
                         "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
                         "imageSliderSpecs": {
                             "images": [
@@ -111,7 +111,7 @@ const pageLayout = {
                     "target": "MODAL",
                     "modalSpecs": {
                         "contentType": "imageSlider",
-                        "title": "screenshots of work @ AGO",
+                        "title": "ex. of work @ AGO",
                         "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
                         "imageSliderSpecs": {
                             "images": [
