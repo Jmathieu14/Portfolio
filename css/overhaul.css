@@ -368,7 +368,7 @@ section.page-header .mobile-show-tabs-icon img {
   height: 100%;
   user-select: none;
   overflow-y: overlay;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .ec-image-slider:focus {
   outline: none;
