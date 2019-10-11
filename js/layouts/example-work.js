@@ -36,7 +36,7 @@ var pageLayout = {
     "sectionLinks": [{
       "name": "screenshots",
       "url": "",
-      "logo": "../img/page/Google Icons/folderx2_36dp.png",
+      "logo": "../img/page/Google Icons/baseline_photo_black_48dp.png",
       "hoverBG": "#00BA65",
       "hoverBGName": "sparkGreen",
       "target": "MODAL",
@@ -46,17 +46,32 @@ var pageLayout = {
         "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
         "imageSliderSpecs": {
           "images": [{
+            "path": "../img/Sparksales/Achievements Page.png",
+            "text": "Achievements Page"
+          }, {
+            "path": "../img/Sparksales/Agent Dashboard.png",
+            "text": "Sales Agent Dashboard"
+          }, {
+            "path": "../img/Sparksales/Agent Resources Page.png",
+            "text": "Sales Agent Resource Page"
+          }, {
+            "path": "../img/Sparksales/Welcome page - first page client sees on first login.png",
+            "text": "Client Welcome Page"
+          }, {
             "path": "../img/Sparksales/Step 1 signup process.png",
-            "text": ""
+            "text": "Client Setup Process: Step 1"
           }, {
             "path": "../img/Sparksales/Step 2 signup process.png",
-            "text": ""
+            "text": "Client Setup Process: Step 2"
           }, {
             "path": "../img/Sparksales/Step 3 signup process.png",
-            "text": ""
+            "text": "Client Setup Process: Step 3"
+          }, {
+            "path": "../img/Sparksales/Step 3 reminder for client.png",
+            "text": "Client Setup Process: Step 3 | Reminder"
           }, {
             "path": "../img/Sparksales/Step 4 signup process.png",
-            "text": ""
+            "text": "Client Setup Process: Step 4"
           }]
         }
       }
@@ -68,10 +83,36 @@ var pageLayout = {
       "hoverBGName": "sparkBlueGreen",
       "target": "_blank"
     }],
-    "expandableContentSpecs": {
-      "show": false,
-      "icon": "../img/page/Google Icons/expand_more-24px.svg"
+    "opacityAsTab": myOpacityStyle
+  }, {
+    "name": "work @ AGO",
+    "hoverBGName": "matteLightGrey",
+    "hoverBG": "#DDDDCC",
+    "bannerSpecs": {
+      "bannerText": "work @ AGO"
     },
+    "sectionLinks": [{
+      "name": "screenshots",
+      "url": "",
+      "logo": "../img/page/Google Icons/baseline_photo_black_48dp.png",
+      "hoverBG": "#14558F",
+      "hoverBGName": "agoBlue",
+      "target": "MODAL",
+      "modalSpecs": {
+        "contentType": "imageSlider",
+        "title": "screenshots of work @ AGO",
+        "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
+        "imageSliderSpecs": {
+          "images": [{
+            "path": "../img/AGO/MLU after.png",
+            "text": "Improved MLU Form"
+          }, {
+            "path": "../img/AGO/OML.png",
+            "text": "Improved OML Form"
+          }]
+        }
+      }
+    }],
     "opacityAsTab": myOpacityStyle
   }]
 }; // Variable that stores DOM element in which all react components will be rendered under

@@ -1,1 +1,0 @@
-const JssorSlider = require('jssor-slider');

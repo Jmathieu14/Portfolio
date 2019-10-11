@@ -1,7 +1,7 @@
 // Concatenate react-require.js with my-react-components.js for testing purposes
 const concat = require('concat-files');
 
-let fileList = ["js/headers/react-require.js", "js/headers/jssor-slider-require.js", "js/components/my-react-components.js", "js/footers/mrc-exports.js"];
+let fileList = ["js/headers/react-require.js", "js/components/my-react-components.js", "js/footers/mrc-exports.js"];
 
 let destination = "concat/files/test-ready-mrc.js";
 

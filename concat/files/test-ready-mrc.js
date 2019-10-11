@@ -5,8 +5,6 @@ var React = require('react');
 
 var ReactDOM = require('react-dom'); // Used to be joined into other files, negating the need to write this into each file for test purposes"use strict";
 
-var JssorSlider = require('jssor-slider');"use strict";
-
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -116,10 +114,26 @@ function repeatStringNTimes(str, n, sep) {
 
 function checkObjAndKey(o, k) {
   return o != null && k in o;
-} // End of Utility functions -----------------------------------------
+} // Old domain we do not want users using any further
+// Make sure it is in lowercase or redirect will fail!
+
+
+var oldDomain = "rawgit.com"; // Redirect the user to the github pages location of the site if the url is of domain rawgit
+
+function redirectToGitHubPages() {
+  var curDomain = window.location.hostname;
+
+  if (curDomain.toLowerCase() === oldDomain) {
+    // Where to redirect to
+    var updatedLoc = "https://jmathieu14.github.io/Portfolio/html/home.html";
+    console.log("Redirecting to most up to date page");
+    window.open(updatedLoc, "_self");
+  }
+}
+
+var GLOBAL_IMAGE_SLIDER = null; // End of Utility functions -----------------------------------------
 // Begin custom react components
 // A divider for our Angular Sections
-
 
 var AngularDivider =
 /*#__PURE__*/
@@ -195,7 +209,14 @@ function (_React$Component) {
   }]);
 
   return AngularDivider;
-}(React.Component);
+}(React.Component); // Return html element that will serve as the target to render a modal on activation
+
+
+function ModalRenderTarget(props) {
+  return React.createElement("div", {
+    id: "MODAL_RENDER_TARGET"
+  });
+}
 
 var BottomSpawnModal =
 /*#__PURE__*/
@@ -208,10 +229,8 @@ function (_React$Component2) {
     _classCallCheck(this, BottomSpawnModal);
 
     _this2 = _possibleConstructorReturn(this, _getPrototypeOf(BottomSpawnModal).call(this, props));
-    _this2.specs = props.modalSpecs;
-    _this2.state = {
-      show: false
-    };
+    _this2.specs = props.specs;
+    _this2.state = props.state;
     _this2.toggleState = _this2.toggleState.bind(_assertThisInitialized(_this2));
     return _this2;
   }
@@ -263,7 +282,7 @@ function (_React$Component2) {
       var imageSlider = null;
 
       if (checkObjAndKey(this.specs, 'imageSliderSpecs') && this.specs.imageSliderSpecs !== null) {
-        imageSlider = React.createElement(JssorImageSlider, {
+        imageSlider = React.createElement(ImageSlider, {
           specs: this.specs.imageSliderSpecs,
           id: genKey("IMAGE_SLIDER"),
           key: genKey("IMAGE_SLIDER_KEY")
@@ -327,23 +346,22 @@ function (_React$Component4) {
     _classCallCheck(this, SectionLink);
 
     _this3 = _possibleConstructorReturn(this, _getPrototypeOf(SectionLink).call(this, props));
-    _this3.url = props.url;
-    _this3.logo = props.logo;
-    _this3.name = props.name;
-    _this3.hoverBG = props.hoverBG;
-    _this3.hoverBGName = props.hoverBGName;
+    _this3.specs = props.specs; // this.specs has the following keys:
+    // name, url, logo, hoverBG, hoverBGname, target
+    // ---------------------------------------------
+    // it sometimes has:
+    // modalSpecs
+
     _this3.parentBG = props.parentBG;
     _this3.childSetParentSectBGAndHoverText = props.childSetParentSectBGAndHoverText;
     _this3.mouseEnterLogo = _this3.mouseEnterLogo.bind(_assertThisInitialized(_this3));
     _this3.mouseLeaveLogo = _this3.mouseLeaveLogo.bind(_assertThisInitialized(_this3));
     _this3.handleClick = _this3.handleClick.bind(_assertThisInitialized(_this3));
     _this3.arrowClassName = "sl-hover-arrow";
-    _this3.arrowID = props.arrowID;
     _this3.arrowRef = React.createRef();
     _this3.arrowStyle = {
       width: "0.5rem"
     };
-    _this3.target = props.target;
 
     _this3.centerArrow();
 
@@ -377,8 +395,8 @@ function (_React$Component4) {
       // background color is not overwritten by the delayed by the dehovering of this link
       var priority = 1;
       var hoverTextShow = true;
-      var hoverText = this.name;
-      this.props.childSetParentSectBGAndHoverText("hover", this.hoverBG, priority, hoverText, hoverTextShow);
+      var hoverText = this.specs.name;
+      this.props.childSetParentSectBGAndHoverText("hover", this.specs.hoverBG, priority, hoverText, hoverTextShow);
     }
   }, {
     key: "mouseLeaveLogo",
@@ -386,16 +404,25 @@ function (_React$Component4) {
       // Set priority to 0 so that this does not overwrite mouse enter of a different link
       var priority = 0;
       var hoverTextShow = false;
-      var hoverText = this.name;
+      var hoverText = this.specs.name;
       this.props.childSetParentSectBGAndHoverText("hover", this.parentBG, priority, hoverText, hoverTextShow);
     }
   }, {
     key: "handleClick",
     value: function handleClick() {
-      if (this.target === "MODAL") {
-        console.log("Yo open this modal boi!");
+      if (this.specs.target === "MODAL" && checkObjAndKey(this.specs, "modalSpecs")) {
+        var modalTarget = document.getElementById('MODAL_RENDER_TARGET');
+        var initialState = {
+          show: true
+        }; // Remove previous modal if it exists
+
+        ReactDOM.unmountComponentAtNode(modalTarget);
+        ReactDOM.render(React.createElement(BottomSpawnModal, {
+          specs: this.specs.modalSpecs,
+          state: initialState
+        }), modalTarget);
       } else {
-        window.open(this.url, this.target);
+        window.open(this.specs.url, this.specs.target);
       }
     }
   }, {
@@ -406,12 +433,12 @@ function (_React$Component4) {
       }, React.createElement("a", {
         onClick: this.handleClick
       }, React.createElement("img", {
-        src: this.logo,
+        src: this.specs.logo,
         onMouseEnter: this.mouseEnterLogo,
         onMouseLeave: this.mouseLeaveLogo
       })), React.createElement("div", {
         style: this.arrowStyle,
-        id: this.name + "-arrow",
+        id: this.specs.name + "-arrow",
         "class": this.arrowClassName,
         ref: this.arrowRef
       })));
@@ -428,52 +455,52 @@ function SectionLinkHoverText(props) {
   }, repeatStringNTimes(props.specs['text'], 200, ' '));
 }
 
-var JssorImageSlider =
+var ImageSlider =
 /*#__PURE__*/
 function (_React$Component5) {
-  _inherits(JssorImageSlider, _React$Component5);
+  _inherits(ImageSlider, _React$Component5);
 
-  function JssorImageSlider(props) {
+  function ImageSlider(props) {
     var _this5;
 
-    _classCallCheck(this, JssorImageSlider);
+    _classCallCheck(this, ImageSlider);
 
-    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(JssorImageSlider).call(this, props));
+    _this5 = _possibleConstructorReturn(this, _getPrototypeOf(ImageSlider).call(this, props));
     _this5.specs = props.specs;
     _this5.images = _this5.specs.images;
-    _this5.options = {
-      $AutoPlay: 1,
-      $FillMode: 1
-    };
     _this5.slider = null;
     _this5.id = props.id;
+    _this5.settings = {
+      dots: true,
+      arrows: true
+    };
     return _this5;
   }
 
-  _createClass(JssorImageSlider, [{
+  _createClass(ImageSlider, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      new $JssorSlider$(this.id, this.options);
+      $('#' + this.id).slick(this.settings);
     }
   }, {
     key: "render",
     value: function render() {
       var imageElements = this.images.map(function (obj) {
-        return React.createElement("div", null, React.createElement("img", {
-          "data-u": "image",
+        return React.createElement("div", {
+          key: genKey(obj.text)
+        }, React.createElement("img", {
+          alt: obj.text,
           src: obj.path
         }));
       });
       return React.createElement("div", {
         id: this.id,
-        "class": "ec-image-slider"
-      }, React.createElement("div", {
-        "data-u": "slides"
-      }, imageElements));
+        className: "ec-image-slider container"
+      }, imageElements);
     }
   }]);
 
-  return JssorImageSlider;
+  return ImageSlider;
 }(React.Component);
 
 var ExpandableContent =
@@ -525,7 +552,7 @@ function (_React$Component6) {
         var imageSlider = null;
 
         if (checkObjAndKey(this.eCSpecs, 'imageSliderSpecs') && this.eCSpecs.imageSliderSpecs !== null) {
-          imageSlider = React.createElement(JssorImageSlider, {
+          imageSlider = React.createElement(ImageSlider, {
             specs: this.eCSpecs.imageSliderSpecs,
             id: genKey("IMAGE_SLIDER"),
             key: genKey("IMAGE_SLIDER_KEY")
@@ -533,17 +560,17 @@ function (_React$Component6) {
         }
 
         return React.createElement("div", {
-          "class": this.getECClassName()
+          className: this.getECClassName()
         }, React.createElement("div", {
-          "class": "ec-menu-bar"
+          className: "ec-menu-bar"
         }, React.createElement("button", {
           onClick: this.updateParentObject,
-          "class": "ec-button"
+          className: "ec-button"
         }, React.createElement("img", {
-          "class": "ec-icon",
+          className: "ec-icon",
           src: this.eCSpecs['icon']
         }))), React.createElement("div", {
-          "class": "expandable-content"
+          className: "expandable-content"
         }, imageSlider));
       } else return null;
     }
@@ -727,14 +754,9 @@ function (_React$Component7) {
         section_links = this.sectionLinks.map(function (obj) {
           return React.createElement(SectionLink, {
             key: genKey(obj.name),
-            name: obj.name,
-            url: obj.url,
-            logo: obj.logo,
+            specs: obj,
             state: _this9.state,
-            hoverBG: obj.hoverBG,
-            hoverBGName: obj.hoverBGName,
             parentBG: _this9.hoverBG,
-            target: obj.target,
             childSetParentSectBGAndHoverText: _this9.childSetParentSectBGAndHoverText
           });
         });
@@ -1006,17 +1028,17 @@ function (_React$Component10) {
     value: function render() {
       return React.createElement("section", {
         id: this.key,
-        "class": "page-header",
+        className: "page-header",
         style: this.getStyle()
       }, React.createElement("div", {
-        "class": "header-logo-wrapper",
+        className: "header-logo-wrapper",
         style: this.pageHeaderSpecs['logoStyle']
       }, React.createElement("a", {
         href: this.pageHeaderSpecs['logoURL']
       }, React.createElement("img", {
         src: this.pageHeaderSpecs['logo']
       }))), React.createElement("div", {
-        "class": "header-title",
+        className: "header-title",
         style: this.getHeaderStyle()
       }, this.pageHeaderSpecs['title']), React.createElement(HeaderTabs, {
         sections: this.sections,
@@ -1091,6 +1113,7 @@ function (_React$Component11) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      redirectToGitHubPages();
       this.showSectionList = true;
     }
   }, {
@@ -1111,9 +1134,7 @@ function (_React$Component11) {
       });
       return React.createElement(React.Fragment, null, React.createElement("section", {
         "class": this.handleClassName()
-      }, my_sections), React.createElement(BottomSpawnModal, {
-        modalSpecs: this.modalSpecs
-      }));
+      }, my_sections));
     }
   }]);
 
