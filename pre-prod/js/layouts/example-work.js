@@ -33,7 +33,7 @@ const pageLayout = {
                 {
                     "name": "screenshots",
                     "url": "",
-                    "logo": "../img/page/Google Icons/folderx2_36dp.png",
+                    "logo": "../img/page/Google Icons/baseline_photo_black_48dp.png",
                     "hoverBG": "#00BA65",
                     "hoverBGName": "sparkGreen",
                     "target": "MODAL",
@@ -92,10 +92,6 @@ const pageLayout = {
                     "target": "_blank"
                 }
             ],
-            "expandableContentSpecs": {
-                "show": false,
-                "icon": "../img/page/Google Icons/expand_more-24px.svg"
-            },
             "opacityAsTab": myOpacityStyle
         }
     ]
