@@ -465,28 +465,32 @@ function (_React$Component5) {
     _this5.images = _this5.specs.images;
     _this5.slider = null;
     _this5.id = props.id;
+    _this5.settings = {
+      dots: true
+    };
     return _this5;
   }
 
   _createClass(ImageSlider, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      $('#' + this.id).slick(this.settings);
+    }
   }, {
     key: "render",
     value: function render() {
       var imageElements = this.images.map(function (obj) {
-        return React.createElement("div", null, React.createElement("img", {
-          alt: "",
-          "data-u": "image",
+        return React.createElement("div", {
+          key: genKey(obj.text)
+        }, React.createElement("img", {
+          alt: obj.text,
           src: obj.path
         }));
       });
       return React.createElement("div", {
         id: this.id,
-        "class": "ec-image-slider"
-      }, React.createElement("div", {
-        "data-u": "slides"
-      }, imageElements));
+        className: "ec-image-slider container"
+      }, imageElements);
     }
   }]);
 
@@ -542,7 +546,7 @@ function (_React$Component6) {
         var imageSlider = null;
 
         if (checkObjAndKey(this.eCSpecs, 'imageSliderSpecs') && this.eCSpecs.imageSliderSpecs !== null) {
-          imageSlider = React.createElement(JssorImageSlider, {
+          imageSlider = React.createElement(ImageSlider, {
             specs: this.eCSpecs.imageSliderSpecs,
             id: genKey("IMAGE_SLIDER"),
             key: genKey("IMAGE_SLIDER_KEY")
@@ -550,17 +554,17 @@ function (_React$Component6) {
         }
 
         return React.createElement("div", {
-          "class": this.getECClassName()
+          className: this.getECClassName()
         }, React.createElement("div", {
-          "class": "ec-menu-bar"
+          className: "ec-menu-bar"
         }, React.createElement("button", {
           onClick: this.updateParentObject,
-          "class": "ec-button"
+          className: "ec-button"
         }, React.createElement("img", {
-          "class": "ec-icon",
+          className: "ec-icon",
           src: this.eCSpecs['icon']
         }))), React.createElement("div", {
-          "class": "expandable-content"
+          className: "expandable-content"
         }, imageSlider));
       } else return null;
     }
@@ -1018,17 +1022,17 @@ function (_React$Component10) {
     value: function render() {
       return React.createElement("section", {
         id: this.key,
-        "class": "page-header",
+        className: "page-header",
         style: this.getStyle()
       }, React.createElement("div", {
-        "class": "header-logo-wrapper",
+        className: "header-logo-wrapper",
         style: this.pageHeaderSpecs['logoStyle']
       }, React.createElement("a", {
         href: this.pageHeaderSpecs['logoURL']
       }, React.createElement("img", {
         src: this.pageHeaderSpecs['logo']
       }))), React.createElement("div", {
-        "class": "header-title",
+        className: "header-title",
         style: this.getHeaderStyle()
       }, this.pageHeaderSpecs['title']), React.createElement(HeaderTabs, {
         sections: this.sections,

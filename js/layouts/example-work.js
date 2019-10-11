@@ -46,9 +46,6 @@ var pageLayout = {
         "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
         "imageSliderSpecs": {
           "images": [{
-            "path": "../img/page/Google Icons/video_icon.png",
-            "text": "weh"
-          }, {
             "path": "../img/Sparksales/Step 1 signup process.png",
             "text": ""
           }, {
