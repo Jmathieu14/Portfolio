@@ -326,7 +326,8 @@ class ImageSlider extends React.Component {
         this.slider = null;
         this.id = props.id;
         this.settings = {
-            dots: true
+            dots: true,
+            arrows: true
         }
     }
     componentDidMount() {

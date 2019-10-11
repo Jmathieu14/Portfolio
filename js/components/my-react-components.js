@@ -466,7 +466,8 @@ function (_React$Component5) {
     _this5.slider = null;
     _this5.id = props.id;
     _this5.settings = {
-      dots: true
+      dots: true,
+      arrows: true
     };
     return _this5;
   }

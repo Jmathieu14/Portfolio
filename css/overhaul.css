@@ -29,17 +29,6 @@ html, body, .section-list, #react-content {
   padding: 0px;
 }
 
-.section-list {
-  position: relative;
-  opacity: 0;
-  transition: all 0.4s ease-out;
-}
-
-.section-list.show {
-  opacity: 1;
-  transition: all 0.4s ease-in;
-}
-
 .angular-section {
   width: 100%;
   padding-top: 2.5%;
@@ -304,9 +293,21 @@ section.page-header .mobile-show-tabs-icon img {
   height: 100%;
 }
 
+.section-list {
+  position: relative;
+  opacity: 0;
+  transition: all 0.4s ease-out;
+  height: calc(100% - 2.4rem);
+}
+
+.section-list.show {
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
 .bottom-spawn-modal {
   width: 100%;
-  height: 75%;
+  height: calc(100% - 2.4rem);
   position: absolute;
   bottom: 0px;
   background: white;
@@ -363,9 +364,49 @@ section.page-header .mobile-show-tabs-icon img {
 }
 .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-content {
   position: relative;
+  height: calc(100% - 2.2rem);
 }
-.bottom-spawn-modal .bs-modal-menu-bar .bs-modal-content div.ec-image-slider {
-  height: 100% !important;
+
+.ec-image-slider {
+  height: 100%;
+  user-select: none;
+  overflow-y: overlay;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.ec-image-slider:focus {
+  outline: none;
+}
+.ec-image-slider .slick-slide:focus {
+  outline: none;
+}
+.ec-image-slider .slick-slide img {
+  width: calc(100% - 0%);
+  max-width: 1336px;
+  padding-left: 0%;
+  padding-right: 0%;
+  margin: auto;
+}
+.ec-image-slider .slick-slide img:focus {
+  outline: none;
+}
+.ec-image-slider .slick-dots {
+  position: absolute;
+  bottom: 2.4rem;
+}
+.ec-image-slider .slick-dots li button {
+  font-size: 1rem;
+}
+.ec-image-slider .slick-prev, .ec-image-slider .slick-next {
+  z-index: 100;
+}
+.ec-image-slider .slick-prev:before, .ec-image-slider .slick-next:before {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+.ec-image-slider .slick-prev {
+  left: 1rem;
+}
+.ec-image-slider .slick-next {
+  right: 1rem;
 }
 
 @media only screen and (max-width: 450px) {

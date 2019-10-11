@@ -41,16 +41,6 @@ html, body, .section-list, #react-content
     height: 100%
     margin: 0px
     padding: 0px
-
-// Wrapper for all sections
-.section-list
-    position: relative
-    opacity: 0
-    transition: all 0.4s ease-out
-    
-.section-list.show
-    opacity: 1
-    transition: all 0.4s ease-in
     
 // A section of a page with sharp angles dividing it from another angular section
 $as-top-padding: 2.5%
@@ -318,7 +308,19 @@ section.page-header
         display: none
         img
             height: 100%
-            
+
+
+// Wrapper for all sections
+.section-list
+    position: relative
+    opacity: 0
+    transition: all 0.4s ease-out
+    height: calc(100% - #{$page-header-H})
+    
+.section-list.show
+    opacity: 1
+    transition: all 0.4s ease-in
+
 // Styling for Bottom Spawn Modal
 
 $modal-H-font-size: 1.4rem
@@ -335,7 +337,7 @@ $modal-menu-opacity: 0.9
 
 .bottom-spawn-modal
     width: 100%
-    height: 75%
+    height: calc(100% - #{$page-header-H})
     position: absolute
     bottom: 0px
     background: white
@@ -380,15 +382,47 @@ $modal-menu-opacity: 0.9
                 +default_transition()
         .bs-modal-content
             position: relative
-            div.ec-image-slider
-                height: 100% !important
+            height: calc(100% - #{$modal-menu-bar-H})
 
-// Display everything under our image slider to see if that allows images to be displayed! wow!
-//.ec-image-slider
-//    display: block !important
-//    opacity: 1 !important
-//    visibility: visible
-            
+// Image slider stylings
+
+$ec-img-padding-lr: 0%
+$ec-img-double-padding: $ec-img-padding-lr * 2
+$ss-max-width: 1336px
+.ec-image-slider
+    height: 100%
+    user-select: none
+    overflow-y: overlay
+    background-color: rgba(0, 0, 0, 0.15)
+    &:focus
+        outline: none
+    .slick-slide
+        &:focus
+            outline: none
+        img
+            width: calc(100% - #{$ec-img-double-padding})
+            max-width: $ss-max-width
+            padding-left: $ec-img-padding-lr
+            padding-right: $ec-img-padding-lr
+            margin: auto
+            &:focus
+                outline: none
+    .slick-dots
+        position: absolute
+        bottom: 2.4rem
+        li
+            button
+                font-size: 1rem
+    .slick-prev, .slick-next
+        z-index: 100
+        &:before
+            color: rgba(0, 0, 0, .50) !important
+    .slick-prev
+        left: 1rem
+    .slick-next
+        right: 1rem
+        
+        
 // Mobile Stylings
 $phone-layout-enable: 450px
 // The following is a test width for dev use only
