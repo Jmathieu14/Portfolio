@@ -71,3 +71,8 @@ https://stackoverflow.com/questions/33589571/module-exports-that-include-all-fun
 - Ref's in React: The React way to select html elements in components
     - way 1 = https://davidwalsh.name/get-react-component-element
     - way 2 = https://reactjs.org/docs/refs-and-the-dom.html
+    
+- Read list of files in directory in Node.js:
+https://gist.github.com/vithalreddy/b0388899942e4dea16df329ec3e5ec78
+and
+https://medium.com/stackfame/get-list-of-all-files-in-a-directory-in-node-js-befd31677ec5

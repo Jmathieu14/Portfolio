@@ -22,9 +22,16 @@
     "mocha": "^6.2.0",
     "react-dom": "^16.10.0"
   },
+  "nodemonConfig": {
+    "ignore": ["tests/*", "img/*", "js/*", "concat/*"],
+    "events": {
+        "restart": "npm run build"
+    }
+  },
   "scripts": {
-    "build": "babel --presets @babel/preset-react pre-prod/js -d js",
-    "start": "npm run build && nodemon --exec babel-node js/server/init.js",
+    "build": "babel --presets @babel/preset-react pre-prod/js -d js && npm run readyProd",
+    "readyProd": "node concat/scripts/concat-all-components.js",
+    "start": "npm run build && nodemon --exec node js/server/init.js",
     "buildTests": "babel --presets @babel/preset-react tests/pre -d tests/build",
     "test": "npm run buildTests && npm run execConcats && mocha tests/build -r jsdom-global/register",
     "execConcats": "node concat/scripts/ready-my-react-components.js"
