@@ -1,0 +1,1 @@
+The purpose of this branch is to re-organize my 'my-react-components.js' file into multiple files such that it is easier to modify, update and test each individual component I have made using react.
