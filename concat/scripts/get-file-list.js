@@ -11,7 +11,6 @@ const fs = require('fs');
 function getFileList(myDirectory, _callback) {
     // Join the given directory name to the current full path this function is called from
     const fullPath = path.join(__dirname, myDirectory);
-    let fileList = [];
     // Pass in fullPath and catch error
     fs.readdir(fullPath, function (err, files) {
         // handle error
@@ -19,6 +18,12 @@ function getFileList(myDirectory, _callback) {
             return console.log('Unable to scan directory: ' + err);
         // If successful, return file list
         } else {
+            // Add myDirectory to each file path
+            let ctr = 0; let lim = files.length;
+            while (ctr < lim) {
+                files[ctr] = path.join(__dirname, myDirectory + "/" + files[ctr]);
+                ++ctr;
+            }
             _callback(files);
         }
     });

@@ -1,14 +1,19 @@
+// Imports
+const concat = require('concat-files');
+const GFL = require("../../concat/scripts/get-file-list.js");
+
 // Variables
 const myDir = "../../js/components";
 const destination = "js/prod/all-components.js";
 
-// Imports
-const concat = require('concat-files')(myDir);
-const GFL = require("../../concat/scripts/get-file-list.js")
-
 function _processList(fileList) {
     // Do whatever with the fileList!
     console.log(fileList);
+    // Concat all the files in this list!
+    concat(fileList, destination, function(err) {
+        if (err) throw err
+        console.log('Files concatenated successfully');
+    });
 }
 
 // Get list of files in directory 'myDir'; Process this list
