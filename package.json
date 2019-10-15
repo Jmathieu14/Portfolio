@@ -23,7 +23,7 @@
     "react-dom": "^16.10.0"
   },
   "nodemonConfig": {
-    "ignore": ["tests/*", "img/*", "js/*", "concat/*"],
+    "ignore": ["tests", "img", "js", "concat"],
     "events": {
         "restart": "npm run build"
     }
