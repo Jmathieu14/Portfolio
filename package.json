@@ -17,19 +17,26 @@
   },
   "devDependencies": {
     "concat-files": "^0.1.1",
+    "del-cli": "^3.0.0",
     "jsdom": "15.1.1",
     "jsdom-global": "3.0.2",
     "mocha": "^6.2.0",
     "react-dom": "^16.10.0"
   },
   "nodemonConfig": {
-    "ignore": ["tests", "img", "js", "concat"],
+    "ignore": [
+      "tests",
+      "img",
+      "js",
+      "concat"
+    ],
     "events": {
-        "restart": "npm run build"
+      "restart": "npm run build"
     }
   },
   "scripts": {
-    "build": "babel --presets @babel/preset-react pre-prod/js -d js && npm run readyProd",
+    "build": "npm run clearJSDir && babel --presets @babel/preset-react pre-prod/js -d js && npm run readyProd",
+    "clearJSDir": "del-cli js",
     "readyProd": "node concat/scripts/concat-all-components.js",
     "start": "npm run build && nodemon --exec node js/server/init.js",
     "buildTests": "babel --presets @babel/preset-react tests/pre -d tests/build",
