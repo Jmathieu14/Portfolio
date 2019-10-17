@@ -1,15 +1,15 @@
 const {describe, it} = require('mocha');
 const assert = require('assert');
 // Import test ready version of my-react-components.js
-const mrc = require('../../concat/files/test-ready-mrc.js');
+const util = require('../../concat/files/test-ready-utility.js');
 
 describe('Testing utility functions', function() {
     const maxIter = 10;
     for (var iter = 0; iter < maxIter; ++iter) {
         it('genKey() - key1 should !== key2 iter: ' + iter.toString(), function() {
             const myName = "poof";
-            let key1 = mrc.genKey(myName);
-            let key2 = mrc.genKey(myName);
+            let key1 = util.genKey(myName);
+            let key2 = util.genKey(myName);
             assert(key1 !== key2);
         });
     }
@@ -17,7 +17,7 @@ describe('Testing utility functions', function() {
         let n = 5;
         let sep = "5";
         let s = "repeatme"
-        let actual = mrc.repeatStringNTimes(s, n, sep);
+        let actual = util.repeatStringNTimes(s, n, sep);
         let expected = "repeatme5repeatme5repeatme5repeatme5repeatme";
         assert(actual === expected);
     });
@@ -25,7 +25,7 @@ describe('Testing utility functions', function() {
         let n = 0;
         let sep = "";
         let s = "wow"
-        let actual = mrc.repeatStringNTimes(s, n, sep);
+        let actual = util.repeatStringNTimes(s, n, sep);
         let expected = "";
         assert(actual === expected);
     });
@@ -33,8 +33,16 @@ describe('Testing utility functions', function() {
         let n = 1;
         let sep = "70";
         let s = "wow"
-        let actual = mrc.repeatStringNTimes(s, n, sep);
+        let actual = util.repeatStringNTimes(s, n, sep);
         let expected = "wow";
         assert(actual === expected);
+    });
+    it('Does my_display_dimensions initialize correctly?', function() {
+        var expected = { width: 0, height: 0 };
+        assert((util.my_display_dimensions.width === expected.width && util.my_display_dimensions.height === expected.height) === true);
+    });
+    it('Test recording display dimensions', function() {
+        var prevDim = { width: 0, height: 0 };
+        util.recordDisplayDimensions(true);
     });
 });
