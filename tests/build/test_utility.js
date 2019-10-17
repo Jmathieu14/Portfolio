@@ -52,11 +52,4 @@ describe('Testing utility functions', function () {
     };
     assert((util.my_display_dimensions.width === expected.width && util.my_display_dimensions.height === expected.height) === true);
   });
-  it('Test recording display dimensions', function () {
-    var prevDim = {
-      width: 0,
-      height: 0
-    };
-    util.recordDisplayDimensions(true);
-  });
 });

@@ -38,11 +38,7 @@ describe('Testing utility functions', function() {
         assert(actual === expected);
     });
     it('Does my_display_dimensions initialize correctly?', function() {
-        var expected = { width: 0, height: 0 };
+        let expected = { width: 0, height: 0 };
         assert((util.my_display_dimensions.width === expected.width && util.my_display_dimensions.height === expected.height) === true);
-    });
-    it('Test recording display dimensions', function() {
-        var prevDim = { width: 0, height: 0 };
-        util.recordDisplayDimensions(true);
     });
 });
