@@ -7,5 +7,5 @@ let destination = "concat/files/test-ready-utility.js";
 
 concat(fileList, destination, function(err) {
     if (err) throw err
-    console.log('Files concatenated successfully');
+    console.log('Utility files concatenated successfully');
 });

@@ -9,7 +9,7 @@ var assert = require('assert'); // Import test ready version of my-react-compone
 
 var util = require('../../concat/files/test-ready-utility.js');
 
-describe('Testing utility functions', function () {
+describe('Test utility functions', function () {
   var maxIter = 10;
 
   for (var iter = 0; iter < maxIter; ++iter) {
