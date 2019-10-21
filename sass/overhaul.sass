@@ -70,13 +70,14 @@ $as-base-h: 45%
 
 // Main content for angular sections
 $ang-content-lr-padding: 5%
+$banner-title-font-size: 2rem
 
 =banner_default_title_font()
     font-family: "Montserrat", monospace, sans-serif
     font-weight: 400
     color: black
     line-height: 95%
-    font-size: 2rem
+    font-size: $banner-title-font-size
 
 .angular-section
     display: flex
@@ -141,11 +142,13 @@ $ang-content-lr-padding: 5%
             max-height: 100%
 
 $sl-dimensions: 20%
+$sl-dim-max: 2.75rem
+$sl-top-offset: 50% - ($sl-dimensions/2)
 $arrow-size: 0.5rem
 $sl-h-font-size: 1.2rem
 $sl-h-padding-top: 0rem
 $sl-h-padding-left: 0.65rem
-$sl-h-height: $sl-h-font-size + $sl-h-padding-top
+$sl-h-height: calc((#{$sl-dimensions} - #{$sl-h-font-size}) / 2)
 
 =sl_header_font()
     font-family: "Montserrat", monospace, sans-serif
@@ -169,11 +172,11 @@ $sl-h-height: $sl-h-font-size + $sl-h-padding-top
     float: right
 
 // Header for section links
-// TODO: consider changing name to that of hovered link on hover
 .section-links-header
     position: relative
     float: right
-    top: calc(50% - (#{$sl-h-height}/2))
+    top: $sl-top-offset
+    margin-top: calc(#{$sl-h-font-size}/2)
     +sl_header_font()
 
 $sl-padding-right: 1.3rem
@@ -182,8 +185,8 @@ $sl-padding-right: 1.3rem
     position: relative
     float: right
     height: $sl-dimensions
-    max-height: 2.75em
-    top: calc(50% - (#{$sl-dimensions}/2))
+    max-height: $sl-dim-max
+    top: $sl-top-offset
     padding-bottom: 0px
     padding-right: $sl-padding-right
     +default_transition()
@@ -429,11 +432,11 @@ $mobile-banner-img-H: 75%
 $mobile-as-top-padding: 3%
 $mobile-as-bottom-padding: 2%
 $mobile-as-H: 55%
+$mobile-sl-font-size: 1.1rem
 $mobile-as-min-H: 14rem
-$mobile-sl-H: $sl-h-height * 2
+$mobile-sl-H: 2 * $mobile-sl-font-size
 $mobile-sl-wrapper-H: 100% - $mobile-banner-img-H
 $mobile-sl-padding: 0.5rem
-$mobile-sl-font-size: 1.1rem
 $mobile-page-header-font-size: $page-header-font-size * 1.5
 $mobile-page-header-H: $page-header-H * 1.5
 $mobile-menu-vert-padding: 0.8rem
@@ -500,6 +503,7 @@ $mobile-menu-option-padding: $mobile-menu-vert-padding / 2
                 .section-links-header
                     float: left
                     font-size: $mobile-sl-font-size
+                    margin-top: 0px
                 .section-link
                     top: calc(50% - (#{$mobile-sl-H}/2))
                     padding-left: $mobile-sl-padding
@@ -521,9 +525,9 @@ $mobile-menu-option-padding: $mobile-menu-vert-padding / 2
                 width: 75%
 
 
-$super-mobile-width: 330px
-$super-mobile-sl-font-size:0.8rem
-$super-mobile-sl-H: $sl-h-height * 1.5
+$super-mobile-width: 345px
+$super-mobile-sl-font-size: 0.9rem
+$super-mobile-sl-H: $super-mobile-sl-font-size * 1.5
 @media only screen and (max-width: $super-mobile-width)
     .angular-section
         .angular-content
@@ -532,6 +536,7 @@ $super-mobile-sl-H: $sl-h-height * 1.5
                     font-size: $super-mobile-sl-font-size
                 .section-link
                     height: $super-mobile-sl-H
+                    top: calc(50% - (#{$super-mobile-sl-H} / 2))
                     a, a img
                         height: $super-mobile-sl-H
     .bottom-spawn-modal
@@ -541,3 +546,28 @@ $super-mobile-sl-H: $sl-h-height * 1.5
                 padding-left: 2%
             .bs-modal-close
                 margin-right: 2%
+                
+/* Apply these stylings to page for displays that are wider than 1600px */
+$large-display-W: 1601px
+$L-display-scalar: 1.4
+$banner-title-font-size-L: $banner-title-font-size * $L-display-scalar
+$sl-h-font-size-L: $sl-h-font-size * $L-display-scalar
+$sl-h-height-L: calc((#{$sl-dimensions} - #{$sl-h-font-size-L}) / 2)
+$sl-h-height-max: calc((#{$sl-dim-max} - #{$sl-h-font-size-L}) / 2)
+$sl-min-H-L: $sl-h-font-size-L * $L-display-scalar
+
+@media only screen and (min-width: $large-display-W)
+    .angular-section .angular-content
+        .banner-title-text
+            font-size: $banner-title-font-size-L
+        .section-links-wrapper
+            .section-links-header
+                font-size: $sl-h-font-size-L
+                height: $sl-h-height-L
+                max-height: $sl-h-height-max
+                margin-top: calc(#{$sl-h-height-max} / 2)
+            .section-link
+                min-height: $sl-min-H-L
+                a img
+                    min-height: $sl-min-H-L
+            
