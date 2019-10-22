@@ -8,7 +8,7 @@ const bytenode = require('bytenode');
 //const overhaul = require('overhaul.jsc');
 //https://hackernoon.com/how-to-compile-node-js-code-using-bytenode-11dcba856fa9
 const hostname = '127.0.0.1';
-const port = 999;
+const port = 117;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
@@ -16,8 +16,12 @@ const server = http.createServer((req, res) => {
   res.end('Local Server Running for Portfolio Overhaul Website\n');
 });
 
-server.listen(port, hostname, () => {
+try {
+  server.listen(port, hostname, () => {
     console.log(`Server is running at http://${hostname}:${port}/`);
-});
+  });
+} catch(err) {
+  console.log(err);
+}
 
 export default server;
