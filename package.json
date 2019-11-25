@@ -41,7 +41,7 @@
     "start": "npm run build && nodemon --exec node js/server/init.js",
     "buildTests": "babel --presets @babel/preset-react tests/pre -d tests/build",
     "test": "npm run buildTests && npm run execConcats && mocha tests/build -r jsdom-global/register",
-    "execConcats": "node concat/scripts/utility-nodify.js && node concat/scripts/function-components-nodify.js"
+    "execConcats": "node concat/scripts/utility-nodify.js && node concat/scripts/function-components-nodify.js && node concat/scripts/section-link-nodify.js"
   },
   "repository": {
     "type": "git",

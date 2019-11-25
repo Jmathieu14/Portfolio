@@ -1,6 +1,6 @@
 const {describe, it} = require('mocha');
 const assert = require('assert');
-// Import test ready version of my-react-components.js
+// Import test ready version of FunctionComponents.js
 const fcomp = require('../../concat/files/test-ready-function-components.js');
 const React = require('react');
 

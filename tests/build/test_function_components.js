@@ -4,7 +4,7 @@ var _require = require('mocha'),
     describe = _require.describe,
     it = _require.it;
 
-var assert = require('assert'); // Import test ready version of my-react-components.js
+var assert = require('assert'); // Import test ready version of FunctionComponents.js
 
 
 var fcomp = require('../../concat/files/test-ready-function-components.js');
