@@ -3,8 +3,8 @@ const concat = require('concat-files');
 const GFL = require("../../concat/scripts/get-file-list.js");
 
 // Variables
-const myDir = "../../js/components";
-const destination = "js/all-components.js";
+const myDir = "../../js/prod/components";
+const destination = "js/prod/all-components.js";
 
 function _processList(fileList) {
     // Do whatever with the fileList!
