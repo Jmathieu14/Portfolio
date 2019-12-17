@@ -1,6 +1,5 @@
 const {describe, it} = require('mocha');
 const assert = require('assert');
-// Require path and fs modules
 const path = require('path');
 const fs = require('fs');
 

@@ -16,6 +16,8 @@
     "react": "^16.10.0"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/runtime": "^7.7.6",
     "concat-files": "^0.1.1",
     "del-cli": "^3.0.0",
     "jsdom": "15.1.1",
@@ -36,21 +38,13 @@
   },
   "scripts": {
     "build": "npm run clearJSProdDir && babel --presets @babel/preset-react js/pre-prod -d js/prod && npm run readyProd",
-      
     "clearJSProdDir": "del-cli js/prod",
-      
     "readyProd": "node concat/scripts/concat-all-components.js",
-      
     "start": "npm run build && nodemon --exec node js/prod/server/init.js",
-      
-    "buildTests": "babel --presets @babel/preset-react tests/pre -d tests/build",
-      
+    "buildTests": "babel --presets @babel/preset-env tests/pre -d tests/build && babel --plugins @babel/plugin-transform-runtime tests/build -d tests/build",
     "test": "npm run buildTests && npm run execConcats && npm run _mocha",
-      
     "_mocha": "mocha tests/build -r jsdom-global/register",
-      
     "execConcats": "node concat/scripts/utility-nodify.js && node concat/scripts/function-components-nodify.js && node concat/scripts/section-link-nodify.js"
-      
   },
   "repository": {
     "type": "git",
