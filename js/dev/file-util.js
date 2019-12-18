@@ -1,7 +1,9 @@
 const path = require('path');
 const fs = require('fs');
+// Include so callback can run test methods
+const assert = require('assert');
 
-const ERR_DNE = 34;
+const ERR_FILE_DNE = 34;
 const optionalCallback = null;
 
 function isFile(path) {
@@ -16,18 +18,29 @@ function isFolder(path) {
         || path.search(altFolderRegex) >= 0;
 }
 
-// See Source 1. at bottom of file for more information
-async function doesFolderExist(path) {
+function doesFolderExist(path, _callback) {
     fs.stat(path, function(err, stats) {
-        const folderExists = err === null || err.errno !== ERR_DNE;
-        return folderExists;
+        if (err === null) {
+            _callback(true);
+        } else {
+            (err.code === 'ENOENT' 
+             || err.code === 'ENOTDIR') ? 
+                _callback(false) : 
+                _callback(err);            
+        }
     });
 }
 
-async function createFolderIfDNE(path, _callback) {
-    if (!doesFolderExist(path)) {
-//        fs.mkdir(path, _callback);
-    }
+function createFolderIfDNE(path, _callback) {
+    // fs.mkdir already checks if folder exists before creating it; this cleans up the output
+    fs.mkdir(path, (err) => {
+        // Return success if no error or error code equals 'dir already exists' (EEXIST)
+        if (err === null || err.code === 'EEXIST') {
+            _callback(true);
+        } else {
+            _callback(false);
+        }
+    });
 }
 
 module.exports = {
@@ -36,7 +49,3 @@ module.exports = {
     isFolder: isFolder,
     doesFolderExist: doesFolderExist
 };
-
-// Source 1.
-// Credit for aiding doesFolderExist function goes to:
-// https://blog.raananweber.com/2015/12/15/check-if-a-directory-exists-in-node-js/

@@ -16,6 +16,8 @@ function assertFalsy(exp) {
 
 const optionalCallback = null;
 
+function doNothing(input) {}
+
 describe('Test file util functions', function() {
     
     it('should say input is a file and not folder', () => {
@@ -48,23 +50,30 @@ describe('Test file util functions', function() {
         assertFalsy(fileUtil.isFolder(justAString));
     });
     
-    xit('should say folder DNE', async() => {
+    it('should say folder DNE', async() => {
         const testPath = __dirname + "/FOLDER_DNE_99302";
-        assertTrue(fileUtil.doesFolderExist(testPath));
+        fileUtil.doesFolderExist(testPath, assertFalsy);
     });
     
-    xit('should say folder exists', async() => {
+    it('should say folder exists', async() => {
         const curDir = __dirname;
-        console.log(curDir);
-        assertTrue(fileUtil.doesFolderExist(curDir));
+        fileUtil.doesFolderExist(curDir, assertTrue);
     });
     
-    xit('should make folder if DNE', async function() {
+    it('should make folder if DNE', async function() {
         const testPath = __dirname + "/NEW_FOLDER_1234";
-        
-        fileUtil.createFolderIfDNE(testPath, (stuff) => {
-            console.log(stuff);
-        });
-//        assertTrue(fileUtil.createFolderIfDNE(testPath));
+        fileUtil.createFolderIfDNE(testPath, assertTrue);
+        // delete folder after test
+        fs.rmdir(testPath, doNothing);
     });
+    
+    it('createFolderIfDNE should not return false when called on folder that exists', async function() {
+        const testPath = __dirname + "/NEW_FOLDER_1234";
+        fileUtil.createFolderIfDNE(testPath, doNothing);
+        // call on folder that exists
+        fileUtil.createFolderIfDNE(testPath, assertTrue);
+        // delete folder after test
+        fs.rmdir(testPath, doNothing);
+    });
+    
 });

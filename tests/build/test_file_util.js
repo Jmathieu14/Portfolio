@@ -28,6 +28,9 @@ function assertFalsy(exp) {
 }
 
 var optionalCallback = null;
+
+function doNothing(input) {}
+
 describe('Test file util functions', function () {
   it('should say input is a file and not folder', function () {
     var testFile = __dirname + "/folder/file.txt";
@@ -55,7 +58,7 @@ describe('Test file util functions', function () {
     assertFalsy(fileUtil.isFolder(file));
     assertFalsy(fileUtil.isFolder(justAString));
   });
-  xit('should say folder DNE',
+  it('should say folder DNE',
   /*#__PURE__*/
   (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
@@ -66,7 +69,7 @@ describe('Test file util functions', function () {
         switch (_context.prev = _context.next) {
           case 0:
             testPath = __dirname + "/FOLDER_DNE_99302";
-            assertTrue(fileUtil.doesFolderExist(testPath));
+            fileUtil.doesFolderExist(testPath, assertFalsy);
 
           case 2:
           case "end":
@@ -75,7 +78,7 @@ describe('Test file util functions', function () {
       }
     }, _callee);
   })));
-  xit('should say folder exists',
+  it('should say folder exists',
   /*#__PURE__*/
   (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
@@ -86,17 +89,16 @@ describe('Test file util functions', function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             curDir = __dirname;
-            console.log(curDir);
-            assertTrue(fileUtil.doesFolderExist(curDir));
+            fileUtil.doesFolderExist(curDir, assertTrue);
 
-          case 3:
+          case 2:
           case "end":
             return _context2.stop();
         }
       }
     }, _callee2);
   })));
-  xit('should make folder if DNE',
+  it('should make folder if DNE',
   /*#__PURE__*/
   (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
@@ -107,16 +109,39 @@ describe('Test file util functions', function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             testPath = __dirname + "/NEW_FOLDER_1234";
-            fileUtil.createFolderIfDNE(testPath, function (stuff) {
-              console.log(stuff);
-            });
-          //        assertTrue(fileUtil.createFolderIfDNE(testPath));
+            fileUtil.createFolderIfDNE(testPath, assertTrue); // delete folder after test
 
-          case 2:
+            fs.rmdir(testPath, doNothing);
+
+          case 3:
           case "end":
             return _context3.stop();
         }
       }
     }, _callee3);
+  })));
+  it('createFolderIfDNE should not return false when called on folder that exists',
+  /*#__PURE__*/
+  (0, _asyncToGenerator2["default"])(
+  /*#__PURE__*/
+  _regenerator["default"].mark(function _callee4() {
+    var testPath;
+    return _regenerator["default"].wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            testPath = __dirname + "/NEW_FOLDER_1234";
+            fileUtil.createFolderIfDNE(testPath, doNothing); // call on folder that exists
+
+            fileUtil.createFolderIfDNE(testPath, assertTrue); // delete folder after test
+
+            fs.rmdir(testPath, doNothing);
+
+          case 4:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
   })));
 });

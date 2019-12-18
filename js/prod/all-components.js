@@ -1,43 +1,36 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // A divider to separate each of our Angular Sections; stylized in
 // an angular fashion.
 var AngularDivider =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(AngularDivider, _React$Component);
+  (0, _inherits2["default"])(AngularDivider, _React$Component);
 
   function AngularDivider(props) {
     var _this;
 
-    _classCallCheck(this, AngularDivider);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(AngularDivider).call(this, props));
+    (0, _classCallCheck2["default"])(this, AngularDivider);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(AngularDivider).call(this, props));
     _this.divOrientation = props.divOrientation;
     _this.baseName = "angular-divider";
     _this.element = React.createRef();
     return _this;
   }
 
-  _createClass(AngularDivider, [{
+  (0, _createClass2["default"])(AngularDivider, [{
     key: "genClassName",
     value: function genClassName() {
       if (this.divOrientation === undefined || this.divOrientation === "") {
@@ -92,40 +85,34 @@ function (_React$Component) {
       }));
     }
   }]);
-
   return AngularDivider;
 }(React.Component);"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // An Angularly stylized section of a web page
 var AngularSection =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(AngularSection, _React$Component);
+  (0, _inherits2["default"])(AngularSection, _React$Component);
 
   function AngularSection(props) {
     var _this;
 
-    _classCallCheck(this, AngularSection);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(AngularSection).call(this, props));
+    (0, _classCallCheck2["default"])(this, AngularSection);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(AngularSection).call(this, props));
     _this.name = props.name;
     _this.hoverBG = props.hoverBG;
     _this.bannerSpecs = props.bannerSpecs;
@@ -139,16 +126,16 @@ function (_React$Component) {
       hoverTextShow: false,
       contentExpanded: false
     };
-    _this.toggleState = _this.toggleState.bind(_assertThisInitialized(_this)); // Keep track of the priorities set forth by the last active section link
+    _this.toggleState = _this.toggleState.bind((0, _assertThisInitialized2["default"])(_this)); // Keep track of the priorities set forth by the last active section link
 
     _this.prevSectionLinkPriority = -1;
-    _this.childSetParentSectBGAndHoverText = _this.childSetParentSectBGAndHoverText.bind(_assertThisInitialized(_this));
-    _this.handleContentExpansion = _this.handleContentExpansion.bind(_assertThisInitialized(_this));
+    _this.childSetParentSectBGAndHoverText = _this.childSetParentSectBGAndHoverText.bind((0, _assertThisInitialized2["default"])(_this));
+    _this.handleContentExpansion = _this.handleContentExpansion.bind((0, _assertThisInitialized2["default"])(_this));
     _this.sectionRef = React.createRef();
     return _this;
   }
 
-  _createClass(AngularSection, [{
+  (0, _createClass2["default"])(AngularSection, [{
     key: "toggleState",
     value: function toggleState() {
       // Do not update state if the expandable section is active
@@ -323,50 +310,44 @@ function (_React$Component) {
       }));
     }
   }]);
-
   return AngularSection;
 }(React.Component);"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // Part of an Angular Section that allows one to expand and view additional content (if included in layout file)
 var ExpandableContent =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(ExpandableContent, _React$Component);
+  (0, _inherits2["default"])(ExpandableContent, _React$Component);
 
   function ExpandableContent(props) {
     var _this;
 
-    _classCallCheck(this, ExpandableContent);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ExpandableContent).call(this, props));
+    (0, _classCallCheck2["default"])(this, ExpandableContent);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ExpandableContent).call(this, props));
     _this.eCSpecs = props.eCSpecs;
     _this.handleContentExpansion = props.handleContentExpansion;
     _this.state = props.state;
-    _this.updateParentObject = _this.updateParentObject.bind(_assertThisInitialized(_this));
-    _this.toggleLocalState = _this.toggleLocalState.bind(_assertThisInitialized(_this));
+    _this.updateParentObject = _this.updateParentObject.bind((0, _assertThisInitialized2["default"])(_this));
+    _this.toggleLocalState = _this.toggleLocalState.bind((0, _assertThisInitialized2["default"])(_this));
     return _this;
   } // Toggle the local state of this object
 
 
-  _createClass(ExpandableContent, [{
+  (0, _createClass2["default"])(ExpandableContent, [{
     key: "toggleLocalState",
     value: function toggleLocalState() {
       if (this.state !== null) {
@@ -418,7 +399,6 @@ function (_React$Component) {
       } else return null;
     }
   }]);
-
   return ExpandableContent;
 }(React.Component);"use strict";
 
@@ -442,48 +422,43 @@ function PageTitle(props) {
   return React.createElement("title", null, props.text);
 }"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // Top menu bar 'buttons' used to scroll to specified angular section
 var HeaderTab =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(HeaderTab, _React$Component);
+  (0, _inherits2["default"])(HeaderTab, _React$Component);
 
   function HeaderTab(props) {
     var _this;
 
-    _classCallCheck(this, HeaderTab);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTab).call(this, props));
+    (0, _classCallCheck2["default"])(this, HeaderTab);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HeaderTab).call(this, props));
     _this.name = props.name;
     _this.opacityAsTab = props.opacityAsTab;
     _this.mobileVersion = props.mobileVersion;
     _this.toggleMobileTabsHelper = props.toggleMobileTabsHelper;
     _this.delay = 200;
-    _this.scrollToSection = _this.scrollToSection.bind(_assertThisInitialized(_this));
-    _this.mobileScrollToSection = _this.mobileScrollToSection.bind(_assertThisInitialized(_this));
+    _this.scrollToSection = _this.scrollToSection.bind((0, _assertThisInitialized2["default"])(_this));
+    _this.mobileScrollToSection = _this.mobileScrollToSection.bind((0, _assertThisInitialized2["default"])(_this));
     _this.mobileMenuActive = props.mobileMenuActive;
     return _this;
   }
 
-  _createClass(HeaderTab, [{
+  (0, _createClass2["default"])(HeaderTab, [{
     key: "scrollToSection",
     value: function scrollToSection() {
       var thisE = document.getElementById(this.name);
@@ -530,40 +505,34 @@ function (_React$Component) {
       }
     }
   }]);
-
   return HeaderTab;
 }(React.Component);"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // Component that wraps one or more HeaderTab
 var HeaderTabs =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(HeaderTabs, _React$Component);
+  (0, _inherits2["default"])(HeaderTabs, _React$Component);
 
   function HeaderTabs(props) {
     var _this;
 
-    _classCallCheck(this, HeaderTabs);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTabs).call(this, props));
+    (0, _classCallCheck2["default"])(this, HeaderTabs);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(HeaderTabs).call(this, props));
     _this.sections = props.sections;
     _this.moreIcon = props.moreIcon;
     _this.moreStyle = props.moreStyle;
@@ -572,13 +541,13 @@ function (_React$Component) {
       mobileTabsMaxHeight: '0px',
       mobileMenuActive: false
     };
-    _this.toggleMobileTabs = _this.toggleMobileTabs.bind(_assertThisInitialized(_this));
-    _this.toggleMobileTabsHelper = _this.toggleMobileTabsHelper.bind(_assertThisInitialized(_this));
+    _this.toggleMobileTabs = _this.toggleMobileTabs.bind((0, _assertThisInitialized2["default"])(_this));
+    _this.toggleMobileTabsHelper = _this.toggleMobileTabsHelper.bind((0, _assertThisInitialized2["default"])(_this));
     return _this;
   } // Get the height of the section list, and use that to set the mobile tab sections' max height
 
 
-  _createClass(HeaderTabs, [{
+  (0, _createClass2["default"])(HeaderTabs, [{
     key: "getSectionListHeight",
     value: function getSectionListHeight() {
       var my_sl = document.querySelector('section.section-list');
@@ -662,40 +631,32 @@ function (_React$Component) {
       }, my_tabs));
     }
   }]);
-
   return HeaderTabs;
 }(React.Component);"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // An image slider component that uses the slick jQuery library
 var ImageSlider =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(ImageSlider, _React$Component);
+  (0, _inherits2["default"])(ImageSlider, _React$Component);
 
   function ImageSlider(props) {
     var _this;
 
-    _classCallCheck(this, ImageSlider);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ImageSlider).call(this, props));
+    (0, _classCallCheck2["default"])(this, ImageSlider);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(ImageSlider).call(this, props));
     _this.specs = props.specs;
     _this.images = _this.specs.images;
     _this.slider = null;
@@ -707,7 +668,7 @@ function (_React$Component) {
     return _this;
   }
 
-  _createClass(ImageSlider, [{
+  (0, _createClass2["default"])(ImageSlider, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       $('#' + this.id).slick(this.settings);
@@ -729,47 +690,41 @@ function (_React$Component) {
       }, imageElements);
     }
   }]);
-
   return ImageSlider;
 }(React.Component);"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // A modal that spawns from the bottom of the page
 var BottomSpawnModal =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(BottomSpawnModal, _React$Component);
+  (0, _inherits2["default"])(BottomSpawnModal, _React$Component);
 
   function BottomSpawnModal(props) {
     var _this;
 
-    _classCallCheck(this, BottomSpawnModal);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BottomSpawnModal).call(this, props));
+    (0, _classCallCheck2["default"])(this, BottomSpawnModal);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(BottomSpawnModal).call(this, props));
     _this.specs = props.specs;
     _this.state = props.state;
-    _this.toggleState = _this.toggleState.bind(_assertThisInitialized(_this));
+    _this.toggleState = _this.toggleState.bind((0, _assertThisInitialized2["default"])(_this));
     return _this;
   }
 
-  _createClass(BottomSpawnModal, [{
+  (0, _createClass2["default"])(BottomSpawnModal, [{
     key: "toggleState",
     value: function toggleState() {
       this.setState({
@@ -840,40 +795,32 @@ function (_React$Component) {
       }, imageSlider));
     }
   }]);
-
   return BottomSpawnModal;
 }(React.Component);"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // Top menu bar for site
 var PageHeader =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(PageHeader, _React$Component);
+  (0, _inherits2["default"])(PageHeader, _React$Component);
 
   function PageHeader(props) {
     var _this;
 
-    _classCallCheck(this, PageHeader);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(PageHeader).call(this, props));
+    (0, _classCallCheck2["default"])(this, PageHeader);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(PageHeader).call(this, props));
     _this.sections = props.sections;
     _this.key = "PAGE_HEADER";
     _this.pageHeaderSpecs = props.pageHeader;
@@ -887,7 +834,7 @@ function (_React$Component) {
     return _this;
   }
 
-  _createClass(PageHeader, [{
+  (0, _createClass2["default"])(PageHeader, [{
     key: "getStyle",
     value: function getStyle() {
       return {
@@ -933,40 +880,34 @@ function (_React$Component) {
       }));
     }
   }]);
-
   return PageHeader;
 }(React.Component);"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // One of multiple links that appear under their respective Angular Sections
 var SectionLink =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(SectionLink, _React$Component);
+  (0, _inherits2["default"])(SectionLink, _React$Component);
 
   function SectionLink(props) {
     var _this;
 
-    _classCallCheck(this, SectionLink);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SectionLink).call(this, props));
+    (0, _classCallCheck2["default"])(this, SectionLink);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(SectionLink).call(this, props));
     _this.specs = props.specs; // this.specs has the following keys:
     // name, url, logo, hoverBG, hoverBGname, target
     // ---------------------------------------------
@@ -975,9 +916,9 @@ function (_React$Component) {
 
     _this.parentBG = props.parentBG;
     _this.childSetParentSectBGAndHoverText = props.childSetParentSectBGAndHoverText;
-    _this.mouseEnterLogo = _this.mouseEnterLogo.bind(_assertThisInitialized(_this));
-    _this.mouseLeaveLogo = _this.mouseLeaveLogo.bind(_assertThisInitialized(_this));
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.mouseEnterLogo = _this.mouseEnterLogo.bind((0, _assertThisInitialized2["default"])(_this));
+    _this.mouseLeaveLogo = _this.mouseLeaveLogo.bind((0, _assertThisInitialized2["default"])(_this));
+    _this.handleClick = _this.handleClick.bind((0, _assertThisInitialized2["default"])(_this));
     _this.arrowClassName = "sl-hover-arrow";
     _this.arrowRef = React.createRef();
     _this.arrowStyle = {
@@ -990,7 +931,7 @@ function (_React$Component) {
   } // Center the hover arrow to middle of section link
 
 
-  _createClass(SectionLink, [{
+  (0, _createClass2["default"])(SectionLink, [{
     key: "centerArrow",
     value: function centerArrow() {
       var _this2 = this;
@@ -1065,7 +1006,6 @@ function (_React$Component) {
       })));
     }
   }]);
-
   return SectionLink;
 }(React.Component); // Header for section links (to add clarity and ease of use to site)
 
@@ -1073,15 +1013,14 @@ function (_React$Component) {
 var SectionLinksHeader =
 /*#__PURE__*/
 function (_React$Component2) {
-  _inherits(SectionLinksHeader, _React$Component2);
+  (0, _inherits2["default"])(SectionLinksHeader, _React$Component2);
 
   function SectionLinksHeader(props) {
-    _classCallCheck(this, SectionLinksHeader);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(SectionLinksHeader).call(this, props));
+    (0, _classCallCheck2["default"])(this, SectionLinksHeader);
+    return (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(SectionLinksHeader).call(this, props));
   }
 
-  _createClass(SectionLinksHeader, [{
+  (0, _createClass2["default"])(SectionLinksHeader, [{
     key: "render",
     value: function render() {
       return React.createElement("div", {
@@ -1089,7 +1028,6 @@ function (_React$Component2) {
       }, "Links");
     }
   }]);
-
   return SectionLinksHeader;
 }(React.Component); // Section link hover text element
 
@@ -1101,36 +1039,29 @@ function SectionLinkHoverText(props) {
   }, repeatStringNTimes(props.specs['text'], 200, ' '));
 }"use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 // A component that wraps one or more AngularSection
 var SectionList =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(SectionList, _React$Component);
+  (0, _inherits2["default"])(SectionList, _React$Component);
 
   function SectionList(props) {
     var _this;
 
-    _classCallCheck(this, SectionList);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SectionList).call(this, props));
+    (0, _classCallCheck2["default"])(this, SectionList);
+    _this = (0, _possibleConstructorReturn2["default"])(this, (0, _getPrototypeOf2["default"])(SectionList).call(this, props));
     _this.sections = props.sections;
     _this.counter = 0;
     _this.key = "SECT_LIST";
@@ -1143,7 +1074,7 @@ function (_React$Component) {
   } // Get orientation of angular divider given the section index
 
 
-  _createClass(SectionList, [{
+  (0, _createClass2["default"])(SectionList, [{
     key: "divOrientation",
     value: function divOrientation() {
       this.counter++;
@@ -1193,7 +1124,6 @@ function (_React$Component) {
       }, my_sections));
     }
   }]);
-
   return SectionList;
 }(React.Component);"use strict";
 
