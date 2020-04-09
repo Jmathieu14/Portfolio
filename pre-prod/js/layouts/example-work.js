@@ -85,7 +85,7 @@ const pageLayout = {
                 },
                 {
                     "name": "videos",
-                    "url": "../video/Sparksales",
+                    "url": "https://github.com/Jmathieu14/Portfolio/tree/master/video/Sparksales",
                     "logo": "../img/page/Google Icons/video_icon.png",
                     "hoverBG": "#58c8B9",
                     "hoverBGName": "sparkBlueGreen",
