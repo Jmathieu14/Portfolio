@@ -87,7 +87,7 @@ const pageLayout = {
                 },
                 {
                     "name": "Resume",
-                    "url": "../pdf/JSMathieu Summer Fall 2019 - Expanded Version.pdf",
+                    "url": "../pdf/JSMathieu Resume Redesign - 04-09-2020.pdf",
                     "logo": "../img/page/Google Icons/list_alt-48dp.svg",
                     "hoverBG": "#33ff5f",
                     "hoverBGName": "goodGreen",
