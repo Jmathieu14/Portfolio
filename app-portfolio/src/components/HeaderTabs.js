@@ -65,14 +65,14 @@ class HeaderTabs extends React.Component {
         );
         return (
             <React.Fragment>
-                <div onClick={this.toggleMobileTabs} class="mobile-show-tabs-icon">
+                <div onClick={this.toggleMobileTabs} className="mobile-show-tabs-icon">
                     <img src={this.moreIcon} style={this.moreStyle}>
                     </img>
                 </div>
-                <div class="mobile-header-tabs" style={this.getMobileTabsStyle()}>
+                <div className="mobile-header-tabs" style={this.getMobileTabsStyle()}>
                     {my_mobile_tabs}
                 </div>
-                <div class="header-tabs">
+                <div className="header-tabs">
                     {my_tabs}
                 </div>
             </React.Fragment>

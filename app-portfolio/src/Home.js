@@ -3,7 +3,6 @@ import PageTitle from './components/PageTitle';
 import { FontImport } from './components/FunctionComponents';
 import PageHeader from './components/PageHeader';
 import SectionList from './components/SectionList';
-import AngularSection from './components/AngularSection';
 
 const myOpacity = 0.85;
 const myOpacityStyle = { opacity: myOpacity };
@@ -13,7 +12,7 @@ const pageLayout = {
     "pageTitle": "Jacques Mathieu - Home",
     "page-header": {
         "title": "",
-        "logo": "../img/page/jm logo 3 - white.svg",
+        "logo": "./assets/img/page/jm logo 3 - white.svg",
         "logoURL": "#",
         "logoStyle": myOpacityStyle,
         "background": "#000",
@@ -22,7 +21,7 @@ const pageLayout = {
         "fontColorName": "White",
         "headerFontOpacity": myOpacity,
         "fontFamily": "'Montserrat', 'Roboto', sans-serif",
-        "mobileMoreIcon": "../img/page/Google Icons/baseline_menu_white_48dp.png",
+        "mobileMoreIcon": "./assets/img/page/Google Icons/baseline_menu_white_48dp.png",
         "mobileMoreStyle": { color: "#FFF", opacity: myOpacity }
     },
     "angular-sections": [
@@ -31,13 +30,13 @@ const pageLayout = {
             "hoverBGName": "lightGrey",
             "hoverBG": "#DDD",
             "bannerSpecs": {
-                "bannerImg": "../img/page/sections/jm logo 3 -- music - text_to_path.svg"
+                "bannerImg": "./assets/img/page/sections/jm logo 3 -- music - text_to_path.svg"
             },
             "sectionLinks": [
                 {
                     "name": "SoundCloud",
                     "url": "https://soundcloud.com/jacques_mathieu",
-                    "logo": "../img/page/Social Media/SVG/24/4419136 - cloud logo sound sound cloud soundcloud square icon.svg",
+                    "logo": "./assets/img/page/Social Media/SVG/24/4419136 - cloud logo sound sound cloud soundcloud square icon.svg",
                     "hoverBG": "#F50",
                     "hoverBGName": "scloudOrange",
                     "target": "_blank"
@@ -45,7 +44,7 @@ const pageLayout = {
             ],
             "expandableContentSpecs": {
                 "show": false,
-                "icon": "../img/page/Google Icons/expand_more-24px.svg"
+                "icon": "./assets/img/page/Google Icons/expand_more-24px.svg"
             },
             "opacityAsTab": myOpacityStyle
         },
@@ -54,13 +53,13 @@ const pageLayout = {
             "hoverBGName": "lightBlueGrey",
             "hoverBG": "#DDEEDD",
             "bannerSpecs": {
-                "bannerImg": "../img/page/sections/jm logo 3 -- project - text_to_path.svg"
+                "bannerImg": "./assets/img/page/sections/jm logo 3 -- project - text_to_path.svg"
             },
             "sectionLinks": [
                 {
                     "name": "GitHub",
                     "url": "https://github.com/Jmathieu14",
-                    "logo": "../img/page/Social Media/SVG/24/4419165 - circle github outline social-media icon.svg",
+                    "logo": "./assets/img/page/Social Media/SVG/24/4419165 - circle github outline social-media icon.svg",
                     "hoverBG": "#A54AB0",
                     "hoverBGName": "githubDesktopPurple",
                     "target": "_blank"
@@ -68,7 +67,7 @@ const pageLayout = {
                 {
                     "name": "Codepen.io",
                     "url": "https://codepen.io/jmathieu145",
-                    "logo": "../img/page/Other Icons/codepen-black-fill-small.png",
+                    "logo": "./assets/img/page/Other Icons/codepen-black-fill-small.png",
                     "hoverBG": "#0EBEFF",
                     "hoverBGName": "hyperlinkBlue",
                     "target": "_blank"
@@ -81,13 +80,13 @@ const pageLayout = {
             "hoverBGName": "gray",
             "hoverBG": "#AAA",
             "bannerSpecs": {
-                "bannerImg": "../img/page/sections/jm logo 3 -- work - text_to_path.svg"
+                "bannerImg": "./assets/img/page/sections/jm logo 3 -- work - text_to_path.svg"
             },
             "sectionLinks": [
                 {
                     "name": "LinkedIn",
                     "url": "https://www.linkedin.com/in/jacques-mathieu-743389119/",
-                    "logo": "../img/page/Social Media/SVG/24/4419149 - linkedin logo social icon.svg",
+                    "logo": "./assets/img/page/Social Media/SVG/24/4419149 - linkedin logo social icon.svg",
                     "hoverBG": "#0077B5",
                     "hoverBGName": "linkedInHoverBlue",
                     "target": "_blank"
@@ -95,7 +94,7 @@ const pageLayout = {
                 {
                     "name": "Resume",
                     "url": "../pdf/JSMathieu Resume Redesign - 04-09-2020.pdf",
-                    "logo": "../img/page/Google Icons/list_alt-48dp.svg",
+                    "logo": "./assets/img/page/Google Icons/list_alt-48dp.svg",
                     "hoverBG": "#33ff5f",
                     "hoverBGName": "goodGreen",
                     "target": "_blank"
@@ -103,7 +102,7 @@ const pageLayout = {
                 {
                     "name": "Example Work",
                     "url": "../html/example-work.html",
-                    "logo": "../img/page/example icon.svg",
+                    "logo": "./assets/img/page/example icon.svg",
                     "hoverBG": "#3dffb9",
                     "hoverBGName": "turqoise",
                     "target": "_self"
@@ -123,7 +122,6 @@ function Home() {
             <FontImport path="https://fonts.googleapis.com/css?family=Montserrat:400,500,800,900|Roboto|Source+Sans+Pro&display=swap" />
             <PageHeader pageHeader={pageLayout["page-header"]} sections={pageLayout["angular-sections"]} />
             <SectionList sections={pageLayout["angular-sections"]} />
-
         </>
     );
 }

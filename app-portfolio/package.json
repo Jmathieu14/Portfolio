@@ -12,10 +12,11 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "webpack --mode production && react-scripts start",
+    "build": "webpack --mode production && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass-watch": "sass --watch src/assets/sass:src/assets/css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -31,5 +32,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "sass": "^1.26.10",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   }
 }

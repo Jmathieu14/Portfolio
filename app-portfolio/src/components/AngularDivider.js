@@ -1,10 +1,11 @@
 import React from 'react';
 // A divider to separate each of our Angular Sections; stylized in
 // an angular fashion.
-export default class AngularDivider extends React.Component {
+class AngularDivider extends React.Component {
     constructor(props) {
         super(props);
         this.divOrientation = props.divOrientation;
+        this.backgroundColor = props.backgroundColor;
         this.baseName = "angular-divider";
         this.element = React.createRef();
     }
@@ -36,16 +37,14 @@ export default class AngularDivider extends React.Component {
     componentDidMount() {
         this.resizeDividerOnMount();
     }
-    // Get the correct background color from the parent object
-    getParentBackgroundForWrapper() {
-        return {backgroundColor: this.props.state.backgroundColor};
-    }
     render() {
         const cName = this.genClassName();
         return (
-            <div class='ang-div-wrapper' style={this.getParentBackgroundForWrapper()}>
-                <div ref={this.element} class={cName}></div>
+            <div className='ang-div-wrapper' style={{backgroundColor: this.backgroundColor}}>
+                <div ref={this.element} className={cName}></div>
             </div>
         );
     }
 }
+
+export default AngularDivider;

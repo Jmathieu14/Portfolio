@@ -36,7 +36,7 @@ class PageHeader extends React.Component {
             <section id={this.key} className="page-header" style={this.getStyle()}>
                 <div className="header-logo-wrapper" style={this.pageHeaderSpecs['logoStyle']}>
                     <a href={this.pageHeaderSpecs['logoURL']}>
-                        <img src={this.pageHeaderSpecs['logo']}>
+                        <img alt="page logo" src={this.pageHeaderSpecs['logo']}>
                         </img>
                     </a>
                 </div>            

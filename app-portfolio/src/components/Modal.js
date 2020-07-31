@@ -44,17 +44,17 @@ class BottomSpawnModal extends React.Component {
             />
         }        
         return (
-            <span class={this.getClassName()} style={this.getStyle()}>
-                <span class="bs-modal-menu-bar">
-                    <span class="bs-modal-header">
+            <span className={this.getClassName()} style={this.getStyle()}>
+                <span className="bs-modal-menu-bar">
+                    <span className="bs-modal-header">
                         {this.getTitle()}
                     </span>
-                    <span class="bs-modal-close" onClick={this.toggleState}>
+                    <span className="bs-modal-close" onClick={this.toggleState}>
                         <img src={this.getCloseImagePath()}>
                         </img>
                     </span>
                 </span>
-                <span class="bs-modal-content">
+                <span className="bs-modal-content">
                     {imageSlider}
                 </span>
             </span>

@@ -1,0 +1,551 @@
+/* Author: Jacques Mathieu
+ * Date Created: 08-05-19
+ *
+ *  X XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ * XX
+ * XXX
+ * -------------|
+ * ASCII logo   | 
+ * made with    |
+ * asciiflow.com )
+ * -------------|
+ * */
+html, body {
+  max-width: 100%;
+}
+
+html, body, .section-list, #react-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.angular-section {
+  width: 100%;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%;
+  height: calc(45% - calc(5% + 0.5rem));
+  transition: all 0.2s linear;
+}
+
+.angular-divider, .angular-divider-rev {
+  width: 100%;
+  height: 0.5rem;
+  z-index: 5;
+}
+
+.ang-div-wrapper {
+  width: 100%;
+  height: calc(5% + 0.5rem);
+  position: relative;
+  float: left;
+  transition: all 0.2s linear;
+}
+
+.angular-section {
+  display: flex;
+  flex-direction: column;
+}
+.angular-section .angular-content {
+  height: 100%;
+  width: 90%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.angular-section .angular-content .banner-title-img, .angular-section .angular-content .banner-title-text {
+  user-select: none;
+  height: 100%;
+  display: inline-block;
+  max-width: 34%;
+}
+.angular-section .angular-content .banner-title-img img, .angular-section .angular-content .banner-title-text img {
+  height: 100% !important;
+  position: relative;
+  float: left;
+  max-width: 100%;
+}
+.angular-section .angular-content .banner-title-text {
+  font-family: "Montserrat", monospace, sans-serif;
+  font-weight: 400;
+  color: black;
+  line-height: 95%;
+  font-size: 2rem;
+  position: relative;
+  float: left;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  padding-top: 5%;
+  top: 20%;
+  height: 55%;
+  margin: auto !important;
+  vertical-align: middle;
+}
+.angular-section .expandable-content-wrapper {
+  max-height: 100%;
+  background: none;
+  width: 100%;
+  min-height: 1.6rem;
+  height: 1.6rem;
+  overflow-x: hidden;
+  position: relative;
+  float: left;
+  transition: all 0.2s linear;
+}
+.angular-section .expandable-content-wrapper .ec-menu-bar {
+  width: 100%;
+  min-height: 1.5rem;
+}
+.angular-section .expandable-content-wrapper .ec-menu-bar button.ec-button {
+  background: none;
+  position: relative;
+  float: left;
+  margin-left: 5%;
+  border-width: 0px;
+  padding: 0px;
+}
+.angular-section .expandable-content-wrapper .ec-menu-bar button.ec-button:hover {
+  cursor: pointer;
+}
+.angular-section .expandable-content-wrapper .ec-menu-bar button.ec-button .ec-icon {
+  height: 1.5rem;
+  display: block;
+}
+.angular-section .expandable-content-wrapper.expanded {
+  height: 100%;
+  transition: all 0.2s linear;
+}
+.angular-section .expandable-content-wrapper .expandable-content {
+  max-height: 100%;
+}
+
+.section-links-wrapper {
+  user-select: none;
+  width: 66%;
+  height: 100%;
+  position: relative;
+  float: right;
+}
+
+.section-links-header {
+  position: relative;
+  float: right;
+  top: 40%;
+  margin-top: calc(1.2rem/2);
+  font-family: "Montserrat", monospace, sans-serif;
+  font-weight: 500;
+  color: black;
+  text-align: center;
+  font-size: 1.2rem;
+  padding-top: 0rem;
+  padding-left: 0.65rem;
+  height: calc((20% - 1.2rem) / 2);
+}
+
+.section-link {
+  position: relative;
+  float: right;
+  height: 20%;
+  max-height: 2.75rem;
+  top: 40%;
+  padding-bottom: 0px;
+  padding-right: 1.3rem;
+  transition: all 0.2s linear;
+}
+.section-link a, .section-link img {
+  height: 100%;
+  max-height: 2.75em;
+  position: relative;
+}
+.section-link a:hover, .section-link img:hover {
+  cursor: pointer;
+}
+
+.sl-hover-arrow {
+  height: 0px;
+  width: 0.5rem;
+  opacity: 0;
+  top: 0px;
+  position: relative;
+  left: calc(50% - 0.5rem);
+  border-bottom: 0.5rem solid black;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  top: 0px;
+  transition: all 0.2s ease;
+}
+
+.section-link a:hover + .sl-hover-arrow, .sl-hover-arrow.react-hover {
+  opacity: 1;
+  top: calc(0.5rem/1.5);
+  transition: all 0.2s ease;
+}
+
+.sl-hover-text {
+  z-index: 20;
+  font-family: "Montserrat", monospace, sans-serif;
+  font-weight: 500;
+  color: black;
+  text-align: center;
+  font-size: 1.2rem;
+  padding-top: 0rem;
+  padding-left: 0.65rem;
+  height: calc((20% - 1.2rem) / 2);
+  font-weight: 800;
+  color: white;
+  height: 5%;
+  font-size: 0.75rem;
+  text-align: left;
+  position: absolute;
+  display: block;
+  width: calc(100% - (0px * 2));
+  padding-left: 0px;
+  padding-right: 0px;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  opacity: 0;
+  transition: all 0.2s linear;
+}
+.sl-hover-text.show {
+  opacity: 1;
+  transition: all 0.2s linear;
+}
+
+section.page-header {
+  height: 2.4rem;
+  font-size: 1rem;
+  padding-left: 5%;
+}
+section.page-header .header-title {
+  position: relative;
+  float: left;
+  user-select: none;
+  padding-left: 1rem;
+  text-align: center;
+  line-height: 2.2rem;
+}
+section.page-header .header-logo-wrapper {
+  user-select: none;
+  height: calc(100% - (0.4rem * 2));
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  position: relative;
+  float: left;
+  padding-left: 1rem;
+  text-align: center;
+  line-height: 2.2rem;
+}
+section.page-header .header-logo-wrapper img {
+  height: 100%;
+}
+section.page-header .header-tabs {
+  user-select: none;
+  position: relative;
+  float: right;
+  padding-right: 5%;
+}
+section.page-header .header-tabs .header-tab {
+  position: relative;
+  float: left;
+  padding-right: 0.5rem;
+  padding-left: 1rem;
+  text-align: center;
+  line-height: 2.2rem;
+  padding-left: 0.5rem;
+  transition: all 0.2s linear;
+}
+section.page-header .header-tabs .header-tab:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all 0.2s linear;
+}
+section.page-header .header-tabs .header-tab:focus, section.page-header .header-tabs .header-tab:active {
+  background: rgba(255, 255, 255, 0.45);
+  transition: all 0.2s linear;
+}
+section.page-header .mobile-header-tabs {
+  user-select: none;
+  display: none;
+  height: 0px;
+  max-height: 0px;
+  transition: all 0.6s ease;
+}
+section.page-header .mobile-show-tabs-icon {
+  position: relative;
+  float: right;
+  display: none;
+}
+section.page-header .mobile-show-tabs-icon img {
+  height: 100%;
+}
+
+.section-list {
+  position: relative;
+  opacity: 0;
+  transition: all 0.4s ease-out;
+  height: calc(100% - 2.4rem - 0.5rem);
+}
+
+.section-list.show {
+  opacity: 1;
+  transition: all 0.4s ease-in;
+}
+
+.bottom-spawn-modal {
+  width: 100%;
+  height: calc(100% - 2.4rem);
+  position: absolute;
+  bottom: 0px;
+  background: white;
+  opacity: 0.5;
+  z-index: 0;
+  display: none;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: all 0.2s linear;
+}
+.bottom-spawn-modal.show {
+  display: block;
+  z-index: 20;
+  opacity: 1;
+  transition: all 0.2s linear;
+}
+.bottom-spawn-modal .bs-modal-menu-bar {
+  display: block;
+  width: 100%;
+  background-color: black;
+  height: 2.2rem;
+  user-select: none;
+  text-transform: lowercase;
+}
+.bottom-spawn-modal .bs-modal-menu-bar .bs-modal-header {
+  position: relative;
+  float: left;
+  font-size: 1.4rem;
+  font-family: "Montserrat", monospace, sans-serif;
+  font-weight: 500;
+  color: white;
+  padding-left: 5%;
+  padding-top: 0.15rem;
+  opacity: 0.9;
+}
+.bottom-spawn-modal .bs-modal-menu-bar .bs-modal-close {
+  position: relative;
+  float: right;
+  margin-right: 5%;
+  padding: 0.4rem;
+  height: calc(100% - (2 * 0.4rem));
+  background-color: rgba(255, 255, 255, 0);
+  transition: all 0.2s linear;
+}
+.bottom-spawn-modal .bs-modal-menu-bar .bs-modal-close img {
+  width: 1.4rem;
+  height: 1.4rem;
+  opacity: 0.9;
+}
+.bottom-spawn-modal .bs-modal-menu-bar .bs-modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+.bottom-spawn-modal .bs-modal-menu-bar .bs-modal-content {
+  position: relative;
+  height: calc(100% - 2.2rem);
+}
+
+.ec-image-slider {
+  height: 100%;
+  user-select: none;
+  overflow-y: overlay;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.ec-image-slider:focus {
+  outline: none;
+}
+.ec-image-slider .slick-slide:focus {
+  outline: none;
+}
+.ec-image-slider .slick-slide img {
+  width: calc(100% - 0%);
+  max-width: 1336px;
+  padding-left: 0%;
+  padding-right: 0%;
+  margin: auto;
+}
+.ec-image-slider .slick-slide img:focus {
+  outline: none;
+}
+.ec-image-slider .slick-dots {
+  position: absolute;
+  bottom: 2.4rem;
+}
+.ec-image-slider .slick-dots li button {
+  font-size: 1rem;
+}
+.ec-image-slider .slick-prev, .ec-image-slider .slick-next {
+  z-index: 100;
+}
+.ec-image-slider .slick-prev:before, .ec-image-slider .slick-next:before {
+  color: rgba(0, 0, 0, 0.4) !important;
+  font-size: 1.4rem;
+}
+.ec-image-slider .slick-prev {
+  left: 1.4rem;
+}
+.ec-image-slider .slick-next {
+  right: 1.4rem;
+}
+
+@media only screen and (max-width: 450px) {
+  section.page-header {
+    height: 3.6rem;
+    font-size: 1.5rem;
+  }
+  section.page-header .header-tabs, section.page-header .header-title {
+    display: none;
+  }
+  section.page-header .mobile-show-tabs-icon {
+    height: calc(3.6rem - (0.4rem * 2));
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 1rem;
+    text-align: center;
+    line-height: 2.2rem;
+    padding-left: 0.4rem;
+    padding-right: 5%;
+    display: block;
+  }
+  section.page-header .mobile-header-tabs {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0px;
+    top: 3.6rem;
+    padding-right: 5%;
+    padding-left: 5%;
+    width: calc(100% - (5% * 2));
+    z-index: 10;
+    height: auto;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    background: black;
+    transition: all 0.6s ease;
+  }
+  section.page-header .mobile-header-tabs .mobile-header-tab {
+    text-align: right;
+    width: calc(100% - (0.4rem * 2));
+    padding: 0.4rem;
+  }
+  section.page-header .mobile-header-tabs .mobile-header-tab:hover, section.page-header .mobile-header-tabs .mobile-header-tab:focus, section.page-header .mobile-header-tabs .mobile-header-tab:active {
+    background: rgba(255, 255, 255, 0.25);
+    transition: all 0.2s linear;
+  }
+
+  .angular-section {
+    min-height: 14rem;
+    height: calc(55% - 3% - 2% - calc(5% + 0.5rem));
+    padding-bottom: 2%;
+    padding-top: 3%;
+  }
+  .angular-section .angular-content .banner-title-img, .angular-section .angular-content .banner-title-text {
+    max-width: 100%;
+    width: 100%;
+    height: 75%;
+  }
+  .angular-section .angular-content .banner-title-img img, .angular-section .angular-content .banner-title-text img {
+    height: auto;
+    width: 65%;
+    left: calc(35%/2);
+  }
+  .angular-section .angular-content .banner-title-text {
+    text-align: center;
+  }
+  .angular-section .angular-content .section-links-wrapper {
+    max-width: 100%;
+    float: left;
+    height: 25%;
+    width: 65%;
+    left: calc(35%/2);
+  }
+  .angular-section .angular-content .section-links-wrapper .section-links-header {
+    float: left;
+    font-size: 1.1rem;
+    margin-top: 0px;
+  }
+  .angular-section .angular-content .section-links-wrapper .section-link {
+    top: calc(50% - (2.2rem/2));
+    padding-left: 0.5rem;
+    padding-right: 0px;
+    max-height: 100%;
+    height: 2.2rem;
+  }
+  .angular-section .angular-content .section-links-wrapper .section-link:last-child {
+    padding-right: 0.2rem;
+  }
+  .angular-section .angular-content .section-links-wrapper .section-link a, .angular-section .angular-content .section-links-wrapper .section-link a img {
+    max-height: 100%;
+    height: 2.2rem;
+  }
+
+  .bottom-spawn-modal .bs-modal-menu-bar {
+    overflow-y: hidden;
+  }
+  .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-header {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 75%;
+  }
+}
+@media only screen and (max-width: 345px) {
+  .angular-section .angular-content .section-links-wrapper .section-links-header {
+    font-size: 0.9rem;
+  }
+  .angular-section .angular-content .section-links-wrapper .section-link {
+    height: 1.35rem;
+    top: calc(50% - (1.35rem / 2));
+  }
+  .angular-section .angular-content .section-links-wrapper .section-link a, .angular-section .angular-content .section-links-wrapper .section-link a img {
+    height: 1.35rem;
+  }
+
+  .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-header {
+    width: 75%;
+    padding-left: 2%;
+  }
+  .bottom-spawn-modal .bs-modal-menu-bar .bs-modal-close {
+    margin-right: 2%;
+  }
+}
+/* Apply these stylings to page for displays that are wider than 1600px */
+@media only screen and (min-width: 1601px) {
+  .angular-section .angular-content .banner-title-text {
+    font-size: 2.8rem;
+  }
+  .angular-section .angular-content .section-links-wrapper .section-links-header {
+    font-size: 1.68rem;
+    height: calc((20% - 1.68rem) / 2);
+    max-height: calc((2.75rem - 1.68rem) / 2);
+    margin-top: calc(calc((2.75rem - 1.68rem) / 2) / 2);
+  }
+  .angular-section .angular-content .section-links-wrapper .section-link {
+    min-height: 2.352rem;
+  }
+  .angular-section .angular-content .section-links-wrapper .section-link a img {
+    min-height: 2.352rem;
+  }
+}
+
+/*# sourceMappingURL=overhaul.css.map */

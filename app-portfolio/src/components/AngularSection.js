@@ -1,10 +1,11 @@
-const React = require('react');
+import React from 'react';
+import AngularDivider from './AngularDivider';
+import ExpandableContent from './ExpandableContent';
 const { genKey, my_display_dimensions, recordDisplayDimensions, checkObjAndKey } = require('./Utility');
 const { SectionLink, SectionLinksHeader, SectionLinkHoverText } = require('./SectionLink');
-const ExpandableContent = require('./ExpandableContent');
-const AngularDivider = require('./AngularDivider');
+
 // An Angularly stylized section of a web page
-class AngularSection extends React.Component {
+export default class AngularSection extends React.Component {
     constructor(props) {
         super(props);
         this.key = props.key;
@@ -93,7 +94,7 @@ class AngularSection extends React.Component {
     }
     getBannerTextHTML() {
         if (checkObjAndKey(this.bannerSpecs, 'bannerText')) {
-            return (<div class="banner-title-text" style={this.getBannerTextStyle()}>
+            return (<div className="banner-title-text" style={this.getBannerTextStyle()}>
                 {this.bannerSpecs['bannerText']}
             </div>
             );
@@ -101,7 +102,7 @@ class AngularSection extends React.Component {
     }
     getBannerImgHTML() {
         if (checkObjAndKey(this.bannerSpecs, 'bannerImg')) {
-            return (<div class="banner-title-img" style={this.getBannerImgStyle()}>
+            return (<div className="banner-title-img" style={this.getBannerImgStyle()}>
                 <img src={this.bannerSpecs['bannerImg']} />
             </div>
             );
@@ -111,29 +112,31 @@ class AngularSection extends React.Component {
         let section_links = null;
         if (this.sectionLinks !== undefined && this.sectionLinks !== null && this.sectionLinks.length > 0) {
             section_links = this.sectionLinks.map((obj) =>
-                <SectionLink key={genKey(obj.name)} specs={obj} state={this.state} parentBG={this.hoverBG} childSetParentSectBGAndHoverText={this.childSetParentSectBGAndHoverText}
+                <SectionLink key={genKey(obj.name)} specs={obj} state={this.state} parentBG={this.hoverBG}
+                    childSetParentSectBGAndHoverText={this.childSetParentSectBGAndHoverText}
                 />);
         }
         let banner_text = this.getBannerTextHTML();
         let banner_img = this.getBannerImgHTML();
         return (
-            <React.Fragment>
-                <div onMouseLeave={this.toggleState} onMouseEnter={this.toggleState} id={this.name} style={this.getStyle()} class="angular-section" ref={this.sectionRef}>
-                    <div class="angular-content">
+            <>
+                <div onMouseLeave={this.toggleState} onMouseEnter={this.toggleState} id={this.name}
+                    style={this.getStyle()} className="angular-section" ref={this.sectionRef}>
+                    <div className="angular-content">
                         {banner_text}
                         {banner_img}
-                        <div class="section-links-wrapper">
+                        <div className="section-links-wrapper">
                             <SectionLinksHeader />
                             {section_links}
                         </div>
                     </div>
-                    <ExpandableContent eCSpecs={this.eCSpecs} state={this.state} handleContentExpansion={this.handleContentExpansion} />
+                    {/* <ExpandableContent eCSpecs={this.eCSpecs} state={this.state}
+                        handleContentExpansion={this.handleContentExpansion} /> */}
                 </div>
                 <SectionLinkHoverText specs={this.getSLHoverTextSpecs()} />
-                <AngularDivider divOrientation={this.divOrientation} state={this.state} />
-            </React.Fragment>
+                <AngularDivider divOrientation={this.divOrientation}
+                    backgroundColor={this.state.backgroundColor} />
+            </>
         );
     }
 }
-
-export default AngularSection;

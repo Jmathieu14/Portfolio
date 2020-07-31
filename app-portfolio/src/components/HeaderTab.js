@@ -16,7 +16,7 @@ class HeaderTab extends React.Component {
     scrollToSection() {
         var thisE = document.getElementById(this.name);
         if (thisE != null) {
-            window.setTimeout(function() {
+            window.setTimeout(function () {
                 thisE.scrollIntoView({ behavior: 'smooth' });
             }, this.delay);
         }
@@ -26,7 +26,7 @@ class HeaderTab extends React.Component {
             this.props.toggleMobileTabsHelper(this.delay * 1.5);
             var thisE = document.getElementById(this.name);
             if (thisE != null) {
-                window.setTimeout(function() {
+                window.setTimeout(function () {
                     thisE.scrollIntoView({ behavior: 'smooth' });
                 }, this.delay);
             }
@@ -35,13 +35,15 @@ class HeaderTab extends React.Component {
     render() {
         if (!this.mobileVersion) {
             return (
-                <a class="header-tab" onClick={this.scrollToSection} style={this.opacityAsTab}>
+                <a className="header-tab" onClick={this.scrollToSection}
+                    style={this.opacityAsTab}>
                     {this.name}
                 </a>
             );
         } else {
             return (
-                <a class="mobile-header-tab" onClick={this.mobileScrollToSection} style={this.opacityAsTab}>
+                <a className="mobile-header-tab"
+                    onClick={this.mobileScrollToSection} style={this.opacityAsTab}>
                     {this.name}
                 </a>
             );

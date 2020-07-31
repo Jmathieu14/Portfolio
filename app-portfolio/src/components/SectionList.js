@@ -10,7 +10,7 @@ class SectionList extends React.Component {
         this.counter = 0;
         this.key = "SECT_LIST";
         this.showSectionList = false;
-        this.modalSpecs = { 'title': 'My Modal', 'close': '../img/page/Google Icons/baseline_close_white_48dp.png' };
+        this.modalSpecs = { 'title': 'My Modal', 'close': './assets/img/page/Google Icons/baseline_close_white_48dp.png' };
     }
     // Get orientation of angular divider given the section index
     divOrientation() {
@@ -46,7 +46,6 @@ class SectionList extends React.Component {
                 sectionLinks={obj.sectionLinks}
             />
         );
-        console.log(my_sections);
         return (
             <React.Fragment>
                 <section className={this.handleClassName()}>

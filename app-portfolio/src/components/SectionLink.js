@@ -66,11 +66,11 @@ class SectionLink extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div class='section-link'>
+                <div className='section-link'>
                     <a onClick={this.handleClick}>
                         <img src={this.specs.logo} onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} />
                     </a>
-                    <div style={this.arrowStyle} id={this.specs.name + "-arrow"} class={this.arrowClassName}
+                    <div style={this.arrowStyle} id={this.specs.name + "-arrow"} className={this.arrowClassName}
                     ref={this.arrowRef}>
                     </div>
                 </div>
@@ -85,14 +85,14 @@ class SectionLinksHeader extends React.Component {
     }
     render() {
         return (
-            <div class="section-links-header">Links</div>
+            <div className="section-links-header">Links</div>
         );
     }
 }
 // Section link hover text element
 function SectionLinkHoverText(props) {
     return (
-        <div class={props.specs['className']} style={props.specs['textColor']}>
+        <div className={props.specs['className']} style={props.specs['textColor']}>
             {repeatStringNTimes(props.specs['text'], 200, ' ')}
         </div>
     );
