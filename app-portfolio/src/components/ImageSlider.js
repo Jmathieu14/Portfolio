@@ -1,4 +1,4 @@
-const { $ } = require('jquery');
+const $ = window.$;
 const React = require('react');
 const { genKey } = require('./Utility');
 // An image slider component that uses the slick jQuery library

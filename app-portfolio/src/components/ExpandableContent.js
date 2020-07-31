@@ -51,6 +51,5 @@ class ExpandableContent extends React.Component {
         } else return null;
     }
 }
-module.exports = {
-    ExpandableContent: ExpandableContent
-};
+
+export default ExpandableContent;

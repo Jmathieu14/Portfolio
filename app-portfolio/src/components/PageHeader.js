@@ -48,6 +48,5 @@ class PageHeader extends React.Component {
         );
     }
 }
-module.exports = {
-    PageHeader: PageHeader
-};
+
+export default PageHeader;

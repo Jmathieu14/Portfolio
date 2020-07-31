@@ -1,8 +1,7 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
 // A divider to separate each of our Angular Sections; stylized in
 // an angular fashion.
-class AngularDivider extends React.Component {
+export default class AngularDivider extends React.Component {
     constructor(props) {
         super(props);
         this.divOrientation = props.divOrientation;
@@ -50,6 +49,3 @@ class AngularDivider extends React.Component {
         );
     }
 }
-module.exports = {
-    AngularDivider: AngularDivider
-};

@@ -1,12 +1,13 @@
 const React = require('react');
 const { genKey, my_display_dimensions, recordDisplayDimensions, checkObjAndKey } = require('./Utility');
 const { SectionLink, SectionLinksHeader, SectionLinkHoverText } = require('./SectionLink');
-const { ExpandableContent } = require('./ExpandableContent');
-const { AngularDivider } = require('./AngularDivider');
+const ExpandableContent = require('./ExpandableContent');
+const AngularDivider = require('./AngularDivider');
 // An Angularly stylized section of a web page
 class AngularSection extends React.Component {
     constructor(props) {
         super(props);
+        this.key = props.key;
         this.name = props.name;
         this.hoverBG = props.hoverBG;
         this.bannerSpecs = props.bannerSpecs;
@@ -47,7 +48,7 @@ class AngularSection extends React.Component {
         let element = this.sectionRef.current;
         let as_style = { backgroundColor: this.state.backgroundColor };
         let new_height = my_display_dimensions.height * 0.8;
-        if (element != null && this.state.contentExpanded && element.style.height != new_height) {
+        if (element !== null && this.state.contentExpanded && element.style.height !== new_height) {
             as_style['height'] = new_height.toString() + 'px';
         }
         return as_style;
@@ -134,6 +135,5 @@ class AngularSection extends React.Component {
         );
     }
 }
-module.exports = {
-    AngularSection: AngularSection
-};
+
+export default AngularSection;

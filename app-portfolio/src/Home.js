@@ -1,8 +1,9 @@
 import React from 'react';
 import PageTitle from './components/PageTitle';
-import FontImport from './components/FunctionComponents';
+import { FontImport } from './components/FunctionComponents';
 import PageHeader from './components/PageHeader';
 import SectionList from './components/SectionList';
+import AngularSection from './components/AngularSection';
 
 const myOpacity = 0.85;
 const myOpacityStyle = { opacity: myOpacity };
@@ -119,25 +120,12 @@ function Home() {
     return (
         <>
             <PageTitle text={pageLayout["pageTitle"]} />
-            <FontImport path={pageLayout["font-import-link"]} />
+            <FontImport path="https://fonts.googleapis.com/css?family=Montserrat:400,500,800,900|Roboto|Source+Sans+Pro&display=swap" />
             <PageHeader pageHeader={pageLayout["page-header"]} sections={pageLayout["angular-sections"]} />
             <SectionList sections={pageLayout["angular-sections"]} />
+
         </>
     );
 }
-
-// // Variable that stores DOM element in which all react components will be rendered under
-// const renderTarget = document.getElementById('react-content');
-
-// // Render layout to main view
-// ReactDOM.render(
-//     <React.Fragment>
-//         <PageTitle text={pageLayout["pageTitle"]} />
-//         <FontImport path={pageLayout['font-import-link']} />
-//         <PageHeader pageHeader={pageLayout["page-header"]} sections={pageLayout["angular-sections"]} />
-//         <SectionList sections={pageLayout["angular-sections"]} />
-//     </React.Fragment>,
-//     renderTarget
-// );
 
 export default Home;

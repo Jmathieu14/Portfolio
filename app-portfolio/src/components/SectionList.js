@@ -10,7 +10,7 @@ class SectionList extends React.Component {
         this.counter = 0;
         this.key = "SECT_LIST";
         this.showSectionList = false;
-        this.modalSpecs = {'title': 'My Modal', 'close': '../img/page/Google Icons/baseline_close_white_48dp.png'};
+        this.modalSpecs = { 'title': 'My Modal', 'close': '../img/page/Google Icons/baseline_close_white_48dp.png' };
     }
     // Get orientation of angular divider given the section index
     divOrientation() {
@@ -35,10 +35,21 @@ class SectionList extends React.Component {
         this.showSectionList = true;
     }
     render() {
-        const my_sections = this.sections.map((obj) => <AngularSection key={genKey(obj.name)} name={obj.name} hoverBG={obj.hoverBG} bannerSpecs={obj.bannerSpecs} eCSpecs={obj.expandableContentSpecs} divOrientation={this.divOrientation()} sectionLinks={obj.sectionLinks}/>);
+        const my_sections = this.sections.map((obj) =>
+            <AngularSection
+                key={genKey(obj.name)}
+                name={obj.name} 
+                hoverBG={obj.hoverBG}
+                bannerSpecs={obj.bannerSpecs}
+                eCSpecs={obj.expandableContentSpecs}
+                divOrientation={this.divOrientation()}
+                sectionLinks={obj.sectionLinks}
+            />
+        );
+        console.log(my_sections);
         return (
             <React.Fragment>
-                <section class={this.handleClassName()}>
+                <section className={this.handleClassName()}>
                     {my_sections}
                 </section>
             </React.Fragment>
