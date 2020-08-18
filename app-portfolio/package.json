@@ -9,9 +9,10 @@
     "jquery": "^3.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
+    "start-dev": "webpack --mode development && react-scripts start",
     "start": "webpack --mode production && react-scripts start",
     "build": "webpack --mode production && react-scripts build",
     "test": "react-scripts test",
@@ -38,8 +39,8 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.1",
     "sass": "^1.26.10",
-    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }
 }
