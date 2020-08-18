@@ -8,7 +8,6 @@ const { SectionLink, SectionLinksHeader, SectionLinkHoverText } = require('./Sec
 export default class AngularSection extends React.Component {
     constructor(props) {
         super(props);
-        this.key = props.key;
         this.name = props.name;
         this.hoverBG = props.hoverBG;
         this.bannerSpecs = props.bannerSpecs;

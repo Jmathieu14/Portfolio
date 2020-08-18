@@ -3,6 +3,8 @@ import PageTitle from './components/PageTitle';
 import { FontImport } from './components/FunctionComponents';
 import PageHeader from './components/PageHeader';
 import SectionList from './components/SectionList';
+import { imageHelper } from './utility/ImageHelper';
+
 
 const myOpacity = 0.85;
 const myOpacityStyle = { opacity: myOpacity };
@@ -12,7 +14,7 @@ const pageLayout = {
     "pageTitle": "Jacques Mathieu - Home",
     "page-header": {
         "title": "",
-        "logo": "./assets/img/page/jm logo 3 - white.svg",
+        "logo": imageHelper.customLogos.mainLogo,
         "logoURL": "#",
         "logoStyle": myOpacityStyle,
         "background": "#000",
@@ -21,7 +23,7 @@ const pageLayout = {
         "fontColorName": "White",
         "headerFontOpacity": myOpacity,
         "fontFamily": "'Montserrat', 'Roboto', sans-serif",
-        "mobileMoreIcon": "./assets/img/page/Google Icons/baseline_menu_white_48dp.png",
+        "mobileMoreIcon": imageHelper.utilityLogos.mobileMoreIcon,
         "mobileMoreStyle": { color: "#FFF", opacity: myOpacity }
     },
     "angular-sections": [
@@ -30,13 +32,13 @@ const pageLayout = {
             "hoverBGName": "lightGrey",
             "hoverBG": "#DDD",
             "bannerSpecs": {
-                "bannerImg": "./assets/img/page/sections/jm logo 3 -- music - text_to_path.svg"
+                "bannerImg": imageHelper.customLogos.jmMusicLogo
             },
             "sectionLinks": [
                 {
                     "name": "SoundCloud",
                     "url": "https://soundcloud.com/jacques_mathieu",
-                    "logo": "./assets/img/page/Social Media/SVG/24/4419136 - cloud logo sound sound cloud soundcloud square icon.svg",
+                    "logo": imageHelper.appLogos.soundcloudLogo,
                     "hoverBG": "#F50",
                     "hoverBGName": "scloudOrange",
                     "target": "_blank"
@@ -44,7 +46,7 @@ const pageLayout = {
             ],
             "expandableContentSpecs": {
                 "show": false,
-                "icon": "./assets/img/page/Google Icons/expand_more-24px.svg"
+                "icon": imageHelper.utilityLogos.expandIcon
             },
             "opacityAsTab": myOpacityStyle
         },
@@ -53,13 +55,13 @@ const pageLayout = {
             "hoverBGName": "lightBlueGrey",
             "hoverBG": "#DDEEDD",
             "bannerSpecs": {
-                "bannerImg": "./assets/img/page/sections/jm logo 3 -- project - text_to_path.svg"
+                "bannerImg": imageHelper.customLogos.jmProjectLogo
             },
             "sectionLinks": [
                 {
                     "name": "GitHub",
                     "url": "https://github.com/Jmathieu14",
-                    "logo": "./assets/img/page/Social Media/SVG/24/4419165 - circle github outline social-media icon.svg",
+                    "logo": imageHelper.appLogos.githubLogo,
                     "hoverBG": "#A54AB0",
                     "hoverBGName": "githubDesktopPurple",
                     "target": "_blank"
@@ -67,7 +69,7 @@ const pageLayout = {
                 {
                     "name": "Codepen.io",
                     "url": "https://codepen.io/jmathieu145",
-                    "logo": "./assets/img/page/Other Icons/codepen-black-fill-small.png",
+                    "logo": imageHelper.appLogos.codepenLogo,
                     "hoverBG": "#0EBEFF",
                     "hoverBGName": "hyperlinkBlue",
                     "target": "_blank"
@@ -80,13 +82,13 @@ const pageLayout = {
             "hoverBGName": "gray",
             "hoverBG": "#AAA",
             "bannerSpecs": {
-                "bannerImg": "./assets/img/page/sections/jm logo 3 -- work - text_to_path.svg"
+                "bannerImg": imageHelper.customLogos.jmWorkLogo
             },
             "sectionLinks": [
                 {
                     "name": "LinkedIn",
                     "url": "https://www.linkedin.com/in/jacques-mathieu-743389119/",
-                    "logo": "./assets/img/page/Social Media/SVG/24/4419149 - linkedin logo social icon.svg",
+                    "logo": imageHelper.appLogos.linkedinLogo,
                     "hoverBG": "#0077B5",
                     "hoverBGName": "linkedInHoverBlue",
                     "target": "_blank"
@@ -94,7 +96,7 @@ const pageLayout = {
                 {
                     "name": "Resume",
                     "url": "../pdf/JSMathieu Resume Redesign - 04-09-2020.pdf",
-                    "logo": "./assets/img/page/Google Icons/list_alt-48dp.svg",
+                    "logo": imageHelper.utilityLogos.resumeIcon,
                     "hoverBG": "#33ff5f",
                     "hoverBGName": "goodGreen",
                     "target": "_blank"
@@ -102,7 +104,7 @@ const pageLayout = {
                 {
                     "name": "Example Work",
                     "url": "../html/example-work.html",
-                    "logo": "./assets/img/page/example icon.svg",
+                    "logo": imageHelper.utilityLogos.exampleWorkIcon,
                     "hoverBG": "#3dffb9",
                     "hoverBGName": "turqoise",
                     "target": "_self"
