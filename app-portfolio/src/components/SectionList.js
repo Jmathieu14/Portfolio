@@ -9,7 +9,9 @@ class SectionList extends React.Component {
         this.sections = props.sections;
         this.counter = 0;
         this.key = "SECT_LIST";
-        this.showSectionList = false;
+        this.state = {
+            showSectionList: false
+        }
         this.modalSpecs = { 'title': 'My Modal', 'close': './assets/img/page/Google Icons/baseline_close_white_48dp.png' };
     }
     // Get orientation of angular divider given the section index
@@ -20,11 +22,8 @@ class SectionList extends React.Component {
         }
         return "";
     }
-    // Add 'show' to end of the class name if mobile view is enabled;
-    // Otherwise, onload will handle it.
     handleClassName() {
-        if (this.showSectionList) {
-            SECT_DISPLAYED = true;
+        if (this.state.showSectionList) {
             return SECT_LIST_CLASS + " show";
         } else {
             return SECT_LIST_CLASS;
@@ -32,7 +31,7 @@ class SectionList extends React.Component {
     }
     componentDidMount() {
         redirectToGitHubPages();
-        this.showSectionList = true;
+        this.setState({showSectionList: true});
     }
     render() {
         const my_sections = this.sections.map((obj) =>

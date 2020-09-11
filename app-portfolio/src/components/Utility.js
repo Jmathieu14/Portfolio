@@ -21,21 +21,9 @@ function recordDisplayDimensions(debug) {
 // Variables that store the section list class name and whether 
 // or not the section list is displayed
 const SECT_LIST_CLASS = "section-list";
-var SECT_DISPLAYED = false;
 // Represents the maximum allowed width for the mobile view (in pixels)
 const MOBILE_VIEW_MAX_WIDTH = 450;
 
-// Show the section list
-function showSectionList() {
-    if (!SECT_DISPLAYED) {
-        var sectList = document.getElementsByClassName(SECT_LIST_CLASS)[0];
-        // If there is a section list on the page
-        if (sectList !== undefined && sectList !== null) {
-            sectList.className = SECT_LIST_CLASS + " show";
-            SECT_DISPLAYED = true;
-        }
-    }
-}
 // Selectors for angular dividers
 const ANGLR_DIV_SEL = ".angular-divider";
 const ANGLR_DIV_REV_SEL = ".angular-divider-rev";
@@ -65,8 +53,6 @@ function resizeDividersOnPageResize() {
             d.style.borderRight = wrapper.clientWidth + "px solid black";
         }
     }
-    // Show the section list if not yet shown
-    showSectionList();
 }
 // Add event listener to window resizing event
 window.addEventListener("resize", resizeDividersOnPageResize);
@@ -88,14 +74,10 @@ function checkObjAndKey(o, k) {
     return o != null && k in o;
 }
 
-// Old domain we do not want users using any further
-// Make sure it is in lowercase or redirect will fail!
-const oldDomain = "rawgit.com";
-// Redirect the user to the github pages location of the site if the url is of domain rawgit
 function redirectToGitHubPages() {
+const oldDomain = "rawgit.com";
     let curDomain = window.location.hostname;
     if (curDomain.toLowerCase() === oldDomain) {
-        // Where to redirect to
         const updatedLoc = "https://jmathieu14.github.io/Portfolio/html/home.html";
         console.log("Redirecting to most up to date page");
         window.open(updatedLoc, "_self");
@@ -110,8 +92,6 @@ module.exports = {
     my_display_dimensions: my_display_dimensions,
     redirectToGitHubPages: redirectToGitHubPages,
     recordDisplayDimensions: recordDisplayDimensions,
-    showSectionList: showSectionList,
     resizeDividersOnPageResize: resizeDividersOnPageResize,
     SECT_LIST_CLASS: SECT_LIST_CLASS,
-    SECT_DISPLAYED: SECT_DISPLAYED
 };

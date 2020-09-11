@@ -4,7 +4,6 @@ import ExpandableContent from './ExpandableContent';
 const { genKey, my_display_dimensions, recordDisplayDimensions, checkObjAndKey } = require('./Utility');
 const { SectionLink, SectionLinksHeader, SectionLinkHoverText } = require('./SectionLink');
 
-// An Angularly stylized section of a web page
 export default class AngularSection extends React.Component {
     constructor(props) {
         super(props);

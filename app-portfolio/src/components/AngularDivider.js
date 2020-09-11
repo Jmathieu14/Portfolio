@@ -1,6 +1,5 @@
 import React from 'react';
-// A divider to separate each of our Angular Sections; stylized in
-// an angular fashion.
+
 class AngularDivider extends React.Component {
     constructor(props) {
         super(props);
@@ -16,7 +15,6 @@ class AngularDivider extends React.Component {
             return this.baseName + "-" + this.divOrientation;
         }
     }
-    // Best compromise between React and non-react approach
     resizeDividerOnMount() {
         let d = this.element.current;
         if (d != null) {
@@ -25,10 +23,8 @@ class AngularDivider extends React.Component {
             const dBorderH = wrapper.clientHeight - d.clientHeight;
             const borderLRText = wrapper.clientWidth + 'px solid black';
             d.style.borderTop = dBorderH + 'px solid transparent';
-            // Apply proper styling to reverse angular divider
             if (d.className.indexOf("-rev") > 0) {
                 d.style.borderLeft = borderLRText;
-            // Else apply normal styling
             } else {
                 d.style.borderRight = borderLRText;
             }
