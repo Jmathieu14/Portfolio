@@ -14,7 +14,19 @@ module.exports = {
                 test: /\.css$/i,
                 include: path.resolve(__dirname, "./src"),
                 use: ['style-loader', 'css-loader'],
-            }
+            },
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack'],
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
+            },
         ]
     }
 };
