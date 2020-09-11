@@ -1,34 +1,3 @@
-/* Author: Jacques Mathieu
- * Date Created: 08-05-19
- *
- *  X XX  XX
- *  XX  XX  XX
- *  XX  XX  XX
- *  XX  XX  XX
- *  XX  XX  XX
- *  XX  XX  XX
- *  XX  XX  XX
- *  XX  XX  XX
- * XX
- * XXX
- * -------------|
- * ASCII logo   | 
- * made with    |
- * asciiflow.com )
- * -------------|
- * */
-html, body {
-  max-width: 100%;
-}
-
-html, body, .section-list, #react-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-
 .angular-section {
   width: 100%;
   padding-top: 2.5%;
@@ -127,6 +96,36 @@ html, body, .section-list, #react-content {
 }
 .angular-section .expandable-content-wrapper .expandable-content {
   max-height: 100%;
+}
+
+/*! Author: Jacques Mathieu
+ * Date Created: 08-05-19
+ *
+ *  X XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ *  XX  XX  XX
+ * XX
+ * XXX
+ * -------------|
+ * ASCII logo   | 
+ * made with    |
+ * asciiflow.com )
+ * -------------| */
+html, body {
+  max-width: 100%;
+}
+
+html, body, .section-list, #react-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 .section-links-wrapper {

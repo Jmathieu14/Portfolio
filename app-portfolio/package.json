@@ -17,7 +17,7 @@
     "build": "webpack --mode production && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sass-watch": "sass --watch src/assets/sass:src/assets/css"
+    "sass-watch": "sass --watch src/assets/sass:src/assets/css src/assets/sass_components:src/assets/css_components"
   },
   "eslintConfig": {
     "extends": "react-app"
