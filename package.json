@@ -13,7 +13,7 @@
     "babel-plugin-inline-json-import": "^0.3.2",
     "bytenode": "^1.1.1",
     "nodemon": "^1.19.2",
-    "react": "^16.10.0"
+    "react": "^17.0.1"
   },
   "devDependencies": {
     "concat-files": "^0.1.1",
