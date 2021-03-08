@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "concat-files": "^0.1.1",
-    "jsdom": "15.1.1",
+    "jsdom": "16.5.0",
     "jsdom-global": "3.0.2",
     "mocha": "^6.2.0",
     "react-dom": "^16.10.0"
