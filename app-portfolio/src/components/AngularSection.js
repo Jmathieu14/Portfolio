@@ -53,8 +53,7 @@ export default class AngularSection extends React.Component {
         return as_style;
     }
 
-    // Set the background and state text with the given state text and color; Will be called from the child
-    // section links
+    // Set the background and state text with the given state text and color; Will be called from the child section links
     childSetParentSectBGAndHoverText(s_text, color, priority, hoverText, hoverTextShow) {
         // Do not update background color if the expandable section is active
         if (!this.state.contentExpanded) {

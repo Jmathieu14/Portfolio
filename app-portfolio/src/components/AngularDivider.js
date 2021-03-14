@@ -36,7 +36,7 @@ class AngularDivider extends React.Component {
     render() {
         const cName = this.genClassName();
         return (
-            <div className='ang-div-wrapper' style={{backgroundColor: this.backgroundColor}}>
+            <div className='ang-div-wrapper' style={{backgroundColor: this.props.backgroundColor}}>
                 <div ref={this.element} className={cName}></div>
             </div>
         );
