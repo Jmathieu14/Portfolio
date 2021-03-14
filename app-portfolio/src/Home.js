@@ -4,28 +4,14 @@ import { FontImport } from './components/FunctionComponents';
 import PageHeader from './components/PageHeader';
 import SectionList from './components/SectionList';
 import { imageHelper } from './utility/ImageHelper';
+import { fontImportLink, myOpacityStyle, pageHeaderLayout } from './utility/PageLayoutHelper'
 
 
-const myOpacity = 0.85;
-const myOpacityStyle = { opacity: myOpacity };
 // Set up layout of homepage
 const pageLayout = {
-    "font-import-link": "https://fonts.googleapis.com/css?family=Montserrat:400,500,800,900|Roboto|Source+Sans+Pro&display=swap",
+    "font-import-link": fontImportLink,
     "pageTitle": "Jacques Mathieu - Home",
-    "page-header": {
-        "title": "",
-        "logo": imageHelper.customLogos.mainLogo,
-        "logoURL": "#",
-        "logoStyle": myOpacityStyle,
-        "background": "#000",
-        "backgroundName": "black",
-        "fontColor": "#FFF",
-        "fontColorName": "White",
-        "headerFontOpacity": myOpacity,
-        "fontFamily": "'Montserrat', 'Roboto', sans-serif",
-        "mobileMoreIcon": imageHelper.utilityLogos.mobileMoreIcon,
-        "mobileMoreStyle": { color: "#FFF", opacity: myOpacity }
-    },
+    "page-header": pageHeaderLayout(),
     "angular-sections": [
         {
             "name": "music",

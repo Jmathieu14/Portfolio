@@ -10,6 +10,8 @@ import mobileMoreIcon from '../assets/img/page/Google Icons/baseline_menu_white_
 import resumeIcon from '../assets/img/page/Google Icons/list_alt-48dp.svg';
 import exampleWorkIcon from '../assets/img/page/example icon.svg';
 import expandIcon from '../assets/img/page/Google Icons/expand_more-24px.svg';
+import imageIcon from '../assets/img/page/Google Icons/baseline_photo_black_48dp.png';
+import videoIcon from '../assets/img/page/Google Icons/video_icon.png';
 
 
 export const imageHelper = {
@@ -23,7 +25,9 @@ export const imageHelper = {
         mobileMoreIcon: mobileMoreIcon,
         resumeIcon: resumeIcon,
         exampleWorkIcon: exampleWorkIcon,
-        expandIcon: expandIcon
+        expandIcon: expandIcon,
+        imageIcon: imageIcon,
+        videoIcon: videoIcon
     },
     appLogos: {
         soundcloudLogo: soundcloudLogo,
