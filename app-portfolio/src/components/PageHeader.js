@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 const { HeaderTabs } = require('./HeaderTabs');
 const React = require('react');
+
 // Top menu bar for site
 class PageHeader extends React.Component {
     constructor(props) {
@@ -35,10 +37,10 @@ class PageHeader extends React.Component {
         return (
             <section id={this.key} className="page-header" style={this.getStyle()}>
                 <div className="header-logo-wrapper" style={this.pageHeaderSpecs['logoStyle']}>
-                    <a href={this.pageHeaderSpecs['logoURL']}>
+                    <Link to={this.pageHeaderSpecs['logoURL']}>
                         <img alt="page logo" src={this.pageHeaderSpecs['logo']}>
                         </img>
-                    </a>
+                    </Link>
                 </div>            
                 <div className="header-title" style={this.getHeaderStyle()}>
                     {this.pageHeaderSpecs['title']}

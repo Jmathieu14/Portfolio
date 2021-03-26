@@ -2,6 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const { checkObjAndKey, repeatStringNTimes } = require('./Utility');
 const { BottomSpawnModal } = require('./Modal');
+const { Link } = require('react-router-dom');
 // One of multiple links that appear under their respective Angular Sections
 class SectionLink extends React.Component {
     constructor(props) {
@@ -64,18 +65,33 @@ class SectionLink extends React.Component {
         }
     }
     render() {
-        return (
-            <React.Fragment>
-                <div className='section-link'>
-                    <a onClick={this.handleClick}>
-                        <img src={this.specs.logo} onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} />
-                    </a>
-                    <div style={this.arrowStyle} id={this.specs.name + "-arrow"} className={this.arrowClassName}
-                    ref={this.arrowRef}>
+        if (checkObjAndKey(this.specs, "routerLink") && this.specs.routerLink) {
+            return (
+                <React.Fragment>
+                    <div className='section-link'>
+                        <Link to={this.specs.url}>
+                            <img src={this.specs.logo} />
+                        </Link>
+                        <div style={this.arrowStyle} id={this.specs.name + "-arrow"} className={this.arrowClassName}
+                        ref={this.arrowRef}>
+                        </div>
                     </div>
-                </div>
-            </React.Fragment>
-        );
+                </React.Fragment>
+            );
+        } else {
+            return (
+                <React.Fragment>
+                    <div className='section-link'>
+                        <a onClick={this.handleClick}>
+                            <img src={this.specs.logo} onMouseEnter={this.mouseEnterLogo} onMouseLeave={this.mouseLeaveLogo} />
+                        </a>
+                        <div style={this.arrowStyle} id={this.specs.name + "-arrow"} className={this.arrowClassName}
+                        ref={this.arrowRef}>
+                        </div>
+                    </div>
+                </React.Fragment>
+            );
+        }
     }
 }
 // Header for section links (to add clarity and ease of use to site)

@@ -89,7 +89,8 @@ const pageLayout = {
                 },
                 {
                     "name": "Example Work",
-                    "url": "../html/example-work.html",
+                    "url": "/example-work",
+                    "routerLink": true,
                     "logo": imageHelper.utilityLogos.exampleWorkIcon,
                     "hoverBG": "#3dffb9",
                     "hoverBGName": "turqoise",

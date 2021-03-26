@@ -10,7 +10,7 @@ export function pageHeaderLayout(title = "") {
     return {
         "title": title,
         "logo": imageHelper.customLogos.mainLogo,
-        "logoURL": "#",
+        "logoURL": "/",
         "logoStyle": myOpacityStyle,
         "background": "#000",
         "backgroundName": "black",
