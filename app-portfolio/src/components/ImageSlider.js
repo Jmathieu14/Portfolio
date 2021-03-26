@@ -1,7 +1,7 @@
-const $ = window.$;
-const React = require('react');
+import React from 'react';
+import Slider from "react-slick";
 const { genKey } = require('./Utility');
-// An image slider component that uses the slick jQuery library
+
 class ImageSlider extends React.Component {
     constructor(props) {
         super(props);
@@ -15,21 +15,23 @@ class ImageSlider extends React.Component {
         }
     }
     componentDidMount() {
-        $('#' + this.id).slick(this.settings);
+        // $('#' + this.id).slick(this.settings);
     }
     render() {
-        let imageElements = this.images.map((obj) => 
+        console.log('rendering image-slider...');
+        let imageElements = this.images.map((obj) =>
             <div key={genKey(obj.text)}>
                 <img alt={obj.text} src={obj.path} />
             </div>
         );
         return (
             <div id={this.id} className="ec-image-slider container">
-                {imageElements}
+                <Slider {...this.settings}>
+                    {imageElements}
+                </Slider>
             </div>
         );
     }
 }
-module.exports = {
-    ImageSlider: ImageSlider
-};
+
+export default ImageSlider;

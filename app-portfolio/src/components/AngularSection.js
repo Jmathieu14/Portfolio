@@ -1,8 +1,8 @@
 import React from 'react';
 import AngularDivider from './AngularDivider';
 import ExpandableContent from './ExpandableContent';
+import { SectionLink, SectionLinksHeader, SectionLinkHoverText } from './SectionLink';
 const { genKey, my_display_dimensions, recordDisplayDimensions, checkObjAndKey } = require('./Utility');
-const { SectionLink, SectionLinksHeader, SectionLinkHoverText } = require('./SectionLink');
 
 export default class AngularSection extends React.Component {
     constructor(props) {
@@ -127,8 +127,8 @@ export default class AngularSection extends React.Component {
                             {section_links}
                         </div>
                     </div>
-                    {/* <ExpandableContent eCSpecs={this.eCSpecs} state={this.state}
-                        handleContentExpansion={this.handleContentExpansion} /> */}
+                    <ExpandableContent eCSpecs={this.eCSpecs} state={this.state}
+                        handleContentExpansion={this.handleContentExpansion} />
                 </div>
                 <SectionLinkHoverText specs={this.getSLHoverTextSpecs()} />
                 <AngularDivider divOrientation={this.divOrientation}

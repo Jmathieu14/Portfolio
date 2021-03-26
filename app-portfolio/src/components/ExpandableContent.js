@@ -1,6 +1,6 @@
+const ImageSlider = require('./ImageSlider');
 const React = require('react');
 const { genKey, checkObjAndKey } = require('./Utility');
-const { ImageSlider } = require('./ImageSlider');
 // Part of an Angular Section that allows one to expand and view additional content (if included in layout file)
 export default class ExpandableContent extends React.Component {
     constructor(props) {

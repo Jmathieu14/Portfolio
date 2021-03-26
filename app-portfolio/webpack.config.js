@@ -12,12 +12,15 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                include: path.resolve(__dirname, "./src"),
                 use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.svg$/,
                 use: ['@svgr/webpack'],
+            },
+            {
+                test: /\.(woff|woff2|ttf|eot)$/,
+                use: ['file-loader']
             },
             {
                 test: /\.(png|jpe?g|gif)$/i,

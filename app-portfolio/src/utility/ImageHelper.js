@@ -12,6 +12,9 @@ import exampleWorkIcon from '../assets/img/page/example icon.svg';
 import expandIcon from '../assets/img/page/Google Icons/expand_more-24px.svg';
 import imageIcon from '../assets/img/page/Google Icons/baseline_photo_black_48dp.png';
 import videoIcon from '../assets/img/page/Google Icons/video_icon.png';
+import closeIcon from '../assets/img/page/Google Icons/baseline_close_white_48dp.png';
+import mluAfter from '../assets/img/AGO/MLU after.png';
+import oml from '../assets/img/AGO/OML.png';
 
 
 export const imageHelper = {
@@ -27,12 +30,17 @@ export const imageHelper = {
         exampleWorkIcon: exampleWorkIcon,
         expandIcon: expandIcon,
         imageIcon: imageIcon,
-        videoIcon: videoIcon
+        videoIcon: videoIcon,
+        closeIcon: closeIcon
     },
     appLogos: {
         soundcloudLogo: soundcloudLogo,
         githubLogo: githubLogo,
         codepenLogo: codepenLogo,
         linkedinLogo: linkedinLogo
+    },
+    exampleWork: {
+        mluAfter: mluAfter,
+        oml: oml
     }
 }

@@ -33,7 +33,7 @@ const pageLayout = {
                     "modalSpecs": {
                         "contentType": "imageSlider",
                         "title": "ex. of work @ sparksales",
-                        "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
+                        "close": imageHelper.utilityLogos.closeIcon,
                         "imageSliderSpecs": {
                             "images": [
                                 {
@@ -105,15 +105,15 @@ const pageLayout = {
                     "modalSpecs": {
                         "contentType": "imageSlider",
                         "title": "ex. of work @ AGO",
-                        "close": "../img/page/Google Icons/baseline_close_white_48dp.png",
+                        "close": imageHelper.utilityLogos.closeIcon,
                         "imageSliderSpecs": {
                             "images": [
                                 {
-                                    "path": "../img/AGO/MLU after.png",
+                                    "path": imageHelper.exampleWork.mluAfter,
                                     "text": "Improved MLU Form"
                                 },
                                 {
-                                    "path": "../img/AGO/OML.png",
+                                    "path": imageHelper.exampleWork.oml,
                                     "text": "Improved OML Form"
                                 }
                             ]

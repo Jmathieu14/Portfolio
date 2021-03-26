@@ -1,7 +1,7 @@
+import ImageSlider from './ImageSlider';
 const React = require('react');
 const { genKey, checkObjAndKey } = require('./Utility');
-const { ImageSlider } = require('./ImageSlider');
-// A modal that spawns from the bottom of the page
+
 class BottomSpawnModal extends React.Component {
     constructor(props) {
         super(props);
@@ -61,6 +61,5 @@ class BottomSpawnModal extends React.Component {
         );
     }
 }
-module.exports = {
-    BottomSpawnModal: BottomSpawnModal
-};
+
+export default BottomSpawnModal;

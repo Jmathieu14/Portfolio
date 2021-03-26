@@ -1,10 +1,10 @@
-const React = require('react');
+import React from 'react';
+import BottomSpawnModal from './Modal';
 const ReactDOM = require('react-dom');
 const { checkObjAndKey, repeatStringNTimes } = require('./Utility');
-const { BottomSpawnModal } = require('./Modal');
 const { Link } = require('react-router-dom');
-// One of multiple links that appear under their respective Angular Sections
-class SectionLink extends React.Component {
+
+export class SectionLink extends React.Component {
     constructor(props) {
         super(props);
         this.specs = props.specs;
@@ -95,7 +95,7 @@ class SectionLink extends React.Component {
     }
 }
 // Header for section links (to add clarity and ease of use to site)
-class SectionLinksHeader extends React.Component {
+export class SectionLinksHeader extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -106,15 +106,11 @@ class SectionLinksHeader extends React.Component {
     }
 }
 // Section link hover text element
-function SectionLinkHoverText(props) {
+export function SectionLinkHoverText(props) {
     return (
         <div className={props.specs['className']} style={props.specs['textColor']}>
             {repeatStringNTimes(props.specs['text'], 200, ' ')}
         </div>
     );
 }
-module.exports = {
-    SectionLink: SectionLink,
-    SectionLinksHeader: SectionLinksHeader,
-    SectionLinkHoverText: SectionLinkHoverText
-};
+
