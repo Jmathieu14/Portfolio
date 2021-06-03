@@ -84,7 +84,7 @@ var pageLayout = {
       "target": "_blank"
     }, {
       "name": "Resume",
-      "url": "../pdf/JSMathieu Resume Redesign - 04-09-2020.pdf",
+      "url": "../pdf/JSMathieu Resume Redesign - 2-17-21.pdf",
       "logo": "../img/page/Google Icons/list_alt-48dp.svg",
       "hoverBG": "#33ff5f",
       "hoverBGName": "goodGreen",
