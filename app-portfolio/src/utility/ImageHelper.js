@@ -17,10 +17,12 @@ import mluAfter from '../assets/img/AGO/MLU after.png';
 import oml from '../assets/img/AGO/OML.png';
 
 
+// TODO: finish adding alts to all images
+
 export const imageHelper = {
     customLogos: {
         mainLogo: mainLogo,
-        jmMusicLogo: jmMusicLogo,
+        jmMusicLogo: { image: jmMusicLogo, alt: "JM Music Logo" },
         jmProjectLogo: jmProjectLogo,
         jmWorkLogo: jmWorkLogo
     },

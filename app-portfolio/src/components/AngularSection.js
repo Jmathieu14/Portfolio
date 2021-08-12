@@ -100,7 +100,7 @@ export default class AngularSection extends React.Component {
     getBannerImgHTML() {
         if (checkObjAndKey(this.bannerSpecs, 'bannerImg')) {
             return (<div className="banner-title-img" style={this.getBannerImgStyle()}>
-                <img src={this.bannerSpecs['bannerImg']} />
+                <img src={this.bannerSpecs['bannerImg']} alt={this.bannerSpecs['alt']} />
             </div>
             );
         } else return null;

@@ -18,7 +18,8 @@ const pageLayout = {
             "hoverBGName": "lightGrey",
             "hoverBG": "#DDD",
             "bannerSpecs": {
-                "bannerImg": imageHelper.customLogos.jmMusicLogo
+                "bannerImg": imageHelper.customLogos.jmMusicLogo.image,
+                "alt": imageHelper.customLogos.jmMusicLogo.alt
             },
             "sectionLinks": [
                 {

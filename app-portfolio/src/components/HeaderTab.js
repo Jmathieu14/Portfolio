@@ -1,7 +1,6 @@
 const React = require('react');
-const ReactDOM = require('react-dom');
 // Top menu bar 'buttons' used to scroll to specified angular section
-class HeaderTab extends React.Component {
+export class HeaderTab extends React.Component {
     constructor(props) {
         super(props);
         this.name = props.name;
@@ -50,6 +49,3 @@ class HeaderTab extends React.Component {
         }
     }
 }
-module.exports = {
-    HeaderTab: HeaderTab
-};

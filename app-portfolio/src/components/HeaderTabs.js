@@ -2,7 +2,7 @@ const React = require('react');
 const { HeaderTab } = require('./HeaderTab');
 const { genKey } = require('./Utility');
 // Component that wraps one or more HeaderTab
-class HeaderTabs extends React.Component {
+export class HeaderTabs extends React.Component {
     constructor(props) {
         super(props);
         this.sections = props.sections;
@@ -79,6 +79,3 @@ class HeaderTabs extends React.Component {
         );
     }
 }
-module.exports = {
-    HeaderTabs: HeaderTabs
-};

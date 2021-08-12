@@ -1,5 +1,8 @@
+@use "sass:math"
 @import '../sass_components/_angular_section'
 @import '../sass_components/_global_variables'
+@import 'slick-carousel/slick/slick.css'
+@import 'slick-carousel/slick/slick-theme.css'
     
 /*! Author: Jacques Mathieu
    Date Created: 08-05-19
@@ -33,7 +36,7 @@ html, body, .section-list, #root
     
 $sl-dimensions: 20%
 $sl-dim-max: 2.75rem
-$sl-top-offset: 50% - ($sl-dimensions/2)
+$sl-top-offset: 50% - math.div($sl-dimensions, 2)
 $arrow-size: 0.5rem
 $sl-h-font-size: 1.2rem
 $sl-h-padding-top: 0rem
@@ -136,11 +139,11 @@ $sl-ht-width: calc(100% - (#{$sl-ht-lr-padding} * 2))
 $page-header-font-size: 1rem
 $page-header-H: 2.4rem
 // Set line height to 1/12th less than the header height
-$page-line-H: $page-header-H * 11 / 12
-$one-twelth-padding: $page-header-H / 12
-$one-sixth-padding: $page-header-H / 6
+$page-line-H: math.div($page-header-H * 11, 12)
+$one-twelth-padding: math.div($page-header-H, 12)
+$one-sixth-padding: math.div($page-header-H, 6)
 $header-comp-left-padding: 1rem
-$header-tab-lr-padding: $header-comp-left-padding / 2
+$header-tab-lr-padding: math.div($header-comp-left-padding, 2)
 =mobile_tab_transition()
     transition: all 0.6s ease
 =header-comp()
@@ -330,7 +333,7 @@ $mobile-sl-padding: 0.5rem
 $mobile-page-header-font-size: $page-header-font-size * 1.5
 $mobile-page-header-H: $page-header-H * 1.5
 $mobile-menu-vert-padding: 0.8rem
-$mobile-menu-option-padding: $mobile-menu-vert-padding / 2
+$mobile-menu-option-padding: math.div($mobile-menu-vert-padding, 2)
 =mobile-ang-content-width()
     width: 65%
     left: calc(35%/2)
