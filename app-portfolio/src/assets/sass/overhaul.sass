@@ -1,0 +1,465 @@
+@use "sass:math"
+@import '../sass_components/_angular_section'
+@import '../sass_components/_global_variables'
+@import 'slick-carousel/slick/slick.css'
+@import 'slick-carousel/slick/slick-theme.css'
+    
+/*! Author: Jacques Mathieu
+   Date Created: 08-05-19
+
+    X XX  XX
+    XX  XX  XX
+    XX  XX  XX
+    XX  XX  XX
+    XX  XX  XX
+    XX  XX  XX
+    XX  XX  XX
+    XX  XX  XX
+   XX
+ XXX
+ -------------|
+ ASCII logo   | 
+ made with    |
+ asciiflow.com )
+ -------------| */
+html, body
+    max-width: 100%    
+    
+// Init page to enable % based widths and heights
+html, body, .section-list, #root
+    position: relative
+    width: 100%
+    height: 100vh
+    margin: 0px
+    padding: 0px
+    
+    
+$sl-dimensions: 20%
+$sl-dim-max: 2.75rem
+$sl-top-offset: 50% - math.div($sl-dimensions, 2)
+$arrow-size: 0.5rem
+$sl-h-font-size: 1.2rem
+$sl-h-padding-top: 0rem
+$sl-h-padding-left: 0.65rem
+$sl-h-height: calc((#{$sl-dimensions} - #{$sl-h-font-size}) / 2)
+
+=sl_header_font()
+    font-family: "Montserrat", monospace, sans-serif
+    font-weight: 500
+    color: black
+    text-align: center
+    font-size: $sl-h-font-size
+    padding-top: $sl-h-padding-top
+    padding-left: $sl-h-padding-left
+    height: $sl-h-height
+    
+=arrow_transition()
+    transition: all .2s ease
+
+// Wrapper that holds all contents of section link related items
+.section-links-wrapper
+    user-select: none
+    width: 66%
+    height: 100%
+    position: relative
+    float: right
+
+// Header for section links
+.section-links-header
+    position: relative
+    float: right
+    top: $sl-top-offset
+    margin-top: calc(#{$sl-h-font-size}/2)
+    +sl_header_font()
+
+$sl-padding-right: 1.3rem
+// Styling for section links in angular sections
+.section-link
+    position: relative
+    float: right
+    height: $sl-dimensions
+    max-height: $sl-dim-max
+    top: $sl-top-offset
+    padding-bottom: 0px
+    padding-right: $sl-padding-right
+    +default_transition()
+    a, img
+        height: 100%
+        max-height: 2.75em
+        position: relative
+        &:hover
+            cursor: pointer
+
+// Section link hover arrow
+.sl-hover-arrow
+    height: 0px
+    width: $arrow-size
+    opacity: 0
+    top: 0px
+    position: relative
+    left: calc(50% - #{$arrow-size})
+    border-bottom: $arrow-size solid black
+    border-left: $arrow-size solid transparent
+    border-right: $arrow-size solid transparent
+    top: 0px
+    +arrow_transition()
+
+.section-link a:hover + .sl-hover-arrow, .sl-hover-arrow.react-hover
+    opacity: 1
+    top: calc(#{$arrow-size}/1.5)
+    +arrow_transition()
+
+//white-space: nowrap
+$sl-ht-lr-padding: 0px
+$sl-ht-width: calc(100% - (#{$sl-ht-lr-padding} * 2))
+.sl-hover-text
+    z-index: 20
+    +sl_header_font()
+    font-weight: 800
+    color: white
+    height: 5%
+    font-size: 0.75rem
+    text-align: left
+    position: absolute
+    display: block
+    width: $sl-ht-width
+    padding-left: $sl-ht-lr-padding
+    padding-right: $sl-ht-lr-padding
+    text-transform: uppercase
+    overflow-wrap: break-word
+    overflow-x: hidden
+    overflow-y: hidden
+    opacity: 0
+    +default_transition()
+    &.show
+        opacity: 1
+        +default_transition()
+
+// Styling for Page Header component
+$page-header-font-size: 1rem
+$page-header-H: 2.4rem
+// Set line height to 1/12th less than the header height
+$page-line-H: math.div($page-header-H * 11, 12)
+$one-twelth-padding: math.div($page-header-H, 12)
+$one-sixth-padding: math.div($page-header-H, 6)
+$header-comp-left-padding: 1rem
+$header-tab-lr-padding: math.div($header-comp-left-padding, 2)
+=mobile_tab_transition()
+    transition: all 0.6s ease
+=header-comp()
+    padding-left: $header-comp-left-padding
+    text-align: center
+    line-height: $page-line-H
+
+section.page-header
+    height: $page-header-H
+    font-size: $page-header-font-size
+    padding-left: $ang-content-lr-padding
+    .header-title
+        position: relative
+        float: left
+        user-select: none
+        +header-comp()
+    .header-logo-wrapper
+        user-select: none
+        height: calc(100% - (#{$one-sixth-padding} * 2))
+        padding-top: $one-sixth-padding
+        padding-bottom: $one-sixth-padding
+        position: relative
+        float: left
+        +header-comp()
+        img
+            height: 100%
+    .header-tabs
+        user-select: none
+        position: relative
+        float: right
+        padding-right: $ang-content-lr-padding
+        .header-tab
+            position: relative
+            float: left
+            padding-right: $header-tab-lr-padding
+            +header_comp()
+            padding-left: $header-tab-lr-padding
+            +default_transition()
+            &:hover
+                cursor: pointer
+                background: rgba(255, 255, 255, 0.25)
+                +default_transition()
+            &:focus, &:active
+                background: rgba(255, 255, 255, 0.45)
+                +default_transition()
+    .mobile-header-tabs
+        user-select: none
+        display: none
+        height: 0px
+        max-height: 0px
+        +mobile_tab_transition()
+    .mobile-show-tabs-icon
+        position: relative
+        float: right
+        display: none
+        img
+            height: 100%
+
+
+// Wrapper for all sections
+.section-list
+    position: relative
+    opacity: 0
+    transition: all 0.4s ease-out
+    height: calc(100% - #{$page-header-H} - #{$ang-div-base-H})
+    
+.section-list.show
+    opacity: 1
+    transition: all 0.4s ease-in
+
+// Styling for Bottom Spawn Modal
+
+$modal-H-font-size: 1.4rem
+$modal-menu-bar-H: $modal-H-font-size + 0.8rem
+$modal-menu-close-padding: 0.4rem
+$modal-menu-opacity: 0.9
+=modal-H-font()
+    font-family: "Montserrat", monospace, sans-serif
+    font-weight: 500
+    color: white
+    padding-left: 5%
+    padding-top: 0.15rem
+    opacity: $modal-menu-opacity
+
+.bottom-spawn-modal
+    width: 100%
+    height: calc(100% - #{$page-header-H})
+    position: absolute
+    bottom: 0px
+    background: white
+    opacity: 0.5
+    z-index: 0
+    display: none
+    overflow-x: hidden
+    overflow-y: hidden
+    +default_transition()
+    &.show
+        display: block
+        z-index: 20
+        opacity: 1
+        +default_transition()
+    .bs-modal-menu-bar
+        display: block
+        width: 100%
+        background-color: black
+        height: $modal-menu-bar-H
+        user-select: none
+        text-transform: lowercase
+        .bs-modal-header
+            position: relative
+            float: left
+            font-size: $modal-H-font-size
+            +modal-H-font()
+        .bs-modal-close
+            position: relative
+            float: right
+            margin-right: 5%
+            padding: $modal-menu-close-padding
+            height: calc(100% - (2 * #{$modal-menu-close-padding}))
+            background-color: rgba(255, 255, 255, 0)
+            +default_transition()
+            img
+                width: $modal-H-font-size
+                height: $modal-H-font-size
+                opacity: $modal-menu-opacity
+            &:hover
+                background-color: rgba(255, 255, 255, 0.25)
+                cursor: pointer
+                +default_transition()
+        .bs-modal-content
+            position: relative
+            height: calc(100% - #{$modal-menu-bar-H})
+
+// Image slider stylings
+
+$ec-img-padding-lr: 0%
+$ec-img-double-padding: $ec-img-padding-lr * 2
+$ss-max-width: 1336px
+.ec-image-slider
+    height: 100%
+    user-select: none
+    overflow-y: overlay
+    background-color: rgba(0, 0, 0, 0.10)
+    &:focus
+        outline: none
+    .slick-slide
+        &:focus
+            outline: none
+        img
+            width: calc(100% - #{$ec-img-double-padding})
+            max-width: $ss-max-width
+            padding-left: $ec-img-padding-lr
+            padding-right: $ec-img-padding-lr
+            margin: auto
+            &:focus
+                outline: none
+    .slick-dots
+        position: absolute
+        bottom: 2.4rem
+        li
+            button
+                font-size: 1rem
+    .slick-prev, .slick-next
+        z-index: 100
+        &:before
+            color: rgba(0, 0, 0, .40) !important
+            font-size: 1.4rem
+    .slick-prev
+        left: 1.4rem
+    .slick-next
+        right: 1.4rem
+        
+        
+// Mobile Stylings
+$phone-layout-enable: 450px
+// The following is a test width for dev use only
+// $phone-layout-enable: 500px
+$mobile-banner-img-H: 75%
+$mobile-as-top-padding: 3%
+$mobile-as-bottom-padding: 2%
+$mobile-as-H: 55%
+$mobile-sl-font-size: 1.1rem
+$mobile-as-min-H: 14rem
+$mobile-sl-H: 2 * $mobile-sl-font-size
+$mobile-sl-wrapper-H: 100% - $mobile-banner-img-H
+$mobile-sl-padding: 0.5rem
+$mobile-page-header-font-size: $page-header-font-size * 1.5
+$mobile-page-header-H: $page-header-H * 1.5
+$mobile-menu-vert-padding: 0.8rem
+$mobile-menu-option-padding: math.div($mobile-menu-vert-padding, 2)
+=mobile-ang-content-width()
+    width: 65%
+    left: calc(35%/2)
+@media only screen and (max-width: $phone-layout-enable)
+    section.page-header
+        height: $mobile-page-header-H
+        font-size: $mobile-page-header-font-size
+        .header-tabs, .header-title
+            display: none
+        .mobile-show-tabs-icon
+            height: calc(#{$mobile-page-header-H} - (#{$one-sixth-padding} * 2))
+            padding-top: $one-sixth-padding
+            padding-bottom: $one-sixth-padding
+            +header_comp()
+            padding-left: $one-sixth-padding
+            padding-right: $ang-content-lr-padding
+            display: block
+        .mobile-header-tabs
+            display: flex
+            flex-direction: column
+            position: absolute
+            left: 0px
+            top: $mobile-page-header-H
+            padding-right: $ang-content-lr-padding
+            padding-left: $ang-content-lr-padding
+            width: calc(100% - (#{$ang-content-lr-padding} * 2))
+            z-index: 10
+            height: auto
+            padding-top: $mobile-menu-vert-padding
+            padding-bottom: $mobile-menu-vert-padding
+            background: black
+            +mobile_tab_transition()
+            .mobile-header-tab
+                text-align: right
+                width: calc(100% - (#{$mobile-menu-option-padding} * 2))
+                padding: $mobile-menu-option-padding
+                &:hover, &:focus, &:active
+                    background: rgba(255, 255, 255, 0.25)
+                    +default_transition()
+    .angular-section
+        min-height: $mobile-as-min-H
+        height: calc(#{$mobile-as-H} - #{$mobile-as-top-padding} - #{$mobile-as-bottom-padding} - #{$ang-div-full-H})
+        padding-bottom: $mobile-as-bottom-padding
+        padding-top: $mobile-as-top-padding
+        .angular-content
+            .banner-title-img, .banner-title-text
+                max-width: 100%
+                width: 100%
+                height: $mobile-banner-img-H
+                img
+                    height: auto
+                    +mobile-ang-content-width()
+            .banner-title-text
+                text-align: center
+            .section-links-wrapper
+                max-width: 100%
+                float: left
+                height: $mobile-sl-wrapper-H
+                +mobile-ang-content-width()
+                .section-links-header
+                    float: left
+                    font-size: $mobile-sl-font-size
+                    margin-top: 0px
+                .section-link
+                    top: calc(50% - (#{$mobile-sl-H}/2))
+                    padding-left: $mobile-sl-padding
+                    padding-right: 0px
+                    max-height: 100%
+                    height: $mobile-sl-H
+                    &:last-child
+                        padding-right: 0.2rem
+                    a, a img
+                        max-height: 100%
+                        height: $mobile-sl-H
+    .bottom-spawn-modal
+        .bs-modal-menu-bar
+            overflow-y: hidden
+            .bs-modal-header
+                overflow: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
+                width: 75%
+
+
+$super-mobile-width: 345px
+$super-mobile-sl-font-size: 0.9rem
+$super-mobile-sl-H: $super-mobile-sl-font-size * 1.5
+@media only screen and (max-width: $super-mobile-width)
+    .angular-section
+        .angular-content
+            .section-links-wrapper
+                .section-links-header
+                    font-size: $super-mobile-sl-font-size
+                .section-link
+                    height: $super-mobile-sl-H
+                    top: calc(50% - (#{$super-mobile-sl-H} / 2))
+                    a, a img
+                        height: $super-mobile-sl-H
+    .bottom-spawn-modal
+        .bs-modal-menu-bar
+            .bs-modal-header
+                width: 75%
+                padding-left: 2%
+            .bs-modal-close
+                margin-right: 2%
+                
+/* Apply these stylings to page for displays that are wider than 1600px */
+$large-display-W: 1601px
+$L-display-scalar: 1.4
+$banner-title-font-size-L: $banner-title-font-size * $L-display-scalar
+$sl-h-font-size-L: $sl-h-font-size * $L-display-scalar
+$sl-h-height-L: calc((#{$sl-dimensions} - #{$sl-h-font-size-L}) / 2)
+$sl-h-height-max: calc((#{$sl-dim-max} - #{$sl-h-font-size-L}) / 2)
+$sl-min-H-L: $sl-h-font-size-L * $L-display-scalar
+
+@media only screen and (min-width: $large-display-W)
+    .angular-section .angular-content
+        .banner-title-text
+            font-size: $banner-title-font-size-L
+        .section-links-wrapper
+            .section-links-header
+                font-size: $sl-h-font-size-L
+                height: $sl-h-height-L
+                max-height: $sl-h-height-max
+                margin-top: calc(#{$sl-h-height-max} / 2)
+            .section-link
+                min-height: $sl-min-H-L
+                a img
+                    min-height: $sl-min-H-L

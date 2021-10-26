@@ -1,0 +1,1 @@
+The purpose of this branch is to automate the generation of header and footer files as required per testing react files with mocha in node.js
