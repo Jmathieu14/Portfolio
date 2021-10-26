@@ -58,11 +58,7 @@ describe('Test file util functions', function () {
     assertFalsy(fileUtil.isFolder(file));
     assertFalsy(fileUtil.isFolder(justAString));
   });
-  it('should say folder DNE',
-  /*#__PURE__*/
-  (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee() {
+  it('should say folder DNE', /*#__PURE__*/(0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
     var testPath;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
@@ -78,11 +74,7 @@ describe('Test file util functions', function () {
       }
     }, _callee);
   })));
-  it('should say folder exists',
-  /*#__PURE__*/
-  (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee2() {
+  it('should say folder exists', /*#__PURE__*/(0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2() {
     var curDir;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
@@ -98,11 +90,7 @@ describe('Test file util functions', function () {
       }
     }, _callee2);
   })));
-  it('should make folder if DNE',
-  /*#__PURE__*/
-  (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee3() {
+  it('should make folder if DNE', /*#__PURE__*/(0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3() {
     var testPath;
     return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
@@ -120,11 +108,7 @@ describe('Test file util functions', function () {
       }
     }, _callee3);
   })));
-  it('createFolderIfDNE should not return false when called on folder that exists',
-  /*#__PURE__*/
-  (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee4() {
+  it('createFolderIfDNE should not return false when called on folder that exists', /*#__PURE__*/(0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4() {
     var testPath;
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {

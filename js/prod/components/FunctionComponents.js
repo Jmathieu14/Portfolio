@@ -1,10 +1,5 @@
 "use strict";
 
-// Load react variables
-var React = require('react');
-
-var ReactDOM = require('react-dom'); // Used to be joined into other files, negating the need to write this into each file for test purposes"use strict";
-
 // Return html element that will serve as the target to render a modal on activation
 function ModalRenderTarget(props) {
   return /*#__PURE__*/React.createElement("div", {
@@ -23,10 +18,4 @@ function FontImport(props) {
 
 function PageTitle(props) {
   return /*#__PURE__*/React.createElement("title", null, props.text);
-}"use strict";
-
-module.exports = {
-  ModalRenderTarget: ModalRenderTarget,
-  FontImport: FontImport,
-  PageTitle: PageTitle
-};
+}

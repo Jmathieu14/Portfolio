@@ -1,10 +1,5 @@
 "use strict";
 
-// Load react variables
-var React = require('react');
-
-var ReactDOM = require('react-dom'); // Used to be joined into other files, negating the need to write this into each file for test purposes"use strict";
-
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
@@ -163,10 +158,4 @@ function SectionLinkHoverText(props) {
     "class": props.specs['className'],
     style: props.specs['textColor']
   }, repeatStringNTimes(props.specs['text'], 200, ' '));
-}"use strict";
-
-module.exports = {
-  SectionLink: SectionLink,
-  SectionLinksHeader: SectionLinksHeader,
-  SectionLinkHoverText: SectionLinkHoverText
-};
+}
