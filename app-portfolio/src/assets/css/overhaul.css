@@ -124,7 +124,7 @@ html, body {
 
 html, body, .section-list, #root {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   margin: 0px;
   padding: 0px;

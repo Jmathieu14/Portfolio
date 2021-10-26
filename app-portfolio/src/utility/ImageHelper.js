@@ -15,6 +15,15 @@ import videoIcon from '../assets/img/page/Google Icons/video_icon.png';
 import closeIcon from '../assets/img/page/Google Icons/baseline_close_white_48dp.png';
 import mluAfter from '../assets/img/AGO/MLU after.png';
 import oml from '../assets/img/AGO/OML.png';
+import achievementsPage from '../assets/img/Sparksales/Achievements Page.png';
+import agentDashboard from '../assets/img/Sparksales/Agent Dashboard.png';
+import salesAgentResourcePage from '../assets/img/Sparksales/Agent Resources Page.png';
+import welcomePage from '../assets/img/Sparksales/Welcome page - first page client sees on first login.png';
+import setupStep1 from '../assets/img/Sparksales/Step 1 signup process.png';
+import setupStep2 from '../assets/img/Sparksales/Step 2 signup process.png';
+import setupStep3 from '../assets/img/Sparksales/Step 3 signup process.png';
+import setupReminder from '../assets/img/Sparksales/Step 3 reminder for client.png';
+import setupStep4 from '../assets/img/Sparksales/Step 4 signup process.png';
 
 
 // TODO: finish adding alts to all images
@@ -43,6 +52,15 @@ export const imageHelper = {
     },
     exampleWork: {
         mluAfter: mluAfter,
-        oml: oml
+        oml: oml,
+        achievementsPage: achievementsPage,
+        agentDashboard: agentDashboard,
+        salesAgentResourcePage: salesAgentResourcePage,
+        welcomePage: welcomePage,
+        setupStep1: setupStep1,
+        setupStep2: setupStep2,
+        setupStep3: setupStep3,
+        setupStep4: setupStep4,
+        setupReminder: setupReminder
     }
 }
