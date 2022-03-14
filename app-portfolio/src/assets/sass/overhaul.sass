@@ -135,15 +135,6 @@ $sl-ht-width: calc(100% - (#{$sl-ht-lr-padding} * 2))
         opacity: 1
         +default_transition()
 
-// Styling for Page Header component
-$page-header-font-size: 1rem
-$page-header-H: 2.4rem
-// Set line height to 1/12th less than the header height
-$page-line-H: math.div($page-header-H * 11, 12)
-$one-twelth-padding: math.div($page-header-H, 12)
-$one-sixth-padding: math.div($page-header-H, 6)
-$header-comp-left-padding: 1rem
-$header-tab-lr-padding: math.div($header-comp-left-padding, 2)
 =mobile_tab_transition()
     transition: all 0.6s ease
 =header-comp()
@@ -215,9 +206,6 @@ section.page-header
     transition: all 0.4s ease-in
 
 // Styling for Bottom Spawn Modal
-
-$modal-H-font-size: 1.4rem
-$modal-menu-bar-H: $modal-H-font-size + 0.8rem
 $modal-menu-close-padding: 0.4rem
 $modal-menu-opacity: 0.9
 =modal-H-font()
@@ -273,50 +261,10 @@ $modal-menu-opacity: 0.9
                 background-color: rgba(255, 255, 255, 0.25)
                 cursor: pointer
                 +default_transition()
-        .bs-modal-content
-            position: relative
-            height: calc(100% - #{$modal-menu-bar-H})
+    .bs-modal-content
+        display: block
 
-// Image slider stylings
-
-$ec-img-padding-lr: 0%
-$ec-img-double-padding: $ec-img-padding-lr * 2
-$ss-max-width: 1336px
-.ec-image-slider
-    height: 100%
-    user-select: none
-    overflow-y: overlay
-    background-color: rgba(0, 0, 0, 0.10)
-    &:focus
-        outline: none
-    .slick-slide
-        &:focus
-            outline: none
-        img
-            width: calc(100% - #{$ec-img-double-padding})
-            max-width: $ss-max-width
-            padding-left: $ec-img-padding-lr
-            padding-right: $ec-img-padding-lr
-            margin: auto
-            &:focus
-                outline: none
-    .slick-dots
-        position: absolute
-        bottom: 2.4rem
-        li
-            button
-                font-size: 1rem
-    .slick-prev, .slick-next
-        z-index: 100
-        &:before
-            color: rgba(0, 0, 0, .40) !important
-            font-size: 1.4rem
-    .slick-prev
-        left: 1.4rem
-    .slick-next
-        right: 1.4rem
-        
-        
+            
 // Mobile Stylings
 $phone-layout-enable: 450px
 // The following is a test width for dev use only

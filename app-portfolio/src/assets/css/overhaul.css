@@ -361,52 +361,8 @@ section.page-header .mobile-show-tabs-icon img {
   cursor: pointer;
   transition: all 0.2s linear;
 }
-.bottom-spawn-modal .bs-modal-menu-bar .bs-modal-content {
-  position: relative;
-  height: calc(100% - 2.2rem);
-}
-
-.ec-image-slider {
-  height: 100%;
-  user-select: none;
-  overflow-y: overlay;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-.ec-image-slider:focus {
-  outline: none;
-}
-.ec-image-slider .slick-slide:focus {
-  outline: none;
-}
-.ec-image-slider .slick-slide img {
-  width: calc(100% - 0%);
-  max-width: 1336px;
-  padding-left: 0%;
-  padding-right: 0%;
-  margin: auto;
-}
-.ec-image-slider .slick-slide img:focus {
-  outline: none;
-}
-.ec-image-slider .slick-dots {
-  position: absolute;
-  bottom: 2.4rem;
-}
-.ec-image-slider .slick-dots li button {
-  font-size: 1rem;
-}
-.ec-image-slider .slick-prev, .ec-image-slider .slick-next {
-  z-index: 100;
-}
-.ec-image-slider .slick-prev:before, .ec-image-slider .slick-next:before {
-  color: rgba(0, 0, 0, 0.4) !important;
-  font-size: 1.4rem;
-}
-.ec-image-slider .slick-prev {
-  left: 1.4rem;
-}
-.ec-image-slider .slick-next {
-  right: 1.4rem;
+.bottom-spawn-modal .bs-modal-content {
+  display: block;
 }
 
 @media only screen and (max-width: 450px) {
@@ -468,7 +424,7 @@ section.page-header .mobile-show-tabs-icon img {
   .angular-section .angular-content .banner-title-img img, .angular-section .angular-content .banner-title-text img {
     height: auto;
     width: 65%;
-    left: calc(35%/2);
+    left: 17.5%;
   }
   .angular-section .angular-content .banner-title-text {
     text-align: center;
@@ -478,7 +434,7 @@ section.page-header .mobile-show-tabs-icon img {
     float: left;
     height: 25%;
     width: 65%;
-    left: calc(35%/2);
+    left: 17.5%;
   }
   .angular-section .angular-content .section-links-wrapper .section-links-header {
     float: left;

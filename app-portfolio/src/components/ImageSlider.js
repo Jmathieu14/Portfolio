@@ -1,5 +1,6 @@
 import React from 'react';
-import Slider from "react-slick";
+import Slider from 'react-slick';
+import '../assets/css/image-slider.css';
 const { genKey } = require('./Utility');
 
 class ImageSlider extends React.Component {
