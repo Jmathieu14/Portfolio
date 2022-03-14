@@ -4,48 +4,30 @@
   "description": "Load libraries for working with Jacques Mathieu's Portfolio Website",
   "main": "index.js",
   "dependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.0",
-    "@babel/node": "^7.10.5",
-    "@babel/plugin-transform-react-jsx": "^7.10.4",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-react": "^7.10.4",
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
     "babel-plugin-inline-json-import": "^0.3.2",
-    "bytenode": "^1.1.6",
-    "dot-prop": "^5.2.0",
-    "nodemon": "^1.19.4",
-    "react": "^16.13.1"
+    "bytenode": "^1.1.1",
+    "nodemon": "^1.19.2",
+    "react": "^16.10.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.11.0",
-    "@babel/runtime": "^7.11.0",
     "concat-files": "^0.1.1",
-    "del-cli": "^3.0.1",
     "jsdom": "15.1.1",
     "jsdom-global": "3.0.2",
     "mocha": "^8.4.0",
-    "react-dom": "^16.13.1"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "tests",
-      "img",
-      "js",
-      "concat"
-    ],
-    "events": {
-      "restart": "npm run build"
-    }
+    "react-dom": "^16.10.0"
   },
   "scripts": {
-    "build": "npm run clearJSProdDir && babel --presets @babel/preset-react js/pre-prod -d js/prod && npm run readyProd",
-    "clearJSProdDir": "del-cli js/prod",
-    "readyProd": "node concat/scripts/concat-all-components.js",
-    "start": "npm run build && nodemon --exec node js/prod/server/init.js",
-    "buildTests": "babel --presets @babel/preset-env tests/pre -d tests/build && babel --plugins @babel/plugin-transform-runtime tests/build -d tests/build",
-    "test": "npm run buildTests && npm run execConcats && npm run _mocha",
-    "_mocha": "mocha tests/build -r jsdom-global/register",
-    "execConcats": "node concat/scripts/utility-nodify.js && node concat/scripts/function-components-nodify.js && node concat/scripts/section-link-nodify.js"
+    "build": "babel --presets @babel/preset-react pre-prod/js -d js",
+    "start": "npm run build && nodemon --exec babel-node js/server/init.js",
+    "buildTests": "babel --presets @babel/preset-react tests/pre -d tests/build",
+    "test": "npm run buildTests && npm run execConcats && mocha tests/build -r jsdom-global/register",
+    "execConcats": "node concat/scripts/ready-my-react-components.js"
   },
   "repository": {
     "type": "git",
