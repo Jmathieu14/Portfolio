@@ -1,4 +1,5 @@
 import React from 'react';
+import { resolveStaticPath } from '../utility/StaticPathResolver';
 import AngularDivider from './AngularDivider';
 import ExpandableContent from './ExpandableContent';
 import { SectionLink, SectionLinksHeader, SectionLinkHoverText } from './SectionLink';
@@ -100,7 +101,7 @@ export default class AngularSection extends React.Component {
     getBannerImgHTML() {
         if (checkObjAndKey(this.bannerSpecs, 'bannerImg')) {
             return (<div className="banner-title-img" style={this.getBannerImgStyle()}>
-                <img src={this.bannerSpecs['bannerImg']} alt={this.bannerSpecs['alt']} />
+                <img src={resolveStaticPath(this.bannerSpecs['bannerImg'])} alt={this.bannerSpecs['alt']} />
             </div>
             );
         } else return null;
