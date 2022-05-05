@@ -42,13 +42,13 @@ export class SectionLink extends React.Component {
   mouseEnterLogo() {
     // Set priority to 1 so that when one moves the mouse from one link to the next, the 
     // background color is not overwritten by the delayed by the dehovering of this link
-    let priority = 1; const hoverTextShow = true; const hoverText = this.specs.name;
+    let priority = 1; const hoverTextShow = true; const hoverText = this.specs.name.replace(' ', '-');
     this.props.childSetParentSectBGAndHoverText("hover", this.specs.hoverBG, priority, hoverText, hoverTextShow);
 
   }
   mouseLeaveLogo() {
     // Set priority to 0 so that this does not overwrite mouse enter of a different link
-    let priority = 0; const hoverTextShow = false; const hoverText = this.specs.name;
+    let priority = 0; const hoverTextShow = false; const hoverText = this.specs.name.replace(' ', '-');
     this.props.childSetParentSectBGAndHoverText("hover", this.parentBG, priority, hoverText, hoverTextShow);
   }
   handleClick() {
@@ -65,6 +65,9 @@ export class SectionLink extends React.Component {
       window.open(this.specs.url, this.specs.target);
     }
   }
+  getArrowId() {
+    return `${this.specs.name.replace(' ', '-')}-arrow`;
+  }
   render() {
     if (checkObjAndKey(this.specs, "routerLink") && this.specs.routerLink) {
       return (
@@ -76,7 +79,7 @@ export class SectionLink extends React.Component {
                 src={resolveStaticPath(this.specs.logo)}
               />
             </Link>
-            <div style={this.arrowStyle} id={this.specs.name + "-arrow"} className={this.arrowClassName}
+            <div style={this.arrowStyle} id={this.getArrowId()} className={this.arrowClassName}
               ref={this.arrowRef}>
             </div>
           </div>
@@ -94,7 +97,7 @@ export class SectionLink extends React.Component {
                 onMouseLeave={this.mouseLeaveLogo}
               />
             </a>
-            <div style={this.arrowStyle} id={this.specs.name + "-arrow"} className={this.arrowClassName}
+            <div style={this.arrowStyle} id={this.getArrowId()} className={this.arrowClassName}
               ref={this.arrowRef}>
             </div>
           </div>
