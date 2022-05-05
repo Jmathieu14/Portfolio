@@ -23,32 +23,37 @@ const getHtmlFiles = (folder) => {
     return getSubFoldersOrFiles(folder, '.html');
 }
 
-const updatePathsInElementArray = (elements, attribute) => {
+const updatePathsInElementArray = (elements, attribute, isExampleWorkFolder) => {
     elements.forEach((element) => {
         const currentAttributeValue = element.attributes[attribute];
         if (!!currentAttributeValue && currentAttributeValue[0] === '/') {
-            element.setAttribute(attribute, `.${currentAttributeValue}`);
+            if (isExampleWorkFolder) {
+                element.setAttribute(attribute, `../${currentAttributeValue}`);
+            } else {
+                element.setAttribute(attribute, `.${currentAttributeValue}`);
+            }
         }
     });
 };
 
-const fixHtmlFile = (file) => {
+const fixHtmlFile = (file, isExampleWorkFolder) => {
     const htmlString = readFileSync(file);
     const htmlObject = parse(htmlString);
     let links = htmlObject.querySelectorAll('link');
     let scripts = htmlObject.querySelectorAll('script');
     let images = htmlObject.querySelectorAll('img');
-    updatePathsInElementArray(links, 'href');
-    updatePathsInElementArray(scripts, 'src');
-    updatePathsInElementArray(images, 'src');
+    updatePathsInElementArray(links, 'href', isExampleWorkFolder);
+    updatePathsInElementArray(scripts, 'src', isExampleWorkFolder);
+    updatePathsInElementArray(images, 'src', isExampleWorkFolder);
     writeFileSync(file, htmlObject.toString());
 }
 
 const fixHtmlFiles = (folder) => {
+    const isExampleWorkFolder = folder === './build/example-work';
     const htmlFiles = getHtmlFiles(folder);
     for (let i in htmlFiles) {
         const htmlFile = htmlFiles[i];
-        fixHtmlFile(htmlFile);
+        fixHtmlFile(htmlFile, isExampleWorkFolder);
     }
     const subFolders = getSubFolders(folder);
     subFolders.forEach((folder) => { fixHtmlFiles(folder) });
