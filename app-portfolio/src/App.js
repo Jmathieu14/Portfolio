@@ -6,19 +6,19 @@ import {
   BrowserRouter as Router,
   Switch,
   Route
-} from "react-router-dom";
+} from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Switch>
-          <Route exact path={["/", "/index.html", "/200.html"]}>
-            <Home />
-          </Route>
-          <Route path={["/example-work", "/example-work/index.html"]}>
-            <ExampleWork />
-          </Route>
-        </Switch>
+        <Route exact path={["/", "/index.html", "/200.html"]}>
+          <Home />
+        </Route>
+        <Route path={["/example-work", "/example-work/index.html"]}>
+          <ExampleWork />
+        </Route>
+      </Switch>
     </Router>
   );
 }

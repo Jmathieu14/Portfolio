@@ -7,7 +7,6 @@
     "start-dev": "webpack --mode development && react-scripts start",
     "start": "webpack --mode production && react-scripts start",
     "build": "webpack --mode production && react-scripts build",
-    "postbuild": "react-snap && node scripts/correctRelativeLinks.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sass-watch": "sass --watch src/assets/sass:src/assets/css src/assets/sass_components:src/assets/css_components"
@@ -53,6 +52,7 @@
     "node-html-parser": "^5.3.3",
     "react-snap": "^1.23.0",
     "sass": "^1.26.10",
+    "serve": "^13.0.2",
     "webpack-cli": "^4.7.2"
   },
   "description": "Portfolio website for Jacques Mathieu",
