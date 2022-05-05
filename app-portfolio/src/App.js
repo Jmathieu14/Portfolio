@@ -12,10 +12,10 @@ function App() {
   return (
     <Router>
       <Switch>
-          <Route exact path="/">
+          <Route exact path={["/", "/index.html", "/200.html"]}>
             <Home />
           </Route>
-          <Route path="/example-work">
+          <Route path={["/example-work", "/example-work/index.html"]}>
             <ExampleWork />
           </Route>
         </Switch>
