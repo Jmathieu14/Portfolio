@@ -119,13 +119,13 @@ var pageLayout = {
 
 var renderTarget = document.getElementById('react-content'); // Render layout to main view
 
-ReactDOM.render(React.createElement(React.Fragment, null, React.createElement(PageTitle, {
+ReactDOM.render( /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(PageTitle, {
   text: pageLayout["pageTitle"]
-}), React.createElement(FontImport, {
+}), /*#__PURE__*/React.createElement(FontImport, {
   path: pageLayout["font-import-link"]
-}), React.createElement(PageHeader, {
+}), /*#__PURE__*/React.createElement(PageHeader, {
   pageHeader: pageLayout["page-header"],
   sections: pageLayout["angular-sections"]
-}), React.createElement(SectionList, {
+}), /*#__PURE__*/React.createElement(SectionList, {
   sections: pageLayout["angular-sections"]
-}), React.createElement(ModalRenderTarget, null)), renderTarget);
+}), /*#__PURE__*/React.createElement(ModalRenderTarget, null)), renderTarget);
