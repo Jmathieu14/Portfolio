@@ -87,7 +87,7 @@ const pageLayout = {
                 },
                 {
                     "name": "Resume",
-                    "url": "../pdf/JSMathieu Resume Redesign - 2-17-21.pdf",
+                    "url": "../pdf/JSMathieu Resume Redesign - 5-5-22.pdf",
                     "logo": "../img/page/Google Icons/list_alt-48dp.svg",
                     "hoverBG": "#33ff5f",
                     "hoverBGName": "goodGreen",
