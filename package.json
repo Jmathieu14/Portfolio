@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
+    "@babel/core": "^7.20.5",
     "@babel/node": "^7.6.2",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.6.2",
